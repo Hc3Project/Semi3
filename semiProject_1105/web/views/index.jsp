@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="../resources/js/jquery-3.3.1.min.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
 
-<script src="../js/common.js"></script>
+<script src="../resources/js/common.js"></script>
 
 <link rel="stylesheet" href="../css/reset.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -107,15 +107,15 @@ img {
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="../image/2.jpg" alt="Los Angeles">
+							<img src="../resources/image/2.jpg" alt="Los Angeles">
 						</div>
 
 						<div class="item">
-							<img src="../image/1.jpg" alt="Chicago">
+							<img src="../resources/image/1.jpg" alt="Chicago">
 						</div>
 
 						<div class="item">
-							<img src="../image/3.jpg" alt="New York">
+							<img src="../resources/image/3.jpg" alt="New York">
 						</div>
 					</div>
 

@@ -4,17 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <script src="../../js/jquery-3.3.1.min.js"></script>
+  <script src="../../resources/js/jquery-3.3.1.min.js"></script>
   <!-- 슬라이더 -->
-  <script src="../../js/common.js"></script>
+  <script src="../../resources/js/common.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
   
-  <link rel="stylesheet" href="../../css/reset.css">
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/main.css">
-  <link rel="stylesheet" href="../../css/login.css">
+  <link rel="stylesheet" href="../../resources/css/reset.css">
+  <link rel="stylesheet" href="../../resources/css/style.css">
+  <link rel="stylesheet" href="../../resources/css/main.css">
+  <link rel="stylesheet" href="../../resources/css/login.css">
   <title>로그인</title>
 </head>
 <body>
