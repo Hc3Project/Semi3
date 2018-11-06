@@ -60,7 +60,6 @@
 			</tbody>
 		</table>
 	</div>
-	
 </body>
 <script src="../../resources/js/jquery-3.3.1.min.js"></script>
 <script src="../../resources/js/manager/addMovie.js"></script>

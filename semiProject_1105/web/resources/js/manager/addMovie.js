@@ -50,7 +50,8 @@ function addTable(data){
 		$tdOpenDt = $('<td>').text(item.openDt);
 		$tdGenre = $('<td>').text(item.genreAlt);
 		$tdDetail = $('<td>').text("");
-		$tdDetail = $('<td>').html("<input type='button' value='추가하기' onclick='detailBtn(this);'>");
+		if(item.openDt!="") $tdDetail = $('<td>').html("<input type='button' value='추가하기' onclick='detailBtn(this);'>");
+		else $tdDetail = $('<td>').html("<input type='button' value='추가하기' onclick='detailBtn(this);' disabled>");
 		
 		$tr.append($tdCode);
 		$tr.append($tdName);
@@ -95,25 +96,24 @@ function addDetail(obj){
 	infoData.genre2 = (mInfo.genres.length<2)?"없음":mInfo.genres[1].genreNm;
 	infoData.nation = (mInfo.nations.length!=0)?mInfo.nations[0].nationNm:"없음";
 	infoData.syno = syno.trim();
-	
+	console.log(infoData)
 	if(syno==""){
 		alert("상세정보를 입력바랍니다.");
 		return false;
 	}
-	
-	var strUrl = "/rec/";
-	
+	var strUrl = "/rec/mInsert.mo";
 	$.ajax({
 		url : strUrl,
 		type : "get",
 		data : infoData,
 		success : function(data){
 			alert("영화 정보를 입력을 성공하였습니다.")
-		},
+		},	
 		error : function(data){
 			alert("이미 존재하는 영화입니다.");
 		},
 		complete : function(data){
+			console.log(infoData)
 			backList();
 		}
 	})
@@ -123,6 +123,7 @@ function addDetail(obj){
 function backList(){
 	$('#searchMovie').css("display", "block");
 	$('#insertMovie').css("display", "none");
+	$('#movieName').val('');
 }
 
 function getKey(){
