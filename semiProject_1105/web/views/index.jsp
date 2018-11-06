@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,97 +11,27 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../resources/js/common.js"></script>
+<script src="../resources/js/boxOffice.js"></script>
 
-<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="../resources/css/reset.css">
 <link rel="stylesheet" href="../resources/css/main.css">
 <link rel="stylesheet" href="../resources/css/style.css">
 
 
 <title>movie traveler</title>
-<style type="text/css">
-#slideSection div {
-	height: 600px;
-}
 
-#slideSection {
-	margin-bottom: 50px;
-	height: 600px;
-}
-
-.listSection {
-	height: 300px;
-}
-
-/* body {
-	background: black;
-} */
-nav {
-	height: 80px;
-}
-
-footer {
-	height: 150px;
-}
-
-#item {
-	width: 100%;
-	height: 100px;
-	background: black;
-}
-
-img {
-	width: 100%;
-	height: 100%;
-	background: white;
-}
-
-.listSection .carousel-inner .item div {
-	width: 300px;
-	height: 200px;
-	padding: 0px 3px 0px 3px;
-}
-
-.listSection .carousel-inner .item {
-	margin: 50px;
-}
-
-#ThumbnailCarousel img {
-	
-}
-
-#ThumbnailCarousel div {
-	height: 250px;
-	width: 100%;
-}
-
-#ThumbnailCarousel.carousel {
-	padding-top: 30px;
-	text-align: center;
-}
-
-.col-md-3 .img-thumbnail {
-	height: 100%;
-}
-
-a[href="#st2Carousel"] {
-	width: 150px;
-}
-</style>
 </head>
 <body>
-
 	<header>
 		<div style="height: 80px;">
 			<%@ include file="common/header.jsp"%>
 		</div>
 	</header>
-
 	<!--header-->
-
 	<section id="slideSection">
 		<div class="row ">
 
@@ -113,14 +44,13 @@ a[href="#st2Carousel"] {
 			</div>
 
 			<div class="col-lg-8">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" >
 					<!-- Indicators -->
-					<ol class="carousel-indicators">
+					<ol class="carousel-indicators" style="float: right;">
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						<li data-target="#myCarousel" data-slide-to="1"></li>
 						<li data-target="#myCarousel" data-slide-to="2"></li>
 					</ol>
-
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
@@ -135,7 +65,6 @@ a[href="#st2Carousel"] {
 							<img src="../resources/image/3.jpg" alt="New York">
 						</div>
 					</div>
-
 					<a class="carousel-control-prev" href="#myCarousel" role="button"
 						data-slide="prev"> <span class="carousel-control-prev-icon"
 						aria-hidden="true"></span> <span class="sr-only">Previous</span>
@@ -158,10 +87,9 @@ a[href="#st2Carousel"] {
 							class="glyphicon glyphicon-angle-right"></span>
 						</a>
 					</h5>
-					<div class="carousel slide" data-ride="carousel" id="st2Carousel">
+					<div class="carousel slide" data-ride="carousel" id="st2Carousel"  data-interval="15000">
 						<div class="carousel-inner ">
 							<div class="item active rec-list clearfix">
-
 								<%
 									for (int i = 0; i < 6; i++) {
 								%>
@@ -199,8 +127,7 @@ a[href="#st2Carousel"] {
 								<%
 									}
 								%>
-
-										
+				
 								</div>
 
 							</div>
