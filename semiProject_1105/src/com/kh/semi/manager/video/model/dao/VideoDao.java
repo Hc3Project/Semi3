@@ -6,9 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.manager.video.model.vo.MovieInfo;
+import static com.kh.semi.common.JDBCTemplate.*;
 
 public class VideoDao {
 	
@@ -41,6 +44,9 @@ public class VideoDao {
 			else result = "G19";
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		return result;
@@ -64,6 +70,9 @@ public class VideoDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		return result;
@@ -91,6 +100,8 @@ public class VideoDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return result;
@@ -109,10 +120,11 @@ public class VideoDao {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
-		
 		return result;
-	}
+	} 
 
 	public int selectDup(Connection con, String mCode) {
 		PreparedStatement pstmt = null;
@@ -127,6 +139,98 @@ public class VideoDao {
 			if(rset.next()) result++;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<MovieInfo> selectPart(Connection con, String sel, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<MovieInfo> result = null;
+		String sql = prop.getProperty("selectPart").replace("condition", sel);
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			rset = pstmt.executeQuery();
+			result = new ArrayList<MovieInfo>();
+			
+			while(rset.next()) {
+				MovieInfo mi = new MovieInfo();
+				mi.setmCode(rset.getString("mcode"));
+				mi.setmTitle(rset.getString("mtitle"));
+				mi.setDirector(rset.getString("director"));
+				mi.setActor(rset.getString("actor"));
+				mi.setShowTime(rset.getInt("showtime"));
+				mi.setOpenDate(rset.getDate("opendate"));
+				mi.setgCode1(rset.getString("gcode1"));
+				mi.setgCOde2(rset.getString("gcode2"));
+				mi.setnCode(rset.getString("ncode"));
+				mi.setSyno(rset.getString("synopsis"));
+				
+				result.add(mi);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteMovie(Connection con, String mCode) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteMovie");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mCode);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateMovieInfo(Connection con, MovieInfo mi) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateMovieInfo");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mi.getmTitle());
+			pstmt.setString(2, mi.getDirector());
+			pstmt.setString(3, mi.getActor());
+			pstmt.setString(4, mi.getmCode());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateMovieDetail(Connection con, MovieInfo mi) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateMovieDetail");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mi.getSyno());
+			pstmt.setString(2, mi.getmCode());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		return result;
 	}
