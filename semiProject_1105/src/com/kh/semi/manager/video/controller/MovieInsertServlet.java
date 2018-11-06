@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.manager.video.model.service.VideoService;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
-import com.kh.semi.manager.video.service.VideoService;
 
 /**
  * Servlet implementation class MovieInsertServlet
  */
-@WebServlet("/mInsert.mo")
+@WebServlet("/mInsert.vi")
 public class MovieInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,8 +49,11 @@ public class MovieInsertServlet extends HttpServlet {
 		
 		VideoService vs = new VideoService();
 		
-		String gCode1 = vs.selectCode(genre1);
+		mi.setgCode1(vs.selectGenreCode(genre1));
+		mi.setgCOde2(vs.selectGenreCode(genre2));
+		mi.setnCode(vs.selectNationCode(nation));
 		
+		vs.insertMovie(mi);
 	}
 
 	/**
