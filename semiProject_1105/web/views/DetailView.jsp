@@ -4,16 +4,12 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/etc.css" />
-<link rel="stylesheet" href="../resources/css/font-awesome.css" />
-<link rel="stylesheet" href="../resources/css/forms.css" />
+<title>title another level top top top top top</title>
 <link rel="stylesheet" href="../resources/css/megabox.css" />
-<link rel="stylesheet" href="../resources/css/normalize.css" />
 <link rel="stylesheet" href="../resources/css/theme.css" />
 <link rel="stylesheet" href="../resources/css/theme2.css" />
 <style>
-                .starR1{
+        .starR1{
             background: url('http://www.escgo.com/wp-content/plugins/universal-star-rating/images/189/08.png') no-repeat -30px 0;
             background-size: auto 100%;
             width: 15px;
@@ -33,6 +29,7 @@
         }
         .starR1.on{background-position:0px 0;}
         .starR2.on{background-position:-15px 0;}
+        
         
 </style>
 </head>
