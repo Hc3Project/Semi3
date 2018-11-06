@@ -77,4 +77,21 @@ public class VideoService {
 		return result;
 	}
 
+	public int updateMovie(MovieInfo mi) {
+		Connection con = getConnection();
+		int result = vDao.updateMovieInfo(con, mi);
+		int result1 = 0;
+		
+		if(result>0) {
+			result1 = vDao.updateMovieDetail(con, mi);
+			if(result1>0) commit(con);
+			else rollback(con);
+		}
+		else rollback(con);
+		
+		close(con);
+		
+		return result1;
+	}
+
 }

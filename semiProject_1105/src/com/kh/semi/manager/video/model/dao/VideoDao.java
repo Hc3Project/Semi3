@@ -197,4 +197,42 @@ public class VideoDao {
 		return result;
 	}
 
+	public int updateMovieInfo(Connection con, MovieInfo mi) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateMovieInfo");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mi.getmTitle());
+			pstmt.setString(2, mi.getDirector());
+			pstmt.setString(3, mi.getActor());
+			pstmt.setString(4, mi.getmCode());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateMovieDetail(Connection con, MovieInfo mi) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateMovieDetail");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mi.getSyno());
+			pstmt.setString(2, mi.getmCode());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

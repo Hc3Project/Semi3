@@ -72,7 +72,36 @@ $(function(){
 				$('#getList').css('display', 'block');
 			}
 		})
+	})
+	
+	// 테이블 내 수정하기 버튼 눌렀을 시
+	$('#modifyBtn').click(function(){
+		var strUrl = "/semi/mUpdate.vi";
+		var jArr = new Object;
+		jArr.mCode = $(this).parents('table').find('th').eq(1).text().trim();
+		jArr.mTitle = $(this).parents('table').find('input:text').eq(0).val().trim();
+		jArr.director = $(this).parents('table').find('input:text').eq(1).val().trim();
+		jArr.actor = $(this).parents('table').find('input:text').eq(2).val().trim();
+		jArr.syno = $(this).parents('table').find('textarea').val().trim();
 		
+		$.ajax({
+			url : strUrl,
+			type : 'post',
+			data : jArr,
+			success : function(data){
+				if(data>0) alert("성공적으로 수정되었습니다.");
+				else alert("삭제 실패\n 개발자에게 문의하세요.");
+			},
+			error : function(data){
+				console.log(data);
+			},
+			complete : function(data){
+				$('#movieList tbody').html('');
+				$('#searchBtn').prop('disabled', false);
+				$('#modifyInfo').css('display', 'none');
+				$('#getList').css('display', 'block');
+			}
+		})
 	})
 })
 
