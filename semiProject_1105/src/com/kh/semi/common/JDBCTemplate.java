@@ -24,7 +24,6 @@ public class JDBCTemplate {
 			Class.forName(driver);
 			con=DriverManager.getConnection(url,userName,password);
 			con.setAutoCommit(false);
-			return con;
 		} catch (IOException | ClassNotFoundException | SQLException e) {
 		}
 		return con;

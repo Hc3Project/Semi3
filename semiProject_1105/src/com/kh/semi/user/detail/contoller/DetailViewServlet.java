@@ -39,6 +39,7 @@ public class DetailViewServlet extends HttpServlet {
 		String keyword = request.getParameter("txt");
 //		String keyword = "iron";
 		System.out.println(keyword);
+		String saveKey=keyword;
 		System.out.println(URLEncoder.encode(keyword, "utf-8"));
 		
 		String clientId = "f1lI5BaAwEDWvf6UPMiK";
@@ -94,7 +95,9 @@ public class DetailViewServlet extends HttpServlet {
 				
 			}else{
 				// 결과가 여러개 나오는 경우
+				DetailViewService dvs=new DetailViewService();
 				
+				page=dvs.getPowerImage(result,saveKey);
 				
 			}
 			
