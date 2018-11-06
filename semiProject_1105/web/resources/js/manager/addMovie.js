@@ -25,6 +25,7 @@ $(function(){
 		var mList = mApi.getMovieList(true, title, resultMax, curPage);
 		
 		$('#searchMovie').css("display", "block");
+		$('#insertMovie').css("display", "none");
 		$('#movieList tbody').html("");
 		$('#more').prop('disabled', false);
 		addTable(mList);
@@ -63,19 +64,37 @@ function addTable(data){
 		$table.append($tr)
 	})
 	
-	if(totCnt/resultMax < curPage) $('#more').prop('disabled', true);
+	if(totCnt/resultMax < curPage++) $('#more').prop('disabled', true);
 }
 
 function detailBtn(obj){
 	var mCode = $(obj).parent().parent().children().eq(0).text();
 	var mTitle = $(obj).parent().parent().children().eq(1).text();
-
-	$('#searchMovie').css("display", "none");
-	$('#insertMovie').css("display", "block");
 	
-	$('#addDetail thead').find('th').eq(1).text(mCode);
-	$('#addDetail thead').find('th').eq(3).text(mTitle);
-	$('#addDetail textarea').val("");
+	var strUrl = "/semi/mDup.vi";
+	$.ajax({
+		type : "get",
+		url : strUrl,
+		data : {
+			"mCode" : mCode
+		},
+		success : function(data){
+			if(data>0){
+				alert("이미 등록된 영화입니다.");
+				$(obj).prop("disabled", true);
+			} else {
+				$('#searchMovie').css("display", "none");
+				$('#insertMovie').css("display", "block");
+				
+				$('#addDetail thead').find('th').eq(1).text(mCode);
+				$('#addDetail thead').find('th').eq(3).text(mTitle);
+				$('#addDetail textarea').val("");
+			}
+		},
+		error : function(data){
+			
+		}
+	})
 }
 
 function addDetail(obj){
@@ -91,7 +110,7 @@ function addDetail(obj){
 	infoData.director = (mInfo.directors.length==0)?"없음":mInfo.directors[0].peopleNm;
 	infoData.actor = (mInfo.actors.length==0)?"없음":mInfo.actors[0].peopleNm;
 	infoData.showTime = mInfo.showTm;
-	infoData.openDt = mInfo.openDt;
+	infoData.openDate = mInfo.openDt;
 	infoData.genre1 = mInfo.genres[0].genreNm;
 	infoData.genre2 = (mInfo.genres.length<2)?"없음":mInfo.genres[1].genreNm;
 	infoData.nation = (mInfo.nations.length!=0)?mInfo.nations[0].nationNm:"없음";
@@ -101,23 +120,25 @@ function addDetail(obj){
 		alert("상세정보를 입력바랍니다.");
 		return false;
 	}
-	var strUrl = "/rec/mInsert.mo";
+	var strUrl = "/semi/mInsert.vi";
+
 	$.ajax({
-		url : strUrl,
 		type : "get",
+		url : strUrl,
 		data : infoData,
 		success : function(data){
+			console.log(data);
 			alert("영화 정보를 입력을 성공하였습니다.")
 		},	
 		error : function(data){
-			alert("이미 존재하는 영화입니다.");
+			console.log(data);
+//			alert("이미 존재하는 영화입니다.");
 		},
 		complete : function(data){
 			console.log(infoData)
 			backList();
 		}
 	})
-	
 }
 
 function backList(){
