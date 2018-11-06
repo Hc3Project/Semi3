@@ -1,13 +1,18 @@
 package com.kh.semi.user.detail.model.service;
 
+import static com.kh.semi.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
+import java.sql.Date;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.kh.semi.common.JDBCTemplate.*;
+import com.kh.semi.user.detail.model.dao.DetailViewDao;
+import com.kh.semi.user.detail.model.vo.PosterInfo;
 
 public class DetailViewService {
 	
@@ -111,6 +116,50 @@ public class DetailViewService {
 		// }
 	}
 
+	
+
+	public String getPowerImage(String result, String keyword) {
+		Connection con=getConnection();
+		System.out.println("서비스 시작");
+		List<PosterInfo> list=new DetailViewDao().getPowerImage(con,result,keyword);
+		String code="";
+		
+		for(PosterInfo pi:list){
+			String director=pi.getDirector();
+			Date opendate=pi.getOpendate();
+			String date=opendate.toString().substring(0, 4);
+			
+			
+			if(result.matches(".*"+director+".*")&&result.matches(".*"+date+".*")){
+				System.out.println("디렉터로 왔읍니다");
+				int idx=result.indexOf(director)-164;
+				if(chkNum(result.substring(idx-1,idx))){
+					code=result.substring(idx-1, idx+5);
+				}else{
+					code=result.substring(idx,idx+5);
+				}
+				System.out.println(code);
+				break;
+			}
+			
+//			else if(result.matches(".*"+date+".*")){
+//				System.out.println("데이트로 왔읍니다");
+//				int idx=result.indexOf(director)-155;
+//				if(chkNum(result.substring(idx-1,idx))){
+//					code=result.substring(idx-1, idx+5);
+//				}else{
+//					code=result.substring(idx,idx+5);
+//				}
+//				System.out.println(code);
+//				break;
+//			}
+			
+		}
+		
+		return page+code;
+		
+	}
+	
 	private boolean chkNum(String substring) {
 		boolean result = false;
 		try {
