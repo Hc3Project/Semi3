@@ -36,8 +36,8 @@
         <div class="content">
           <div class="signin-cont cont">
             <form action="#" method="post" enctype="multipart/form-data">
-              <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일(test@test.com)">
-              <label for="email">이메일</label>
+              <input type="text" name="name" id="name" class="inpt" required="required" placeholder="아이디">
+              <label for="name">아이디</label>
               <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호(6자이상)">
               <label for="password">비밀번호</label>
               <div class="submit-wrap">
@@ -48,8 +48,8 @@
           </div>
           <div class="signup-cont cont">
             <form action="#" method="post" enctype="multipart/form-data">
-              <input type="text" name="name" id="name" class="inpt" required="required" placeholder="이름">
-              <label for="name">이름</label>
+              <input type="text" name="name" id="name" class="inpt" required="required" placeholder="아이디">
+              <label for="name">아이디</label>
               <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일(test@test.com)">
               <label for="email">이메일</label>
               <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호(6자이상)">
