@@ -8,7 +8,7 @@
 		<ul class="gnb__left-navs">
 			<li><a class="gnb__nav-home active" href="/semi/views/index.jsp">홈</a></li>
 			<li class="gnb__category-list"><a class="gnb__nav-category"
-				href="javascript:;">영화 카테고리</a> <span>
+				href="../views/category/movieCategory.jsp">영화 카테고리</a> <span>
 					<div class="gnb-category-list">
 						<div class="gnb-category-list__filters">
 							<button class="category-filter-item category-filter-item--active">
@@ -23,72 +23,64 @@
 						</div>
 						<ul class="gnb-category-list__filtered-list">
 							<li
-								class="gnb-category-list__filtered-list-item gnb-category-list__filtered-list-item--new"><a
-								href="/arrivals/latest">새로 올라온 작품</a></li>
+								class="gnb-category-list__filtered-list-item-all"><a
+								href="../views/category/all.jsp">모든 장르</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=525036">TV 드라마</a></li>
+								href="/category?genre=525036">SF</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=10011199117">TV 다큐멘터리</a></li>
+								href="/category?genre=10011199117">가족</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=97110105109101">TV 애니메이션</a></li>
+								href="/category?genre=97110105109101">공포/호러</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/staffmades/419">영어자막 지원 작품</a></li>
+								href="/staffmades/419">다큐멘터리</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380918">코미디</a></li>
+								href="/category?genre=380918">드라마</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=403704">예능</a></li>
+								href="/category?genre=403704">멜로/로맨스</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380922">스릴러</a></li>
+								href="/category?genre=380922">어드벤처</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380916">다큐멘터리</a></li>
+								href="/category?genre=380916">뮤지컬</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380915">드라마</a></li>
+								href="/category?genre=380915">범죄</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=38092">애니메이션</a></li>
+								href="/category?genre=38092">액션</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=510433">단편</a></li>
+								href="/category?genre=510433">코미디</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380919">액션</a></li>
+								href="/category?genre=380919">판타지</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380925">로맨스·멜로</a></li>
+								href="/category?genre=380925">패러디</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=385958">스포츠</a></li>
+								href="/category?genre=385958">애니메이션</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380924">범죄·느와르</a></li>
+								href="/category?genre=380924">사극</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380921">공포</a></li>
+								href="/category?genre=380921">미스터리</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380928">판타지</a></li>
+								href="/category?genre=380928">스릴러</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=386140">틴에이저</a></li>
+								href="/category?genre=386140">전쟁</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380927">SF</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=397781">키즈</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380929">전쟁</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=384755">음악</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=386906">재난</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380937">시대극</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380933">가족·아동</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380934">시트콤</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380923">로맨틱코미디</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=510435">시사·교양</a></li>
+								href="/category?genre=380927">기타</a></li>
 						</ul>
 						<ul class="gnb-category-list__filtered-list" style="display: none">
+							<li class="gnb-category-list__filtered-list-item"><a
+								href="javascript:;">모든 국가</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="javascript:;">미국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="javascript:;">프랑스</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
+								href="javascript:;">이탈리아</a></li>	
+							<li class="gnb-category-list__filtered-list-item"><a
 								href="javascript:;">한국</a></li>
+							<li class="gnb-category-list__filtered-list-item"><a
+								href="javascript:;">스페인</a></li>
+							<li class="gnb-category-list__filtered-list-item"><a
+								href="javascript:;">대만</a></li>
+								<li class="gnb-category-list__filtered-list-item"><a
+								href="javascript:;">인도</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="javascript:;">일본</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
@@ -101,38 +93,36 @@
 								href="javascript:;">캐나다</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="javascript:;">홍콩</a></li>
+							<li class="gnb-category-list__filtered-list-item"><a
+								href="javascript:;">기타</a></li>
 						</ul>
 						<ul class="gnb-category-list__filtered-list" style="display: none">
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">추리</a></li>
+								href="javascript:;">모든 리뷰어</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">심리</a></li>
+								href="javascript:;">라이너의컬쳐쇼크</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">그림</a></li>
+								href="javascript:;">발 없는 새</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">영화</a></li>
+								href="javascript:;">필름에 빠지다</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">2010년대</a></li>
+								href="javascript:;">드림텔러</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">사회</a></li>
+								href="javascript:;">백수골방</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">관계</a></li>
+								href="javascript:;">시선플레이</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">문화</a></li>
+								href="javascript:;">김스카이의하늘담</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">작가</a></li>
+								href="javascript:;">천재이승국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">90년이전</a></li>
+								href="javascript:;">뭅이</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">기독교</a></li>
+								href="javascript:;">리뷰엉이</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">여행</a></li>
+								href="javascript:;">소개해주는 남자</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">인물</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">사진</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">정치</a></li>
+								href="javascript:;">달빛뮤즈</a></li>
 						</ul>
 					</div>
 

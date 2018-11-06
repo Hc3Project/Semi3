@@ -1,0 +1,135 @@
+@CHARSET "UTF-8";
+
+.select-menu {
+	position:relative;
+	left:50px;
+	top:100px;
+	padding-bottom:10px;
+}
+
+/* 장르 선택 */
+.select-genre {
+	float: left; width: 33%;
+    border: 1px solid #ccc;
+    width: 140px;
+    height: 30px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+    /* margin-top:100px;
+    top:0;
+    position:absolute; */
+}
+
+.select-genre select {
+    
+    width: 120%;
+    border: none;
+    box-shadow: none;
+    font-size:1.5em;
+    color: black;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-nation select:focus {
+    outline: none;
+}
+
+/* 국가 선택 */
+.select-nation {
+	width: 140px;
+    height: 30px;
+	float: left; width: 33%;
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+    /* margin-top:100px;
+    top:0;
+    position:absolute; */
+}
+
+.select-nation select {
+    width: 120%;
+    border: none;
+    box-shadow: none;
+    font-size:1.5em;
+    color: black;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-nation select:focus {
+    outline: none;
+}
+
+/* 리뷰어 선택 */
+.select-reviewer {
+	width: 140px;
+    height: 30px;
+	float: left; width: 33%;
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+    /* margin-top:100px;
+    top:0;
+    position:absolute; */
+}
+
+.select-reviewer select {
+    width: 120%;
+    border: none;
+    box-shadow: none;
+    font-size:1.5em;
+    color: black;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-reviewer select:focus {
+    outline: none;
+}
+
+/* 정렬 */
+.select-order {
+	width: 140px;
+    height: 30px;
+	float: left; width: 33%;
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+    /* margin-top:100px;
+    top:0;
+    position:absolute; */
+}
+
+.select-order select {
+    width: 120%;
+    border: none;
+    box-shadow: none;
+    font-size:1.5em;
+    color: black;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-order select:focus {
+    outline: none;
+}
+
+
+/* 영화 리스트 페이지 */
+.category-page{
+	position:relative;
+	top:100px;
+}
