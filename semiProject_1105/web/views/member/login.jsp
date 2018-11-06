@@ -24,7 +24,7 @@
     <section class="container">
   
       <article class="half">
-       
+       <h1>MOVIE TRAVELER</h1>
         <div class="tabs">
           <span class="tab signin active">
             <a href="#signin">로그인</a>
@@ -48,7 +48,7 @@
           </div>
           <div class="signup-cont cont">
             <form action="#" method="post" enctype="multipart/form-data">
-              <input type="email" name="email" id="name" class="inpt" required="required" placeholder="이름">
+              <input type="text" name="name" id="name" class="inpt" required="required" placeholder="이름">
               <label for="name">이름</label>
               <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일(test@test.com)">
               <label for="email">이메일</label>
