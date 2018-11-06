@@ -1,79 +1,84 @@
-.main{
-    padding:100px 50px 50px 50px;
+.main {
+	padding: 100px 50px 50px 50px;
 }
-.search-box,
-.banner-box{
-    float:left;
+
+.search-box, .banner-box {
+	float: left;
 }
-.search-box{
-    width:28%;
-    margin-right: 2%;
+
+.search-box {
+	width: 28%;
+	margin-right: 2%;
 }
-.banner-box{
-    width:70%;
+
+.banner-box {
+	width: 70%;
 }
-.search-list ol li{
-    overflow: hidden;
-    height: 0;
-    padding: 2.6vw 0;
-    box-sizing: border-box;
+
+.search-list ol li {
+	overflow: hidden;
+	height: 0;
+	padding: 2.6vw 0;
+	box-sizing: border-box;
 }
-.search-list ol li:hover{
-    border:2px solid red;
+
+.search-list ol li:hover {
+	border: 2px solid red;
 }
-.rec-list {
-    padding:50px;
+
+.rec-list>div {
+	float: left;
+	width: 19.2%;
+	
+	position: relative;
+	z-index: 10;
+	cursor: pointer;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s;
+	-moz-transition: .3s;
+	-ms-transition: .3s;
+	-o-transition: .3s;
+	transition: .3s;
 }
-.rec-list > div{
-    float:left;
-    width:19.2%;
-    margin-left:1%;
-    position: relative;
-    z-index:10;
-    cursor:pointer;
-    -webkit-transform:scale(1);
-    -moz-transform:scale(1);
-    -ms-transform:scale(1); 
-    -o-transform:scale(1);  
-    transform:scale(1);
-    -webkit-transition:.3s;
-    -moz-transition:.3s;
-    -ms-transition:.3s;
-    -o-transition:.3s;
-    transition:.3s;
+
+.rec-list>div h1 {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	font-size: 1.3vw;
 }
-.rec-list > div h1{
-    position: absolute;
-    top:5px;
-    left:5px;
-    font-size: 1.3vw;
+
+.rec-list>div:hover {
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+	z-index: 1040;
 }
-.rec-list > div:hover{
-    -webkit-transform:scale(1.2);
-    -moz-transform:scale(1.2);
-    -ms-transform:scale(1.2);   
-    -o-transform:scale(1.2);
-    transform:scale(1.2);
-    z-index:1040;
+
+.rec-list>div .hover-box {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
 }
-.rec-list > div:first-child{
-    margin-left:0;
+
+.rec-list>div .hover-box h2 {
+	font-size: 1.6vw;
 }
-.rec-list > div .hover-box{
-    display:none;
-    position: absolute;
-    width:100%;
-    height:100%;
-    left: 0;
-    top:0;
+
+.rec-list>div .hover-box--play {
+	background: url(../image/btn_play.png) no-repeat center center;
+	background-size: contain;
 }
-.rec-list > div .hover-box h2{
-    font-size:1.6vw;
-}
-.rec-list > div .hover-box--play{
-    background:url(../image/btn_play.png) no-repeat center center;
-    background-size:contain;
-}
-.bx-wrapper .bx-controls-direction a{
-    z-index:10 !important;
+
+.bx-wrapper .bx-controls-direction a {
+	z-index: 10 !important;
 }
