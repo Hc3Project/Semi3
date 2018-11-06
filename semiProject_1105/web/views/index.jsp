@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="../resources/css/reset.css">
 <link rel="stylesheet" href="../resources/css/main.css">
-<link rel="stylesheet" href="../resources/css/style.css">
+<link rel="stylesheet" href="../resources/css/style.css"> 
 
 
 <title>movie traveler</title>
