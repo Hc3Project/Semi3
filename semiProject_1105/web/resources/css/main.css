@@ -53,15 +53,15 @@
 }
 
 .rec-list>div:hover {
-	-webkit-transform: scale(1.2);
-	-moz-transform: scale(1.2);
-	-ms-transform: scale(1.2);
-	-o-transform: scale(1.2);
-	transform: scale(1.2);
+	-webkit-transform: scale(1.4);
+	-moz-transform: scale(1.4);
+	-ms-transform: scale(1.4);
+	-o-transform: scale(1.4);
+	transform: scale(1.4);
 	z-index: 1040;
 }
 
-.rec-list>div .hover-box {
+.rec-list>div .hover-box{
 	display: none;
 	position: absolute;
 	width: 100%;

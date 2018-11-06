@@ -61,7 +61,6 @@ img {
 .listSection .carousel-inner .item div {
 	width: 300px;
 	height: 200px;
-	display: inline-block;
 	padding: 0px 3px 0px 3px;
 }
 
@@ -161,10 +160,12 @@ a[href="#st2Carousel"] {
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st2Carousel">
 						<div class="carousel-inner ">
-							<div class="item active rec-list clearfix"">
+							<div class="item active rec-list clearfix">
 
+								<%
+									for (int i = 0; i < 6; i++) {
+								%>
 								<div class="col-md-2">
-
 									<h1>투유 프로젝트-슈가맨</h1>
 									<img
 										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
@@ -175,8 +176,16 @@ a[href="#st2Carousel"] {
 									</div>
 								</div>
 
-								<div class="col-md-2">
+								<%
+									}
+								%>
+								</div>
+								<div class="item rec-list clearfix">
 
+										<%
+									for (int i = 0; i < 6; i++) {
+								%>
+								<div class="col-md-2">
 									<h1>투유 프로젝트-슈가맨</h1>
 									<img
 										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
@@ -186,140 +195,32 @@ a[href="#st2Carousel"] {
 										<p>호버시 텍스트</p>
 									</div>
 								</div>
-								<div class="col-md-2">
 
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-								<div class="col-md-2">
+								<%
+									}
+								%>
 
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
+										
 								</div>
-								<div class="col-md-2">
 
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-								<div class="col-md-2">
-
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
 							</div>
-							<div class="item rec-list clearfix">
-
-								<div class="col-md-2">
-
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-
-								<div class="col-md-2">
-
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-								<div class="col-md-2">
-
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-								<div class="col-md-2">
-
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-								<div class="col-md-2">
-
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-								<div class="col-md-2">
-
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-							</div>
-
+							<a class="carousel-control-prev" href="#st2Carousel"
+								role="button" data-slide="prev"> <span
+								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+								class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next" href="#st2Carousel"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="true"></span> <span
+								class="sr-only">Next</span>
+							</a>
 						</div>
-						<a class="carousel-control-prev" href="#st2Carousel" role="button"
-							data-slide="prev"> <span class="carousel-control-prev-icon"
-							aria-hidden="true"></span> <span class="sr-only">Previous</span>
-						</a> <a class="carousel-control-next" href="#st2Carousel"
-							role="button" data-slide="next"> <span
-							class="carousel-control-next-icon" aria-hidden="true"></span> <span
-							class="sr-only">Next</span>
-						</a>
+
 					</div>
-
+					<!--rec-row-->
 				</div>
-				<!--rec-row-->
+				<!--home-page__rec-list-->
 			</div>
-			<!--home-page__rec-list-->
-		</div>
-		<!--homepage-->
-
+			<!--homepage-->
 	</section>
 
 	<!--  -->
