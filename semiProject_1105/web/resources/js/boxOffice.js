@@ -38,14 +38,14 @@ var dt = new Date();
 											//추출하고자 하는 컬럼들의 타이틀 정의
 											$("<th/>").html("&nbsp;순위"),
 											$("<th/>").html("&nbsp;&nbsp;영화 제목"),				
-											$("<th/>").html("&nbsp;&nbsp;누적 관객수"));
+											$("<th/>").html("&nbsp;&nbsp;오늘의 관객수"));
 							var tbody = $("<tbody/>");
 							$.each($data, function(i, o) {
 
 								//오픈 API에 정의된 변수와 내가 정의한 변수 데이터 파싱
 								var $rank = $(o).find("rank").text(); // 순위
 								var $movieNm = $(o).find("movieNm").text(); //영화명
-								var $audiAcc = $(o).find("audiAcc").text(); //누적 관객수
+								var $audiAcc = $(o).find("audiCnt").text(); //누적 관객수
 								
 								//<tbody><tr><td>태그안에 파싱하여 추출된 데이터 넣기
 								var row = $("<tr/>").append(
