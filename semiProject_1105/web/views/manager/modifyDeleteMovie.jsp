@@ -15,12 +15,11 @@
 			<option value="mCode">영화코드</option>
 			<option value="mTitle">제목</option>
 			<option value="director">감독</option>
-			<option value="nation">국가</option>
 		</select>
 		<input type="text" name="" id="search" placeholder="키워드를 입력하세요.">
 		<input type="button" value="검색" id="searchBtn">
 	</div>
-	<div id="getList">
+	<div id="getList" style="display:none">
 		<table id="movieList">
 			<thead>
 				<tr>

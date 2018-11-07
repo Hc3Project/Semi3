@@ -147,8 +147,8 @@ public class VideoDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<MovieInfo> result = null;
-		String sql = prop.getProperty("selectPart").replace("condition", sel);
-		
+		String sql = prop.getProperty("selectPart").replace("condition", (sel.equals("mCode"))?"mi."+sel:sel);
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, keyword);
