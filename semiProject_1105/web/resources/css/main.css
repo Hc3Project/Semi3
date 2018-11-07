@@ -29,7 +29,6 @@
 .rec-list>div {
 	float: left;
 	width: 19.2%;
-	
 	position: relative;
 	z-index: 10;
 	cursor: pointer;
@@ -61,7 +60,7 @@
 	z-index: 1040;
 }
 
-.rec-list>div .hover-box{
+.rec-list>div .hover-box {
 	display: none;
 	position: absolute;
 	width: 100%;
@@ -83,7 +82,6 @@
 	z-index: 10 !important;
 }
 
-
 #slideSection div {
 	height: 600px;
 }
@@ -91,6 +89,28 @@
 #slideSection {
 	margin-bottom: 50px;
 	height: 600px;
+}
+
+#boxOffice {
+	float: right;
+	width: 400px;
+	background: white;
+}
+
+#bo1 {
+	height: 120px !important;
+	background: rgb(42, 46, 51);
+	
+}
+
+#bo2 {
+	height: 400px !important;
+	background: white;
+}
+
+#bo3 {
+	height: 80px !important;
+	background: rgb(42, 46, 51);
 }
 
 .listSection {
@@ -151,12 +171,16 @@ img {
 a[href="#st2Carousel"] {
 	width: 150px;
 }
-.carousel-indicators{
+
+.carousel-indicators {
 	float: right;
 }
-.boxRank{
 
+.boxRank {
+	
 }
-.boxRank tbody>tr:hover{
-	background:#ea4c88;cursor;
+
+.boxRank tbody>tr:hover {
+	background: #ea4c88;
+	cursor;
 }

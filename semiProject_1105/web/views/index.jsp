@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="../resources/css/reset.css">
 <link rel="stylesheet" href="../resources/css/main.css">
-<link rel="stylesheet" href="../resources/css/style.css"> 
+<link rel="stylesheet" href="../resources/css/style.css">
 
 
 <title>movie traveler</title>
@@ -36,15 +36,17 @@
 		<div class="row ">
 
 			<div class="col-lg-4">
-				<div style="float: right; width: 400px; background: white;">
-					<div style="background: black; height: 120px;"></div>
-					<div style="background: white; height: 400px;"><div class="boxRank contaner"></div></div>
-					<div style="background: black; height: 80px;"></div>
+				<div id="boxOffice">
+					<div id="bo1"></div>
+					<div id="bo2">
+						<div class="boxRank contaner"></div>
+					</div>
+					<div id="bo3"></div>
 				</div>
 			</div>
 
 			<div class="col-lg-8">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel" >
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
 					<ol class="carousel-indicators" style="float: right;">
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -87,7 +89,8 @@
 							class="glyphicon glyphicon-angle-right"></span>
 						</a>
 					</h5>
-					<div class="carousel slide" data-ride="carousel" id="st2Carousel"  data-interval="15000">
+					<div class="carousel slide" data-ride="carousel" id="st2Carousel"
+						data-interval="15000">
 						<div class="carousel-inner ">
 							<div class="item active rec-list clearfix">
 								<%
@@ -107,10 +110,10 @@
 								<%
 									}
 								%>
-								</div>
-								<div class="item rec-list clearfix">
+							</div>
+							<div class="item rec-list clearfix">
 
-										<%
+								<%
 									for (int i = 0; i < 6; i++) {
 								%>
 								<div class="col-md-2">
@@ -127,27 +130,26 @@
 								<%
 									}
 								%>
-				
-								</div>
 
 							</div>
-							<a class="carousel-control-prev" href="#st2Carousel"
-								role="button" data-slide="prev"> <span
-								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-								class="sr-only">Previous</span>
-							</a> <a class="carousel-control-next" href="#st2Carousel"
-								role="button" data-slide="next"> <span
-								class="carousel-control-next-icon" aria-hidden="true"></span> <span
-								class="sr-only">Next</span>
-							</a>
-						</div>
 
+						</div>
+						<a class="carousel-control-prev" href="#st2Carousel" role="button"
+							data-slide="prev"> <span class="carousel-control-prev-icon"
+							aria-hidden="true"></span> <span class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next" href="#st2Carousel"
+							role="button" data-slide="next"> <span
+							class="carousel-control-next-icon" aria-hidden="true"></span> <span
+							class="sr-only">Next</span>
+						</a>
 					</div>
-					<!--rec-row-->
+
 				</div>
-				<!--home-page__rec-list-->
+				<!--rec-row-->
 			</div>
-			<!--homepage-->
+			<!--home-page__rec-list-->
+		</div>
+		<!--homepage-->
 	</section>
 
 	<!--  -->
