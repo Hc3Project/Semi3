@@ -147,7 +147,7 @@
 						<ul class="account-menu">
 							<li class="account-menu__item"><a class="" href="/watches">본
 									리뷰</a></li>
-							<li class="account-menu__item"><a class="" href="/setting">설정</a>
+							<li class="account-menu__item"><a class="" href="/semi/views/member/setting.jsp">설정</a>
 							</li>
 							<li class="account-menu__item"><a href="#">로그아웃</a></li>
 						</ul>
