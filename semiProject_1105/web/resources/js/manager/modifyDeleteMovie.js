@@ -15,8 +15,9 @@ $(function(){
 		}
 		getList(sel, keyword);
 		$('#movieList tbody').html('');
-		$('#searchBtn').prop('disabled', false);
 		$('#search').val('');
+		$('#modifyInfo').css('display', 'none');
+		$('#getList').css('display', 'block');
 		showList(curPage, resultMax);
 		
 		// 테이블 행 선택했을 때
@@ -24,7 +25,7 @@ $(function(){
 			var idx = $(this).find('input:hidden').eq(0).val();
 			
 			$(this).parents('div').css('display', 'none');
-			var table = $('#modifyInfo'); 
+			var table = $('#modifyInfo');
 			table.css('display', 'block');
 			
 			table.find('th').eq(1).text(jsonData[idx].mCode);
@@ -67,7 +68,6 @@ $(function(){
 			},
 			complete : function(data){
 				$('#movieList tbody').html('');
-				$('#searchBtn').prop('disabled', false);
 				$('#modifyInfo').css('display', 'none');
 				$('#getList').css('display', 'block');
 			}
@@ -97,7 +97,6 @@ $(function(){
 			},
 			complete : function(data){
 				$('#movieList tbody').html('');
-				$('#searchBtn').prop('disabled', false);
 				$('#modifyInfo').css('display', 'none');
 				$('#getList').css('display', 'block');
 			}
@@ -117,7 +116,6 @@ function getList(sel, keyword){
 		},
 		success : function(data){
 			jsonData = $.parseJSON(data);
-			console.log(jsonData);
 		},
 		error : function(data){
 			
@@ -144,22 +142,15 @@ function showList(sIdx, num){
 		$hidden = $('<input>').attr({
 			type : 'hidden',
 			value : sIdx+i});
-//		$tdBtn = $('<td>').html('<input type="button" value="수정및삭제" onclick="modDelMovie(this)">').append($hidden);
-		
 		
 		$tr.append($tdCode);
 		$tr.append($tdTitle);
 		$tr.append($tdDirector);
 		$tr.append($tdActor);
-//		$tr.append($tdBtn);
 		$tr.append($hidden);
 		
 		$table.append($tr);
 	}
 	if(resultMax*curPage >= jsonData.length) $('#moreList').prop('disabled', true);
 	else $('#moreList').prop('disabled', false);
-}
-
-function modDelMovie(obj){
-	console.log($(obj).siblings().eq(0).val())
 }
