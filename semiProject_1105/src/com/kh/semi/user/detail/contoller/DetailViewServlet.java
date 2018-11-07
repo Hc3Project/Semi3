@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi.user.detail.model.service.DetailViewService;
+import com.kh.semi.user.detail.model.vo.MovieInfo;
 
 
 
@@ -86,16 +87,18 @@ public class DetailViewServlet extends HttpServlet {
 			
 			
 			String page="";
+			DetailViewService dvs=new DetailViewService();
 			
-			if(result.substring(61,62).equals("1")){
+			if(result.substring(61,62).equals("1")&&!chkNum(result.substring(62,63))){
 				// 결과가 하나밖에 안나오는 경우
-				DetailViewService dvs=new DetailViewService();
+				System.out.println("검색 결과가 단 한 개");
+				
 				
 				page=dvs.getImage(result);
 				
 			}else{
 				// 결과가 여러개 나오는 경우
-				DetailViewService dvs=new DetailViewService();
+				System.out.println("검색 결과가 둘 이상");
 				
 				page=dvs.getPowerImage(result,saveKey);
 				
@@ -106,9 +109,20 @@ public class DetailViewServlet extends HttpServlet {
 			
 			System.out.println("값 넘어가냐? : "+page);
 			
-			request.setAttribute("page",page);
+			MovieInfo mov=dvs.selectMovieDetail(saveKey);
 			
-			request.getRequestDispatcher("views/detail/DetailView3.jsp").forward(request, response);
+			if(page!=null&&page.length()>0&&mov!=null){
+				request.setAttribute("page",page);
+				request.setAttribute("mov", mov);
+				
+				request.getRequestDispatcher("views/detail/DetailView3.jsp").forward(request, response);
+			}else{
+				request.setAttribute("msg", "영화 정보를 불러오는 중 문제가 발생");
+				
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			}
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,6 +136,17 @@ public class DetailViewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	private boolean chkNum(String s) {
+		boolean result = false;
+		try {
+			Integer.parseInt(s);
+			result = true;
+			return result;
+		} catch (NumberFormatException e) {
+			return result;
+		}
 	}
 
 }

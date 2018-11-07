@@ -1,6 +1,6 @@
 package com.kh.semi.user.detail.model.service;
 
-import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,6 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.kh.semi.user.detail.model.dao.DetailViewDao;
+import com.kh.semi.user.detail.model.vo.MovieInfo;
 import com.kh.semi.user.detail.model.vo.PosterInfo;
 
 public class DetailViewService {
@@ -129,9 +130,7 @@ public class DetailViewService {
 			Date opendate=pi.getOpendate();
 			String date=opendate.toString().substring(0, 4);
 			
-			
 			if(result.matches(".*"+director+".*")&&result.matches(".*"+date+".*")){
-				System.out.println("디렉터로 왔읍니다");
 				int idx=result.indexOf(director)-164;
 				if(chkNum(result.substring(idx-1,idx))){
 					code=result.substring(idx-1, idx+5);
@@ -155,7 +154,7 @@ public class DetailViewService {
 //			}
 			
 		}
-		
+		close(con);
 		return page+code;
 		
 	}
@@ -169,6 +168,15 @@ public class DetailViewService {
 		} catch (NumberFormatException e) {
 			return result;
 		}
+	}
+
+
+
+	public MovieInfo selectMovieDetail(String saveKey) {
+		Connection con=getConnection();
+		MovieInfo mov=new DetailViewDao().selectMovieDetail(con,saveKey);
+		close(con);
+		return mov;
 	}
 
 }
