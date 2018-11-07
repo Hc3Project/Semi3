@@ -75,8 +75,9 @@ public class DetailViewDao {
 				mov.setNname(rset.getString(8));
 				mov.setCounts(rset.getInt(9));
 				mov.setSynopsis(rset.getString(10));
+				System.out.println("영화 정보 담겼는지 췍 : "+mov.toString());
 			}
-			System.out.println("영화 정보 담겼는지 췍 : "+mov.toString());
+			
 		} catch (SQLException e) {
 		}finally{
 			close(rset);

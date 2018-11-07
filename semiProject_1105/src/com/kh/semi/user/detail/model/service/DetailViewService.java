@@ -130,9 +130,7 @@ public class DetailViewService {
 			Date opendate=pi.getOpendate();
 			String date=opendate.toString().substring(0, 4);
 			
-			
 			if(result.matches(".*"+director+".*")&&result.matches(".*"+date+".*")){
-				System.out.println("디렉터로 왔읍니다");
 				int idx=result.indexOf(director)-164;
 				if(chkNum(result.substring(idx-1,idx))){
 					code=result.substring(idx-1, idx+5);
