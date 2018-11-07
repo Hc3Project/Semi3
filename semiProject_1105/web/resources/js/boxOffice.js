@@ -60,7 +60,7 @@ var dt = new Date();
 
 							table.append(thead);
 							table.append(tbody);
-							$(".wrap").append(table);
+							$(".boxRank").append(table);
 						}
 					},
 					//에러 발생시 "실시간 박스오피스 로딩중"메시지가 뜨도록 한다.

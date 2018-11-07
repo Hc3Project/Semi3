@@ -154,6 +154,6 @@ a[href="#st2Carousel"] {
 .carousel-indicators{
 	float: right;
 }
-.wrap tbody>tr>td:hover{
-	background:#ccc;cursor;
+.boxRank tbody>tr:hover{
+	background:#ea4c88;cursor;
 }
