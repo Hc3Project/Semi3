@@ -38,7 +38,7 @@
 			<div class="col-lg-4">
 				<div style="float: right; width: 400px; background: white;">
 					<div style="background: black; height: 120px;"></div>
-					<div style="background: white; height: 400px;"></div>
+					<div style="background: white; height: 400px;"><div class="boxRank contaner"></div></div>
 					<div style="background: black; height: 80px;"></div>
 				</div>
 			</div>
