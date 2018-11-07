@@ -20,20 +20,6 @@ $(function(){
 		$('#getList').css('display', 'block');
 		showList(curPage, resultMax);
 		
-		// 테이블 행 선택했을 때
-		$('#movieList tbody tr').click(function(){
-			var idx = $(this).find('input:hidden').eq(0).val();
-			
-			$(this).parents('div').css('display', 'none');
-			var table = $('#modifyInfo');
-			table.css('display', 'block');
-			
-			table.find('th').eq(1).text(jsonData[idx].mCode);
-			table.find('input:text').eq(0).val(jsonData[idx].mTitle);
-			table.find('input:text').eq(1).val(jsonData[idx].director);
-			table.find('input:text').eq(2).val(jsonData[idx].actor);
-			table.find('textarea').val(jsonData[idx].syno);
-		})
 	})
 	
 	// 항목 더보기를 눌렀을 때
@@ -151,6 +137,23 @@ function showList(sIdx, num){
 		
 		$table.append($tr);
 	}
+	
+	
+	// 테이블 행 선택했을 때
+	$('#movieList tbody tr').click(function(){
+		var idx = $(this).find('input:hidden').eq(0).val();
+		
+		$(this).parents('div').css('display', 'none');
+		var table = $('#modifyInfo');
+		table.css('display', 'block');
+		
+		table.find('th').eq(1).text(jsonData[idx].mCode);
+		table.find('input:text').eq(0).val(jsonData[idx].mTitle);
+		table.find('input:text').eq(1).val(jsonData[idx].director);
+		table.find('input:text').eq(2).val(jsonData[idx].actor);
+		table.find('textarea').val(jsonData[idx].syno);
+	})
+	
 	if(resultMax*curPage >= jsonData.length) $('#moreList').prop('disabled', true);
 	else $('#moreList').prop('disabled', false);
 }

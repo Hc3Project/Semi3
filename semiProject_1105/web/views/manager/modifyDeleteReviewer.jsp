@@ -13,26 +13,28 @@
 		리뷰어 : <input type="text" id="rvrSearch" placeholder="리뷰어를 입력해주세요.">
 		<input type="button" value="검색하기" id="rvrBtn">
 	</div>
-	<div>
-		<table>
+	<div id="divList" style="display:none">
+		<table id=rvrList>
 			<thead>
 				<tr>
 					<th>리뷰어채널ID</th>
 					<th>리뷰어명</th>
 					<th>사이트 내 등록된 리뷰 수</th>
+					<th>비고</th>
 				</tr>
 			</thead>
+			<tbody></tbody>
 		</table>
-		<tbody></tbody>
+		<input type="button" value="결과 더 보기" id="moreList" disabled>
 	</div>
-	<div>
-		<table>
+	<div id="divUpdate" style="display:none">
+		<table border=1>
 			<thead>
 				<tr>
 					<th>리뷰어채널ID</th>
 					<th>ReviewerChannelID</th>
 					<th>리뷰어명</th>
-					<th>ReviewerName</th>
+					<th><input type="text" name="" id="" value="ReviewerName"></th>
 				</tr>
 			</thead>
 			<tbody>

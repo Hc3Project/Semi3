@@ -1,4 +1,4 @@
-package com.kh.semi.manager.reviewer.comtroller;
+package com.kh.semi.manager.reviewer.controller;
 
 import java.io.IOException;
 import java.util.List;
