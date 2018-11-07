@@ -99,18 +99,18 @@
 
 #bo1 {
 	height: 120px !important;
-	background: rgb(42, 46, 51);
+	background: #0f1111;
 	
 }
 
 #bo2 {
-	height: 400px !important;
+	height: 399px !important;
 	background: white;
 }
 
 #bo3 {
-	height: 80px !important;
-	background: rgb(42, 46, 51);
+	height: 81px !important;
+	background: #0f1111;
 }
 
 .listSection {
@@ -137,7 +137,7 @@ footer {
 img {
 	width: 100%;
 	height: 100%;
-	background: white;
+	
 }
 
 .listSection .carousel-inner .item div {
@@ -177,10 +177,20 @@ a[href="#st2Carousel"] {
 }
 
 .boxRank {
-	
+	color: black;
 }
-
-.boxRank tbody>tr:hover {
-	background: #ea4c88;
+.boxRank td, .boxRank th{
+	text-align: center;
+}
+.boxRank td:FIRST-CHILD, .boxRank th:FIRST-CHILD{
+	
+	width: 50px;
+}
+.boxRank td:LAST-CHILD, .boxRank th:LAST-CHILD{
+	
+	width: 120px;
+}
+.boxRank tr:hover{
+	border-bottom: 2px solid #ea4c88;
 	cursor;
 }

@@ -33,7 +33,7 @@ var dt = new Date();
 						if ($data.length > 0) {
 							var table = $("<table/>").attr("class", "table");
 							//<table>안에 테이블의 컬럼 타이틀 부분인 thead 태그
-							var thead = $("<thead/>").append($("<tr/>"))
+							var thead = $("<thead/>")
 									.append(
 											//추출하고자 하는 컬럼들의 타이틀 정의
 											$("<th/>").html("&nbsp;순위"),
@@ -46,7 +46,7 @@ var dt = new Date();
 								var $rank = $(o).find("rank").text(); // 순위
 								var $movieNm = $(o).find("movieNm").text(); //영화명
 								var $audiAcc = $(o).find("audiCnt").text(); //누적 관객수
-								
+								$audiAcc= $audiAcc+"명";
 								//<tbody><tr><td>태그안에 파싱하여 추출된 데이터 넣기
 								var row = $("<tr/>").append(
 										
