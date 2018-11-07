@@ -37,7 +37,12 @@
 
 			<div class="col-lg-4">
 				<div id="boxOffice">
-					<div id="bo1"></div>
+					<div id="bo1">
+					<div style="height: 45px;"></div>
+						<img alt="boxoffice" src="../resources/image/h2_boxoffice.png"
+							style="width: 200px; height: 15px; display: block; margin: auto;
+							 ">
+					</div>
 					<div id="bo2">
 						<div class="boxRank contaner"></div>
 					</div>
