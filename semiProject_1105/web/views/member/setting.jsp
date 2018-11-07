@@ -56,7 +56,7 @@
                             <div class="profile-form__input-area">
                                 <div class="form-column">
                                     <div class="form-input form-input--valid">
-                                        <input type="text" required="required" placeholder="아이디">
+                                        <input type="text" required="required" placeholder="아이디" readonly>
                                     </div>
                                 </div>
                             </div>
