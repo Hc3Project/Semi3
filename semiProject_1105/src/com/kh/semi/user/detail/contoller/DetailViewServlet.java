@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi.user.detail.model.service.DetailViewService;
+import com.kh.semi.user.detail.model.vo.MovieInfo;
 
 
 
@@ -106,9 +107,20 @@ public class DetailViewServlet extends HttpServlet {
 			
 			System.out.println("값 넘어가냐? : "+page);
 			
-			request.setAttribute("page",page);
+			MovieInfo mov=new DetailViewService().selectMovieDetail(saveKey);
 			
-			request.getRequestDispatcher("views/detail/DetailView3.jsp").forward(request, response);
+			if(page!=null&&page.length()>0&&mov!=null){
+				request.setAttribute("page",page);
+				request.setAttribute("mov", mov);
+				
+				request.getRequestDispatcher("views/detail/DetailView3.jsp").forward(request, response);
+			}else{
+				request.setAttribute("msg", "영화 정보를 불러오는 중 문제가 발생");
+				
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			}
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
