@@ -14,7 +14,7 @@ public class JDBCTemplate {
 	public static Connection getConnection(){
 		Connection con=null;
 		Properties prop=new Properties();
-		String fileName=JDBCTemplate.class.getResource("/config/driver.properties").getPath();
+		String fileName=JDBCTemplate.class.getResource("/config/driver.properties").getPath().replace("%20", " ");
 		try {
 			prop.load(new FileReader(fileName));
 			String driver=prop.getProperty("driver");

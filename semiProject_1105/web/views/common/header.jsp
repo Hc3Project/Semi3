@@ -135,7 +135,7 @@
 					class="glyphicon glyphicon-caret-down-f"></span> <span>
 					<div class="gnb__account-menu-wrap">
 						<ul class="account-menu">
-							<li class="account-menu__item"><a class="" href="/watches">본
+							<li class="account-menu__item"><a class="" href="/semi/views/watches/watches.jsp">본
 									리뷰</a></li>
 							<li class="account-menu__item"><a class="" href="/semi/views/member/setting.jsp">설정</a>
 							</li>

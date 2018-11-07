@@ -156,6 +156,11 @@ input:focus {
   font-size: 14px;
   line-height: 1.55;
 }
+.form-input--readonly,
+.form-input input[readonly]{
+  background:#ccc !important;
+  border: 2px solid #ccc;
+}
 .profile-form .profile-form__input-area {
   padding-left: 140px;
 }
@@ -213,8 +218,8 @@ input:focus {
   line-height: 1.55;
   border-radius: 4px;
   color: #ffffff;
-  background-color: #07bb91;
-  border-color: #07bb91;
+  background-color: #ea4c88;
+  border-color: #ea4c88;
   margin-top: 28px;
   width: 170px;
 }
@@ -222,8 +227,8 @@ input:focus {
 .profile-form .profile-form__button-area .profile-form__submit-button:focus,.profile-form .profile-form__button-area .profile-form__submit-button:active, 
 .profile-form .profile-form__button-area .profile-form__submit-button.active {
   color: #ffffff;
-  background-color: #069473;
-  border-color: #058063;
+  background-color: #ce0350;
+  border-color: #ce0350;
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
   -webkit-transition: all 0.2s;
