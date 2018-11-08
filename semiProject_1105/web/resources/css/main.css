@@ -11,9 +11,6 @@
 	margin-right: 2%;
 }
 
-.banner-box {
-	width: 70%;
-}
 
 .search-list ol li {
 	overflow: hidden;
@@ -117,9 +114,7 @@
 	height: 300px;
 }
 
-/* body {
-	background: black;
-} */
+
 nav {
 	height: 80px;
 }
@@ -148,7 +143,7 @@ img {
 
 .listSection .carousel-inner .item {
 	
-	margin: 50px;
+	margin: 25px 50px;
 }
 .carousel-inner a{
 	z-index:2;
