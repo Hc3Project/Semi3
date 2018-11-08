@@ -52,11 +52,11 @@
 }
 
 .rec-list>div:hover {
-	-webkit-transform: scale(1.4);
-	-moz-transform: scale(1.4);
-	-ms-transform: scale(1.4);
-	-o-transform: scale(1.4);
-	transform: scale(1.4);
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
 	z-index: 1040;
 }
 
@@ -147,9 +147,14 @@ img {
 }
 
 .listSection .carousel-inner .item {
+	
 	margin: 50px;
 }
-
+.carousel-inner a{
+	z-index:2;
+	margin: 50px;
+	width:80px !important;
+}
 #ThumbnailCarousel img {
 	
 }
