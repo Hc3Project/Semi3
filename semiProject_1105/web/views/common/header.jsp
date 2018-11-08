@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+	
+<%-- <% ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list"); %> --%>
 
+<!DOCTYPE html>
+<script src="<%= request.getContextPath()%>/semi/resources/js/jquery-3.3.1.min.js"></script>
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
 		<a class="logo active" href="/semi/views/index.jsp"></a>
 		<ul class="gnb__left-navs">
 			<li><a class="gnb__nav-home active" href="/semi/views/index.jsp">홈</a></li>
 			<li class="gnb__category-list"><a class="gnb__nav-category"
-				href="../views/category/movieCategory.jsp">영화 카테고리</a> <span>
+				href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">영화 카테고리</a> <span>
 					<div class="gnb-category-list">
 						<div class="gnb-category-list__filters">
 							<button class="category-filter-item category-filter-item--active">
@@ -22,111 +25,126 @@
 							</button>
 						</div>
 						<ul class="gnb-category-list__filtered-list">
-							<li
-								class="gnb-category-list__filtered-list-item-all"><a
-								href="../views/category/all.jsp">모든 장르</a></li>
+							<li class="gnb-category-list__filtered-list-item" id="all" ><a 
+								href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">모든 장르</a></li>
+							<li class="gnb-category-list__filtered-list-item" id="sf" value="sf"><a 
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G1">SF</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=525036">SF</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G2">가족</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=10011199117">가족</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G3">공포/호러</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=97110105109101">공포/호러</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G4">다큐멘터리</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/staffmades/419">다큐멘터리</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G5">드라마</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380918">드라마</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G6">멜로/로맨스</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=403704">멜로/로맨스</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G7">어드벤처</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380922">어드벤처</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G8">뮤지컬</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380916">뮤지컬</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G9">범죄</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380915">범죄</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G10">액션</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=38092">액션</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G11">코미디</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=510433">코미디</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G12">판타지</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380919">판타지</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G13">패러디</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380925">패러디</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G14">애니메이션</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=385958">애니메이션</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G15">사극</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380924">사극</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G16">미스터리</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380921">미스터리</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G17">스릴러</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380928">스릴러</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G18">전쟁</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=386140">전쟁</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="/category?genre=380927">기타</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G19">기타</a></li>
 						</ul>
 						<ul class="gnb-category-list__filtered-list" style="display: none">
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">모든 국가</a></li>
+								href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">모든 국가</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">미국</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=US">미국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">프랑스</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=FR">프랑스</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">이탈리아</a></li>	
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=IT">이탈리아</a></li>	
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">한국</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=KO">한국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">스페인</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=ES">스페인</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">대만</a></li>
-								<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">인도</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=TW">대만</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">일본</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=IN">인도</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">영국</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=JP">일본</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">독일</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UK">영국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">중국</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=DE">독일</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">캐나다</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=CN">중국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">홍콩</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=CA">캐나다</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">기타</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=HK">홍콩</a></li>
+							<li class="gnb-category-list__filtered-list-item"><a
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=ETC">기타</a></li>
 						</ul>
 						<ul class="gnb-category-list__filtered-list" style="display: none">
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">모든 리뷰어</a></li>
+								href="../views/category/movieCategory.jsp">모든 리뷰어</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">라이너의컬쳐쇼크</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCIXvXBYSc9fQ7Ri5SM1r8xA">라이너의컬쳐쇼크</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">발 없는 새</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCiOWYRzOTiUYi9pJ-kscIKw">발 없는 새</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">필름에 빠지다</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCJfthTE-ACoZJPVgwyw_hsw">필름에 빠지다</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">드림텔러</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCpCiIDf9UrfRqte55FHWlYQ">드림텔러</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">백수골방</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCNR3K4HA6LyO9tz0oZoSJIA">백수골방</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">시선플레이</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UC79hJz6y1EEiIkwfHOuWC4w">시선플레이</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">김스카이의하늘담</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCKvfTts0BCr0Zx6FWT_rtEw">김스카이의하늘담</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">천재이승국</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCu3BjLd03jxTVHXTPqZ77iQ">천재이승국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">뭅이</a></li>
+								href="../views/category/movieCategory.jsp">뭅이</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">리뷰엉이</a></li>
+								href="../views/category/movieCategory.jsp">리뷰엉이</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">소개해주는 남자</a></li>
+								href="../views/category/movieCategory.jsp">소개해주는 남자</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="javascript:;">달빛뮤즈</a></li>
+								href="../views/category/movieCategory.jsp">달빛뮤즈</a></li>
 						</ul>
 					</div>
 
 			</span></li>
+			
+			<script>
+				<%-- $(function(){
+					$("#sf").click(function(){
+						var selectedGenre = $(this).getAttribute("value");
+						location.href="<%=reqeust.getContextPath()%>/semi/views/category/movieCategory.jsp?genre=" + selectedGenre;
+					})
+				}); --%>
+				
+				<%-- function goCategory(){
+					var cCode = $(this).val();
+					
+					location.href="<%request.getContextPath();%>/semi/views/category/sCategory.se?genre="+cCode;
+					console.log(cCode);
+				} --%>
+			</script>
 			<li><a class="gnb__nav-evaluate" href="javascript:;">취향 분석</a></li>
 		</ul>
 		<div class="gnb__right-navs">
