@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -53,6 +54,39 @@ public class MemberDao {
 		} finally {
 			close(pstmt);
 		}
+		return result;
+	}
+	public Member selectMember(Connection con, Member m) throws MemberException{
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member result = null;
+		
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getPassword());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = new Member();
+				
+				result.setUserId(rset.getString("USERID"));
+				result.setPassword(rset.getString("USERPWD"));
+				result.setEmail(rset.getString("EMAIL"));
+			}
+		} catch (SQLException e) {
+			
+			//e.printStackTrace();
+			throw new MemberException(e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
 		return result;
 	}
 

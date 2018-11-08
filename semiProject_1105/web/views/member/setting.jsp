@@ -89,7 +89,8 @@
                         <!--profile-form__group-->
                     </form>
                     <div class="profile-form__button-area">
-                        <button class="profile-form__submit-button">프로필 저장</button>
+                        <button class="profile-form__submit-button1">프로필 저장</button>
+                        <button class="profile-form__submit-button2">회원 탈퇴</button>   
                     </div>
                 </div>
                 <!--profile-form-->
@@ -106,7 +107,7 @@
         
         
         //이메일 변경 클릭시
-        var profileEmailField ='<div class="profile-email-field"><div><div class="form-column"><div class="form-input"><input type="email" required="required" placeholder="새 이메일"></div></div><div class="form-column"><div class="form-input"><input type="password" required="required" placeholder="비밀번호"></div></div></div></div>';
+        var profileEmailField ='<div class="profile-email-field"><div><div class="form-column"><div class="form-input"><input type="email" required="required" placeholder="새 이메일"></div></div></div></div>';
 
         $(".profile-email-field__change-button").click(function(){
             var edit =  $(this);

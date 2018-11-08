@@ -203,7 +203,7 @@ input:focus {
   margin-top: 34px;
   border-top: 1px solid #ececec;
 }
-.profile-form .profile-form__button-area .profile-form__submit-button {
+.profile-form .profile-form__button-area .profile-form__submit-button1 {
   display: inline-block;
   margin-bottom: 0;
   border: 2px solid transparent;
@@ -223,12 +223,43 @@ input:focus {
   margin-top: 28px;
   width: 170px;
 }
-.profile-form .profile-form__button-area .profile-form__submit-button:hover,
-.profile-form .profile-form__button-area .profile-form__submit-button:focus,.profile-form .profile-form__button-area .profile-form__submit-button:active, 
-.profile-form .profile-form__button-area .profile-form__submit-button.active {
+.profile-form .profile-form__button-area .profile-form__submit-button1:hover,
+.profile-form .profile-form__button-area .profile-form__submit-button1:focus,.profile-form .profile-form__button-area .profile-form__submit-button1:active, 
+.profile-form .profile-form__button-area .profile-form__submit-button1.active {
   color: #ffffff;
   background-color: #ce0350;
   border-color: #ce0350;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.profile-form .profile-form__button-area .profile-form__submit-button2 {
+  display: inline-block;
+  margin-bottom: 0;
+  border: 2px solid transparent;
+  background-image: none;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 500;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #07bb91;
+  border-color: #07bb91;
+  margin-top: 28px;
+  width: 170px;
+}
+.profile-form .profile-form__button-area .profile-form__submit-button2:hover,
+.profile-form .profile-form__button-area .profile-form__submit-button2:focus,.profile-form .profile-form__button-area .profile-form__submit-button2:active, 
+.profile-form .profile-form__button-area .profile-form__submit-button2.active {
+  color: #ffffff;
+  background-color: #069473;
+  border-color: #069473;
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
   -webkit-transition: all 0.2s;
