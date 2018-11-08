@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-	import="java.sql.Date, com.kh.semi.user.detail.model.vo.MovieInfo"
+	import="java.sql.Date, com.kh.semi.user.detail.model.vo.MovieDetailInfo"
 %>
 <%
 	String getPage=(String)request.getAttribute("page");
-	MovieInfo mov=(MovieInfo)request.getAttribute("mov");
+	MovieDetailInfo mov=(MovieDetailInfo)request.getAttribute("mov");
 	String mtitle=mov.getMtitle();
 	String director=mov.getDirector();
 	String actor=mov.getActor();
@@ -326,7 +326,7 @@
 </style>
 </head>
 <body>
-	
+	<!-- 꾸미는 중 -->
 	<div data-exact-height="306.02294792586054" data-content-padding-horizontal="0" data-content-padding-vertical="0" id="imgFrameF">
 		<div id="imgFrameS">
 			<div data-style="" id="imgFrameT">

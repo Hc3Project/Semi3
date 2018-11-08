@@ -34,6 +34,7 @@ public class JDBCTemplate {
 		try {
 			if(con!=null&&!con.isClosed()) con.close();
 		} catch (SQLException e) {
+			
 		}
 	}
 	
