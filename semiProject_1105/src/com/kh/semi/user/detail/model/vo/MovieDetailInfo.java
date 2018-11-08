@@ -3,7 +3,7 @@ package com.kh.semi.user.detail.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class MovieInfo implements Serializable {
+public class MovieDetailInfo implements Serializable {
 	
 	private String mtitle;
 	private String director;
@@ -16,11 +16,11 @@ public class MovieInfo implements Serializable {
 	private int counts;
 	private String synopsis;
 	
-	public MovieInfo() {
+	public MovieDetailInfo() {
 		super();
 	}
 
-	public MovieInfo(String mtitle, String director, String actor, int showtime, Date opendate, String gname1,
+	public MovieDetailInfo(String mtitle, String director, String actor, int showtime, Date opendate, String gname1,
 			String gname2, String nname, int counts, String synopsis) {
 		super();
 		this.mtitle = mtitle;
@@ -37,8 +37,8 @@ public class MovieInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MovieInfo [mtitle=" + mtitle + ", director=" + director + ", actor=" + actor + ", showtime=" + showtime
-				+ ", opendate=" + opendate + ", gname1=" + gname1 + ", gname2=" + gname2 + ", nname=" + nname
+		return "MovieDetailInfo [mtitle=" + mtitle + ", director=" + director + ", actor=" + actor + ", showtime="
+				+ showtime + ", opendate=" + opendate + ", gname1=" + gname1 + ", gname2=" + gname2 + ", nname=" + nname
 				+ ", counts=" + counts + ", synopsis=" + synopsis + "]";
 	}
 
@@ -121,9 +121,6 @@ public class MovieInfo implements Serializable {
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
-	
-	
-	
 
 	
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>title another level top top top top top</title>
+<title>메가박스에서 긁어온 페이지(대실패)</title>
 <link rel="stylesheet" href="../resources/css/megabox.css" />
 <link rel="stylesheet" href="../resources/css/theme.css" />
 <link rel="stylesheet" href="../resources/css/theme2.css" />
