@@ -47,9 +47,47 @@ body{
 </html>
 
 <!-- 표본 수집
+--하아아안개 
+가타카
+{"lastBuildDate": "Thu,
+ 08 Nov 2018 12:07:23 +0900",
+ "total": 1,
+ "start": 1,
+ "display": 1,
+ "items": [{"title": "<b>가타카</b>",
+ "link": "https://movie.naver.com/movie/bi/mi/basic.nhn?code=19074",
+ "image": "https://ssl.pstatic.net/imgmovie/mdi/mit110/0190/A9074-00.jpg",
+ "subtitle": "Gattaca",
+ "pubDate": "1997",
+ "director": "앤드류 니콜|",
+ "actor": "에단 호크|우마 서먼|",
+ "userRating": "9.23"}]}
+
+
+--두우우우개 이상
 너의 결혼식
-{"lastBuildDate": "Wed, 07 Nov 2018 13:34:07 +0900","total": 2,"start": 1,"display": 2,"items": [{"title": "<b>너의 결혼식</b>","link": "https://movie.naver.com/movie/bi/mi/basic.nhn?code=140652","image": "https://ssl.pstatic.net/imgmovie/mdi/mit110/1406/140652_P38_143110.jpg","subtitle": "on your wedding day","pubDate": "2018","director": "이석근|","actor": "박보영|김영광|","userRating": "8.50"},{"title": "<b>너의 결혼식</b>, 나의 결혼식","link": "https://movie.naver.com/movie/bi/mi/basic.nhn?code=85590","image": "https://ssl.pstatic.net/imgmovie/mdi/mit110/0855/85590_P01_140917.jpg","subtitle": "Chupachups","pubDate": "2011","director": "경지숙|","actor": "이미도|이명진|김봉수|","userRating": "9.56"}]}
-검색 결과가 둘 이상
+{"lastBuildDate": "Wed,
+ 07 Nov 2018 13:34:07 +0900",
+ "total": 2,
+ "start": 1,
+ "display": 2,
+ "items": [{"title": "<b>너의 결혼식</b>",
+ "link": "https://movie.naver.com/movie/bi/mi/basic.nhn?code=140652",
+ "image": "https://ssl.pstatic.net/imgmovie/mdi/mit110/1406/140652_P38_143110.jpg",
+ "subtitle": "on your wedding day",
+ "pubDate": "2018",
+ "director": "이석근|",
+ "actor": "박보영|김영광|",
+ "userRating": "8.50"},
+ {"title": "<b>너의 결혼식</b>,
+  나의 결혼식",
+  "link": "https://movie.naver.com/movie/bi/mi/basic.nhn?code=85590",
+  "image": "https://ssl.pstatic.net/imgmovie/mdi/mit110/0855/85590_P01_140917.jpg",
+  "subtitle": "Chupachups",
+  "pubDate": "2011",
+  "director": "경지숙|",
+  "actor": "이미도|이명진|김봉수|",
+  "userRating": "9.56"}]} 
 서비스 시작
 쿠어리 : SELECT DIRECTOR, OPENDATE FROM MOVIE_INFO WHERE MTITLE LIKE('%' || ? || '%')
 nhn?c

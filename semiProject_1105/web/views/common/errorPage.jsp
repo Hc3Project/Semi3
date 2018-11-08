@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String msg=(String)request.getAttribute("msg");
+	Exception e=(Exception)request.getAttribute("exception");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
 <body>
 	<div>
 		<h2>띠용?!</h2>
-		<h4><%=msg %></h4>
+		<h4><%=e.getMessage() %></h4>
 	</div>
 </body>
 </html>

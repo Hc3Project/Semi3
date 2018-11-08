@@ -1,10 +1,15 @@
 package com.kh.semi.user.detail.model.service;
 
-import static com.kh.semi.common.JDBCTemplate.*;
+import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -131,13 +136,43 @@ public class DetailViewService {
 			String date=opendate.toString().substring(0, 4);
 			
 			if(result.matches(".*"+director+".*")&&result.matches(".*"+date+".*")){
-				int idx=result.indexOf(director)-164;
-				if(chkNum(result.substring(idx-1,idx))){
-					code=result.substring(idx-1, idx+5);
-				}else{
-					code=result.substring(idx,idx+5);
+				List<String> sentence=new ArrayList<>(Arrays.asList(result.split(",")));
+				
+				int idx=0;
+				for(int i=0;i<sentence.size();i++){
+					if(sentence.get(i).matches(".*"+director+".*")){
+						idx=i-4;
+						break;
+					}
 				}
-				System.out.println(code);
+				
+				String chk=sentence.get(idx);
+				System.out.println("구한 주소값 : "+chk);
+				Pattern pt=Pattern.compile("[0-9]{5,6}");
+				Matcher mc=pt.matcher(chk);
+				System.out.println("구하는 값을 갖고 있는가? : "+mc.find());
+				System.out.println("구하는 값의 인덱스는? : "+mc.start());
+				System.out.println("구하는 값 : "+mc.group());
+				code=mc.group();
+				
+//				System.out.println("전체 매칭 결과 : "+mc.groupCount());
+//				System.out.println("구한 코드 : "+mc.group());
+				
+//				int idx=result.indexOf(director)-175;
+//				String testSentence=result.substring(idx,idx+176);
+//				System.out.println("잘라내버림 : "+testSentence);
+//				Pattern p=Pattern.compile("([0-9]{5,6})");
+//				Matcher m=p.matcher(testSentence);
+//				System.out.println("전체 매칭 결과 : "+m.groupCount());
+//				System.out.println(m.group(0));
+				
+//				if(chkNum(result.substring(idx-1,idx))){
+//					code=result.substring(idx-1, idx+5);
+//				}else{
+//					code=result.substring(idx,idx+5);
+//				}
+				
+				//System.out.println(code);
 				break;
 			}
 			
