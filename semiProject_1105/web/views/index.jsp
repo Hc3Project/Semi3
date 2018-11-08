@@ -34,7 +34,6 @@
 	<!--header-->
 	<section id="slideSection">
 		<div class="row ">
-
 			<div class="col-lg-4">
 				<div id="boxOffice">
 					<div id="bo1">
@@ -95,7 +94,7 @@
 						</a>
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st2Carousel"
-						data-interval="15000">
+						data-interval="30000">
 						<div class="carousel-inner ">
 							
 						<a class="carousel-control-prev" href="#st2Carousel" role="button"
@@ -106,6 +105,7 @@
 							class="carousel-control-next-icon" aria-hidden="true"></span> <span
 							class="sr-only">Next</span>
 						</a>
+						</div>
 					</div>
 
 				</div>
@@ -119,43 +119,60 @@
 	<!--  -->
  <script type="text/javascript">
     $(function() {
+    	//st2Carousel 대상 div 지정
         $topDiv = $("#st2Carousel .carousel-inner");
         $.ajax({
             url : "/semi/rToday.re",
             success : function(data){
                 
                 for(var i in data){
-                    $review= $("<div>").attr("class" , "col-md-2").append(
-                        $("<h1>").text("제목")
+                    $review= $("<div/>").attr("class" , "col-md-2").append(
+                        $("<h1/>").text(data[i].Videoid )
                     ).append(
-                        $("img").attr("src","https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg")
+                        $("<img/>").attr("src","https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg")
 
                     ).append(
-                        $("<i>").attr("class","hover-box hover-box--play")
+                        $("<i/>").attr("class","hover-box hover-box--play")
                     ).append(
-                        $("div").attr("class","hover-box").append(
-                            $("<h2>").text("호버시 제목")
+                        $("<div/>").attr("class","hover-box").append(
+                            $("<h2/>").text("호버시 제목")
                         ).append(
-                            $("<p>").text("호버시 텍스트")
+                            $("<p/>").text("호버시 텍스트")
                         )
                     );
                   
-                    if(i<6){
-                        $topDiv.append(
-                            $("<div>").attr("class","item active rec-list clearfix").append($review)
-                        );
-                    }else{
-                        $topDiv.append(
-                            $("<div>").attr("class","item rec-list clearfix").append($review)
-                        );
-                    }
+                    if(i>-1&&i<6){
+                        if(i==0){
+                        	$topDiv.append(
+                                    $("<div>").attr("class","item active rec-list clearfix").append($review)
+                                );
+                        }
+                        $("#st2Carousel div[class='item active rec-list clearfix']").append($review);
+                    } else{
+                    	if(i%6==0){
+                    		 $topDiv.append(
+                                     $("<div>").attr("class","item rec-list clearfix").append($review)
+                                 );
+                    	}
+                    	$("#st2Carousel div[class='item rec-list clearfix']:last-child").append($review);
+                    } 
                 }
-
+             // 썸네일 마우스 오버
+                $(".rec-list>div").hover(function(){
+                	
+                    $(this).children(".hover-box").stop().fadeIn(); 
+                    $(this).children("h1").stop().hide();
+                }, function () { 
+                    $(this).children(".hover-box").stop().fadeOut(); 
+                    $(this).children("h1").stop().fadeIn();
+                });
             },error : function(){
                 console.log("실패");
             }
         });
+        
     });
+    
     </script>
 
 </body>
