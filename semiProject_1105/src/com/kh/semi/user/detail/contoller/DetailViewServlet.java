@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi.user.detail.model.service.DetailViewService;
 import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
+import com.kh.semi.user.detail.model.vo.ReviewInfo;
 
 
 
@@ -76,10 +77,15 @@ public class DetailViewServlet extends HttpServlet {
 				if(result.substring(61,62).equals("1")&&!chkNum(result.substring(62,63))) page=dvs.getImage(result);
 				else page=dvs.getPowerImage(result,keyword);
 				
+				// 영화 상세정보
 				MovieDetailInfo mov=dvs.selectMovieDetail(keyword);
+				
+				// 리뷰 정보
+				ReviewInfo rv=dvs.selectReview(keyword);
 				
 				request.setAttribute("page",page);
 				request.setAttribute("mov", mov);
+				request.setAttribute("rv", rv);
 					
 				request.getRequestDispatcher("views/detail/DetailView3.jsp").forward(request, response);
 			}catch(Exception e){

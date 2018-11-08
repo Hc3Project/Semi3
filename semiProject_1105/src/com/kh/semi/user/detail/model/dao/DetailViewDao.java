@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
 import com.kh.semi.user.detail.model.vo.PosterInfo;
+import com.kh.semi.user.detail.model.vo.ReviewInfo;
 
 public class DetailViewDao {
 	
@@ -78,6 +79,11 @@ public class DetailViewDao {
 			close(pstmt);
 		}
 		return mov;
+	}
+
+	public ReviewInfo selectReview(Connection con, String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
