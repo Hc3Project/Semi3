@@ -24,4 +24,17 @@ public class MemberService {
 		return result;
 		
 	}
+
+	public Member selectMember(Member m) throws MemberException{
+		
+		Connection con = getConnection();
+		
+		Member result = mDao.selectMember(con, m);
+		
+		close(con);
+		
+		if(result==null) throw new MemberException("아이디나 비밀번호가 일치하는 회원 없음");
+		
+		return result;
+	}
 }

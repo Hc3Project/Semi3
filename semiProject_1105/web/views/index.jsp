@@ -115,7 +115,13 @@
 		</div>
 		<!--homepage-->
 	</section>
-
+	<script>
+        $(document).ready(function(){
+            $('.banner-slider').bxSlider({
+                mode:'fade'
+            });
+        })
+    </script>
 	<!--  -->
  <script type="text/javascript">
     $(function() {

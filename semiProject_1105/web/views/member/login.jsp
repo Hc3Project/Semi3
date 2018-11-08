@@ -35,7 +35,7 @@
         </div>
         <div class="content">
           <div class="signin-cont cont">
-            <form action="#" method="post">
+            <form action="<%=request.getContextPath()%>/login.me" method="post">
               <input type="text" name="name" id="name" class="inpt"  required="required" placeholder="아이디">
               <label for="name">아이디</label>
               <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호(6자이상)">
@@ -49,7 +49,8 @@
           <div class="signup-cont cont">
             <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post">
               <input type="text" name="name" id="name" class="inpt" required="required" placeholder="아이디">
-             
+              <input type="button" value="중복 체크">
+              <br><br>
               <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일(test@test.com)">
               
               <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호(6자이상)">
