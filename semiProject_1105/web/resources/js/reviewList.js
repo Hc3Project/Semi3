@@ -9,7 +9,7 @@
                     $review= $("<div/>").attr("class" , "col-md-2").append(
                         $("<h1/>").text(data[i].Videoid )
                     ).append(
-                        $("<img/>").attr("src","https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg")
+                        $("<img/>").attr("src","https://img.youtube.com/vi/"+data[i].Videoid+"/"+"mqdefault.jpg")
 
                     ).append(
                         $("<i/>").attr("class","hover-box hover-box--play")
