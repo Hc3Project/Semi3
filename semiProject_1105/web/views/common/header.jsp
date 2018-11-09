@@ -7,7 +7,7 @@
 <%-- <% ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list"); %> --%>
 
 <!DOCTYPE html>
-<script src="<%= request.getContextPath()%>/semi/resources/js/jquery-3.3.1.min.js"></script>
+<script src="<%= request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
 		<a class="logo active" href="/semi/views/index.jsp"></a>
