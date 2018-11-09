@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-	import="java.sql.Date, com.kh.semi.user.detail.model.vo.MovieDetailInfo"
+	import="java.sql.Date, com.kh.semi.user.movie.model.vo.MovieDetailInfo"
 %>
 <%
 	String getPage=(String)request.getAttribute("page");
@@ -56,6 +56,30 @@
 		height: 307px;
 		object-fit: contain;
 	}
+	.starR1{
+        background: url('http://www.escgo.com/wp-content/plugins/universal-star-rating/images/189/08.png') no-repeat -30px 0;
+        background-size: auto 100%;
+        width: 15px;
+        height: 30px;
+        float:left;
+        text-indent: -9999px;
+        cursor: pointer;
+    }
+    .starR2{
+        background: url('http://www.escgo.com/wp-content/plugins/universal-star-rating/images/189/08.png') no-repeat right 0;
+        background-size: auto 100%;
+        width: 15px;
+        height: 30px;
+        float:left;
+        text-indent: -9999px;
+        cursor: pointer;
+    }
+    .starR1.on{
+    	background-position:0px 0;
+    }
+    .starR2.on{
+    	background-position:-15px 0;
+    }
 </style>
 <style type="text/css" data-styleid="c1">
 	.c1bg {

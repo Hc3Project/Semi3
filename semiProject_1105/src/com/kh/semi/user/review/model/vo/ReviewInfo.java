@@ -1,4 +1,4 @@
-package com.kh.semi.user.detail.model.vo;
+package com.kh.semi.user.review.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;

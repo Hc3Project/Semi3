@@ -18,7 +18,6 @@ import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.user.movie.model.dao.DetailViewDao;
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.movie.model.vo.PosterInfo;
-import com.kh.semi.user.movie.model.vo.ReviewInfo;
 
 public class DetailViewService {
 	
@@ -100,12 +99,12 @@ public class DetailViewService {
 		
 	}
 
-	public MovieDetailInfo selectMovieDetail(String keyword) {
+	public MovieDetailInfo selectMovieDetail(String mCode) throws Exception {
 		Connection con=getConnection();
-		MovieDetailInfo mov=new DetailViewDao().selectMovieDetail(con,keyword);
+		MovieDetailInfo mov=new DetailViewDao().selectMovieDetail(con,mCode);
 		close(con);
-		// 예외 던져주기 (dao에서)
-		return mov;
+		if(mov!=null) return mov;
+		else throw new DetailViewException("상세보기 실패!");
 		
 	}
 	

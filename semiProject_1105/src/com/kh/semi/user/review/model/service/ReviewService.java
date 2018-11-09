@@ -1,13 +1,15 @@
 package com.kh.semi.user.review.model.service;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.getConnection;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.semi.user.movie.model.dao.DetailViewDao;
-import com.kh.semi.user.movie.model.vo.ReviewInfo;
+import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.user.review.model.dao.ReviewDao;
 import com.kh.semi.user.review.model.vo.Review;
-import static com.kh.semi.common.JDBCTemplate.*;
+import com.kh.semi.user.review.model.vo.ReviewInfo;
 
 public class ReviewService {
 
@@ -24,12 +26,12 @@ public class ReviewService {
 		return list;
 	}
 	
-	public ReviewInfo selectReview(String keyword) {
+	public ReviewInfo selectReview(String videoId, String mCode) throws Exception{
 		Connection con=getConnection();
-		ReviewInfo rv=new ReviewDao().selectReview(con,keyword);
+		ReviewInfo rv=new ReviewDao().selectReview(con,videoId,mCode);
 		close(con);
-		// 예외 던져주기
-		return rv;
+		if(rv!=null) return rv;
+		else throw new DetailViewException("상세보기 실패!");
 	}
 
 }
