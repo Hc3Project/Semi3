@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" import="com.kh.semi.member.model.vo.Member"%>
+	pageEncoding="UTF-8" import="com.kh.semi.member.model.vo.Member"%>
 <%
-	Member m = (Member)session.getAttribute("member");
+	Member m = (Member) session.getAttribute("member");
 %>
 
 <!DOCTYPE html>
-<script src="<%= request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
 		<a class="logo active" href="/semi/views/index.jsp"></a>
 		<ul class="gnb__left-navs">
-			<li><a class="gnb__nav-home active" href="/semi/views/index.jsp">홈</a></li>
+			
 			<li class="gnb__category-list"><a class="gnb__nav-category"
-				href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">영화 카테고리</a> <span>
+				href="/semi/views/category/movieCategory.jsp">영화 카테고리</a> 
+			<span>
 					<div class="gnb-category-list">
 						<div class="gnb-category-list__filters">
 							<button class="category-filter-item category-filter-item--active">
@@ -26,9 +28,11 @@
 							</button>
 						</div>
 						<ul class="gnb-category-list__filtered-list">
-							<li class="gnb-category-list__filtered-list-item" id="all" ><a 
-								href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">모든 장르</a></li>
-							<li class="gnb-category-list__filtered-list-item" id="sf" value="sf"><a 
+							<li class="gnb-category-list__filtered-list-item" id="all"><a
+								href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">모든
+									장르</a></li>
+							<li class="gnb-category-list__filtered-list-item" id="sf"
+								value="sf"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G1">SF</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G2">가족</a></li>
@@ -69,13 +73,14 @@
 						</ul>
 						<ul class="gnb-category-list__filtered-list" style="display: none">
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">모든 국가</a></li>
+								href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">모든
+									국가</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=US">미국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=FR">프랑스</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=IT">이탈리아</a></li>	
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=IT">이탈리아</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=KO">한국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
@@ -105,9 +110,11 @@
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCIXvXBYSc9fQ7Ri5SM1r8xA">라이너의컬쳐쇼크</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCiOWYRzOTiUYi9pJ-kscIKw">발 없는 새</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCiOWYRzOTiUYi9pJ-kscIKw">발
+									없는 새</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCJfthTE-ACoZJPVgwyw_hsw">필름에 빠지다</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCJfthTE-ACoZJPVgwyw_hsw">필름에
+									빠지다</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCpCiIDf9UrfRqte55FHWlYQ">드림텔러</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
@@ -128,72 +135,65 @@
 								href="../views/category/movieCategory.jsp">달빛뮤즈</a></li>
 						</ul>
 					</div>
-         </span></li>
-         
-         <script>
-            <%-- $(function(){
-               $("#sf").click(function(){
-                  var selectedGenre = $(this).getAttribute("value");
-                  location.href="<%=reqeust.getContextPath()%>/semi/views/category/movieCategory.jsp?genre=" + selectedGenre;
-               })
-            }); --%>
-            
-            <%-- function goCategory(){
-               var cCode = $(this).val();
-               
-               location.href="<%request.getContextPath();%>/semi/views/category/sCategory.se?genre="+cCode;
-               console.log(cCode);
-            } --%>
-         </script>
-         <li><a class="gnb__nav-evaluate" href="javascript:;">취향 분석</a></li>
-      </ul>
-      <div class="gnb__right-navs">
-         <div class="gnb__my-name">
-         <%if ( m == null ) { %>
-            <a href="/semi/views/member/login.jsp">로그인</a> 
-            <span class="glyphicon glyphicon-caret-down-f"></span> 
-            <% } else { %>
-            <div class="gnb__my-name">
-            <span><%= m.getUserId() %></span>
-             <span class="glyphicon glyphicon-caret-down-f"></span>
-            <span>
-               <div class="gnb__account-menu-wrap">
-                  <ul class="account-menu">
-                     <li class="account-menu__item"><a class="" href="/semi/views/watches/watches.jsp">본
-                           리뷰</a></li>
-                     <li class="account-menu__item"><a class="" href="/semi/views/member/setting.jsp">설정</a>
-                     </li>
-                     <li class="account-menu__item"><a class="" onclick="logout()">로그아웃</a></li>
-                  </ul>
-               </div>
-            </span>
-            <% } %>
-         </div>
-         </div>
-         <!-- <div class="gnb__my-name">
+			</span>
+			</li>
+
+
+			<li><a class="gnb__nav-evaluate" href="javascript:;">취향 분석</a></li>
+		</ul>
+		<div class="gnb__right-navs">
+			<div class="gnb__my-name">
+				<%
+					if (m == null) {
+				%>
+				<a href="/semi/views/member/login.jsp">로그인</a> <span
+					class="glyphicon glyphicon-caret-down-f"></span>
+				<%
+					} else {
+				%>
+
+				<span><%=m.getUserId()%></span> <span
+					class="glyphicon glyphicon-caret-down-f"></span> <span>
+					<div class="gnb__account-menu-wrap">
+						<ul class="account-menu">
+							<li class="account-menu__item"><a class=""
+								href="/semi/views/watches/watches.jsp">본 리뷰</a></li>
+							<li class="account-menu__item"><a class=""
+								href="/semi/views/member/setting.jsp">설정</a></li>
+							<li class="account-menu__item"><a class=""
+								onclick="logout()">로그아웃</a></li>
+						</ul>
+					</div>
+				</span>
+				<%
+					}
+				%>
+
+			</div>
+			<!-- <div class="gnb__my-name">
                     <span>정한</span>
                     <span class="glyphicon glyphicon-caret-down-f"></span>
                     <span></span>
                 </div> -->
-         <a class="gnb__wishes" href="/wishes">리뷰어</a>
-         <div class="search">
-            <button class="search__button">
-               <span class="glyphicon glyphicon-search"></span> <span>&nbsp;&nbsp;검색</span>
-            </button>
-            <span>
-               <div class="search-input">
-                  <a href="javascript:;"
-                     class="glyphicon glyphicon-search search-input__text-field"></a>
-                  <input class="search-input__text-field"
-                     id="search-input__text-field" type="search"
-                     placeholder="영화 제목으로 검색" value="">
-               </div>
-               
-            </span>
-         </div>
-         
-      
-   </nav>
+				<div class="search">
+				<button class="search__button">
+					<span class="glyphicon glyphicon-search"></span> <span>&nbsp;&nbsp;검색</span>
+				</button>
+				<span>
+					<div class="search-input">
+						<a href="javascript:;"
+							class="glyphicon glyphicon-search search-input__text-field"></a>
+						<input class="search-input__text-field"
+							id="search-input__text-field" type="search"
+							placeholder="영화 제목으로 검색" >
+					</div>
+
+				</span>
+			</div>
+		</div>
+
+
+	</nav>
 </div>
 
 <script>
