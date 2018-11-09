@@ -9,5 +9,9 @@ public class StarRatingService {
 	public int insertStarRation(){
 		return 0;
 	}
+	
+	public int updateStarRation(){
+		return 0;
+	}
 
 }

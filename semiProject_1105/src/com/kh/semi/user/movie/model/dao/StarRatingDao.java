@@ -9,5 +9,9 @@ public class StarRatingDao {
 	public int insertStarRating(){
 		return 0;
 	}
+	
+	public int updateStarRation(){
+		return 0;
+	}
 
 }
