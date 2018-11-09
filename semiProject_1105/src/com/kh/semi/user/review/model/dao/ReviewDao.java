@@ -72,6 +72,10 @@ System.out.println(sql);
 		}
 		return list;
 	}
+	public ArrayList<Review> reviewRecommend(Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	public ReviewInfo selectReview(Connection con, String videoId) {
 		PreparedStatement pstmt=null;
@@ -100,5 +104,11 @@ System.out.println(sql);
 		return rv;
 		
 	}
+
+	public ArrayList<Review> reviewTop(Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
