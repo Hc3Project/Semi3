@@ -56,6 +56,11 @@ public class DetailViewServlet extends HttpServlet {
 			MovieDetailInfo mov = dvs.selectMovieDetail(rv.getMcode());
 			int score=0;
 			
+			// 별점 가져오기
+			// 세션에 회원이 로그인한 정보가 있으면 불러오고, 없다면 디폴트 0점
+			// 별점은 회원만 메길 수 있어야 하는데 1. 비회원은 별점을 클릭해도 이벤트가 발생하지 않는다
+			// 2. 비회원은 별점을 볼 수 없다 등 비회원이 DB에 영향을 끼치지 않도록 생각해봐야함
+			// DB RATING 테이블 SCORE 컬럼에 디폴트 0, CHECK 제약조건 달아둠(0~10) 다음에 공유함
 			if(session.getAttribute("userId")!=null){
 				score=srs.selectStarRating((String)session.getAttribute("userId"),rv.getMcode());
 			}

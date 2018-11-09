@@ -81,6 +81,8 @@
 	</div>
 	<script type="text/javascript">
 		// 별점 이벤트 관리하는 부분(ajax)
+		// 현재 별점이 있으면  update서블릿
+		// 현재 별점이 없으면 insert 서블릿
     	$('.starRev span').hover(function(){
         	$(this).parent().children('span').removeClass('on');
             $(this).addClass('on').prevAll('span').addClass('on');
