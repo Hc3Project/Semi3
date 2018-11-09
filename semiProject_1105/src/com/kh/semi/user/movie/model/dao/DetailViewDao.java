@@ -1,4 +1,4 @@
-package com.kh.semi.user.detail.model.dao;
+package com.kh.semi.user.movie.model.dao;
 
 import static com.kh.semi.common.JDBCTemplate.*;
 
@@ -12,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
-import com.kh.semi.user.detail.model.vo.PosterInfo;
+import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
+import com.kh.semi.user.movie.model.vo.PosterInfo;
+import com.kh.semi.user.movie.model.vo.ReviewInfo;
 
 public class DetailViewDao {
 	
@@ -79,5 +80,7 @@ public class DetailViewDao {
 		}
 		return mov;
 	}
+
+	
 
 }

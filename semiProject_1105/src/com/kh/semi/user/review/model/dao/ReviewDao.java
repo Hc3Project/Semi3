@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.semi.user.movie.model.vo.ReviewInfo;
 import com.kh.semi.user.review.model.vo.Review;
 import static com.kh.semi.common.JDBCTemplate.*;
 
@@ -67,6 +68,11 @@ System.out.println(sql);
 			close(stmt);
 		}
 		return list;
+	}
+	
+	public ReviewInfo selectReview(Connection con, String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
