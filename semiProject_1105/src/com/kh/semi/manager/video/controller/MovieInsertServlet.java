@@ -53,7 +53,9 @@ public class MovieInsertServlet extends HttpServlet {
 		mi.setgCOde2(vs.selectGenreCode(genre2));
 		mi.setnCode(vs.selectNationCode(nation));
 		
-		vs.insertMovie(mi);
+		int result = vs.insertMovie(mi);
+		
+		response.getWriter().print(result);
 	}
 
 	/**

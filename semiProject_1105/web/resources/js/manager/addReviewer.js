@@ -27,7 +27,31 @@ $(function(){
 		
 	})
 	
-	
+	// 추가하기 버튼
+	// 대충만든거라 손좀 봐야됨
+	$('#addRvrBtn').click(function(){
+		var rvrName = $(this).parents('table').find('th')[1].innerText;
+		var rCode = $(this).parents('table').find('th')[3].innerText;
+		var profile = $(this).parents('table').find('textarea').val();
+		
+		var strUrl = "";
+		$.ajax({
+			type : 'post',
+			url : strUrl,
+			data : {
+				"rvrName" : rvrName,
+				"rCode" : rCode,
+				"profile" : profile
+			},
+			success : function(data){
+				if(data>0) alert('성공적으로 추가하였습니다.');
+				else alert('리뷰어 추가를 실패하였습니다.')
+			},
+			error : function(data){
+				console.log(data);
+			}
+		})
+	})	
 })
 
 function init() {
