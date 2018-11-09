@@ -1,19 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.semi.manager.video.model.vo.*"%>
+    
+<% ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>)request.getAttribute("mList"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../../resources/js/jquery-3.3.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
 <!-- 슬라이더 -->
-<script src="../../resources/js/common.js"></script>
-<script src="../../resources/js/bootstrap.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/common.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../resources/css/reset.css">
-<link rel="stylesheet" href="../../resources/css/style.css">
-<link rel="stylesheet" href="../../resources/css/main.css">
-<link rel="stylesheet" href="../../resources/css/category.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/reset.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/main.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/category.css">
+<script>
+console.log("<%= request.getContextPath() %>");
+</script>
 <title>모든 장르</title>
 </head>
 <body>

@@ -1,4 +1,4 @@
-package com.kh.semi.user.detail.model.dao;
+package com.kh.semi.user.movie.model.dao;
 
 import static com.kh.semi.common.JDBCTemplate.*;
 
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
-import com.kh.semi.user.detail.model.vo.PosterInfo;
+import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
+import com.kh.semi.user.movie.model.vo.PosterInfo;
 
 public class DetailViewDao {
 	
@@ -49,14 +49,14 @@ public class DetailViewDao {
 		return list;
 	}
 
-	public MovieDetailInfo selectMovieDetail(Connection con, String keyword) {
+	public MovieDetailInfo selectMovieDetail(Connection con, String mCode) {
 		// 영화 상세정보
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		MovieDetailInfo mov=null;
 		try {
 			pstmt=con.prepareStatement(prop.getProperty("selectMovieDetail"));
-			pstmt.setString(1, keyword);
+			pstmt.setString(1, mCode);
 			rset=pstmt.executeQuery();
 			if(rset.next()){
 				mov=new MovieDetailInfo();
@@ -79,5 +79,7 @@ public class DetailViewDao {
 		}
 		return mov;
 	}
+
+	
 
 }

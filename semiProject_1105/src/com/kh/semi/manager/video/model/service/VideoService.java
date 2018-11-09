@@ -33,7 +33,7 @@ public class VideoService {
 		return result;
 	}
 
-	public void insertMovie(MovieInfo mi) {
+	public int insertMovie(MovieInfo mi) {
 		Connection con = getConnection();
 		int result1 = vDao.insertMovie(con, mi);
 		int result2 = 0;
@@ -44,6 +44,8 @@ public class VideoService {
 		}else rollback(con);
 		
 		close(con);
+		
+		return result2;
 	}
 
 	public int selectDup(String mCode) {

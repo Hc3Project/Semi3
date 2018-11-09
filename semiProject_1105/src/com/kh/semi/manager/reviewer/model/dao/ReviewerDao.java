@@ -72,8 +72,30 @@ public class ReviewerDao {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
+		return result;
+	}
+
+	public int insertReviewer(Connection con, ReviewerInfo ri) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertReviewer");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ri.getRvrCode());
+			pstmt.setString(2, ri.getrName());
+			pstmt.setString(3, ri.getProfile());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		return result;
 	}
 }
