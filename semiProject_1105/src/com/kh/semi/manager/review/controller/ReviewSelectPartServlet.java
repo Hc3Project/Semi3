@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.semi.manager.review.model.service.ReviewService;
-import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
+import com.kh.semi.manager.review.model.vo.ReviewInfo;
 
 /**
- * Servlet implementation class ReviewerSelectAllServlet
+ * Servlet implementation class ReviewSelectPartServlet
  */
-@WebServlet("/rvrSelectAll.rv")
-public class ReviewerSelectAllServlet extends HttpServlet {
+@WebServlet("/rvSelectPart.rv")
+public class ReviewSelectPartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewerSelectAllServlet() {
+    public ReviewSelectPartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +32,13 @@ public class ReviewerSelectAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String toPath = request.getParameter("opt");
-		ReviewService rs = new ReviewService();
-		List<ReviewerInfo> result = rs.selectAllReviewer();
+		String rvrCode = request.getParameter("rvrCode");
+		String keyword = request.getParameter("keyword");
 		
-		String page = "";
-		if(result != null) {
-			if(toPath.equals("add")) {
-				page = "/views/manager/addReview.jsp";
-				request.setAttribute("rvrList", result);
-			} else if(toPath.equals("del")) {
-				page = "/views/manager/deleteReview.jsp";
-				request.setAttribute("rvrList", result);
-			} else {
-				// 경로 미지정
-			}
-		} else {
-			// 리뷰어가 하나도 없을 경우
-			// 차후 에러 페이지 보내기
-		}
-		request.getRequestDispatcher(page).forward(request, response);
+		ReviewService rs = new ReviewService();
+		List<ReviewInfo> result = rs.selectPartReview(rvrCode, keyword);
+		
+		new Gson().toJson(result, response.getWriter());
 	}
 
 	/**

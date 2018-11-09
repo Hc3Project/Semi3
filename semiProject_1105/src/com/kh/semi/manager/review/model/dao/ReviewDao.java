@@ -135,4 +135,49 @@ public class ReviewDao {
 		}
 		return result;
 	}
+
+	public List<ReviewInfo> selectPartReview(Connection con, String rvrCode, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ReviewInfo> result = null;
+		String sql = prop.getProperty("selectPartReview");
+		
+		try {
+			result = new ArrayList<ReviewInfo>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rvrCode);
+			pstmt.setString(2, keyword);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				ReviewInfo ri = new ReviewInfo();
+				ri.setVideoId(rset.getString("videoid"));
+				ri.setRvrCode(rset.getString("rname"));
+				ri.setmCode(rset.getString("mtitle"));
+				ri.setUploadDate(rset.getDate("uploaddate"));
+				
+				result.add(ri);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteReview(Connection con, String videoId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, videoId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
