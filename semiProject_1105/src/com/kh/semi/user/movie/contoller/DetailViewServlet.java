@@ -12,8 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.semi.user.movie.model.service.DetailViewService;
+import com.kh.semi.user.movie.model.service.StarRatingService;
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.review.model.service.ReviewService;
 import com.kh.semi.user.review.model.vo.ReviewInfo;
@@ -44,11 +46,19 @@ public class DetailViewServlet extends HttpServlet {
 		
 		DetailViewService dvs=new DetailViewService();
 		ReviewService rs=new ReviewService();
+		StarRatingService srs=new StarRatingService();
+		HttpSession session=request.getSession(false);
+		
 		
 		try {
 			// 영화정보와 리뷰정보를 불러옴
 			ReviewInfo rv=rs.selectReview(videoId);
 			MovieDetailInfo mov = dvs.selectMovieDetail(rv.getMcode());
+			int score=0;
+			
+			if(session.getAttribute("userId")!=null){
+				score=srs.selectStarRating((String)session.getAttribute("userId"),rv.getMcode());
+			}
 			
 			String page="";
 			String keyword=mov.getMtitle();
@@ -89,6 +99,7 @@ public class DetailViewServlet extends HttpServlet {
 			request.setAttribute("page",page);
 			request.setAttribute("mov", mov);
 			request.setAttribute("rv", rv);
+			request.setAttribute("score",score);
 					
 			request.getRequestDispatcher("views/detail/detailView.jsp").forward(request, response);
 		} catch (Exception e) {
