@@ -4,8 +4,6 @@
 	Member m = (Member)session.getAttribute("member");
 %>
 
-<%-- <% ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list"); %> --%>
-
 <!DOCTYPE html>
 <script src="<%= request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <div class="wrap">
@@ -188,7 +186,7 @@
                      class="glyphicon glyphicon-search search-input__text-field"></a>
                   <input class="search-input__text-field"
                      id="search-input__text-field" type="search"
-                     placeholder="제목, 감독, 배우로 검색" value="">
+                     placeholder="영화 제목으로 검색" value="">
                </div>
                
             </span>
