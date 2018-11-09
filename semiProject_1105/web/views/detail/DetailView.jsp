@@ -30,6 +30,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/web/resources/css/detail.css" />
+<link rel="stylesheet" type="text/css" href="../../resources/css/detail.css" />
 </head>
 <body>
 	<!-- 공사중 -->
