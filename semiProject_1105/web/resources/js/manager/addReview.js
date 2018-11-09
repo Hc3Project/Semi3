@@ -1,9 +1,9 @@
 var channelId;
 var keyword;
-var nextPageToken;
 var resultMax = 5;
+var nToken;
 
-$(function(){
+$(function(){	
 	var script = document.createElement("script");
 	script.src = "http://apis.google.com/js/client.js?onload=init";//포함시킬 js 파일 (경로가 존재하면 경로까지 작성)
 	document.getElementsByTagName("body")[0].appendChild(script);
@@ -16,37 +16,40 @@ $(function(){
 		}
 		channelId = $('#rvrList').val();
 		keyword = $('#rvKeyword').val().trim();
-		nextPageToken = "";
+		nToken = "";
 		$('#videoList').html('');
-		getVideo(channelId, keyword, nextPageToken)
+		getVideo(channelId, keyword, nToken)
 	})
 	
 	$('#moreList').click(function(){
-		getVideo(channelId, keyword, nextPageToken)
+		getVideo(channelId, keyword, nToken)
 	})
 })
 
-function getVideo(channelId, keyword, nextPageToken){
-	var result;
+function getVideo(channelId, keyword, nToken){
+	console.log(channelId)
+	console.log(keyword)
+	console.log(nToken)
 	
 	var rRequest = gapi.client.youtube.search.list({
 		part : "snippet",
 		channelId : channelId,
 		q : keyword,
-		nextPageToken : nextPageToken,
+		pageToken : nToken,
 		maxResults : resultMax,
 		order : "date",
 		type : "video"
 	})
 	
 	rRequest.execute(function(data){
-		nextPageToken = data.nextPageToken;
 		showList(data);
 	})
+	
 }
 
 function showList(data){
 	var result = data;
+	nToken = data.nextPageToken;
 	$.each(result.items, function(idx, item){
 		var dataArr = {
 				"title" : item.snippet.title,
@@ -60,7 +63,6 @@ function showList(data){
 			type : "get",
 			url : urlStr,
 			success : function(code){
-//				console.log(showVideo(code, dataArr))
 				$('#moreList').prop('disabled', false);
 				$('#videoList').append(showVideo(code, dataArr));
 				if(data.nextPageToken=="") $('#moreList').prop('disabled', true);
@@ -82,17 +84,38 @@ function showVideo(code, arr){
 }
 
 function addReview(obj){
-	var data = {
-		title : $(obj).siblings('input:hidden').eq(0).val(),
-		videoId : $(obj).siblings('input:hidden').eq(1).val(),
-		pDate : $(obj).siblings('input:hidden').eq(2).val()
-	}
-	var quertString = "";
-	$.each(data, function(idx, item){
-		quertString += idx + '=' + encodeURI(item) + '&';
-	})
 	
-	window.location.href='/semi/views/manager/choiceMovie.jsp?' + quertString;
+	var strUrl = '/semi/rvDup.rv';
+	$.ajax({
+		type : 'post',
+		url : strUrl,
+		data : {
+			videoId : $(obj).siblings('input:hidden').eq(1).val()
+		},
+		success : function(data){
+			if(data!=0) {
+				alert('이미 등록된 리뷰입니다.');
+				$(obj).prop('disabled', true);
+			} else {
+				var data = {
+					rvrCode : channelId,
+					title : $(obj).siblings('input:hidden').eq(0).val(),
+					videoId : $(obj).siblings('input:hidden').eq(1).val(),
+					pDate : $(obj).siblings('input:hidden').eq(2).val()
+				}
+				var quertString = "";
+				$.each(data, function(idx, item){
+					quertString += idx + '=' + encodeURI(item) + '&';
+				})
+				
+				window.location.href='/semi/views/manager/choiceMovie.jsp?' + quertString.substr(0, quertString.length-1);
+			}
+		},
+		error : function(data){
+			console.log(data);
+		},
+		async : false
+	})
 }
 
 function init() {

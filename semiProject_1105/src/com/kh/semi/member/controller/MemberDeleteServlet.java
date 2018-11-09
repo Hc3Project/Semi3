@@ -6,22 +6,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.semi.member.execption.MemberException;
 import com.kh.semi.member.model.service.MemberService;
 import com.kh.semi.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberInsertServlet
+ * Servlet implementation class MemberDeleteServlet
  */
-@WebServlet("/mInsert.me")
-public class MemberInsertServlet extends HttpServlet {
+@WebServlet("/mDelete.me")
+public class MemberDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInsertServlet() {
+    public MemberDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,41 +31,35 @@ public class MemberInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("name");
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		
-		
-		
-		System.out.println(request.getParameter("name"));
-		System.out.println(request.getParameter("password"));
-		System.out.println(request.getParameter("email"));
-		
 		MemberService ms = new MemberService();
-		Member m = new Member(userId, password, email);
-		System.out.println("email fg"+email);
+		HttpSession session = request.getSession(false);
+		
+		Member m = (Member)session.getAttribute("member");
+		
+		System.out.println("회원 기존 정보 : "+session.getAttribute("member"));
 		
 		try {
-			ms.insertMember(m);
-			System.out.println("회원 가입 완료 : "+m);
-			response.sendRedirect("/semi/views/index.jsp");
-		} catch (Exception e) {
-			System.out.println("에러가 발생했습니다~");
+			ms.deleteMember(m.getUserId());
+			System.out.println("회원 탈퇴 완료!: "+m);
 			
-			request.setAttribute("msg", "회원 가입 중 에러가 발생하였습니다.");
-			request.setAttribute ("exception", e);
-			request.getRequestDispatcher("views/common/errorPage.jsp")
-			       .forward(request, response);
+			session.invalidate();
+			
+			response.sendRedirect("/semi/views/index.jsp");
+			
+		} catch (Exception e) {
+			
+			request.setAttribute("msg", "회원 탈퇴 중 에러가 발생했습니다.");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		
-		
+	
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

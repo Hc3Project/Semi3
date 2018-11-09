@@ -1,6 +1,7 @@
 package com.kh.semi.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,6 +58,13 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			request.setAttribute("msg", "로그인 실패");
 			request.setAttribute("exception", e);
+			
+			 PrintWriter out = response.getWriter();
+	          
+	         out.println("<script> alert('아이디 또는 비밀번호가 일치하지 않습니다.'); location.href='views/member/login.jsp';</script>");
+	          
+	         out.flush();
+	         out.close();
 		}
 		
 	}

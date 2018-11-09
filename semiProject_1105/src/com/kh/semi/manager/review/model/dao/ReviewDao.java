@@ -1,5 +1,7 @@
 package com.kh.semi.manager.review.model.dao;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.manager.review.model.vo.ReviewInfo;
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 
@@ -20,7 +23,7 @@ public class ReviewDao {
 	
 	public ReviewDao() {
 		prop = new Properties();
-		String filePath = ReviewDao.class.getResource("/config/manager/review-query.properties").getPath();
+		String filePath = ReviewDao.class.getResource("/config/manager/review-query.properties").getPath().replace("%20", " ");
 		
 		try {
 			prop.load(new FileReader(filePath));
@@ -51,6 +54,9 @@ public class ReviewDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		return result;
@@ -81,6 +87,51 @@ public class ReviewDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertReview(Connection con, ReviewInfo rvi) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertReview");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rvi.getVideoId());
+			pstmt.setString(2, rvi.getmCode());
+			pstmt.setString(3, rvi.getRvrCode());
+			pstmt.setDate(4, rvi.getUploadDate());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectOneReview(Connection con, String videoId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String sql = prop.getProperty("selectOneReview");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, videoId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) result++;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		return result;
 	}

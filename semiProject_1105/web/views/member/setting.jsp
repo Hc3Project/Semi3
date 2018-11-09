@@ -38,10 +38,12 @@
                                 <div class="profile-email-field">
                                     <div class="form-column">
                                         <span class="profile-email-field__current-email">
-                                            <span><%=m.getEmail() %></span>
+                                        <div class="form-input form-input--valid">
+                                        <input type="email" name = "email" required="required" value="<%=m.getEmail() %>">
+                                            </div>
                                         </span>
                                         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                        <button class="profile-email-field__change-button">변경</button>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +106,7 @@
         
         
         //이메일 변경 클릭시
-        var profileEmailField ='<div class="profile-email-field"><div><div class="form-column"><div class="form-input"><input type="email" name="email" required="required" placeholder="새 이메일"></div></div></div></div>';
+        /* var profileEmailField ='<div class="profile-email-field"><div><div class="form-column"><div class="form-input"><input type="email" name="email" required="required" placeholder="새 이메일"></div></div></div></div>';
 
         $(".profile-email-field__change-button").click(function(){
             var edit =  $(this);
@@ -116,7 +118,7 @@
 
            edit.unbind("click");
            
-        })
+        }) */
         
         // 프로필 수정(저장)
        	function changeInfo(){
@@ -131,9 +133,9 @@
 			event.preventDefault();
 		});
         // 회원탈퇴
-        <%-- function deleteMember() {
-					location.href = "/semi/mDelete.me?mid=<%=m.getUserId()%>";
-				} --%>
+        function deleteMember() {
+					location.href = "/semi/mDelete.me?mid=<%= m.getUserId() %>";
+				}
         
     </script>
 

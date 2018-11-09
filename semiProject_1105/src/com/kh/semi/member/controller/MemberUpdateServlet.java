@@ -57,6 +57,8 @@ public class MemberUpdateServlet extends HttpServlet {
 			
 			request.setAttribute("msg", "회원정보 수정 중 에러가 발생했습니다!");
 			request.setAttribute("exception", e);
+			
+//			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 	}
 
