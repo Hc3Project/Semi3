@@ -1,29 +1,23 @@
 package com.kh.semi.user.review.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.semi.user.review.model.service.ReviewService;
-import com.kh.semi.user.review.model.vo.Review;
-
 /**
- * Servlet implementation class ReviewtodayServlet
+ * Servlet implementation class ReviewSelectServlet
  */
-@WebServlet("/rToday.rv")
-public class ReviewTodayServlet extends HttpServlet {
+@WebServlet("/rSelect.rv")
+public class ReviewSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewTodayServlet() {
+    public ReviewSelectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +26,8 @@ public class ReviewTodayServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReviewService rs = new ReviewService();
-		ArrayList<Review> list = new ArrayList<Review>();
-
-			list = rs.reviewToday();
-			
-			response.setContentType("application/json; charset=UTF-8");
-			new Gson().toJson(list, response.getWriter());
-
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
