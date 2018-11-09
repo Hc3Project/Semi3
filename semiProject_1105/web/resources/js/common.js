@@ -42,14 +42,6 @@ $(document).ready(function(){
         }
     });
 
-    // 썸네일 마우스 오버
-    $(".rec-list > div").hover(function(){
-        $(this).children(".hover-box").stop().fadeIn(); 
-        $(this).children("h1").stop().hide();
-    }, function () { 
-        $(this).children(".hover-box").stop().fadeOut(); 
-        $(this).children("h1").stop().fadeIn();
-    });
 
 
 

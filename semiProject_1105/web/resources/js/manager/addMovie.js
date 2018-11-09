@@ -64,7 +64,7 @@ function addTable(data){
 		$table.append($tr)
 	})
 	
-	if(totCnt/resultMax < curPage++) $('#more').prop('disabled', true);
+	if(totCnt/resultMax <= curPage++) $('#more').prop('disabled', true);
 }
 
 function detailBtn(obj){
@@ -115,7 +115,7 @@ function addDetail(obj){
 	infoData.genre2 = (mInfo.genres.length<2)?"없음":mInfo.genres[1].genreNm;
 	infoData.nation = (mInfo.nations.length!=0)?mInfo.nations[0].nationNm:"없음";
 	infoData.syno = syno.trim();
-	console.log(infoData)
+
 	if(syno==""){
 		alert("상세정보를 입력바랍니다.");
 		return false;
@@ -127,15 +127,12 @@ function addDetail(obj){
 		url : strUrl,
 		data : infoData,
 		success : function(data){
-			console.log(data);
 			alert("영화 정보를 입력을 성공하였습니다.")
 		},	
 		error : function(data){
 			console.log(data);
-//			alert("이미 존재하는 영화입니다.");
 		},
 		complete : function(data){
-			console.log(infoData)
 			backList();
 		}
 	})

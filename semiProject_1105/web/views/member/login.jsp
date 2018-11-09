@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <script src="../../resources/js/jquery-3.3.1.min.js"></script>
+  <script src="<%=request.getContextPath()%>../../resources/js/jquery-3.3.1.min.js"></script>
   <!-- 슬라이더 -->
   <script src="../../resources/js/common.js"></script>
   
@@ -35,8 +35,8 @@
         </div>
         <div class="content">
           <div class="signin-cont cont">
-            <form action="#" method="post" enctype="multipart/form-data">
-              <input type="text" name="name" id="name" class="inpt" required="required" placeholder="아이디">
+            <form action="<%=request.getContextPath()%>/login.me" method="post">
+              <input type="text" name="name" id="name" class="inpt"  required="required" placeholder="아이디">
               <label for="name">아이디</label>
               <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호(6자이상)">
               <label for="password">비밀번호</label>
@@ -47,13 +47,14 @@
             </form>
           </div>
           <div class="signup-cont cont">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post">
               <input type="text" name="name" id="name" class="inpt" required="required" placeholder="아이디">
-              <label for="name">아이디</label>
+              <input type="button" value="중복 체크">
+              <br><br>
               <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일(test@test.com)">
-              <label for="email">이메일</label>
+              
               <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호(6자이상)">
-              <label for="password">비밀번호</label>
+              
               <div class="submit-wrap">
                 <input type="submit" value="가입 완료" class="submit">
               </div>
@@ -83,6 +84,9 @@
         $('.signup-cont').show();
       }
     });
+    
+    
+   
 
   </script>
 

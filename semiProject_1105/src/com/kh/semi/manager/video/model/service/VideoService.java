@@ -6,6 +6,7 @@ import static com.kh.semi.common.JDBCTemplate.getConnection;
 import static com.kh.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.kh.semi.manager.video.model.dao.VideoDao;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
@@ -55,6 +56,42 @@ public class VideoService {
 		close(con);
 		
 		return result;
+	}
+
+	public List<MovieInfo> selectPart(String sel, String keyword) {
+		Connection con = getConnection();
+		List<MovieInfo> result = vDao.selectPart(con, sel, keyword);
+		close(con);
+		return result;
+	}
+
+	public int deleteMovie(String mCode) {
+		Connection con = getConnection();
+		int result = vDao.deleteMovie(con, mCode);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int updateMovie(MovieInfo mi) {
+		Connection con = getConnection();
+		int result = vDao.updateMovieInfo(con, mi);
+		int result1 = 0;
+		
+		if(result>0) {
+			result1 = vDao.updateMovieDetail(con, mi);
+			if(result1>0) commit(con);
+			else rollback(con);
+		}
+		else rollback(con);
+		
+		close(con);
+		
+		return result1;
 	}
 
 }

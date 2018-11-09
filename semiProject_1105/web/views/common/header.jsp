@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+   pageEncoding="UTF-8" import="com.kh.semi.member.model.vo.Member"%>
+<%
+	Member m = (Member)session.getAttribute("member");
+%>
+
 <%-- <% ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list"); %> --%>
 
 <!DOCTYPE html>
@@ -127,62 +130,76 @@
 								href="../views/category/movieCategory.jsp">달빛뮤즈</a></li>
 						</ul>
 					</div>
-
-			</span></li>
-			
-			<script>
-				<%-- $(function(){
-					$("#sf").click(function(){
-						var selectedGenre = $(this).getAttribute("value");
-						location.href="<%=reqeust.getContextPath()%>/semi/views/category/movieCategory.jsp?genre=" + selectedGenre;
-					})
-				}); --%>
-				
-				<%-- function goCategory(){
-					var cCode = $(this).val();
-					
-					location.href="<%request.getContextPath();%>/semi/views/category/sCategory.se?genre="+cCode;
-					console.log(cCode);
-				} --%>
-			</script>
-			<li><a class="gnb__nav-evaluate" href="javascript:;">취향 분석</a></li>
-		</ul>
-		<div class="gnb__right-navs">
-			<div class="gnb__my-name">
-				<a href="/semi/views/member/login.jsp">로그인</a> <span
-					class="glyphicon glyphicon-caret-down-f"></span> <span>
-					<div class="gnb__account-menu-wrap">
-						<ul class="account-menu">
-							<li class="account-menu__item"><a class="" href="/watches">본
-									리뷰</a></li>
-							<li class="account-menu__item"><a class="" href="/setting">설정</a>
-							</li>
-							<li class="account-menu__item"><a href="#">로그아웃</a></li>
-						</ul>
-					</div>
-				</span>
-			</div>
-			<!-- <div class="gnb__my-name">
+         </span></li>
+         
+         <script>
+            <%-- $(function(){
+               $("#sf").click(function(){
+                  var selectedGenre = $(this).getAttribute("value");
+                  location.href="<%=reqeust.getContextPath()%>/semi/views/category/movieCategory.jsp?genre=" + selectedGenre;
+               })
+            }); --%>
+            
+            <%-- function goCategory(){
+               var cCode = $(this).val();
+               
+               location.href="<%request.getContextPath();%>/semi/views/category/sCategory.se?genre="+cCode;
+               console.log(cCode);
+            } --%>
+         </script>
+         <li><a class="gnb__nav-evaluate" href="javascript:;">취향 분석</a></li>
+      </ul>
+      <div class="gnb__right-navs">
+         <div class="gnb__my-name">
+         <%if ( m == null ) { %>
+            <a href="/semi/views/member/login.jsp">로그인</a> 
+            <span class="glyphicon glyphicon-caret-down-f"></span> 
+            <% } else { %>
+            <div class="gnb__my-name">
+            <span><%= m.getUserId() %></span>
+             <span class="glyphicon glyphicon-caret-down-f"></span>
+            <span>
+               <div class="gnb__account-menu-wrap">
+                  <ul class="account-menu">
+                     <li class="account-menu__item"><a class="" href="/semi/views/watches/watches.jsp">본
+                           리뷰</a></li>
+                     <li class="account-menu__item"><a class="" href="/semi/views/member/setting.jsp">설정</a>
+                     </li>
+                     <li class="account-menu__item"><a class="" onclick="logout()">로그아웃</a></li>
+                  </ul>
+               </div>
+            </span>
+            <% } %>
+         </div>
+         </div>
+         <!-- <div class="gnb__my-name">
                     <span>정한</span>
                     <span class="glyphicon glyphicon-caret-down-f"></span>
                     <span></span>
                 </div> -->
-			<a class="gnb__wishes" href="/wishes">리뷰어</a>
-			<div class="search">
-				<button class="search__button">
-					<span class="glyphicon glyphicon-search"></span> <span>&nbsp;&nbsp;검색</span>
-				</button>
-				<span>
-					<div class="search-input">
-						<a href="javascript:;"
-							class="glyphicon glyphicon-search search-input__text-field"></a>
-						<input class="search-input__text-field"
-							id="search-input__text-field" type="search"
-							placeholder="제목, 감독, 배우로 검색" value="">
-					</div>
-					
-				</span>
-			</div>
-		</div>
-	</nav>
+         <a class="gnb__wishes" href="/wishes">리뷰어</a>
+         <div class="search">
+            <button class="search__button">
+               <span class="glyphicon glyphicon-search"></span> <span>&nbsp;&nbsp;검색</span>
+            </button>
+            <span>
+               <div class="search-input">
+                  <a href="javascript:;"
+                     class="glyphicon glyphicon-search search-input__text-field"></a>
+                  <input class="search-input__text-field"
+                     id="search-input__text-field" type="search"
+                     placeholder="제목, 감독, 배우로 검색" value="">
+               </div>
+               
+            </span>
+         </div>
+         
+      
+   </nav>
 </div>
+
+<script>
+	function logout(){
+		location.href="/semi/logout.me";
+	}
+</script>

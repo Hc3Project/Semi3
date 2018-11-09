@@ -1,0 +1,267 @@
+@CHARSET "UTF-8";
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 960px;
+  margin: 0 auto;
+  padding-top:100px;
+}
+.container h1 {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 23px;
+  text-align: center;
+  text-indent: 6px;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: #fff;
+}
+input::-webkit-input-placeholder {
+  font-size: 14px;
+  color: #999999;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+input:-moz-placeholder {
+  font-size: 14px;
+  color: #999999;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+input::-moz-placeholder {
+  font-size: 14px;
+  color: #999999;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+input:-ms-input-placeholder {
+  font-size: 14px;
+  color: #999999;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+input:focus {
+  border-color: #999999;
+}
+.checkbox {
+  margin-top: 4px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 0;
+  height: 0;
+  margin: 17px -1px;
+  padding: 0;
+  order: 0;
+}
+.checkbox + label {
+  vertical-align: middle;
+  display: inline-block;
+  width: 50%;
+  color: #eee;
+}
+.checkbox + label:before {
+  content: "\A";
+  color: #999;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 10px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: transparent;
+  border: 1px solid #d9d9d9;
+  width: 11px;
+  height: 11px;
+  margin: -2px 8px 0 0;
+}
+@keyframes slideIn {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    margin-left: -320px;
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    margin-left: 0px;
+  }
+}
+@-webkit-keyframes slideIn {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    margin-left: -320px;
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    margin-left: 0px;
+  }
+}
+
+
+.setting-page {
+  border-top: 3px solid #ececec;
+  border-bottom: 1px solid #ececec;
+  padding: 30px 0;
+}
+
+.setting-page .setting-page__section-heading {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(18, 18, 24, 0.3);
+}
+
+.form-column {
+  padding: 8px 0;
+}
+
+.profile-form .profile-form__label-area {
+  float: left;
+  width: 140px;
+}
+
+.form-label {
+  display: inline-block;
+  padding: 12px 0;
+  color: #fff;
+  font-size: 15px;
+}
+
+.form-input {
+  display: inline-block;
+  position: relative;
+  border: 2px solid #fff;
+  background: #fff;
+  border-radius: 4px;
+  padding: 10px 14px;
+  height: 45px;
+  vertical-align: middle;
+  width: 250px;
+}
+.form-input input[type="text"], 
+.form-input input[type="search"], 
+.form-input input[type="email"], 
+.form-input input[type="password"] {
+  background: transparent !important;
+  display: block;
+  padding-right: 22px;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.form-input--readonly,
+.form-input input[readonly]{
+  background:#ccc !important;
+  border: 2px solid #ccc;
+}
+.profile-form .profile-form__input-area {
+  padding-left: 140px;
+}
+
+.profile-email-field .profile-email-field__current-email {
+  display: inline-block;
+  margin: 13px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile-email-field .profile-email-field__change-button {
+  display: inline-block;
+  margin-bottom: 0;
+  border: 2px solid transparent;
+  background-image: none;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 500;
+  padding: 6px 8px;
+  font-size: 14px;
+  line-height: 1.55;
+  border-radius: 4px;
+  color: rgba(18, 18, 24, 0.5);
+  background-color: #ffffff;
+  border-color: rgba(18, 18, 24, 0.1);
+}
+
+.profile-email-field .profile-email-field__change-button:hover,
+.profile-email-field .profile-email-field__change-button:focus,
+.profile-email-field .profile-email-field__change-button:active,
+.profile-email-field .profile-email-field__change-button.active {
+  color: rgba(18, 18, 24, 0.5);
+  background-color: #ebebeb;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.profile-form .profile-form__button-area {
+  margin-top: 34px;
+  border-top: 1px solid #ececec;
+}
+.profile-form .profile-form__button-area .profile-form__submit-button1 {
+  display: inline-block;
+  margin-bottom: 0;
+  border: 2px solid transparent;
+  background-image: none;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 500;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #ea4c88;
+  border-color: #ea4c88;
+  margin-top: 28px;
+  width: 170px;
+}
+.profile-form .profile-form__button-area .profile-form__submit-button1:hover,
+.profile-form .profile-form__button-area .profile-form__submit-button1:focus,.profile-form .profile-form__button-area .profile-form__submit-button1:active, 
+.profile-form .profile-form__button-area .profile-form__submit-button1.active {
+  color: #ffffff;
+  background-color: #ce0350;
+  border-color: #ce0350;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.profile-form .profile-form__button-area .profile-form__submit-button2 {
+  display: inline-block;
+  margin-bottom: 0;
+  border: 2px solid transparent;
+  background-image: none;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 500;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #07bb91;
+  border-color: #07bb91;
+  margin-top: 28px;
+  width: 170px;
+}
+.profile-form .profile-form__button-area .profile-form__submit-button2:hover,
+.profile-form .profile-form__button-area .profile-form__submit-button2:focus,.profile-form .profile-form__button-area .profile-form__submit-button2:active, 
+.profile-form .profile-form__button-area .profile-form__submit-button2.active {
+  color: #ffffff;
+  background-color: #069473;
+  border-color: #069473;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
