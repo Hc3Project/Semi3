@@ -14,7 +14,6 @@ import java.util.Properties;
 
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.movie.model.vo.PosterInfo;
-import com.kh.semi.user.movie.model.vo.ReviewInfo;
 
 public class DetailViewDao {
 	
@@ -50,14 +49,14 @@ public class DetailViewDao {
 		return list;
 	}
 
-	public MovieDetailInfo selectMovieDetail(Connection con, String keyword) {
+	public MovieDetailInfo selectMovieDetail(Connection con, String mCode) {
 		// 영화 상세정보
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		MovieDetailInfo mov=null;
 		try {
 			pstmt=con.prepareStatement(prop.getProperty("selectMovieDetail"));
-			pstmt.setString(1, keyword);
+			pstmt.setString(1, mCode);
 			rset=pstmt.executeQuery();
 			if(rset.next()){
 				mov=new MovieDetailInfo();
