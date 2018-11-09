@@ -1,4 +1,4 @@
-package com.kh.semi.user.detail.model.service;
+package com.kh.semi.user.movie.model.service;
 
 import static com.kh.semi.common.JDBCTemplate.*;
 
@@ -15,10 +15,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.kh.semi.exception.DetailViewException;
-import com.kh.semi.user.detail.model.dao.DetailViewDao;
-import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
-import com.kh.semi.user.detail.model.vo.PosterInfo;
-import com.kh.semi.user.detail.model.vo.ReviewInfo;
+import com.kh.semi.user.movie.model.dao.DetailViewDao;
+import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
+import com.kh.semi.user.movie.model.vo.PosterInfo;
+import com.kh.semi.user.movie.model.vo.ReviewInfo;
 
 public class DetailViewService {
 	
@@ -108,13 +108,5 @@ public class DetailViewService {
 		return mov;
 		
 	}
-
-	public ReviewInfo selectReview(String keyword) {
-		Connection con=getConnection();
-		ReviewInfo rv=new DetailViewDao().selectReview(con,keyword);
-		close(con);
-		// 예외 던져주기
-		return rv;
-	}
-
+	
 }

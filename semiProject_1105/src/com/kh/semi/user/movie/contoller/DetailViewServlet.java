@@ -1,4 +1,4 @@
-package com.kh.semi.user.detail.contoller;
+package com.kh.semi.user.movie.contoller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.user.detail.model.service.DetailViewService;
-import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
-import com.kh.semi.user.detail.model.vo.ReviewInfo;
+import com.kh.semi.user.movie.model.service.DetailViewService;
+import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
+import com.kh.semi.user.movie.model.vo.ReviewInfo;
+import com.kh.semi.user.review.model.service.ReviewService;
 
 
 
@@ -71,6 +72,7 @@ public class DetailViewServlet extends HttpServlet {
 			br.close();
 			String page="";
 			DetailViewService dvs=new DetailViewService();
+			ReviewService rs=new ReviewService();
 			
 			try{
 				// 검색 결과 갯수에 따라 다른 메서드로 보냄
@@ -81,7 +83,7 @@ public class DetailViewServlet extends HttpServlet {
 				MovieDetailInfo mov=dvs.selectMovieDetail(keyword);
 				
 				// 리뷰 정보
-				ReviewInfo rv=dvs.selectReview(keyword);
+				ReviewInfo rv=rs.selectReview(keyword);
 				
 				request.setAttribute("page",page);
 				request.setAttribute("mov", mov);
