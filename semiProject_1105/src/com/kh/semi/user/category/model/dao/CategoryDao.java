@@ -41,7 +41,7 @@ public class CategoryDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		System.out.println("DaO가 동작하나욤 : " + cCode);
+		System.out.println("cCode : " + cCode);
 		
 		String sql = null;
 		String category = null;
@@ -52,10 +52,11 @@ public class CategoryDao {
 			category = "genre";
 			
 		// 나라로 검색됐을 시
-		}else if(cCode=="KR" || cCode=="TW" || cCode=="IN" || cCode=="CN" ||
-				cCode=="US" || cCode=="JP" || cCode=="HK" || cCode=="DE" ||
-				cCode=="UK" || cCode=="FR" || cCode=="CA" || cCode=="IT" ||
-				cCode=="ES" || cCode=="ETC"){
+		}else if(cCode.equals("KR") || cCode.equals("TW") || cCode.equals("IN") || cCode.equals("CN") ||
+				cCode.equals("US") || cCode.equals("JP") || cCode.equals("HK") || cCode.equals("DE") ||
+				cCode.equals("UK") || cCode.equals("FR") || cCode.equals("CA") || cCode.equals("IT") ||
+				cCode.equals("ES") || cCode.equals("ETC")){
+			
 			category = "nation";
 			
 		// 리뷰어로 검색됐을 시
@@ -118,9 +119,10 @@ public class CategoryDao {
 			
 		}
 		
+		//선택된 무비 리스트 확인용 
 		for(int i=0; i<mList.size(); i++){
 			System.out.println(mList.get(i));
-		} //선택된 무비 리스트 확인용 
+		}
 		
 		return mList;
 	}

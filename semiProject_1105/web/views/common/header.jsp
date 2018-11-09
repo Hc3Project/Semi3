@@ -21,7 +21,7 @@
 								<span class="category-filter-item__text">국가</span>
 							</button>
 							<button class="category-filter-item">
-								<span class="category-filter-item__text">특징</span>
+								<span class="category-filter-item__text">리뷰어</span>
 							</button>
 						</div>
 						<ul class="gnb-category-list__filtered-list">
