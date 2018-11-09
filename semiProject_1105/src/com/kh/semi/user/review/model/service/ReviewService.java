@@ -23,6 +23,26 @@ public class ReviewService {
 
 		return list;
 	}
+	public ArrayList<Review> reviewRecommend() {
+		ArrayList<Review> list = new ArrayList<Review>();
+		Connection con = getConnection();
+
+		list = rDao.reviewRecommend(con);
+		
+		close(con);
+
+		return list;
+	}
+	public ArrayList<Review> reviewTop() {
+		ArrayList<Review> list = new ArrayList<Review>();
+		Connection con = getConnection();
+
+		list = rDao.reviewTop(con);
+		
+		close(con);
+
+		return list;
+	}
 	
 	public ReviewInfo selectReview(String keyword) {
 		Connection con=getConnection();

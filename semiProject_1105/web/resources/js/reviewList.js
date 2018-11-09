@@ -2,7 +2,7 @@
     	//st2Carousel 대상 div 지정
         $topDiv = $("#st2Carousel .carousel-inner");
         $.ajax({
-            url : "/semi/rToday.re",
+            url : "/semi/rToday.rv",
             success : function(data){
                 
                 for(var i in data){

@@ -16,14 +16,14 @@ import com.kh.semi.user.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewtodayServlet
  */
-@WebServlet("/rToday.rv")
-public class ReviewTodayServlet extends HttpServlet {
+@WebServlet("/rTop.rv")
+public class ReviewTopServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewTodayServlet() {
+    public ReviewTopServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

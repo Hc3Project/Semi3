@@ -69,10 +69,20 @@ System.out.println(sql);
 		}
 		return list;
 	}
+	public ArrayList<Review> reviewRecommend(Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	public ReviewInfo selectReview(Connection con, String keyword) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public ArrayList<Review> reviewTop(Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
