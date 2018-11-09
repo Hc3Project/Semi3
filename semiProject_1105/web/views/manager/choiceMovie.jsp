@@ -28,12 +28,8 @@
 			</thead>
 			<tbody>
 			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="7"><input type="button" value="결과 더보기" id="moreList"></td>
-				</tr>
-			</tfoot>
 		</table>
+		<input type="button" value="결과 더보기" id="moreList">	
 	</div>
 </body>
 <script src="../../resources/js/jquery-3.3.1.min.js"></script>

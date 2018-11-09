@@ -1,29 +1,26 @@
-package com.kh.semi.manager.review.controller;
+package com.kh.semi.manager.reviewer.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.semi.manager.review.model.service.ReviewService;
-import com.kh.semi.manager.video.model.vo.MovieInfo;
+import com.kh.semi.manager.reviewer.model.service.ReviewerService;
+import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
 
 /**
- * Servlet implementation class MovieSelectAllServlet
+ * Servlet implementation class ReviewerInsertServlet
  */
-@WebServlet("/mSelectAll.rv")
-public class MovieSelectAllServlet extends HttpServlet {
+@WebServlet("/ReviewerInsertServlet")
+public class ReviewerInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieSelectAllServlet() {
+    public ReviewerInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,11 +29,17 @@ public class MovieSelectAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String keyword = request.getParameter("keyword");
-		ReviewService rs = new ReviewService();
-		List<MovieInfo> result = rs.selectMovieInfo(keyword);
-		response.setContentType("application; charset=utf-8");
-		new Gson().toJson(result, response.getWriter());
+		String rvrCode = request.getParameter("rvrCode");
+		String rName = request.getParameter("rName");
+		String profile = request.getParameter("profile");
+		
+		ReviewerInfo ri = new ReviewerInfo();
+		ri.setRvrCode(rvrCode);
+		ri.setrName(rName);
+		ri.setProfile(profile);
+		
+		ReviewerService rs = new ReviewerService();
+		int result = rs.insertReviewer(ri);
 	}
 
 	/**
