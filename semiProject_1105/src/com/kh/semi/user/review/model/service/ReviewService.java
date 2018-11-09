@@ -46,9 +46,9 @@ public class ReviewService {
 		return list;
 	}
 	
-	public ReviewInfo selectReview(String videoId, String mCode) throws Exception{
+	public ReviewInfo selectReview(String videoId) throws Exception{
 		Connection con=getConnection();
-		ReviewInfo rv=new ReviewDao().selectReview(con,videoId,mCode);
+		ReviewInfo rv=new ReviewDao().selectReview(con,videoId);
 		close(con);
 		if(rv!=null) return rv;
 		else throw new DetailViewException("상세보기 실패!");
