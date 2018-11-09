@@ -1,4 +1,4 @@
-package com.kh.semi.user.detail.contoller;
+package com.kh.semi.user.movie.contoller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,16 +12,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.kh.semi.user.detail.model.service.DetailViewService;
-import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
+import com.kh.semi.user.movie.model.service.DetailViewService;
+import com.kh.semi.user.movie.model.service.StarRatingService;
+import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
+import com.kh.semi.user.review.model.service.ReviewService;
+import com.kh.semi.user.review.model.vo.ReviewInfo;
 
 
 
 /**
  * Servlet implementation class DetailViewServlet
  */
-@WebServlet("/gPoster.do")
+@WebServlet("/dView.do")
 public class DetailViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,13 +41,32 @@ public class DetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// api에 검색한 내용
-		String keyword = request.getParameter("txt");
+		// 클릭시 받아오는 값  (늘어나면 수정)
+		String videoId=request.getParameter("videoId");
 		
-		String clientId = "f1lI5BaAwEDWvf6UPMiK";
-		String clientSecret = "flUGLrhsdJ";
+		DetailViewService dvs=new DetailViewService();
+		ReviewService rs=new ReviewService();
+		StarRatingService srs=new StarRatingService();
+		HttpSession session=request.getSession(false);
+		
 		
 		try {
+			// 영화정보와 리뷰정보를 불러옴
+			ReviewInfo rv=rs.selectReview(videoId);
+			MovieDetailInfo mov = dvs.selectMovieDetail(rv.getMcode());
+			int score=0;
+			
+			if(session.getAttribute("userId")!=null){
+				score=srs.selectStarRating((String)session.getAttribute("userId"),rv.getMcode());
+			}
+			
+			String page="";
+			String keyword=mov.getMtitle();
+			
+			// 불러온 정보를 이용해 네이버API로 포스터 클로링
+			String clientId = "f1lI5BaAwEDWvf6UPMiK";
+			String clientSecret = "flUGLrhsdJ";
+			
 			String apiURL = "https://openapi.naver.com/v1/search/movie.json?query=" + URLEncoder.encode(keyword, "utf-8");
 			
 			URL url = new URL(apiURL);
@@ -62,31 +85,23 @@ public class DetailViewServlet extends HttpServlet {
 
 			String inStr = "";
 			StringBuffer sb = new StringBuffer();
-			while((inStr=br.readLine())!=null) {
-				sb.append(inStr);
-			}
+			while((inStr=br.readLine())!=null) sb.append(inStr);
 			String result=sb.toString();
 			
 			br.close();
-			String page="";
-			DetailViewService dvs=new DetailViewService();
 			
-			try{
-				// 검색 결과 갯수에 따라 다른 메서드로 보냄
-				if(result.substring(61,62).equals("1")&&!chkNum(result.substring(62,63))) page=dvs.getImage(result);
-				else page=dvs.getPowerImage(result,keyword);
-				
-				MovieDetailInfo mov=dvs.selectMovieDetail(keyword);
-				
-				request.setAttribute("page",page);
-				request.setAttribute("mov", mov);
+			
+			if(result.substring(61,62).equals("1")&&!chkNum(result.substring(62,63))) page=dvs.getImage(result);
+			else page=dvs.getPowerImage(result,keyword);
+			
+			
+			// 문제가 없다면 보내기
+			request.setAttribute("page",page);
+			request.setAttribute("mov", mov);
+			request.setAttribute("rv", rv);
+			request.setAttribute("score",score);
 					
-				request.getRequestDispatcher("views/detail/DetailView3.jsp").forward(request, response);
-			}catch(Exception e){
-				request.setAttribute("exception", e);
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			}
-			
+			request.getRequestDispatcher("views/detail/detailView.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("exception", e);
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
