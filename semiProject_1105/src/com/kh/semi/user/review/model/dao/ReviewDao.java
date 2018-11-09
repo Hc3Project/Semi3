@@ -17,7 +17,7 @@ public class ReviewDao {
 	private Properties prop = new Properties();
 
 	public ReviewDao() {
-		String filePath = ReviewDao.class.getResource("/config/review-query.properties").getPath();
+		String filePath = ReviewDao.class.getResource("/config/review-query.properties").getPath().replace("%20", " ");
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (FileNotFoundException e) {

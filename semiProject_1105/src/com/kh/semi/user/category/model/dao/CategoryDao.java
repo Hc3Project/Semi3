@@ -21,7 +21,7 @@ public class CategoryDao {
 		
 		prop = new Properties();
 		
-		String filePath = CategoryDao.class.getResource("/config/category/movie-category-query.properties").getPath();
+		String filePath = CategoryDao.class.getResource("/config/category/movie-category-query.properties").getPath().replace("%20"," ");
 		
 		try {
 			

@@ -48,8 +48,8 @@
           </div>
           <div class="signup-cont cont">
             <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post">
-              <input type="text" name="name" id="name" class="inpt" required="required" placeholder="아이디">
-              <input type="button" value="중복 체크">
+              <input type="text" name="name" id="jname" class="inpt" required="required" placeholder="아이디">
+              <input type="button" id="idCheck" value="중복 체크" >
               <br><br>
               <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일(test@test.com)">
               
@@ -85,6 +85,30 @@
       }
     });
     
+    $('#idCheck').click(function(){
+    	
+		$.ajax({
+			url : "/semi/idDup.me",
+			type : "post",
+			data : { userId : $('#jname').val()},
+			success : function(data) {
+				
+				if( data == 'no' ) {
+					alert("이미 사용중인 아이디입니다.");
+					$('#name').select();
+				} else {
+					alert("사용 가능한 아이디입니다.");
+				}
+				
+			}, error : function(request, status, error){
+				alert(request+"\n"
+					+ status+"\n"
+					+ error);
+				console.log("에러 발생!!");
+			}
+		});
+		
+	});
     
    
 
