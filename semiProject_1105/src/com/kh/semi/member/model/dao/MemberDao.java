@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import com.kh.semi.member.execption.MemberException;
 import com.kh.semi.member.model.vo.Member;
+
 import static com.kh.semi.common.JDBCTemplate.*;
 
 public class MemberDao {
@@ -113,5 +114,58 @@ public class MemberDao {
 		}
 		return result;
 	}
+	public int deleteMember(Connection con, String userId) throws MemberException{
+		int result =0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			
+			//e.printStackTrace();
+			
+			throw new MemberException(e.getMessage());
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
 
+ }
+	public int idDupCheck(Connection con, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int result =0;
+		
+		String sql = prop.getProperty("idDupCheck");
+		System.out.println(sql);
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) result = rset.getInt(1);
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 }

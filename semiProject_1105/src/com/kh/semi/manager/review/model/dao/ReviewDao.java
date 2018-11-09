@@ -23,7 +23,7 @@ public class ReviewDao {
 	
 	public ReviewDao() {
 		prop = new Properties();
-		String filePath = ReviewDao.class.getResource("/config/manager/review-query.properties").getPath();
+		String filePath = ReviewDao.class.getResource("/config/manager/review-query.properties").getPath().replace("%20", " ");
 		
 		try {
 			prop.load(new FileReader(filePath));

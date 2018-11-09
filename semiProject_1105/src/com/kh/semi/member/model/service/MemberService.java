@@ -3,6 +3,8 @@ package com.kh.semi.member.model.service;
 import com.kh.semi.member.execption.MemberException;
 import com.kh.semi.member.model.dao.MemberDao;
 import com.kh.semi.member.model.vo.Member;
+
+
 import static com.kh.semi.common.JDBCTemplate.*;
 
 import java.sql.Connection;
@@ -49,6 +51,29 @@ public class MemberService {
 		close(con);
 		
 	    return result;
+	}
+
+	public int deleteMember(String userId) throws MemberException{
+		Connection con = getConnection();
+		
+		int result = mDao.deleteMember(con, userId);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+	
+	public int idDupCheck(String id) {
+		Connection con = getConnection();
+		
+		int result = mDao.idDupCheck(con, id);
+		
+		close(con);
+		
+		return result;
 	}
 	
 	
