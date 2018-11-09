@@ -41,15 +41,14 @@ public class DetailViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 클릭시 받아오는 값  (늘어나면 수정)
 		String videoId=request.getParameter("videoId");
-		String mCode=request.getParameter("mCode");
 		
 		DetailViewService dvs=new DetailViewService();
 		ReviewService rs=new ReviewService();
 		
 		try {
 			// 영화정보와 리뷰정보를 불러옴
-			MovieDetailInfo mov = dvs.selectMovieDetail(mCode);
-			ReviewInfo rv=rs.selectReview(videoId,mCode);
+			ReviewInfo rv=rs.selectReview(videoId);
+			MovieDetailInfo mov = dvs.selectMovieDetail(rv.getMcode());
 			
 			String page="";
 			String keyword=mov.getMtitle();

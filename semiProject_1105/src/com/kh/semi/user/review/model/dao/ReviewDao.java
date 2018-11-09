@@ -73,14 +73,13 @@ System.out.println(sql);
 		return list;
 	}
 	
-	public ReviewInfo selectReview(Connection con, String videoId, String mCode) {
+	public ReviewInfo selectReview(Connection con, String videoId) {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		ReviewInfo rv=null;
 		try {
 			pstmt=con.prepareStatement(prop.getProperty("selectReview"));
 			pstmt.setString(1, videoId);
-			pstmt.setString(2, mCode);
 			rset=pstmt.executeQuery();
 			if(rset.next()){
 				rv=new ReviewInfo();
