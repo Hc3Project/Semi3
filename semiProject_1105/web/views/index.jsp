@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../resources/js/common.js"></script>
 <script src="../resources/js/boxOffice.js"></script>
+<script src="../resources/js/reviewList.js"></script>
 
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -19,7 +20,7 @@
 <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="../resources/css/reset.css">
 <link rel="stylesheet" href="../resources/css/main.css">
-<link rel="stylesheet" href="../resources/css/style.css"> 
+<link rel="stylesheet" href="../resources/css/style.css">
 
 
 <title>movie traveler</title>
@@ -34,17 +35,23 @@
 	<!--header-->
 	<section id="slideSection">
 		<div class="row ">
-
 			<div class="col-lg-4">
-				<div style="float: right; width: 400px; background: white;">
-					<div style="background: black; height: 120px;"></div>
-					<div style="background: white; height: 400px;"><div class="boxRank contaner"></div></div>
-					<div style="background: black; height: 80px;"></div>
+				<div id="boxOffice">
+					<div id="bo1">
+					<div style="height: 45px;"></div>
+						<img alt="boxoffice" src="../resources/image/h2_boxoffice.png"
+							style="width: 200px; height: 15px; display: block; margin: auto;
+							 ">
+					</div>
+					<div id="bo2">
+						<div class="boxRank contaner"></div>
+					</div>
+					<div id="bo3"></div>
 				</div>
 			</div>
 
 			<div class="col-lg-8">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel" >
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
 					<ol class="carousel-indicators" style="float: right;">
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -78,7 +85,7 @@
 	</section>
 	<!--  -->
 	<section class="listSection">
-		<div class="home-page">
+		<div class="home-page" >
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
@@ -87,76 +94,30 @@
 							class="glyphicon glyphicon-angle-right"></span>
 						</a>
 					</h5>
-					<div class="carousel slide" data-ride="carousel" id="st2Carousel"  data-interval="15000">
+					<div class="carousel slide" data-ride="carousel" id="st2Carousel"
+						data-interval="30000">
 						<div class="carousel-inner ">
-							<div class="item active rec-list clearfix">
-								<%
-									for (int i = 0; i < 6; i++) {
-								%>
-								<div class="col-md-2">
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-
-								<%
-									}
-								%>
-								</div>
-								<div class="item rec-list clearfix">
-
-										<%
-									for (int i = 0; i < 6; i++) {
-								%>
-								<div class="col-md-2">
-									<h1>투유 프로젝트-슈가맨</h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-									<div class="hover-box">
-										<h2>호버시 제목</h2>
-										<p>호버시 텍스트</p>
-									</div>
-								</div>
-
-								<%
-									}
-								%>
-				
-								</div>
-
-							</div>
-							<a class="carousel-control-prev" href="#st2Carousel"
-								role="button" data-slide="prev"> <span
-								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-								class="sr-only">Previous</span>
-							</a> <a class="carousel-control-next" href="#st2Carousel"
-								role="button" data-slide="next"> <span
-								class="carousel-control-next-icon" aria-hidden="true"></span> <span
-								class="sr-only">Next</span>
-							</a>
+							
+						<a class="carousel-control-prev" href="#st2Carousel" role="button"
+							data-slide="prev"> <span class="carousel-control-prev-icon"
+							aria-hidden="true"></span> <span class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next" href="#st2Carousel"
+							role="button" data-slide="next"> <span
+							class="carousel-control-next-icon" aria-hidden="true"></span> <span
+							class="sr-only">Next</span>
+						</a>
 						</div>
-
 					</div>
-					<!--rec-row-->
+
 				</div>
-				<!--home-page__rec-list-->
+				<!--rec-row-->
 			</div>
-			<!--homepage-->
+			<!--home-page__rec-list-->
+		</div>
+		<!--homepage-->
 	</section>
-	<script>
-        $(document).ready(function(){
-            $('.banner-slider').bxSlider({
-                mode:'fade'
-            });
-        })
-    </script>
-	<!--  -->
+
+
 
 
 </body>

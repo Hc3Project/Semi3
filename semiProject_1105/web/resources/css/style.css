@@ -2597,7 +2597,7 @@ html.full-height body [data-react-router-class="MyRoutes"],html.full-height body
     font-size: 16px
 }
 .rec-row .rec-row__title {
-    margin-bottom: 1.5625vw;
+    
     padding: 0 50px;
     font-size: 1.40625vw;
     line-height: 100%;
@@ -2623,4 +2623,8 @@ html.full-height body [data-react-router-class="MyRoutes"],html.full-height body
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     font-style: normal;
+}
+#aaaaaaaaa{
+	
+	
 }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi.user.detail.model.service.DetailViewService;
+import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
 
 
 
@@ -36,11 +37,8 @@ public class DetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// api에 검색한 내용
 		String keyword = request.getParameter("txt");
-//		String keyword = "iron";
-		System.out.println(keyword);
-		String saveKey=keyword;
-		System.out.println(URLEncoder.encode(keyword, "utf-8"));
 		
 		String clientId = "f1lI5BaAwEDWvf6UPMiK";
 		String clientSecret = "flUGLrhsdJ";
@@ -54,18 +52,13 @@ public class DetailViewServlet extends HttpServlet {
 			con.setRequestMethod("GET");
 			con.setRequestProperty("X-Naver-Client-Id", clientId);
 			con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
-//			con.setRequestProperty("query", keyword);
-//			System.out.println(con.toString());
 
 			int responseCode = con.getResponseCode();
 
 			BufferedReader br = null;
 
-			if(responseCode == 200) {
-				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			} else {
-				br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-			}
+			if(responseCode == 200) br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			else br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 
 			String inStr = "";
 			StringBuffer sb = new StringBuffer();
@@ -73,45 +66,30 @@ public class DetailViewServlet extends HttpServlet {
 				sb.append(inStr);
 			}
 			String result=sb.toString();
-			System.out.println(result);
-			
-//			{"lastBuildDate": "Mon, 05 Nov 2018 18:42:00 +0900",
-//				"total": 1,"start": 1,"display": 1,
-//				"items": [{"title": "<b>가타카</b>",
-//					"link": "https://movie.naver.com/movie/bi/mi/basic.nhn?code=19074",
-//					"image": "https://ssl.pstatic.net/imgmovie/mdi/mit110/0190/A9074-00.jpg",
-//					"subtitle": "Gattaca","pubDate": "1997",
-//					"director": "앤드류 니콜|","actor": "에단 호크|우마 서먼|","userRating": "9.23"}]}
-			
-			
-			
-			String page="";
-			
-			if(result.substring(61,62).equals("1")){
-				// 결과가 하나밖에 안나오는 경우
-				DetailViewService dvs=new DetailViewService();
-				
-				page=dvs.getImage(result);
-				
-			}else{
-				// 결과가 여러개 나오는 경우
-				DetailViewService dvs=new DetailViewService();
-				
-				page=dvs.getPowerImage(result,saveKey);
-				
-			}
-			
 			
 			br.close();
+			String page="";
+			DetailViewService dvs=new DetailViewService();
 			
-			System.out.println("값 넘어가냐? : "+page);
-			
-			request.setAttribute("page",page);
-			
-			request.getRequestDispatcher("views/detail/DetailView3.jsp").forward(request, response);
+			try{
+				// 검색 결과 갯수에 따라 다른 메서드로 보냄
+				if(result.substring(61,62).equals("1")&&!chkNum(result.substring(62,63))) page=dvs.getImage(result);
+				else page=dvs.getPowerImage(result,keyword);
+				
+				MovieDetailInfo mov=dvs.selectMovieDetail(keyword);
+				
+				request.setAttribute("page",page);
+				request.setAttribute("mov", mov);
+					
+				request.getRequestDispatcher("views/detail/DetailView3.jsp").forward(request, response);
+			}catch(Exception e){
+				request.setAttribute("exception", e);
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			request.setAttribute("exception", e);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 
 	}
@@ -122,6 +100,16 @@ public class DetailViewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	private boolean chkNum(String s) {
+		// 숫자인지 아닌지 구별
+		try {
+			Integer.parseInt(s);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 
 }
