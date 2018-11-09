@@ -87,8 +87,6 @@ public class CategoryDao {
 			
 			mList = new ArrayList<MovieInfo>();
 			
-			System.out.println(rset);
-
 			while(rset.next()){
 				
 				MovieInfo mi = new MovieInfo();

@@ -127,7 +127,8 @@ function addDetail(obj){
 		url : strUrl,
 		data : infoData,
 		success : function(data){
-			alert("영화 정보를 입력을 성공하였습니다.")
+			if(data>0) alert("영화 정보를 입력을 성공하였습니다.");
+			else alert("영화 정보 등록 실패하였습니다..");
 		},	
 		error : function(data){
 			console.log(data);

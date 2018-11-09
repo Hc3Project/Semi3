@@ -31,4 +31,16 @@ public class ReviewerService {
 		return result;
 	}
 
+	public int insertReviewer(ReviewerInfo ri) {
+		Connection con = getConnection();
+		int result = rDao.insertReviewer(con, ri);
+		
+		if(result>0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
 }

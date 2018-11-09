@@ -1,4 +1,4 @@
-package com.kh.semi.user.detail.model.service;
+package com.kh.semi.user.movie.model.service;
 
 import static com.kh.semi.common.JDBCTemplate.*;
 
@@ -15,9 +15,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.kh.semi.exception.DetailViewException;
-import com.kh.semi.user.detail.model.dao.DetailViewDao;
-import com.kh.semi.user.detail.model.vo.MovieDetailInfo;
-import com.kh.semi.user.detail.model.vo.PosterInfo;
+import com.kh.semi.user.movie.model.dao.DetailViewDao;
+import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
+import com.kh.semi.user.movie.model.vo.PosterInfo;
 
 public class DetailViewService {
 	
@@ -99,12 +99,13 @@ public class DetailViewService {
 		
 	}
 
-	public MovieDetailInfo selectMovieDetail(String keyword) {
+	public MovieDetailInfo selectMovieDetail(String mCode) throws Exception {
 		Connection con=getConnection();
-		MovieDetailInfo mov=new DetailViewDao().selectMovieDetail(con,keyword);
+		MovieDetailInfo mov=new DetailViewDao().selectMovieDetail(con,mCode);
 		close(con);
-		return mov;
+		if(mov!=null) return mov;
+		else throw new DetailViewException("상세보기 실패!");
 		
 	}
-
+	
 }
