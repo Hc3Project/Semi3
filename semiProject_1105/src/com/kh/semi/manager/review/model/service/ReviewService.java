@@ -49,5 +49,20 @@ public class ReviewService {
 		close(con);
 		return result;
 	}
+
+	public List<ReviewInfo> selectPartReview(String rvrCode, String keyword) {
+		Connection con = getConnection();
+		List<ReviewInfo> result = rDao.selectPartReview(con, rvrCode, keyword);
+		close(con);
+		return result;
+	}
+
+	public int deleteReview(String videoId) {
+		Connection con = getConnection();
+		int result = rDao.deleteReview(con, videoId);
+		if(result>0) commit(con);
+		else rollback(con);
+		return result;
+	}
 	
 }

@@ -27,9 +27,6 @@ $(function(){
 })
 
 function getVideo(channelId, keyword, nToken){
-	console.log(channelId)
-	console.log(keyword)
-	console.log(nToken)
 	
 	var rRequest = gapi.client.youtube.search.list({
 		part : "snippet",
