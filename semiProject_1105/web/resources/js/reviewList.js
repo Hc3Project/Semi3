@@ -8,7 +8,7 @@ $(function() {
 
 					for ( var i in data) {
 						$review = $("<div/>").attr("class", "col-md-2").append(
-								$("<h1/>").text(data[i].Videoid)).append(
+								$("<h1/>").text(""+data[i].Movie)).append(
 								$("<img/>").attr(
 										"src",
 										"https://img.youtube.com/vi/"
@@ -19,8 +19,7 @@ $(function() {
 								$("<i/>").attr("class",
 										"hover-box hover-box--play")).append(
 								$("<div/>").attr("class", "hover-box").append(
-										$("<h2/>").text("호버시 제목")).append(
-										$("<p/>").text("호버시 텍스트"))).attr("value",data[i].Videoid);
+										$("<h2/>").text(data[i].Reviewer))).attr("value",data[i].Videoid);
 
 						if (i > -1 && i < 6) {
 							if (i == 0) {
