@@ -1,4 +1,4 @@
-package com.kh.semi.member.execption;
+package com.kh.semi.user.member.execption;
 
 public class MemberException extends Exception{
 	public MemberException(){

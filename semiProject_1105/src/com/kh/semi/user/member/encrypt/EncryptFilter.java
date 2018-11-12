@@ -1,4 +1,4 @@
-package com.kh.semi.member.encrypt;
+package com.kh.semi.user.member.encrypt;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import com.kh.semi.member.encrypt.EncryptWrapper;
+import com.kh.semi.user.member.encrypt.EncryptWrapper;
 
 /**
  * Servlet Filter implementation class EncryptFilter
@@ -18,12 +18,12 @@ import com.kh.semi.member.encrypt.EncryptWrapper;
 @WebFilter("*.me")
 public class EncryptFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public EncryptFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public EncryptFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -35,10 +35,11 @@ public class EncryptFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest h_request = (HttpServletRequest)request;
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest h_request = (HttpServletRequest) request;
 		EncryptWrapper ew = new EncryptWrapper(h_request);
-		
+
 		chain.doFilter(request, response);
 	}
 

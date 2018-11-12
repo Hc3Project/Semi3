@@ -1,4 +1,4 @@
-package com.kh.semi.member.controller;
+package com.kh.semi.user.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.member.execption.MemberException;
-import com.kh.semi.member.model.service.MemberService;
-import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.user.member.execption.MemberException;
+import com.kh.semi.user.member.model.service.MemberService;
+import com.kh.semi.user.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberInsertServlet

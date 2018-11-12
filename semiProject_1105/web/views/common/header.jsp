@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.kh.semi.member.model.vo.Member"%>
+	pageEncoding="UTF-8" import="com.kh.semi.user.member.model.vo.Member"%>
 <%
 	Member m = (Member) session.getAttribute("member");
 %>
@@ -9,7 +9,7 @@
 	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
-		<a class="logo active" href="/semi/views/index.jsp"></a>
+		<a class="logo active" href="/semi/index.jsp"></a>
 		<ul class="gnb__left-navs">
 			
 			<li class="gnb__category-list"><a class="gnb__nav-category"

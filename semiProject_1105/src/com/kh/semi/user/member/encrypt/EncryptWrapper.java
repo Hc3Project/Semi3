@@ -1,4 +1,4 @@
-package com.kh.semi.member.encrypt;
+package com.kh.semi.user.member.encrypt;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;

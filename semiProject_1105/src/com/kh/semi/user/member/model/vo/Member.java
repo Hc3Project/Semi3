@@ -1,4 +1,4 @@
-package com.kh.semi.member.model.vo;
+package com.kh.semi.user.member.model.vo;
 
 public class Member implements java.io.Serializable{
 	private String userId;

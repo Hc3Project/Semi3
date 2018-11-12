@@ -1,8 +1,8 @@
-package com.kh.semi.member.model.service;
+package com.kh.semi.user.member.model.service;
 
-import com.kh.semi.member.execption.MemberException;
-import com.kh.semi.member.model.dao.MemberDao;
-import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.user.member.execption.MemberException;
+import com.kh.semi.user.member.model.dao.MemberDao;
+import com.kh.semi.user.member.model.vo.Member;
 
 
 import static com.kh.semi.common.JDBCTemplate.*;

@@ -1,4 +1,4 @@
-package com.kh.semi.member.model.dao;
+package com.kh.semi.user.member.model.dao;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.kh.semi.member.execption.MemberException;
-import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.user.member.execption.MemberException;
+import com.kh.semi.user.member.model.vo.Member;
 
 import static com.kh.semi.common.JDBCTemplate.*;
 
