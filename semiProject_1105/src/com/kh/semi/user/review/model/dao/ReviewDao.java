@@ -20,18 +20,21 @@ import com.kh.semi.user.review.model.vo.ReviewInfo;
 public class ReviewDao {
 	private Properties prop = new Properties();
 
-		String filePath = ReviewDao.class.getResource("/config/review-query.properties").getPath().replace("%20"," ");
+	public ReviewDao(){
+		String filePath = 
+				ReviewDao.class.getResource("/config/review-query.properties").getPath().replace("%20"," ");
 
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 	}
+
 
 	public ArrayList<Review> reviewToday(Connection con) {
 		ArrayList<Review> list = null;
