@@ -106,7 +106,7 @@ public class DetailViewServlet extends HttpServlet {
 			request.setAttribute("rv", rv);
 			request.setAttribute("score",score);
 					
-			request.getRequestDispatcher("views/movie/detailView.jsp").forward(request, response);
+			request.getRequestDispatcher("views/movie/movieDetailView.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("exception", e);
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

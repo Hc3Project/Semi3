@@ -46,7 +46,7 @@ public class CategorySelectServlet extends HttpServlet {
 		String page="";
 		
 		if(mList!=null){
-			page="/views/category/movieCategory.jsp";
+			page="/views/movie/movieCategory.jsp";
 			request.setAttribute("cCode", cCode);
 		}else{
 			page="/views/common/errorPage.jsp";
