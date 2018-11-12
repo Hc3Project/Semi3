@@ -53,6 +53,31 @@ $(function(){
 			}
 		})
 	})
+	
+	// 삭제 버튼
+	$('#removeBtn').click(function(){
+		if(!confirm('리뷰어를 삭제하면\n해당 리뷰어의 영상이 모두 지워지게 됩니다.\n정말 삭제하시겠습니까?')) return false;
+		var channelId = $(this).parents('table').find('th').eq(1).text();
+		
+		var strUrl = "/semi/rvrDelete.rvr";
+		$.ajax({
+			url : strUrl,
+			type : 'post',
+			data : {
+				"channelId" : channelId
+			},
+			sussecc : function(data){
+				if(data>0) {
+					alert('성공적으로 삭제되었습니다.');
+					history.go(-1);
+				}
+				else alert('삭제에 실패하였습니다.');
+			},
+			error : function(data){
+				console.log(data);
+			}
+		})
+	})
 })
 
 function getList(keyword){

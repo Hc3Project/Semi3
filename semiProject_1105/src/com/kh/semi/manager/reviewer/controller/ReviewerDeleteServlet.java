@@ -1,29 +1,25 @@
 package com.kh.semi.manager.reviewer.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kh.semi.manager.reviewer.model.service.ReviewerService;
-import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
 
 /**
- * Servlet implementation class ReviewerSelectPart
+ * Servlet implementation class ReviewerDeleteServlet
  */
-@WebServlet("/rSelectPart.rvr")
-public class ReviewerSelectPart extends HttpServlet {
+@WebServlet("/rvrDelete.rvr")
+public class ReviewerDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewerSelectPart() {
+    public ReviewerDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +28,10 @@ public class ReviewerSelectPart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String keyword = request.getParameter("keyword");
-		
+		String channelId = request.getParameter("channelId");
 		ReviewerService rs = new ReviewerService();
-		
-		List<ReviewerInfo> result = rs.reviewerSelectPart(keyword);
-		result = rs.reviewerSelectPartCnt(result);
-		response.setContentType("application; charset=utf-8");
-		new Gson().toJson(result, response.getWriter());
+		int result = rs.deleteReviewer(channelId);
+		response.getWriter().print(result);
 	}
 
 	/**

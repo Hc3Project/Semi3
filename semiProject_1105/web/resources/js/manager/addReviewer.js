@@ -8,14 +8,15 @@ $(function(){
 	$('#moreList').prop('disabled', true);
 	// 검색하기 눌렀을 시
 	$('#rvrBtn').click(function(){
-		
-		if(keyword == ""){
+		if($('#rvrSearch').val().trim() == ""){
+			$('#rvrSearch').val('').focus();
 			alert("키워드를 입력하세요.");
 			return false;
 		}
 		$('#inputRvr').css('display', 'none');
 		$('#getRvrList').css('display', 'block');
 		keyword = $('#rvrSearch').val().trim();
+		$('#rvrSearch').val('');
 		$('#rvrList tbody').html('');
 		nToken = '';
 		getRivewer(keyword);
@@ -60,6 +61,13 @@ $(function(){
 			},
 			error : function(data){
 				console.log(data);
+			},
+			complete : function(data){
+				$('#moreList').prop('disabled', false);
+				$('#inputRvr').css('display', 'none');
+				$('#getRvrList').css('display', 'none');
+				$('#getRvrList').find('table tbody').html('');
+				$('#rvrSearch').val('').focus();
 			}
 		})
 	})	
@@ -117,13 +125,31 @@ function showDetail(obj){
 	var channelId = $(obj).parents('tr').find('td').eq(2).text();
 	var channelTitle = $(obj).parents('tr').find('td').eq(1).text();
 	
-	$('#getRvrList').css('display', 'none');
-	$('#inputRvr').css('display', 'block');
-	
-	$table = $('#inputRvr').find('table');
-	$table.find('th').eq(1).text(channelTitle);
-	$table.find('th').eq(3).text(channelId);
-	$table.find('textarea').eq(0).val('');
+	var strUrl = "/semi/rvrDup.rvr";
+	$.ajax({
+		type : 'post',
+		url : strUrl,
+		data : {
+			"channelId" : channelId
+		},
+		success : function(data){
+			if(data>0){
+				alert('이미 추가된 리뷰어입니다.');
+				$(obj).prop('disabled', true);
+			} else {
+				$('#getRvrList').css('display', 'none');
+				$('#inputRvr').css('display', 'block');
+				
+				$table = $('#inputRvr').find('table');
+				$table.find('th').eq(1).text(channelTitle);
+				$table.find('th').eq(3).text(channelId);
+				$table.find('textarea').eq(0).val('');
+			}
+		},
+		error : function(data){
+			console.log(data);
+		}
+	})
 }
 
 function init() {
