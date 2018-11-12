@@ -60,7 +60,7 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="resources/image/2.jpg" alt="Los Angeles">
+							<img src="https://movie-phinf.pstatic.net/20181106_289/1541478936071tmadh_JPEG/movie_image.jp" alt="Los Angeles">
 						</div>
 
 						<div class="item">
