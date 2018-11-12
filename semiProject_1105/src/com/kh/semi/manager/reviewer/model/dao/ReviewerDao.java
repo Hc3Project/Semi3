@@ -83,7 +83,6 @@ public class ReviewerDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertReviewer");
-		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ri.getRvrCode());

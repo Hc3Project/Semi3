@@ -35,10 +35,12 @@ function getVideo(channelId, keyword, nToken){
 		pageToken : nToken,
 		maxResults : resultMax,
 		order : "date",
+		videoEmbeddable : 'true',
 		type : "video"
 	})
 	
 	rRequest.execute(function(data){
+		console.log(data);
 		showList(data);
 	})
 	

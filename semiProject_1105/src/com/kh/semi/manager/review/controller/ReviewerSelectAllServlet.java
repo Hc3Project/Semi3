@@ -37,15 +37,8 @@ public class ReviewerSelectAllServlet extends HttpServlet {
 		
 		String page = "";
 		if(result != null) {
-			if(toPath.equals("add")) {
-				page = "/views/manager/addReview.jsp";
-				request.setAttribute("rvrList", result);
-			} else if(toPath.equals("del")) {
-				page = "/views/manager/deleteReview.jsp";
-				request.setAttribute("rvrList", result);
-			} else {
-				// 경로 미지정
-			}
+			page = "/views/manager/addReview.jsp?opt=" + toPath;
+			request.setAttribute("rvrList", result);
 		} else {
 			// 리뷰어가 하나도 없을 경우
 			// 차후 에러 페이지 보내기
