@@ -157,7 +157,7 @@
 					<div class="gnb__account-menu-wrap">
 						<ul class="account-menu">
 							<li class="account-menu__item"><a class=""
-								href="/semi/views/watches/watches.jsp">본 리뷰</a></li>
+								href="/semi/views/list/watches.jsp">본 리뷰</a></li>
 							<li class="account-menu__item"><a class=""
 								href="/semi/views/member/setting.jsp">설정</a></li>
 							<li class="account-menu__item"><a class=""
