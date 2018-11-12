@@ -49,7 +49,7 @@ public class MemberUpdateServlet extends HttpServlet {
 		try {
 			ms.updateMember(m);
 			System.out.println("회원 정보 수정 완료!: "+m);
-			response.sendRedirect("/semi/views/index.jsp");
+			response.sendRedirect("/semi/index.jsp");
 			
 		} catch (Exception e) {
 			

@@ -44,7 +44,7 @@ public class MemberDeleteServlet extends HttpServlet {
 			
 			session.invalidate();
 			
-			response.sendRedirect("/semi/views/index.jsp");
+			response.sendRedirect("/semi/index.jsp");
 			
 		} catch (Exception e) {
 			

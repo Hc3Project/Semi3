@@ -10,17 +10,17 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="../resources/js/common.js"></script>
-<script src="../resources/js/boxOffice.js"></script>
-<script src="../resources/js/reviewList.js"></script>
+<script src="resources/js/common.js"></script>
+<script src="resources/js/boxOffice.js"></script>
+<script src="resources/js/reviewList.js"></script>
 
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="../resources/css/reset.css">
-<link rel="stylesheet" href="../resources/css/main.css">
-<link rel="stylesheet" href="../resources/css/style.css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/reset.css">
+<link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="resources/css/style.css">
 
 
 <title>movie traveler</title>
@@ -29,7 +29,7 @@
 <body>
 	<header>
 		<div style="height: 80px;">
-			<%@ include file="common/header.jsp"%>
+			<%@ include file="views/common/header.jsp"%>
 		</div>
 	</header>
 	<!--header-->
@@ -39,7 +39,7 @@
 				<div id="boxOffice">
 					<div id="bo1">
 						<div style="height: 45px;"></div>
-						<img alt="boxoffice" src="../resources/image/h2_boxoffice.png"
+						<img alt="boxoffice" src="resources/image/h2_boxoffice.png"
 							style="width: 200px; height: 15px; display: block; margin: auto;">
 					</div>
 					<div id="bo2">
@@ -60,15 +60,15 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="../resources/image/2.jpg" alt="Los Angeles">
+							<img src="resources/image/2.jpg" alt="Los Angeles">
 						</div>
 
 						<div class="item">
-							<img src="../resources/image/1.jpg" alt="Chicago">
+							<img src="resources/image/1.jpg" alt="Chicago">
 						</div>
 
 						<div class="item">
-							<img src="../resources/image/3.jpg" alt="New York">
+							<img src="resources/image/3.jpg" alt="New York">
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#myCarousel" role="button"

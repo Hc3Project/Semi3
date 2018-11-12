@@ -47,7 +47,7 @@ public class MemberInsertServlet extends HttpServlet {
 		try {
 			ms.insertMember(m);
 			System.out.println("회원 가입 완료 : "+m);
-			response.sendRedirect("/semi/views/index.jsp");
+			response.sendRedirect("/semi/index.jsp");
 		} catch (Exception e) {
 			System.out.println("에러가 발생했습니다~");
 			

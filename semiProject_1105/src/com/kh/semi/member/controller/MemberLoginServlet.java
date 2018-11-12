@@ -50,7 +50,7 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("member", m);
-			response.sendRedirect("/semi/views/index.jsp");
+			response.sendRedirect("/semi/index.jsp");
 			
 		} catch (MemberException e) {
 			

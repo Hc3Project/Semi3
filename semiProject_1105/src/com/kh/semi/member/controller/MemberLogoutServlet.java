@@ -30,7 +30,7 @@ public class MemberLogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		if(session !=null) session.invalidate();
-		response.sendRedirect("/semi/views/index.jsp");
+		response.sendRedirect("/semi/index.jsp");
 	}
 
 	/**
