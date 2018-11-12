@@ -1,26 +1,28 @@
-package com.kh.semi.manager.reviewer.controller;
+package com.kh.semi.manager.user.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.manager.reviewer.model.service.ReviewerService;
-import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
+import com.kh.semi.manager.user.model.service.UserService;
+import com.kh.semi.manager.user.model.vo.UserInfo;
 
 /**
- * Servlet implementation class ReviewerInsertServlet
+ * Servlet implementation class UserSelectPartServlet
  */
-@WebServlet("/rvrInsert.rvr")
-public class ReviewerInsertServlet extends HttpServlet {
+@WebServlet("/uSelectPart.ur")
+public class UserSelectPartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewerInsertServlet() {
+    public UserSelectPartServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,19 +31,13 @@ public class ReviewerInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String rvrCode = request.getParameter("rvrCode");
-		String rName = request.getParameter("rvrName");
-		String profile = request.getParameter("profile");
+		String opt = request.getParameter("opt");
+		String keyword = request.getParameter("keyword");
+		int stNum = Integer.parseInt(request.getParameter("stNum"));
+		int edNum = Integer.parseInt(request.getParameter("edNum"));
 		
-		ReviewerInfo ri = new ReviewerInfo();
-		ri.setRvrCode(rvrCode);
-		ri.setrName(rName);
-		ri.setProfile(profile);
-		
-		ReviewerService rs = new ReviewerService();
-		int result = rs.insertReviewer(ri);
-		
-		response.getWriter().print(result);
+		UserService us = new UserService();
+		List<UserInfo> result = us.selectPartUser(opt, keyword, stNum, edNum);
 	}
 
 	/**

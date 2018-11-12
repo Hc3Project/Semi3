@@ -37,6 +37,7 @@ public class ReviewerSelectPart extends HttpServlet {
 		ReviewerService rs = new ReviewerService();
 		
 		List<ReviewerInfo> result = rs.reviewerSelectPart(keyword);
+		result = rs.reviewerSelectPartCnt(result);
 		response.setContentType("application; charset=utf-8");
 		new Gson().toJson(result, response.getWriter());
 	}
