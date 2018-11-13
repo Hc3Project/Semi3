@@ -5,8 +5,7 @@
 %>
 
 <!DOCTYPE html>
-<script
-	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
+
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
 		<a class="logo active" href="/semi/index.jsp"></a>
@@ -195,7 +194,7 @@
 					<div class="gnb__account-menu-wrap">
 						<ul class="account-menu">
 							<li class="account-menu__item"><a class=""
-								href="/semi/views/movie/movieWatches.jsp">본 리뷰</a></li>
+								href="/semi/views/movie/movieVisit.jsp">본 리뷰</a></li>
 							<li class="account-menu__item"><a class=""
 								href="/semi/views/member/setting.jsp">설정</a></li>
 							<li class="account-menu__item"><a class=""
@@ -208,24 +207,25 @@
 				%>
 
 			</div>
+
 			<!-- <div class="gnb__my-name">
                     <span>정한</span>
                     <span class="glyphicon glyphicon-caret-down-f"></span>
                     <span></span>
                 </div> -->
+
 				<div class="search">
 				<button class="search__button">
 					<span class="glyphicon glyphicon-search"></span> <span>&nbsp;&nbsp;검색</span>
 				</button>
 				<span>
 					<div class="search-input">
-						<a href="javascript:;"
-							class="glyphicon glyphicon-search search-input__text-field"></a>
+						<a href="#" id="searchBtn" class="glyphicon glyphicon-search search-input__text-field"></a>
 						<input class="search-input__text-field"
 							id="search-input__text-field" type="search"
 							placeholder="영화 제목으로 검색" >
 					</div>
-
+					
 				</span>
 			</div>
 		</div>
@@ -234,8 +234,31 @@
 	</nav>
 </div>
 
+
 <script>
 	function logout(){
 		location.href="/semi/logout.me";
 	}
+	
+	function searchClick(){
+		if($("#search-input__text-field").val() != ''){
+			
+			// 이동하는 코드
+			location.href = "<%=request.getContextPath()%>/sMovie.sc?MovieTitle="+$('#search-input__text-field').val();
+			} else {
+				alert("검색어를 입력해주세요!");
+			}
+	}
+	
+	$('#searchBtn').click(function(){
+		searchClick();
+	});
+	
+	$('#search-input__text-field').keyup(function(key){
+		if(key.keyCode == 13){
+			searchClick();
+		}
+		
+	});
+
 </script>

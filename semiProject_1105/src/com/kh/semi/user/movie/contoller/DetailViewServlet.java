@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.semi.user.member.model.vo.Member;
 import com.kh.semi.user.movie.model.service.DetailViewService;
 import com.kh.semi.user.movie.model.service.StarRatingService;
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
@@ -44,23 +45,26 @@ public class DetailViewServlet extends HttpServlet {
 		// 클릭시 받아오는 값 (늘어나면 수정)
 		String videoId = request.getParameter("videoId");
 		String mCode = request.getParameter("mCode");
+		String userId = null;
 
 		DetailViewService dvs = new DetailViewService();
 		ReviewService rs = new ReviewService();
 		StarRatingService srs = new StarRatingService();
 		HttpSession session = request.getSession(false);
 
+		Member m = (Member) session.getAttribute("member");
+		if (m != null) {
+			userId = m.getUserId();
+		}
 		try {
 			// 영화정보와 리뷰정보를 불러옴
 			ReviewInfo rv = null;
 			MovieDetailInfo mov = null;
 			if (videoId != null) {
 				rv = rs.selectReview(videoId);
-				mov = dvs.selectMovieDetail(rv.getMcode());
-			} else {
-
-				mov = dvs.selectMovieDetail(mCode);
+				mCode = rv.getMcode();
 			}
+			mov = dvs.selectMovieDetail(mCode, userId);
 			int score = 0;
 
 			// 별점 가져오기
@@ -68,8 +72,9 @@ public class DetailViewServlet extends HttpServlet {
 			// 별점은 회원만 메길 수 있어야 하는데 1. 비회원은 별점을 클릭해도 이벤트가 발생하지 않는다
 			// 2. 비회원은 별점을 볼 수 없다 등 비회원이 DB에 영향을 끼치지 않도록 생각해봐야함
 			// DB RATING 테이블 SCORE 컬럼에 디폴트 0, CHECK 제약조건 달아둠(0~10) 다음에 공유함
-			if (session.getAttribute("userId") != null) {
-				score = srs.selectStarRating((String) session.getAttribute("userId"), rv.getMcode());
+			if (userId != null) {
+				score = srs.selectStarRating(userId, mCode);
+				System.out.println(userId);
 			}
 
 			String page = "";

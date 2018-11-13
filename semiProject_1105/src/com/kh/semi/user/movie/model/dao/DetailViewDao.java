@@ -79,6 +79,53 @@ public class DetailViewDao {
 		}
 		return mov;
 	}
+//최근방문기록
+	public int MovieVisit(Connection con, String mCode,String userId) {
+		int result =0;
+		String sql = prop.getProperty("movieVisit");
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(2, mCode);
+			pstmt.setString(1, userId);
+			
+			result=pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+//조회수 증가
+	public int MovieCount(Connection con, String mCode) {
+		int result =0;
+		String sql = prop.getProperty("movieCount");
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mCode);
+			System.out.println(sql + "  "+ mCode);
+			
+			result=pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 
 	
 
