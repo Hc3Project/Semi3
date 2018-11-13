@@ -107,20 +107,25 @@ public class DetailViewService {
 		Connection con = getConnection();
 		MovieDetailInfo mov = new DetailViewDao().selectMovieDetail(con, mCode);
 
-		int result = 0;
+		int resultV = 0;
+		int resultC = 0;
 
 		if (mov == null) {
 			throw new DetailViewException("상세보기 실패!");
 		}
 		// 게시물 조회 기록
 		if (userId != null) {
-			result = new DetailViewDao().MovieVisit(con, mCode, userId);
-
-			if (result != 0)
+			resultV = new DetailViewDao().MovieVisit(con, mCode, userId);
+			if (resultV > 0)
 				commit(con);
 			else
 				rollback(con);
 		}
+		resultC = new DetailViewDao().MovieCount(con, mCode);
+		if (resultC > 0)
+			commit(con);
+		else
+			rollback(con);
 		close(con);
 		return mov;
 	}

@@ -50,8 +50,8 @@ public class ReviewService {
 		Connection con=getConnection();
 		ReviewInfo rv=new ReviewDao().selectReview(con,videoId);
 		close(con);
-		if(rv!=null) return rv;
-		else throw new DetailViewException("상세보기 실패!");
+		if(rv==null) throw new DetailViewException("상세보기 실패!");
+		return rv;
 	}
 
 }

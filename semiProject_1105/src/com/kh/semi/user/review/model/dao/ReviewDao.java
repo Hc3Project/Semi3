@@ -47,7 +47,7 @@ public class ReviewDao {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(sql);
 			list = new ArrayList<Review>();
-			System.out.println(sql);
+			
 			Review review = null;
 
 			while (rset.next()) {
@@ -58,11 +58,11 @@ public class ReviewDao {
 				review.setVideoid(rset.getString("VIDEOID"));
 				review.setReviewer(rset.getString("RNAME"));
 				review.setMovie(rset.getString("MTITLE"));
-				System.out.println(review);
+				
 
 				list.add(review);
-				System.out.println(list.size());
 			}
+			System.out.println(list.size());
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -105,7 +105,7 @@ public class ReviewDao {
 		return rv;
 		
 	}
-
+//조회수 높은 리뷰
 	public ArrayList<Review> reviewTop(Connection con) {
 		// TODO Auto-generated method stub
 		return null;
