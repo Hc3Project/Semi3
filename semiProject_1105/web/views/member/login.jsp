@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <script src="<%=request.getContextPath()%>../../resources/js/jquery-3.3.1.min.js"></script>
+  <script src="../../resources/js/jquery-3.3.1.min.js"></script>
   <!-- 슬라이더 -->
   <script src="../../resources/js/common.js"></script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+
   
   <link rel="stylesheet" href="../../resources/css/reset.css">
   <link rel="stylesheet" href="../../resources/css/style.css">
