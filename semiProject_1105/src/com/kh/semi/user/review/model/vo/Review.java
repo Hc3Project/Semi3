@@ -11,16 +11,22 @@ public class Review implements Serializable{
 	private String Rvrcode;
 	private Date Uploaddate;
 	private int Counts;
-	public Review(String videoid, String mcode, String rvrcode, Date uploaddate, int counts) {
-		super();
-		Videoid = videoid;
-		Mcode = mcode;
-		Rvrcode = rvrcode;
-		Uploaddate = uploaddate;
-		Counts = counts;
+	private String Reviewer;
+	private String Movie;
+	
+	
+	
+	public String getReviewer() {
+		return Reviewer;
 	}
-	public Review() {
-		super();
+	public void setReviewer(String reviewer) {
+		Reviewer = reviewer;
+	}
+	public String getMovie() {
+		return Movie;
+	}
+	public void setMovie(String movie) {
+		Movie = movie;
 	}
 	public String getVideoid() {
 		return Videoid;
@@ -52,11 +58,28 @@ public class Review implements Serializable{
 	public void setCounts(int counts) {
 		Counts = counts;
 	}
+	public Review(String videoid, String mcode, String rvrcode, Date uploaddate, int counts, String reviewer,
+			String movie) {
+		super();
+		Videoid = videoid;
+		Mcode = mcode;
+		Rvrcode = rvrcode;
+		Uploaddate = uploaddate;
+		Counts = counts;
+		Reviewer = reviewer;
+		Movie = movie;
+	}
+	public Review() {
+		super();
+	}
 	@Override
 	public String toString() {
-		return "Review [Videoid=" + Videoid + ", Mcode=" + Mcode + ", Rvrcode=" + Rvrcode + ", Uploaddate="
-				+ Uploaddate + ", Counts=" + Counts + "]";
+		return "Review [Videoid=" + Videoid + ", Mcode=" + Mcode + ", Rvrcode=" + Rvrcode + ", Uploaddate=" + Uploaddate
+				+ ", Counts=" + Counts + ", Reviewer=" + Reviewer + ", Movie=" + Movie + "]";
 	}
+	
+	
+	
 	
 	
 	

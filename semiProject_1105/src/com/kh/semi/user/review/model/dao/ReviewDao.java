@@ -20,18 +20,21 @@ import com.kh.semi.user.review.model.vo.ReviewInfo;
 public class ReviewDao {
 	private Properties prop = new Properties();
 
-		String filePath = ReviewDao.class.getResource("/config/review-query.properties").getPath().replace("%20"," ");
+	public ReviewDao(){
+		String filePath = 
+				ReviewDao.class.getResource("/config/review-query.properties").getPath().replace("%20"," ");
 
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 	}
+
 
 	public ArrayList<Review> reviewToday(Connection con) {
 		ArrayList<Review> list = null;
@@ -44,7 +47,7 @@ public class ReviewDao {
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(sql);
 			list = new ArrayList<Review>();
-System.out.println(sql);
+			System.out.println(sql);
 			Review review = null;
 
 			while (rset.next()) {
@@ -53,10 +56,8 @@ System.out.println(sql);
 				 * VIDEOID MCODE RVRCODE UPLOADDATE COUNTS
 				 */
 				review.setVideoid(rset.getString("VIDEOID"));
-				review.setMcode(rset.getString("MCODE"));
-				review.setRvrcode(rset.getString("RVRCODE"));
-				review.setUploaddate(rset.getDate("UPLOADDATE"));
-				review.setCounts(rset.getInt("COUNTS"));
+				review.setReviewer(rset.getString("RNAME"));
+				review.setMovie(rset.getString("MTITLE"));
 				System.out.println(review);
 
 				list.add(review);

@@ -43,4 +43,27 @@ public class ReviewerService {
 		return result;
 	}
 
+	public List<ReviewerInfo> reviewerSelectPartCnt(List<ReviewerInfo> list) {
+		Connection con = getConnection();
+		List<ReviewerInfo> result = rDao.reviewerSelectPartCnt(con, list);
+		close(con);
+		return result;
+	}
+
+	public int deleteReviewer(String channelId) {
+		Connection con = getConnection();
+		int result = rDao.deleteReviewer(con, channelId);
+		if(result>0) commit(con);
+		else rollback(con);
+		close(con);
+		return result;
+	}
+
+	public int selectReviewerOne(String channelId) {
+		Connection con = getConnection();
+		int result = rDao.selectReviewerOne(con, channelId);
+		close(con);
+		return result;
+	}
+
 }

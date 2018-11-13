@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
+
 import static com.kh.semi.common.JDBCTemplate.*;
 
 public class ReviewerDao {
@@ -45,7 +46,6 @@ public class ReviewerDao {
 				ri.setRvrCode(rset.getString("rvrcode"));
 				ri.setrName(rset.getString("rname"));
 				ri.setProfile(rset.getString("profile"));
-				ri.setReviewCnt(rset.getInt("cnt"));
 				
 				result.add(ri);
 			}
@@ -83,7 +83,6 @@ public class ReviewerDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertReviewer");
-		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ri.getRvrCode());
@@ -95,6 +94,67 @@ public class ReviewerDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<ReviewerInfo> reviewerSelectPartCnt(Connection con, List<ReviewerInfo> list) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ReviewerInfo> result = null;
+		String sql = prop.getProperty("selectPartCnt");
+		
+		try {
+			result = list;
+			pstmt = con.prepareStatement(sql);
+			
+			for(ReviewerInfo rvInfo : result) {
+				pstmt.setString(1, rvInfo.getRvrCode());
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) rvInfo.setReviewCnt(rset.getInt(1));
+				else rvInfo.setReviewCnt(0);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteReviewer(Connection con, String channelId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReviewer");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, channelId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectReviewerOne(Connection con, String channelId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String sql = prop.getProperty("duplicateReviewer");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, channelId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) result++;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}

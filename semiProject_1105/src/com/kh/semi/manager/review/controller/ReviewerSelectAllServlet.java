@@ -31,15 +31,16 @@ public class ReviewerSelectAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String toPath = request.getParameter("opt");
 		ReviewService rs = new ReviewService();
 		List<ReviewerInfo> result = rs.selectAllReviewer();
 		
 		String page = "";
 		if(result != null) {
-			page = "/views/manager/addReview.jsp";
+			page = "/views/manager/addReview.jsp?opt=" + toPath;
 			request.setAttribute("rvrList", result);
 		} else {
+			// 리뷰어가 하나도 없을 경우
 			// 차후 에러 페이지 보내기
 		}
 		request.getRequestDispatcher(page).forward(request, response);

@@ -43,16 +43,17 @@ public class CategorySelectServlet extends HttpServlet {
 		
 		System.out.println("영화코드 확인  : " + cCode);
 		
+		
 		String page="";
 		
 		if(mList!=null){
-			page="/views/category/movieCategory.jsp";
-			request.setAttribute("cCode", cCode);
+			page="/views/movie/movieCategory.jsp";
+			request.setAttribute("mList", mList);
 		}else{
 			page="/views/common/errorPage.jsp";
 			request.setAttribute("msg", "해당 카테고리 영화가 없습니다!");
 		}
-		
+		System.out.println(mList.size());
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 
