@@ -83,6 +83,7 @@ function addReview(obj){
 			success : function(data){
 				if(data>0) alert('리뷰가 성공적으로 추가 되었습니다.');
 				else alert('리뷰 등록에 실패하였습니다.');
+//				history.back();
 				window.location.href = '/semi/rvrSelectAll.rv';
 			},
 			error : function(data){

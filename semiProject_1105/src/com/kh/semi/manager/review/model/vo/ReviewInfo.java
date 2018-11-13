@@ -18,6 +18,7 @@ public class ReviewInfo {
 		this.rvrCode = rvrCode;
 		this.uploadDate = uploadDate;
 	}
+	
 	/**
 	 * @return the videoId
 	 */
@@ -86,4 +87,5 @@ public class ReviewInfo {
 		return "ReviewInfo [videoId=" + videoId + ", mCode=" + mCode + ", rvrCode=" + rvrCode + ", uploadDate="
 				+ uploadDate + ", rvCnt=" + rvCnt + "]";
 	}
+		
 }

@@ -13,12 +13,13 @@
 		리뷰어명 : <input type="text" name="" id="rvrSearch" placeholder="리뷰어를 입력하세요">
 		<input type="button" value="검색하기" id="rvrBtn">	
 	</div>
-	<div id="getRvrList">
-		<table>
+	<div id="getRvrList" style='display:none'>
+		<table id=rvrList>
 			<thead>
 				<tr>
-					<th>리뷰어명</th>
-					<th>리뷰어코드</th>
+					<th>리뷰어썸네일</th>
+					<th>리뷰어 이름</th>
+					<th>리뷰어 코드</th>
 					<th>비고</th>
 				</tr>
 			</thead>
@@ -27,7 +28,7 @@
 		</table>
 		<input type="button" value="항목 더 보기" id="moreList" disabled>
 	</div>
-	<div id="inputRvr">
+	<div id="inputRvr" style='display:none'>
 		<table>
 			<thead>
 				<tr>
@@ -41,14 +42,14 @@
 				<tr>
 					<td>개요</td>
 					<td colspan="3">
-						<textarea name="" id="" cols="30" rows="10"></textarea>
+						<textarea name="" id="" cols="30" rows="10" placeholder='1300자까지 입력 가능합니다.'></textarea>
 					</td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
 					<td colspan="4">
-						<input type="button" value="추가하기" id="addRvrBtn">
+						<input type="button" value="등록하기" id="addRvrBtn">
 						<input type="button" value="뒤로가기" id="backBtn">
 					</td>
 				</tr>

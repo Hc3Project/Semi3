@@ -27,6 +27,7 @@ var dt = new Date();
 							+ result + "&itemPerPage=10",
 					dataType : "xml",
 					success : function(data){
+						
 						var $data = $(data)
 								.find("boxOfficeResult>dailyBoxOfficeList>dailyBoxOffice");
 						//데이터를 테이블 구조에 저장. html의 table태그, class는 table로 하여 부트스트랩 적용
@@ -46,13 +47,14 @@ var dt = new Date();
 								var $rank = $(o).find("rank").text(); // 순위
 								var $movieNm = $(o).find("movieNm").text(); //영화명
 								var $audiAcc = $(o).find("audiCnt").text(); //누적 관객수
+								var $movieCd = $(o).find("movieCd").text();
 								$audiAcc= $audiAcc+"명";
 								//<tbody><tr><td>태그안에 파싱하여 추출된 데이터 넣기
 								var row = $("<tr/>").append(
 										
 										$("<td/>").text($rank),
 										$("<td/>").text($movieNm),
-										$("<td/>").text($audiAcc));
+										$("<td/>").text($audiAcc)).attr("class","movieTr").attr("value",$movieCd);
 
 								tbody.append(row);
 
@@ -62,10 +64,17 @@ var dt = new Date();
 							table.append(tbody);
 							$(".boxRank").append(table);
 						}
+						$(".movieTr").click(function() {
+							console.log($(this).attr("value"));
+							location.href = "/semi/dView.do?mCode="+$(this).attr("value");
+							
+						})
 					},
 					//에러 발생시 "실시간 박스오피스 로딩중"메시지가 뜨도록 한다.
 					error : function() {
 						alert("실시간 박스오피스 로딩중...");
 					}
+					
+					
 				});
 	});

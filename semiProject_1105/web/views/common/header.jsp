@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.kh.semi.member.model.vo.Member"%>
+	pageEncoding="UTF-8" import="com.kh.semi.user.member.model.vo.Member"%>
 <%
 	Member m = (Member) session.getAttribute("member");
 %>
@@ -9,11 +9,11 @@
 	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
-		<a class="logo active" href="/semi/views/index.jsp"></a>
+		<a class="logo active" href="/semi/index.jsp"></a>
 		<ul class="gnb__left-navs">
 			
 			<li class="gnb__category-list"><a class="gnb__nav-category"
-				href="/semi/views/category/movieCategory.jsp">영화 카테고리</a> 
+				href="/semi/views/movie/movieCategory.jsp">영화 카테고리</a> 
 			<span>
 					<div class="gnb-category-list">
 						<div class="gnb-category-list__filters">
@@ -29,7 +29,7 @@
 						</div>
 						<ul class="gnb-category-list__filtered-list">
 							<li class="gnb-category-list__filtered-list-item" id="all"><a
-								href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">모든
+								href="<%request.getContextPath();%>/semi/views/movie/movieCategory.jsp">모든
 									장르</a></li>
 							<li class="gnb-category-list__filtered-list-item" id="sf"
 								value="sf"><a
@@ -73,7 +73,7 @@
 						</ul>
 						<ul class="gnb-category-list__filtered-list" style="display: none">
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/views/category/movieCategory.jsp">모든
+								href="<%request.getContextPath();%>/semi/views/movie/movieCategory.jsp">모든
 									국가</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=US">미국</a></li>
@@ -106,7 +106,7 @@
 						</ul>
 						<ul class="gnb-category-list__filtered-list" style="display: none">
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">모든 리뷰어</a></li>
+								href="../views/movie/movieCategory.jsp">모든 리뷰어</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCIXvXBYSc9fQ7Ri5SM1r8xA">라이너의컬쳐쇼크</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
@@ -157,7 +157,7 @@
 					<div class="gnb__account-menu-wrap">
 						<ul class="account-menu">
 							<li class="account-menu__item"><a class=""
-								href="/semi/views/watches/watches.jsp">본 리뷰</a></li>
+								href="/semi/views/movie/movieWatches.jsp">본 리뷰</a></li>
 							<li class="account-menu__item"><a class=""
 								href="/semi/views/member/setting.jsp">설정</a></li>
 							<li class="account-menu__item"><a class=""

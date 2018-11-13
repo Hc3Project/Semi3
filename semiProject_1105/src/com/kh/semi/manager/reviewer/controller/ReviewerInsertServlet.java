@@ -13,7 +13,7 @@ import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
 /**
  * Servlet implementation class ReviewerInsertServlet
  */
-@WebServlet("/ReviewerInsertServlet")
+@WebServlet("/rvrInsert.rvr")
 public class ReviewerInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +30,7 @@ public class ReviewerInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String rvrCode = request.getParameter("rvrCode");
-		String rName = request.getParameter("rName");
+		String rName = request.getParameter("rvrName");
 		String profile = request.getParameter("profile");
 		
 		ReviewerInfo ri = new ReviewerInfo();
@@ -40,6 +40,8 @@ public class ReviewerInsertServlet extends HttpServlet {
 		
 		ReviewerService rs = new ReviewerService();
 		int result = rs.insertReviewer(ri);
+		
+		response.getWriter().print(result);
 	}
 
 	/**
