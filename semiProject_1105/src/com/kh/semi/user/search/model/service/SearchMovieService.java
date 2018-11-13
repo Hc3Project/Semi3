@@ -11,15 +11,15 @@ public class SearchMovieService {
 	
 	private SearchMovieDao smDao = new SearchMovieDao();
 
-	public ArrayList<MovieInfo> searchMovie() {
-		
-		ArrayList<MovieInfo> mList = null;
+	public ArrayList<MovieInfo> searchMovie(String movieTitle) {
 		Connection con = getConnection();
+		ArrayList<MovieInfo> mList = null;
+		
 		
 		// 수정 필요
-		mList = smDao.searchMovie();
+		mList = smDao.searchMovie(con, movieTitle) ;
 		
-		return null;
+		return mList;
 	}
 
 }

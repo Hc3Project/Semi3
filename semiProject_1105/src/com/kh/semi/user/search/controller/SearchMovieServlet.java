@@ -33,15 +33,15 @@ public class SearchMovieServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. 영화 제목 전달받음
-		String movieTitle = request.getParameter("mt");
+		String movieTitle = request.getParameter("MovieTitle");
 		
 		// 2. 검색할 영화 리스트 담을 공간 생성
-		ArrayList<MovieInfo> mList = new ArrayList();
+		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
 		
 		SearchMovieService sms = new SearchMovieService();
 		
 		// 3. 리스트에 서비스에서 실행되는 검색 메소드 실행
-		mList = sms.searchMovie();
+		mList = sms.searchMovie(movieTitle);
 		
 		// 4. 
 		
@@ -49,13 +49,13 @@ public class SearchMovieServlet extends HttpServlet {
 		
 		if(mList != null){
 			
-			// 서치 버튼 눌렀을 때 나오는 경로 지정 해주기 page = "";
+			page = "views/movie/movieCategory.jsp";
 			request.setAttribute("mList", mList);
 			
 		}else{
 			
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "공지사항 검색 실패!");
+			request.setAttribute("msg", "검색어를 입력해 주세요!");
 			
 		}
 		

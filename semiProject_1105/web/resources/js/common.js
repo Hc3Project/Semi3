@@ -31,7 +31,7 @@ $(document).ready(function(){
     //메뉴 검색 클릭
     $(".search__button").click(function () {
         $(".search-input").stop().fadeIn();
-        return false; //중요
+        return false; 
     });
     //외에 영역 클릭
     $('html,body').click(function (e) { 
