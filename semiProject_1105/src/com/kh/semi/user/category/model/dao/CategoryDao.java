@@ -61,7 +61,12 @@ public class CategoryDao {
 			
 		// 리뷰어로 검색됐을 시
 		}else if(cCode.length() > 10){
-			category = "reviewer";		
+			category = "reviewer";
+			
+		}else if(cCode.equals("all")){
+			
+			category = "all";
+		
 		}
 		
 		System.out.println("카테고리 확인 : " + category);
@@ -76,12 +81,17 @@ public class CategoryDao {
 		case "reviewer" :
 			sql = prop.getProperty("selectMovieByReviewer");
 			break;
+		case "all" : 
+			sql = prop.getProperty("selectList");
 		}
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			System.out.println("sql : " + sql);
-			pstmt.setString(1, cCode); // 첫번째 물음표 
+			
+			if(!(cCode.equals("all"))){
+				pstmt.setString(1, cCode); // 첫번째 물음표 	
+			}
 			
 			rset = pstmt.executeQuery();
 			
