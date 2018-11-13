@@ -43,19 +43,16 @@ public class DetailViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 클릭시 받아오는 값 (늘어나면 수정)
-		HttpSession session = request.getSession(false);
-		
-		Member m = (Member) session.getAttribute("member");
-
 		String videoId = request.getParameter("videoId");
 		String mCode = request.getParameter("mCode");
 		String userId = null;
-		
+
 		DetailViewService dvs = new DetailViewService();
 		ReviewService rs = new ReviewService();
 		StarRatingService srs = new StarRatingService();
-		
-		
+		HttpSession session = request.getSession(false);
+
+		Member m = (Member) session.getAttribute("member");
 		if (m != null) {
 			userId = m.getUserId();
 		}
@@ -65,11 +62,9 @@ public class DetailViewServlet extends HttpServlet {
 			MovieDetailInfo mov = null;
 			if (videoId != null) {
 				rv = rs.selectReview(videoId);
-				mov = dvs.selectMovieDetail(rv.getMcode(), userId);
-			} else {
-
-				mov = dvs.selectMovieDetail(mCode, userId);
+				mCode = rv.getMcode();
 			}
+			mov = dvs.selectMovieDetail(mCode, userId);
 			int score = 0;
 
 			// 별점 가져오기
@@ -78,7 +73,8 @@ public class DetailViewServlet extends HttpServlet {
 			// 2. 비회원은 별점을 볼 수 없다 등 비회원이 DB에 영향을 끼치지 않도록 생각해봐야함
 			// DB RATING 테이블 SCORE 컬럼에 디폴트 0, CHECK 제약조건 달아둠(0~10) 다음에 공유함
 			if (userId != null) {
-				score = srs.selectStarRating(userId, rv.getMcode());
+				score = srs.selectStarRating(userId, mCode);
+				System.out.println(userId);
 			}
 
 			String page = "";
