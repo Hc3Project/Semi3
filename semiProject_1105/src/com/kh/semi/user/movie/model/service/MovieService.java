@@ -1,6 +1,9 @@
 package com.kh.semi.user.movie.model.service;
 
-import static com.kh.semi.common.JDBCTemplate.*;
+import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.commit;
+import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -15,11 +18,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.kh.semi.exception.DetailViewException;
+import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.movie.model.dao.DetailViewDao;
+import com.kh.semi.user.movie.model.dao.MovieDao;
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.movie.model.vo.PosterInfo;
 
-public class DetailViewService {
+public class MovieService {
 
 	private static String page = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=";
 
@@ -57,7 +62,7 @@ public class DetailViewService {
 	public String getPowerImage(String result, String keyword) throws Exception {
 		Connection con = getConnection();
 		// 여러 결과 중 맞는 내용을 찾기 위해 데이터베이스에서 정보 뽑아오기 (받아오는 정보가 늘어나면 쿼리수정해야함)
-		List<PosterInfo> list = new DetailViewDao().getPowerImage(con, result, keyword);
+		List<PosterInfo> list = new MovieDao().getPowerImage(con, result, keyword);
 		close(con);
 		String code = "";
 
@@ -105,7 +110,7 @@ public class DetailViewService {
 
 	public MovieDetailInfo selectMovieDetail(String mCode, String userId) throws Exception {
 		Connection con = getConnection();
-		MovieDetailInfo mov = new DetailViewDao().selectMovieDetail(con, mCode);
+		MovieDetailInfo mov = new MovieDao().selectMovieDetail(con, mCode);
 
 		int resultV = 0;
 		int resultC = 0;
@@ -115,19 +120,29 @@ public class DetailViewService {
 		}
 		// 게시물 조회 기록
 		if (userId != null) {
-			resultV = new DetailViewDao().MovieVisit(con, mCode, userId);
+			resultV = new MovieDao().MovieVisit(con, mCode, userId);
 			if (resultV > 0)
 				commit(con);
 			else
 				rollback(con);
 		}
-		resultC = new DetailViewDao().MovieCount(con, mCode);
+		resultC = new MovieDao().MovieCount(con, mCode);
 		if (resultC > 0)
 			commit(con);
 		else
 			rollback(con);
 		close(con);
 		return mov;
+	}
+
+	public ArrayList<MovieInfo> visitMovie(String userId) {
+		 ArrayList<MovieInfo> list = new ArrayList<MovieInfo>();
+		 Connection con =getConnection();
+		 list = new MovieDao().visitMovie(con,userId);
+		 
+		 close(con);
+		 
+		return list;
 	}
 
 }

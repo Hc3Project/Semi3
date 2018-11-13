@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <script src="../../resources/js/jquery-3.3.1.min.js"></script>
-<!-- 슬라이더 -->
+
 <script src="../../resources/js/common.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
@@ -35,20 +37,7 @@
 			<div class="signin-cont cont">
 				<div class="category-page" style="position: relative;">
 					<div class="home-page__rec-list">
-						<div class="rec-row">
-
-							<div class="rec-list clearfix">
-
-
-								<div class="mcode">
-									<h1></h1>
-									<img
-										src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-										alt=""> <i class="hover-box hover-box--play"></i>
-								</div>
-
-							</div>
-						</div>
+						<div class="rec-row" id="visitMovie"></div>
 					</div>
 				</div>
 			</div>
@@ -81,9 +70,28 @@
 			$ajax({
 				url : "/mVisit.do",
 				type : post,
-				su
+					success : {function(data) {
+	                    var $top = $("#visitMovie")
+							for ( var i in data) {
+								var $list= $("<div>")
+		                        .append(
+		                            $("<h1>").text()
+		                        ).append(
+		                            $("<img>").attr("src","https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg")
+		                        ).append(
+		                            $("<i>").attr("class","hover-box hover-box--play")
+		                        );
+		
+			                        if(i%6==0){
+			                            $top.append($("<div>").attr("class","rec-list clearfix"))
+			                                                  .append($ilst);
+			                        }else{
+			                            $("#visitMovie div[class='item rec-list clearfix']:last-child");
+			                        }
+						        }
+	                    }
 				
-			});
+                }});
 		});
 		
 		
