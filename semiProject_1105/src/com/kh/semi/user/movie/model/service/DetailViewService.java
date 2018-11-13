@@ -20,92 +20,109 @@ import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.movie.model.vo.PosterInfo;
 
 public class DetailViewService {
-	
-	private static String page="https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=";
+
+	private static String page = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=";
 
 	public String getImage(String result) throws Exception {
-		String code="";
-		String chk="";
-		List<String> sentence=new ArrayList<>(Arrays.asList(result.split(",")));
-		
+		String code = "";
+		String chk = "";
+		List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
+
 		// 결과에서 코드가 있는 컬럼을 따옴
-		for(int i=0;i<sentence.size();i++){
-			if(sentence.get(i).matches(".*link.*")) {
-				chk=sentence.get(i);
+		for (int i = 0; i < sentence.size(); i++) {
+			if (sentence.get(i).matches(".*link.*")) {
+				chk = sentence.get(i);
 				break;
 			}
 		}
-		
+
 		// 코드를 판별해 가져옴
-		Matcher mc=Pattern.compile("[0-9]{5,6}").matcher(chk);
-		if(mc.find()) code=mc.group();
-		else throw new DetailViewException("상세보기 실패!");
+		Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
+		if (mc.find())
+			code = mc.group();
+		else
+			throw new DetailViewException("상세보기 실패!");
 
 		// 코드를 통해 포스터 페이지에 접속해 크롤링
-		Document doc=Jsoup.connect(page+code).header("User-Agent", "Chrome/70.0.3538.77").get();
-		Elements img=doc.select("img[src~=.(png|jpe?g)]");
-		String imgURL="";
-		for (Element el:img) imgURL=String.valueOf(el).substring(27, 110);
-		
+		Document doc = Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
+		Elements img = doc.select("img[src~=.(png|jpe?g)]");
+		String imgURL = "";
+		for (Element el : img)
+			imgURL = String.valueOf(el).substring(27, 110);
+
 		return imgURL;
 
 	}
 
 	public String getPowerImage(String result, String keyword) throws Exception {
-		Connection con=getConnection();
+		Connection con = getConnection();
 		// 여러 결과 중 맞는 내용을 찾기 위해 데이터베이스에서 정보 뽑아오기 (받아오는 정보가 늘어나면 쿼리수정해야함)
-		List<PosterInfo> list=new DetailViewDao().getPowerImage(con,result,keyword);
+		List<PosterInfo> list = new DetailViewDao().getPowerImage(con, result, keyword);
 		close(con);
-		String code="";
-		
+		String code = "";
+
 		// 맞는 결과를 판별해 코드를 가져오기
-		for(PosterInfo pi:list){
-			String director=pi.getDirector();
-			String date=pi.getOpendate().toString().substring(0, 4);
-			
-			if(result.matches(".*"+director+".*")&&result.matches(".*"+date+".*")){
-				List<String> sentence=new ArrayList<>(Arrays.asList(result.split(",")));
-				String chk="";
-				for(int i=1;i<sentence.size();i++){
-					if(sentence.get(i).matches(".*"+director+".*")&&sentence.get(i-1).matches(".*"+date+".*")){
-						chk=sentence.get(i-4);
+		for (PosterInfo pi : list) {
+			String director = pi.getDirector();
+			String date = pi.getOpendate().toString().substring(0, 4);
+
+			if (result.matches(".*" + director + ".*") && result.matches(".*" + date + ".*")) {
+				List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
+				String chk = "";
+				for (int i = 1; i < sentence.size(); i++) {
+					if (sentence.get(i).matches(".*" + director + ".*")
+							&& sentence.get(i - 1).matches(".*" + date + ".*")) {
+						chk = sentence.get(i - 4);
 						break;
 					}
 				}
-				
-				Matcher mc=Pattern.compile("[0-9]{5,6}").matcher(chk);
-				
-				if(mc.find()) code=mc.group();
-				else throw new DetailViewException("상세보기 실패!");
-				
-				
+
+				Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
+
+				if (mc.find())
+					code = mc.group();
+				else
+					throw new DetailViewException("상세보기 실패!");
+
 				break;
 			}
-			
-			
+
 		}
-		
+
 		// 코드를 통해 포스터 페이지에 접속해 크롤링
-		Document doc=Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
-		Elements img=doc.select("img[src~=.(png|jpe?g)]");
-		String imgURL="";
-		for (Element el:img) {
-			imgURL=String.valueOf(el);
-			imgURL=imgURL.substring(27, 110);
+		Document doc = Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
+		Elements img = doc.select("img[src~=.(png|jpe?g)]");
+		String imgURL = "";
+		for (Element el : img) {
+			imgURL = String.valueOf(el);
+			imgURL = imgURL.substring(27, 110);
 			System.out.println(imgURL);
 		}
 
 		return imgURL;
-		
+
 	}
 
-	public MovieDetailInfo selectMovieDetail(String mCode) throws Exception {
-		Connection con=getConnection();
-		MovieDetailInfo mov=new DetailViewDao().selectMovieDetail(con,mCode);
+	public MovieDetailInfo selectMovieDetail(String mCode, String userId) throws Exception {
+		Connection con = getConnection();
+		MovieDetailInfo mov = new DetailViewDao().selectMovieDetail(con, mCode);
+
+		int result = 0;
+
+		if (mov == null) {
+			throw new DetailViewException("상세보기 실패!");
+		}
+		// 게시물 조회 기록
+		if (userId != null) {
+			result = new DetailViewDao().MovieVisit(con, mCode, userId);
+
+			if (result != 0)
+				commit(con);
+			else
+				rollback(con);
+		}
 		close(con);
-		if(mov!=null) return mov;
-		else throw new DetailViewException("상세보기 실패!");
-		
+		return mov;
 	}
-	
+
 }

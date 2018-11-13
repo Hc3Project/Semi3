@@ -80,6 +80,30 @@ public class DetailViewDao {
 		return mov;
 	}
 
+	public int MovieVisit(Connection con, String mCode,String userId) {
+		int result =0;
+		String sql = prop.getProperty("movieVisit");
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(2, mCode);
+			pstmt.setString(1, userId);
+			
+			result=pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+		
+	}
+
 	
 
 }
