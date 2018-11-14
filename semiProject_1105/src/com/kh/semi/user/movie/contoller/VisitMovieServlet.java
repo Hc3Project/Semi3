@@ -40,7 +40,7 @@ public class VisitMovieServlet extends HttpServlet {
 		MovieService ms = new MovieService();
 		ArrayList<MovieInfo> mlist = new ArrayList<MovieInfo>();
 		mlist = ms.visitMovie(userId);
-		
+		System.out.println(mlist.size());
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(mlist, response.getWriter());
 		

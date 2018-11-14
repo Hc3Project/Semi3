@@ -136,6 +136,7 @@ public class MovieDao {
 		String sql = prop.getProperty("visitMovie");
 		
 		try {
+			list=new ArrayList<MovieInfo>();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			

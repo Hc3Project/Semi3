@@ -4,9 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../../resources/js/jquery-3.3.1.min.js"></script>
-
-<script src="../../resources/js/common.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -66,32 +63,32 @@
 				$('.signup-cont').show();
 			}
 		});
+		
 		$(function() {
-			$ajax({
-				url : "/mVisit.do",
-				type : post,
-					success : {function(data) {
+			$.ajax({
+				url : "/semi/mVisit.do",
+				type : "post",
+					success : function(data) {
 	                    var $top = $("#visitMovie")
 							for ( var i in data) {
-								var $list= $("<div>")
+								$list= $("<div>").attr("class", "col-md-2")
 		                        .append(
-		                            $("<h1>").text()
+		                            $("<h1>").text(data[i].mTitle)
 		                        ).append(
 		                            $("<img>").attr("src","https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg")
 		                        ).append(
 		                            $("<i>").attr("class","hover-box hover-box--play")
 		                        );
 		
-			                        if(i%6==0){
-			                            $top.append($("<div>").attr("class","rec-list clearfix"))
-			                                                  .append($ilst);
+			                        if(i%9==0){
+			                            $top.append($("<div>").attr("class","item rec-list clearfix").append($list));
 			                        }else{
-			                            $("#visitMovie div[class='item rec-list clearfix']:last-child");
+			                            $("#visitMovie div[class='item rec-list clearfix']:last-child").append($list);
 			                        }
 						        }
 	                    }
 				
-                }});
+                });
 		});
 		
 		

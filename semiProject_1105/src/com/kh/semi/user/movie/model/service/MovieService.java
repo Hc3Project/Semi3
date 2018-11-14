@@ -19,7 +19,6 @@ import org.jsoup.select.Elements;
 
 import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
-import com.kh.semi.user.movie.model.dao.DetailViewDao;
 import com.kh.semi.user.movie.model.dao.MovieDao;
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.movie.model.vo.PosterInfo;
