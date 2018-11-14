@@ -79,7 +79,7 @@
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=IT">이탈리아</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=KO">한국</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=KR">한국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=ES">스페인</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
@@ -164,13 +164,13 @@
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCu3BjLd03jxTVHXTPqZ77iQ">천재이승국</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">뭅이</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UC8OTtjmmFp-NAypjj64ocmg">뭅이</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">리뷰엉이</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCrBpV_pG2kyMMEHCMTNzjAQ">리뷰엉이</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">소개해주는 남자</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCBHXCaw_W6sxfgAB7rC-BYw">소개해주는 남자</a></li>
 							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">달빛뮤즈</a></li>
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCMguxwveCsLVpyKrLz-EFTg">달빛뮤즈</a></li>
 						</ul>
 					</div>
 			</span>

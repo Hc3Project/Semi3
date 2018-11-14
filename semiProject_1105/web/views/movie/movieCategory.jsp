@@ -32,7 +32,7 @@
 
 		<div class="select-genre">
 			<select class="genre">
-				<option value="all" id="all">모든 장르</option>
+				<option value="all" id="all" >모든 장르</option>
 				<option value="G1" id="sf">SF</option>
 				<option value="G2" id="family">가족</option>
 				<option value="G3" id="horro"">공포/호러</option>
@@ -147,25 +147,32 @@
 	</div>
 	
 	
-	
-		<script>
+	<!-- 헤더의 카테고리 선택과 연결되는 셀렉트박스 액션 부분 -->
+	<script>
+		
+		$(function() {
 			
-			$(function() {
-				
-				<%-- console.log("<%=cCode%>");--%>
-				$(".genre").val("<%=cCode%>").attr("selected","selected");
-				
-			});
+			var checked = "<%=cCode%>";
 			
-			$(function(){
-				$(".nation").val("<%=cCode%>").attr("selected","selected");
+			console.log(checked.length);
+			<%-- console.log("<%=cCode%>");--%>
+			if(checked.length < 3 && checked.charAt(0) == 'G'){ // 장르코드 셀렉트
 				
-			})
+				$(".genre").val("<%=cCode%>").prop("selected","selected");
 			
-			$(function(){
-				$(".reviewer").val("<%=cCode%>").attr("selected","selected");
-				
-			})
-		</script>
+			}else if( checked.length == 2 || checked.length == 3 ){
+				/*checked == "US" || "KR" || "TW" || "IN" || "CN" ||
+				"US" || "JP" || "HK" || "DE" ||	"UK" || "FR" || 
+				"CA" || "IT" || "ES" || "ETC" &&  */
+				$(".nation").val("<%=cCode%>").prop("selected","selected");
+			
+			}else if( checked.length > 20 ){
+
+			$(".reviewer").val("<%=cCode%>").prop("selected","selected");
+			
+			}
+		});
+
+	</script>
 </body>
 </html>
