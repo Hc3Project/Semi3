@@ -40,6 +40,10 @@ function getList(rvrCode, keyword){
 }
 
 function showList(data){
+	if(data.length==0){
+		alert("검색 결과가 존재하지 않습니다.");
+		return false;
+	}
 	var strUrl = "/semi/views/manager/common/delShowVideo.jsp";
 	var tmpLen = data.length - resultMax*curPage;
 	var num = (tmpLen<resultMax)?tmpLen:resultMax;
@@ -71,21 +75,23 @@ function showVideo(code, arr){
 }
 
 function delReview(obj){
-	var videoId = $(obj).siblings('input:hidden').eq(0).val();
-	var urlStr = "/semi/rvDelete.rv";
-	$.ajax({
-		type : 'post',
-		url : urlStr,
-		data : {
-			"videoId" : videoId
-		},
-		success : function(data){
-			if(data>0) alert('리뷰가 성공적으로 삭제되었습니다.');
-			else alert('리뷰 삭제를 실패하였습니다.');
-			location.reload();
-		},
-		error : function(data){
-			console.log(data)
-		}
-	})
+	if(confirm("정말 삭제하시겠습니까?")){
+		var videoId = $(obj).siblings('input:hidden').eq(0).val();
+		var urlStr = "/semi/rvDelete.rv";
+		$.ajax({
+			type : 'post',
+			url : urlStr,
+			data : {
+				"videoId" : videoId
+			},
+			success : function(data){
+				if(data>0) alert('리뷰가 성공적으로 삭제되었습니다.');
+				else alert('리뷰 삭제를 실패하였습니다.');
+				location.reload();
+			},
+			error : function(data){
+				console.log(data)
+			}
+		})
+	}
 }

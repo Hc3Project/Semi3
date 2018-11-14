@@ -36,13 +36,17 @@ public class ReviewerSelectAllServlet extends HttpServlet {
 		List<ReviewerInfo> result = rs.selectAllReviewer();
 		
 		String page = "";
-		if(result != null) {
-			page = "/views/manager/addReview.jsp?opt=" + toPath;
+		
+		if(toPath.equals("add")) {
+			page = "/views/manager/addReview.jsp?";
+			request.setAttribute("rvrList", result);
+		} else if(toPath.equals("del")) {
+			page = "/views/manager/deleteReview.jsp?";
 			request.setAttribute("rvrList", result);
 		} else {
-			// 리뷰어가 하나도 없을 경우
-			// 차후 에러 페이지 보내기
+			// 해당 매개변수가 아닐 때 즉 잘못된 경로로 들어왔을 때
 		}
+		
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

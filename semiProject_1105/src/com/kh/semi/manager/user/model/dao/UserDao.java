@@ -18,7 +18,7 @@ public class UserDao {
 	
 	public UserDao() {
 		prop = new Properties();
-		String filePath = UserDao.class.getResource("/config/user-query.properties").getPath();
+		String filePath = UserDao.class.getResource("/config/manager/user-query.properties").getPath();
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {
@@ -36,9 +36,8 @@ public class UserDao {
 			result = new ArrayList<UserInfo>();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, keyword);
-			pstmt.setString(2, opt);
-			pstmt.setInt(3, stNum);
-			pstmt.setInt(4, edNum);
+			pstmt.setInt(2, stNum);
+			pstmt.setInt(3, edNum);
 			
 			rset = pstmt.executeQuery();
 			
@@ -46,6 +45,7 @@ public class UserDao {
 				UserInfo ui = new UserInfo();
 				ui.setUserId(rset.getString("userid"));
 				ui.setEmail(rset.getString("email"));
+				result.add(ui);
 			}
 			
 		} catch (SQLException e) {
