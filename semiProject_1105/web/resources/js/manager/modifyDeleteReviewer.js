@@ -129,7 +129,7 @@ function showList(sIdx, num){
 	$('#rvrList tbody tr').click(function(){
 		var idx = $(this).find('input:hidden').eq(0).val();
 		
-		$(this).parents('div').css('display', 'none');
+		$(this).parents('#divList').css('display', 'none');
 		var table = $('#divUpdate');
 		table.css('display', 'block');
 		

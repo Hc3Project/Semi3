@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.semi.manager.user.model.service.UserService;
 import com.kh.semi.manager.user.model.vo.UserInfo;
 
@@ -38,6 +39,7 @@ public class UserSelectPartServlet extends HttpServlet {
 		
 		UserService us = new UserService();
 		List<UserInfo> result = us.selectPartUser(opt, keyword, stNum, edNum);
+		new Gson().toJson(result, response.getWriter());
 	}
 
 	/**

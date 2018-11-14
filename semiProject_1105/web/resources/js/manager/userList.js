@@ -15,7 +15,7 @@ $(function(){
 		curPage = 0;
 		opt = $('#selOpt').val();
 		keyword = $('#search').val().trim();
-		getList(curPage++, curPage-1);
+		getList(curPage+1, ++curPage*resultMax);
 	})
 })
 
@@ -31,7 +31,8 @@ function getList(stNum, edNum){
 			"edNum" : edNum
 		},
 		success : function(data){
-			console.log(data);
+			console.log($.parseJSON(data));
+			showList($.parseJSON(data));
 		},
 		error : function(data){
 			console.log(data);
@@ -39,6 +40,23 @@ function getList(stNum, edNum){
 	})
 }
 
-function showList(){
-	
+function showList(result){
+	$table = $('#userList tbody');
+	$.each(result, function(idx, item){
+		$tr = $('<tr>');
+		$tdId = $('<td>').text(item.userId);
+		$tdEmail = $('<td>').text(item.email);
+		$btn = $('input').attr({
+			type : 'button',
+			value : '삭제하기',
+			onclick : 'removeUser(this);'
+		})
+		$tdBtn = $('<td>').append($btn);
+		
+		$tr.append($tdId);
+		$tr.append($tdEmail);
+		$tr.append($tdBtn);
+		
+		$table.append($tr);
+	})
 }
