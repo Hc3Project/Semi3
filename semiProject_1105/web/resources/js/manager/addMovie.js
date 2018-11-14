@@ -39,6 +39,7 @@ $(function(){
 })
 
 function addTable(data){
+	
 	var totCnt = data.movieListResult.totCnt;
 	$table = $('#movieList tbody');
 	

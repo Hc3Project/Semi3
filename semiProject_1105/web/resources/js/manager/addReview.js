@@ -40,13 +40,17 @@ function getVideo(channelId, keyword, nToken){
 	})
 	
 	rRequest.execute(function(data){
-		console.log(data);
 		showList(data);
 	})
 	
 }
 
 function showList(data){
+	if(data.items.length==0){
+		alert('검색 결과가 존재하지 않습니다.');
+		$('#rvKeyword').val('').focus();
+		return false;
+	}
 	var result = data;
 	nToken = data.nextPageToken;
 	$.each(result.items, function(idx, item){
