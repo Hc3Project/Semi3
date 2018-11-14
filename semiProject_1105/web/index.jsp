@@ -123,7 +123,7 @@
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>???</span> <a class="rec-row__show-more" href="javascript:;">
+						<span>TOP 리뷰 20</span> <a class="rec-row__show-more" href="javascript:;">
 							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
 						</a>
 					</h5>
@@ -157,7 +157,7 @@
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>!!!!</span> <a class="rec-row__show-more" href="javascript:;">
+						<span>?</span> <a class="rec-row__show-more" href="javascript:;">
 							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
 						</a>
 					</h5>

@@ -20,9 +20,8 @@ import com.kh.semi.user.review.model.vo.ReviewInfo;
 public class ReviewDao {
 	private Properties prop = new Properties();
 
-	public ReviewDao(){
-		String filePath = 
-				ReviewDao.class.getResource("/config/review-query.properties").getPath().replace("%20"," ");
+	public ReviewDao() {
+		String filePath = ReviewDao.class.getResource("/config/review-query.properties").getPath().replace("%20", " ");
 
 		try {
 			prop.load(new FileReader(filePath));
@@ -35,20 +34,19 @@ public class ReviewDao {
 		}
 	}
 
-
-	public ArrayList<Review> reviewToday(Connection con) {
+	public ArrayList<Review> review(Connection con,String rsql) {
 		ArrayList<Review> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-
-		String sql = prop.getProperty("todayList");
-
+		System.out.println("1 : "+rsql);
+		String sql = prop.getProperty(rsql);
+System.out.println(sql);
 		try {
-		
+
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(sql);
 			list = new ArrayList<Review>();
-			
+
 			Review review = null;
 
 			while (rset.next()) {
@@ -59,7 +57,6 @@ public class ReviewDao {
 				review.setVideoid(rset.getString("VIDEOID"));
 				review.setReviewer(rset.getString("RNAME"));
 				review.setMovie(rset.getString("MTITLE"));
-				
 
 				list.add(review);
 			}
@@ -74,21 +71,18 @@ public class ReviewDao {
 		}
 		return list;
 	}
-	public ArrayList<Review> reviewRecommend(Connection con) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+
 	public ReviewInfo selectReview(Connection con, String videoId) {
-		PreparedStatement pstmt=null;
-		ResultSet rset=null;
-		ReviewInfo rv=null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ReviewInfo rv = null;
 		try {
-			pstmt=con.prepareStatement(prop.getProperty("selectReview"));
+			pstmt = con.prepareStatement(prop.getProperty("selectReview"));
 			pstmt.setString(1, videoId);
-			rset=pstmt.executeQuery();
-			if(rset.next()){
-				rv=new ReviewInfo();
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				rv = new ReviewInfo();
 				rv.setVideoid(rset.getString(1));
 				rv.setMcode(rset.getString(2));
 				rv.setRvrcode(rset.getString(3));
@@ -99,18 +93,14 @@ public class ReviewDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			close(rset);
 			close(pstmt);
 		}
 		return rv;
-		
+
 	}
-//조회수 높은 리뷰
-	public ArrayList<Review> reviewTop(Connection con) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 }

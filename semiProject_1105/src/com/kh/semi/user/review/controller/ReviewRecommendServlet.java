@@ -35,7 +35,7 @@ public class ReviewRecommendServlet extends HttpServlet {
 		ReviewService rs = new ReviewService();
 		ArrayList<Review> list = new ArrayList<Review>();
 
-			list = rs.reviewToday();
+			list = rs.reviewRecommend();
 			
 			response.setContentType("application/json; charset=UTF-8");
 			new Gson().toJson(list, response.getWriter());

@@ -18,8 +18,8 @@ public class ReviewService {
 	public ArrayList<Review> reviewToday() {
 		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
-
-		list = rDao.reviewToday(con);
+		//최신리뷰
+		list = rDao.review(con,"todayList");
 		
 		close(con);
 
@@ -28,8 +28,8 @@ public class ReviewService {
 	public ArrayList<Review> reviewRecommend() {
 		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
-
-		list = rDao.reviewRecommend(con);
+		//추천리뷰
+		list = rDao.review(con,"todayList");
 		
 		close(con);
 
@@ -38,8 +38,8 @@ public class ReviewService {
 	public ArrayList<Review> reviewTop() {
 		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
-
-		list = rDao.reviewTop(con);
+		//인기영화리뷰
+		list = rDao.review(con,"topList");
 		
 		close(con);
 

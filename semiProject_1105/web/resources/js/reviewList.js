@@ -1,6 +1,6 @@
 $(function() {
 	// st2Carousel 대상 div 지정
-	var $topDiv = $("#st2Carousel .carousel-inner");
+	var $todayDiv = $("#st2Carousel .carousel-inner");
 	$
 			.ajax({
 				url : "/semi/rToday.rv",
@@ -8,7 +8,7 @@ $(function() {
 
 					for ( var i in data) {
 						$review = $("<div/>").attr("class", "col-md-2").append(
-								$("<h1/>").text(""+data[i].Movie)).append(
+								$("<h1/>").text(data[i].Movie)).append(
 								$("<img/>").attr(
 										"src",
 										"https://img.youtube.com/vi/"
@@ -23,7 +23,7 @@ $(function() {
 
 						if (i > -1 && i < 6) {
 							if (i == 0) {
-								$topDiv.append($("<div>").attr("class",
+								$todayDiv.append($("<div>").attr("class",
 										"item active rec-list clearfix")
 										.append($review));
 							}
@@ -32,7 +32,7 @@ $(function() {
 									.append($review);
 						} else {
 							if (i % 6 == 0) {
-								$topDiv.append($("<div>").attr("class",
+								$todayDiv.append($("<div>").attr("class",
 										"item rec-list clearfix").append(
 										$review));
 							}
@@ -67,12 +67,12 @@ $(function() {
 	var $topDiv = $("#st3Carousel .carousel-inner");
 	$
 			.ajax({
-				url : "/semi/rToday.rv",
+				url : "/semi/rTop.rv",
 				success : function(data) {
 
 					for ( var i in data) {
 						$review = $("<div/>").attr("class", "col-md-2").append(
-								$("<h1/>").text(data[i].Videoid)).append(
+								$("<h1/>").text(data[i].Movie)).append(
 								$("<img/>").attr(
 										"src",
 										"https://img.youtube.com/vi/"
@@ -81,10 +81,9 @@ $(function() {
 
 						).append(
 								$("<i/>").attr("class",
-										"hover-box hover-box--play")).append(
-								$("<div/>").attr("class", "hover-box").append(
-										$("<h2/>").text("호버시 제목")).append(
-										$("<p/>").text("호버시 텍스트"))).attr("value",data[i].Videoid);
+								"hover-box hover-box--play")).append(
+						$("<div/>").attr("class", "hover-box").append(
+								$("<h2/>").text(data[i].Reviewer))).attr("value",data[i].Videoid);
 
 						if (i > -1 && i < 6) {
 							if (i == 0) {
