@@ -38,9 +38,9 @@ public class ReviewDao {
 		ArrayList<Review> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-		System.out.println("1 : "+rsql);
+	
 		String sql = prop.getProperty(rsql);
-System.out.println(sql);
+
 		try {
 
 			stmt = con.createStatement();
