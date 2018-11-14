@@ -1,6 +1,6 @@
 $(function() {
-	// st2Carousel 대상 div 지정
-	var $todayDiv = $("#st2Carousel .carousel-inner");
+	// rlCarousel 대상 div 지정
+	var $todayDiv = $("#rlCarousel .carousel-inner");
 	$
 			.ajax({
 				url : "/semi/rList.rv",
@@ -31,7 +31,7 @@ $(function() {
 										.append($review));
 							}
 							$(
-									"#st2Carousel div[class='item active rec-list clearfix']")
+									"#rlCarousel div[class='item active rec-list clearfix']")
 									.append($review);
 						} else {
 							if (i % 6 == 0) {
@@ -40,7 +40,7 @@ $(function() {
 										$review));
 							}
 							$(
-									"#st2Carousel div[class='item rec-list clearfix']:last-child")
+									"#rlCarousel div[class='item rec-list clearfix']:last-child")
 									.append($review);
 						}
 					}
@@ -55,7 +55,6 @@ $(function() {
 					});
 					$(".rec-list> div").click(function() {
 						console.log($(this).attr("value"));
-						location.href = "/semi/dView.do?videoId="+$(this).attr("value");
 						
 					})
 				},
@@ -66,8 +65,8 @@ $(function() {
 
 });
 $(function() {
-	// st3Carousel 대상 div 지정
-	var $topDiv = $("#st3Carousel .carousel-inner");
+	// rnCarousel 대상 div 지정
+	var $topDiv = $("#rnCarousel .carousel-inner");
 	$
 			.ajax({
 				url : "/semi/rList.rv",
@@ -98,7 +97,7 @@ $(function() {
 										.append($review));
 							}
 							$(
-									"#st3Carousel div[class='item active rec-list clearfix']")
+									"#rnCarousel div[class='item active rec-list clearfix']")
 									.append($review);
 						} else {
 							if (i % 6 == 0) {
@@ -107,7 +106,7 @@ $(function() {
 										$review));
 							}
 							$(
-									"#st3Carousel div[class='item rec-list clearfix']:last-child")
+									"#rnCarousel div[class='item rec-list clearfix']:last-child")
 									.append($review);
 						}
 					}
@@ -135,8 +134,8 @@ $(function() {
 
 //
 $(function() {
-	// st4Carousel 대상 div 지정
-	var $topDiv = $("#st4Carousel .carousel-inner");
+	// rrcCarousel 대상 div 지정
+	var $topDiv = $("#rrcCarousel .carousel-inner");
 	$
 			.ajax({
 				url : "/semi/rList.rv",
@@ -168,7 +167,7 @@ $(function() {
 										.append($review));
 							}
 							$(
-									"#st4Carousel div[class='item active rec-list clearfix']")
+									"#rrcCarousel div[class='item active rec-list clearfix']")
 									.append($review);
 						} else {
 							if (i % 6 == 0) {
@@ -177,7 +176,7 @@ $(function() {
 										$review));
 							}
 							$(
-									"#st4Carousel div[class='item rec-list clearfix']:last-child")
+									"#rrcCarousel div[class='item rec-list clearfix']:last-child")
 									.append($review);
 						}
 					}

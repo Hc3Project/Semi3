@@ -15,36 +15,17 @@ public class ReviewService {
 
 	private ReviewDao rDao = new ReviewDao();
 
-	public ArrayList<Review> reviewToday() {
+	public ArrayList<Review> reviewList(String rsql) {
 		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
 		//최신리뷰
-		list = rDao.review(con,"todayList");
+		list = rDao.review(con,rsql);
 		
 		close(con);
 
 		return list;
 	}
-	public ArrayList<Review> reviewRecommend() {
-		ArrayList<Review> list = new ArrayList<Review>();
-		Connection con = getConnection();
-		//추천리뷰
-		list = rDao.review(con,"todayList");
-		
-		close(con);
-
-		return list;
-	}
-	public ArrayList<Review> reviewTop() {
-		ArrayList<Review> list = new ArrayList<Review>();
-		Connection con = getConnection();
-		//인기영화리뷰
-		list = rDao.review(con,"topList");
-		
-		close(con);
-
-		return list;
-	}
+	
 	
 	public ReviewInfo selectReview(String videoId) throws Exception{
 		Connection con=getConnection();
