@@ -34,7 +34,8 @@
 	</header>
 	<!--header-->
 	<section id="slideSection">
-		<div class="row ">
+	<!-- <div style="background-image: linear-gradient(to bottom, rgba(25,25,25,0) 10%, #191919);"></div> -->
+		<div class="row " >
 			<div class="col-lg-4">
 				<div id="boxOffice">
 					<div id="bo1">
