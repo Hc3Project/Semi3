@@ -134,6 +134,11 @@ img {
 	height: 100%;
 	
 }
+.container .item div {
+	width: 190px;
+	height: 300px;
+	padding: 0px 6px 0px 6px;
+}
 
 .listSection .carousel-inner .item div {
 	width: 300px;

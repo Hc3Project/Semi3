@@ -12,15 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.movie.model.vo.PosterInfo;
 
-public class DetailViewDao {
+public class MovieDao {
 	
 	private Properties prop = new Properties();
 	
-	public DetailViewDao(){
-		String filePath = DetailViewDao.class.getResource("/config/view-query.properties").getPath().replace("%20"," ");
+	public MovieDao(){
+		String filePath = MovieDao.class.getResource("/config/view-query.properties").getPath().replace("%20"," ");
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {
@@ -125,6 +126,35 @@ public class DetailViewDao {
 		
 		
 		return result;
+	}
+
+	public ArrayList<MovieInfo> visitMovie(Connection con, String userId) {
+		ArrayList<MovieInfo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		
+		String sql = prop.getProperty("visitMovie");
+		
+		try {
+			list=new ArrayList<MovieInfo>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			MovieInfo mi = null;
+			while(rset.next()) {
+				mi=new MovieInfo();
+				mi.setmTitle(rset.getString("MTITLE"));
+				mi.setmCode(rset.getString("MCODE"));
+				
+				list.add(mi);
+			}
+			System.out.println(list);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	

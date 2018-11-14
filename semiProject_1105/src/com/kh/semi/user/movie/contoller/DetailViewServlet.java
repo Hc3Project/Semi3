@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.semi.user.member.model.vo.Member;
-import com.kh.semi.user.movie.model.service.DetailViewService;
+import com.kh.semi.user.movie.model.service.MovieService;
 import com.kh.semi.user.movie.model.service.StarRatingService;
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.review.model.service.ReviewService;
@@ -47,7 +47,7 @@ public class DetailViewServlet extends HttpServlet {
 		String mCode = request.getParameter("mCode");
 		String userId = null;
 
-		DetailViewService dvs = new DetailViewService();
+		MovieService dvs = new MovieService();
 		ReviewService rs = new ReviewService();
 		StarRatingService srs = new StarRatingService();
 		HttpSession session = request.getSession(false);

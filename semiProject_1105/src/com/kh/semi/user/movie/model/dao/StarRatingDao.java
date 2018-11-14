@@ -1,6 +1,6 @@
 package com.kh.semi.user.movie.model.dao;
 
-import static com.kh.semi.common.JDBCTemplate.*;
+import static com.kh.semi.common.JDBCTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class StarRatingDao {
 	private Properties prop = new Properties();
 	
 	public StarRatingDao(){
-		String filePath = DetailViewDao.class.getResource("/config/score-query.properties").getPath().replace("%20"," ");
+		String filePath = StarRatingDao.class.getResource("/config/score-query.properties").getPath().replace("%20"," ");
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {

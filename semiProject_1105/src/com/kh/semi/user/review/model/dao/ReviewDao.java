@@ -44,6 +44,7 @@ public class ReviewDao {
 		String sql = prop.getProperty("todayList");
 
 		try {
+		
 			stmt = con.createStatement();
 			rset = stmt.executeQuery(sql);
 			list = new ArrayList<Review>();

@@ -194,7 +194,7 @@
 					<div class="gnb__account-menu-wrap">
 						<ul class="account-menu">
 							<li class="account-menu__item"><a class=""
-								href="/semi/views/movie/movieVisit.jsp">본 리뷰</a></li>
+								href="/semi/views/movie/myMovie.jsp">MyMovie</a></li>
 							<li class="account-menu__item"><a class=""
 								href="/semi/views/member/setting.jsp">설정</a></li>
 							<li class="account-menu__item"><a class=""
