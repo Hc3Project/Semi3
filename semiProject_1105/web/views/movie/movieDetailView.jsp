@@ -32,7 +32,12 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/detail.css" />
 </head>
 <body>
+
+	<header>
+	
+	</header>
 	<!-- 공사중 -->
+	<section class = "movieInfo">
 	<div data-exact-height="306.02294792586054" data-content-padding-horizontal="0" data-content-padding-vertical="0" id="imgFrameF">
 		<div id="imgFrameS">
 			<div data-style="" id="imgFrameT">
@@ -79,6 +84,112 @@
             <span class="starR2">별5_오른쪽</span>
         </div>
 	</div>
+	</section>
+	<section id= "reviewList"class =" movieReview">
+		<div class="home-page">
+			<div class="home-page__rec-list">
+				<div class="rec-row">
+					<h5 class="rec-row__title">
+						<span>리 뷰</span> <a class="rec-row__show-more" href="javascript:;">
+							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
+						</a>
+					</h5>
+					<div class="carousel slide" data-ride="carousel" id="rlCarousel"
+						data-interval="0">
+						<div class="carousel-inner ">
+
+							<a class="carousel-control-prev" href="#rlCarousel"
+								role="button" data-slide="prev"> <span
+								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+								class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next" href="#rlCarousel"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="true"></span> <span
+								class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+				<!--rec-row-->
+
+			</div>
+			<!--home-page__rec-list-->
+		</div>
+		<!--homepage-->
+		
+	</section>
+	<section id = "reviewNeighborList" class =" movieReview">
+		<div class="home-page">
+			<div class="home-page__rec-list">
+				<div class="rec-row">
+					<h5 class="rec-row__title">
+						<span>이 영화를 본 사람들이 많이 본 리뷰에요</span> <a class="rec-row__show-more" href="javascript:;">
+							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
+						</a>
+					</h5>
+					<div class="carousel slide" data-ride="carousel" id="rnCarousel"
+						data-interval="0">
+						<div class="carousel-inner ">
+
+							<a class="carousel-control-prev" href="#rnCarousel"
+								role="button" data-slide="prev"> <span
+								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+								class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next" href="#rnCarousel"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="true"></span> <span
+								class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+				<!--rec-row-->
+
+			</div>
+			<!--home-page__rec-list-->
+		</div>
+		<!--homepage-->
+		
+	</section>
+	<section id = "reviewRecommendList "class ="movieReview">
+		<div class="home-page">
+			<div class="home-page__rec-list">
+				<div class="rec-row">
+					<h5 class="rec-row__title">
+						<span>이런 리뷰는 어떤가요?</span> <a class="rec-row__show-more" href="javascript:;">
+							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
+						</a>
+					</h5>
+					<div class="carousel slide" data-ride="carousel" id="rrcCarousel"
+						data-interval="0">
+						<div class="carousel-inner ">
+
+							<a class="carousel-control-prev" href="#rrcCarousel"
+								role="button" data-slide="prev"> <span
+								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+								class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next" href="#rrcCarousel"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="true"></span> <span
+								class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+				<!--rec-row-->
+
+			</div>
+			<!--home-page__rec-list-->
+		</div>
+		<!--homepage-->
+		
+	</section>
+		
+		
+
 	<script type="text/javascript">
 		// 별점 이벤트 관리하는 부분(ajax)
 		// 현재 별점이 있으면  update서블릿

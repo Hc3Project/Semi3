@@ -94,7 +94,7 @@
 						</a>
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st2Carousel"
-						data-interval="30000">
+						data-interval="0">
 						<div class="carousel-inner ">
 
 							<a class="carousel-control-prev" href="#st2Carousel"
@@ -128,7 +128,7 @@
 						</a>
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st3Carousel"
-						data-interval="30000">
+						data-interval="0">
 						<div class="carousel-inner ">
 
 							<a class="carousel-control-prev" href="#st3Carousel"
@@ -162,7 +162,7 @@
 						</a>
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st4Carousel"
-						data-interval="30000">
+						data-interval="0">
 						<div class="carousel-inner ">
 
 							<a class="carousel-control-prev" href="#st4Carousel"

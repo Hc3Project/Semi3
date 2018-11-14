@@ -16,14 +16,14 @@ import com.kh.semi.user.review.model.vo.Review;
 /**
  * Servlet implementation class ReviewtodayServlet
  */
-@WebServlet("/rToday.rv")
-public class ReviewTodayServlet extends HttpServlet {
+@WebServlet("/rList.rv")
+public class ReviewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewTodayServlet() {
+    public ReviewListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,9 +33,10 @@ public class ReviewTodayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewService rs = new ReviewService();
+		String rsql = request.getParameter("rsql");
 		ArrayList<Review> list = new ArrayList<Review>();
 
-			list = rs.reviewToday();
+			list = rs.reviewList(rsql);
 			
 			response.setContentType("application/json; charset=UTF-8");
 			new Gson().toJson(list, response.getWriter());
