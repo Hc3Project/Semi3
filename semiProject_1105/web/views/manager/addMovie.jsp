@@ -8,6 +8,7 @@
 <title>영화 추가</title>
 </head>
 <body class="mBody">
+	
 	<%@include file="../common/header.jsp"%>
 	<% if(m!=null && m.getUserId().equals("admin")){ %>
 	<%@include file="common/sidebar.jsp" %>
