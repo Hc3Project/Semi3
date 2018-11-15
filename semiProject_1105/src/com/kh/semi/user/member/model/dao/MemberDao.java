@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semi.user.member.execption.MemberException;
@@ -165,6 +167,61 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+	
+	// 추천용
+	public int selectUserIdx(Connection con, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = -1;
+		String sql = prop.getProperty("selectUserIdx");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) result = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public ArrayList<String> selectUserNum(Connection con, String opt) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<String> result = null;
+		String sql = prop.getProperty("selectIdxList");
+		sql = sql.replace("condition", opt);
+		try {
+			result = new ArrayList<String>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			while(rset.next()) {
+				result.add(rset.getString(opt));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int[][] selectRating(Connection con, int uLen, int iLen) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int[][] result = null;
+		String sql = prop.getProperty("selectItemMatrix");
+		try {
+			result = new int[uLen][iLen];
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			while(rset.next()) {
+				result[rset.getInt("useridx")][rset.getInt("itemidx")] = rset.getInt("score");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 	

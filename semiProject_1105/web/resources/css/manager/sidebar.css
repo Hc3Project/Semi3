@@ -95,7 +95,6 @@
 	width : 15%;
 	height : 100%;
 	margin-left : -10px;
-	margin-top : 0px;
 	
 	position : absolute;
 	background : #191919;
@@ -120,6 +119,10 @@
 }
 
 /***********************/
+.sidebar, .mDiv {
+	margin-top : 80px;
+}
+
 .mBody h1, .mDiv h1{
 	font-size : 4em;
 	color : rgba(255,255,255,0.7);

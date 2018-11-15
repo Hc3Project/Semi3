@@ -197,6 +197,12 @@
 								href="/semi/views/movie/myMovie.jsp">MyMovie</a></li>
 							<li class="account-menu__item"><a class=""
 								href="/semi/views/member/setting.jsp">설정</a></li>
+							<%if(m.getUserId().equals("admin")){
+							%>
+							<li class="account-menu__item"><a class=""
+								href="/semi/views/manager/mIndex.jsp">관리자 페이지</a></li>
+							<%	
+							}%>
 							<li class="account-menu__item"><a class=""
 								onclick="logout()">로그아웃</a></li>
 						</ul>

@@ -8,6 +8,7 @@ import com.kh.semi.user.member.model.vo.Member;
 import static com.kh.semi.common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 
 public class MemberService {
@@ -73,6 +74,28 @@ public class MemberService {
 		
 		close(con);
 		
+		return result;
+	}
+	
+	// 추천용
+	public int selectUserIdx(String userId) {
+		Connection con = getConnection();
+		int result = mDao.selectUserIdx(con, userId);
+		close(con);
+		return result;
+	}
+
+	public ArrayList<String> selectUserNum(String opt) {
+		Connection con = getConnection();
+		ArrayList<String> result = mDao.selectUserNum(con, opt);
+		close(con);
+		return result;
+	}
+
+	public int[][] selectRating(int uLen, int iLen) {
+		Connection con = getConnection();
+		int[][] result = mDao.selectRating(con, uLen, iLen);
+		close(con);
 		return result;
 	}
 	

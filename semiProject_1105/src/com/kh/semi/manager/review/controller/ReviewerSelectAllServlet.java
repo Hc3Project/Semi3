@@ -45,8 +45,10 @@ public class ReviewerSelectAllServlet extends HttpServlet {
 			request.setAttribute("rvrList", result);
 		} else {
 			// 해당 매개변수가 아닐 때 즉 잘못된 경로로 들어왔을 때
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "회원 가입 중 에러가 발생하였습니다.");
+			request.setAttribute ("exception", new Exception("잘못 된 변수 선언"));
 		}
-		
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 
