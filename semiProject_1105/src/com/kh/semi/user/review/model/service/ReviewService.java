@@ -18,8 +18,19 @@ public class ReviewService {
 	public ArrayList<Review> reviewList(String rsql) {
 		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
-		//최신리뷰
+		
 		list = rDao.review(con,rsql);
+		
+		close(con);
+
+		return list;
+	}
+	public ArrayList<Review> reviewList(String rsql,String mTitle) {
+		ArrayList<Review> list = new ArrayList<Review>();
+		Connection con = getConnection();
+	
+		list = rDao.review(con,rsql,mTitle);
+		
 		
 		close(con);
 

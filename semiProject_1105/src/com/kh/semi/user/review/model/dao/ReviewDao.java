@@ -34,11 +34,11 @@ public class ReviewDao {
 		}
 	}
 
-	public ArrayList<Review> review(Connection con,String rsql) {
+	public ArrayList<Review> review(Connection con, String rsql) {
 		ArrayList<Review> list = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-	
+
 		String sql = prop.getProperty(rsql);
 
 		try {
@@ -57,10 +57,10 @@ public class ReviewDao {
 				review.setVideoid(rset.getString("VIDEOID"));
 				review.setReviewer(rset.getString("RNAME"));
 				review.setMovie(rset.getString("MTITLE"));
-
 				list.add(review);
+			
 			}
-			System.out.println(list.size());
+	
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -71,7 +71,45 @@ public class ReviewDao {
 		}
 		return list;
 	}
-	
+
+	public ArrayList<Review> review(Connection con, String rsql, String mTitle) {
+		ArrayList<Review> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty(rsql);
+
+		try {
+		
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mTitle);
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Review>();
+			
+			Review review = null;
+
+			while (rset.next()) {
+				review = new Review();
+				/*
+				 * VIDEOID MCODE RVRCODE UPLOADDATE COUNTS
+				 */
+				review.setVideoid(rset.getString("VIDEOID"));
+				review.setReviewer(rset.getString("RNAME"));
+				review.setMovie(rset.getString("MTITLE"));
+
+				list.add(review);
+			}
+			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 
 	public ReviewInfo selectReview(Connection con, String videoId) {
 		PreparedStatement pstmt = null;
@@ -100,7 +138,5 @@ public class ReviewDao {
 		return rv;
 
 	}
-
-
 
 }

@@ -20,6 +20,8 @@
 <head>
 <meta charset=UTF-8>
 <title>포오스터어어어!!!</title>
+
+
 <!-- 뭐가 많은데 뭘 지워야할지 몰라서 냅둠 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -36,6 +38,19 @@
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/detail.css" />
+	
+	
+<!--유튜브 팝업  -->
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<link type="text/css"
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css"
+	rel="stylesheet" />
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.youtubepopup.min.js"></script>
+
 </head>
 <body>
 
@@ -44,61 +59,70 @@
 			<%@ include file="../common/header.jsp"%>
 		</div>
 	</header>
-	
+
 	<section class="movieInfo" style="background-image: url(<%=getPage%>);">
-	<div >
-		<div class="row" >
-		
-			<div class="col-lg-9" >
-
-				<ul>
-					<li><h4>
-							<b><%=mtitle%></b>
-						</h4></li>
-
-					<li><p class="font_8">&nbsp;</p></li>
-					<li><p class="font_8" id="pf">
-							<span id="spf"><span class="color_17"><strong>감독:
-										&nbsp;</strong></span><span class="color_8"><%=director%></span></span>
-						</p></li>
-					<li><p class="font_8" id="ps">
-							<span id="sps"><span class="color_17"><strong>배우:
-										&nbsp;</strong></span><span class="color_8"><%=actor%></span></span>
-						</p></li>
-					<li><p class="font_8" id="pt">
-							<span id="spt"><span class="color_17"><strong>장르:
-										&nbsp;</strong></span><span class="color_8"><%=gname1%>, <%=gname2%></span></span>
-						</p></li>
-					<li><p class="font_8" id="pfo">
-							<span id="spfo"><span class="color_17"><strong>개봉일:
-										&nbsp;</strong></span><span class="color_8"><%=opendate%>, <%=nname%></span></span>
-						</p></li>
-					<li><p class="font_8" id="pfi">
-							<span id="spfi"><span class="color_17"><strong>상영시간:
-										&nbsp;</strong></span><span class="color_8"><%=showtime%>분</span></span>
-						</p></li>
-					<li><p class="font_8">&nbsp;</p></li>
-					<li>
-						<div class="starRev">
-							<span class="starR1 on">별1_왼쪽</span> <span class="starR2 on">별1_오른쪽</span>
-							<span class="starR1 on">별2_왼쪽</span> <span class="starR2 on">별2_오른쪽</span>
-							<span class="starR1 on">별3_왼쪽</span> <span class="starR2">별3_오른쪽</span>
-							<span class="starR1">별4_왼쪽</span> <span class="starR2">별4_오른쪽</span>
-							<span class="starR1">별5_왼쪽</span> <span class="starR2">별5_오른쪽</span>
+		<div>
+			<div>
+				<div class="row">
+					<div class="col-lg-2" data-exact-height="306.02294792586054"
+						data-content-padding-horizontal="0"
+						data-content-padding-vertical="0" id="imgFrameF">
+						<div id="imgFrameS">
+							<div data-style="" id="imgFrameT">
+								<img id="PosterImg" alt="" data-type="image" src="<%=getPage%>">
+							</div>
 						</div>
-					</li>
-					<li><p class="font_8">&nbsp;</p></li>
-					<li>
-						<div class="color_21" >
-							<p class="font_6"><%=synopsis%></p>
-						</div>
-					</li>
-				</ul>
+					</div>
+					<div class="col-lg-10">
 
+						<ul>
+							<li><h4>
+									<b id="mtitle"><%=mtitle%></b>
+								</h4></li>
+							<li><p class="font_8">&nbsp;</p></li>
+							<li><p class="font_8" id="pf">
+									<span id="spf"><span class="color_17"><strong>감독:
+												&nbsp;</strong></span><span class="color_8"><%=director%></span></span>
+								</p></li>
+							<li><p class="font_8" id="ps">
+									<span id="sps"><span class="color_17"><strong>배우:
+												&nbsp;</strong></span><span class="color_8"><%=actor%></span></span>
+								</p></li>
+							<li><p class="font_8" id="pt">
+									<span id="spt"><span class="color_17"><strong>장르:
+												&nbsp;</strong></span><span class="color_8"><%=gname1%>, <%=gname2%></span></span>
+								</p></li>
+							<li><p class="font_8" id="pfo">
+									<span id="spfo"><span class="color_17"><strong>개봉일:
+												&nbsp;</strong></span><span class="color_8"><%=opendate%>, <%=nname%></span></span>
+								</p></li>
+							<li><p class="font_8" id="pfi">
+									<span id="spfi"><span class="color_17"><strong>상영시간:
+												&nbsp;</strong></span><span class="color_8"><%=showtime%>분</span></span>
+								</p></li>
+							<li><p class="font_8">&nbsp;</p></li>
+							<li>
+								<div class="starRev">
+									<span class="starR1 on">별1_왼쪽</span> <span class="starR2 on">별1_오른쪽</span>
+									<span class="starR1 on">별2_왼쪽</span> <span class="starR2 on">별2_오른쪽</span>
+									<span class="starR1 on">별3_왼쪽</span> <span class="starR2">별3_오른쪽</span>
+									<span class="starR1">별4_왼쪽</span> <span class="starR2">별4_오른쪽</span>
+									<span class="starR1">별5_왼쪽</span> <span class="starR2">별5_오른쪽</span>
+								</div>
+							</li>
+							<li><p class="font_8">&nbsp;</p></li>
+							<li>
+								<div class="color_21">
+									<p class="font_6"><%=synopsis%></p>
+								</div>
+							</li>
+						</ul>
+
+					</div>
+					<div class="col-lg-3"></div>
+				</div>
 			</div>
-			<div class="col-lg-3"></div>
 		</div>
-</div>
 
 	</section>
 	<section id="reviewList" class=" movieReview">
@@ -124,10 +148,8 @@
 							</a>
 						</div>
 					</div>
-
 				</div>
 				<!--rec-row-->
-
 			</div>
 			<!--home-page__rec-list-->
 		</div>

@@ -5,24 +5,26 @@ $(function() {
 			.ajax({
 				url : "/semi/rList.rv",
 				data : {
-					rsql:"todayList"
+					rsql : "movieReview",
+					title : $("#mtitle").text()
 				},
 				success : function(data) {
-
+					var count = 0;
 					for ( var i in data) {
 						$review = $("<div/>").attr("class", "col-md-2").append(
 								$("<h1/>").text(data[i].Movie)).append(
-								$("<img/>").attr(
+								$("<a>").attr("class","youtube").append($("<img/>").attr(
 										"src",
 										"https://img.youtube.com/vi/"
 												+ data[i].Videoid + "/"
-												+ "mqdefault.jpg")
+												+ "mqdefault.jpg"))
 
 						).append(
 								$("<i/>").attr("class",
 										"hover-box hover-box--play")).append(
 								$("<div/>").attr("class", "hover-box").append(
-										$("<h2/>").text(data[i].Reviewer))).attr("value",data[i].Videoid);
+										$("<h2/>").text(data[i].Reviewer)))
+								.attr("value", data[i].Videoid);
 
 						if (i > -1 && i < 6) {
 							if (i == 0) {
@@ -43,6 +45,14 @@ $(function() {
 									"#rlCarousel div[class='item rec-list clearfix']:last-child")
 									.append($review);
 						}
+						count = i;
+
+					}
+					// 영상이 6개 이하면 페이지 넘기는 버튼 hidden
+					if (count < 5) {
+
+						$("#rlCarousel .carousel-inner>a").attr("hidden",
+								"hidden");
 					}
 					// 썸네일 마우스 오버
 					$(".rec-list>div").hover(function() {
@@ -53,9 +63,9 @@ $(function() {
 						$(this).children(".hover-box").stop().fadeOut();
 						$(this).children("h1").stop().fadeIn();
 					});
-					$(".rec-list> div").click(function() {
-						console.log($(this).attr("value"));
-						
+					$(".youtube").click(function() {
+						console.log("실asdasd패");
+
 					})
 				},
 				error : function() {
@@ -71,10 +81,10 @@ $(function() {
 			.ajax({
 				url : "/semi/rList.rv",
 				data : {
-					rsql:"topList"
+					rsql : "topList"
 				},
 				success : function(data) {
-
+					var count = 0;
 					for ( var i in data) {
 						$review = $("<div/>").attr("class", "col-md-2").append(
 								$("<h1/>").text(data[i].Movie)).append(
@@ -86,9 +96,10 @@ $(function() {
 
 						).append(
 								$("<i/>").attr("class",
-								"hover-box hover-box--play")).append(
-						$("<div/>").attr("class", "hover-box").append(
-								$("<h2/>").text(data[i].Reviewer))).attr("value",data[i].Videoid);
+										"hover-box hover-box--play")).append(
+								$("<div/>").attr("class", "hover-box").append(
+										$("<h2/>").text(data[i].Reviewer)))
+								.attr("value", data[i].Videoid);
 
 						if (i > -1 && i < 6) {
 							if (i == 0) {
@@ -109,6 +120,14 @@ $(function() {
 									"#rnCarousel div[class='item rec-list clearfix']:last-child")
 									.append($review);
 						}
+						count = i;
+
+					}
+					// 영상이 6개 이하면 페이지 넘기는 버튼 hidden
+					if (count < 5) {
+
+						$("#rlCarousel .carousel-inner>a").attr("hidden",
+								"hidden");
 					}
 					// 썸네일 마우스 오버
 					$(".rec-list>div").hover(function() {
@@ -119,11 +138,13 @@ $(function() {
 						$(this).children(".hover-box").stop().fadeOut();
 						$(this).children("h1").stop().fadeIn();
 					});
-					$(".rec-list> div").click(function() {
-						console.log($(this).attr("value"));
-						location.href = "/semi/dView.do?videoId="+$(this).attr("value");
-						
-					})
+				/*	$(".rec-list> div").click(
+							function() {
+								console.log($(this).attr("value"));
+								location.href = "/semi/dView.do?videoId="
+										+ $(this).attr("value");
+
+							})*/
 				},
 				error : function() {
 					console.log("실패");
@@ -140,10 +161,10 @@ $(function() {
 			.ajax({
 				url : "/semi/rList.rv",
 				data : {
-					rsql:"todayList"
+					rsql : "todayList"
 				},
 				success : function(data) {
-
+					var count = 0;
 					for ( var i in data) {
 						$review = $("<div/>").attr("class", "col-md-2").append(
 								$("<h1/>").text(data[i].Videoid)).append(
@@ -158,7 +179,8 @@ $(function() {
 										"hover-box hover-box--play")).append(
 								$("<div/>").attr("class", "hover-box").append(
 										$("<h2/>").text("호버시 제목")).append(
-										$("<p/>").text("호버시 텍스트"))).attr("value",data[i].Videoid);
+										$("<p/>").text("호버시 텍스트"))).attr(
+								"value", data[i].Videoid);
 
 						if (i > -1 && i < 6) {
 							if (i == 0) {
@@ -179,6 +201,14 @@ $(function() {
 									"#rrcCarousel div[class='item rec-list clearfix']:last-child")
 									.append($review);
 						}
+						count = i;
+					}
+					// 영상이 6개 이하면 페이지 넘기는 버튼 hidden
+					if (count < 5) {
+
+						$("#rlCarousel .carousel-inner>a").attr("hidden",
+								"hidden");
+					
 					}
 					// 썸네일 마우스 오버
 					$(".rec-list>div").hover(function() {
@@ -189,11 +219,13 @@ $(function() {
 						$(this).children(".hover-box").stop().fadeOut();
 						$(this).children("h1").stop().fadeIn();
 					});
-					$(".rec-list> div").click(function() {
-						console.log($(this).attr("value"));
-						location.href = "/semi/dView.do?videoId="+$(this).attr("value");
-						
-					})
+				/*	$(".rec-list> div").click(
+							function() {
+								console.log($(this).attr("value"));
+								location.href = "/semi/dView.do?videoId="
+										+ $(this).attr("value");
+
+							})*/
 				},
 				error : function() {
 					console.log("실패");

@@ -113,7 +113,7 @@ public class MovieDao {
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mCode);
-			System.out.println(sql + "  "+ mCode);
+			
 			
 			result=pstmt.executeUpdate();
 			
@@ -149,7 +149,7 @@ public class MovieDao {
 				
 				list.add(mi);
 			}
-			System.out.println(list);
+	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

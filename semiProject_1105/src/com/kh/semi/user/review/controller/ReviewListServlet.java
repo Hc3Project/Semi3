@@ -34,9 +34,12 @@ public class ReviewListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewService rs = new ReviewService();
 		String rsql = request.getParameter("rsql");
+		String title = request.getParameter("title");
+		System.out.println("title : "+title);
+		System.out.println("rsql : "+rsql);
 		ArrayList<Review> list = new ArrayList<Review>();
 
-			list = rs.reviewList(rsql);
+			list = title==null? rs.reviewList(rsql):rs.reviewList(rsql,title);
 			
 			response.setContentType("application/json; charset=UTF-8");
 			new Gson().toJson(list, response.getWriter());
