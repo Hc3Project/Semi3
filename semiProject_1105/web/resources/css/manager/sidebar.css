@@ -95,7 +95,7 @@
 	width : 15%;
 	height : 100%;
 	margin-left : -10px;
-	margin-top : -20px;
+	margin-top : 0px;
 	
 	position : absolute;
 	background : #191919;
@@ -111,6 +111,12 @@
 .accordion a {
 	width : 100px;
 	text-decoration : none;
+}
+
+.menu {
+	font-size : 30px;
+	font-weight : 500;
+	text-align : center;
 }
 
 /***********************/

@@ -6,16 +6,16 @@
 %>
 <aside>
 	<div class="sidebar">
-		<div class="sideL">
+		<div class="menu">
 			관리자 메뉴
 		</div>
 		<div class="accordion vertical">
 		    <ul>
 		    	<li>
-		    		<label for=""><a href="/semi/views/index.jsp">관리자 메인</a></label>
+		    		<label for=""><a href="<%=path %>mIndex.jsp">관리자 메인</a></label>
 		    	</li>
 		    	<li>
-		    		<label for=""><a href="/semi/views/index.jsp">회원 목록</a></label>
+		    		<label for=""><a href="<%=path %>userList.jsp">회원 목록</a></label>
 		    	</li>
 		        <li>
 		            <input type="checkbox" id="checkbox-1" name="checkbox-accordion" />

@@ -1,7 +1,9 @@
 package com.kh.semi.manager.user.model.service;
 
 import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.commit;
 import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -19,8 +21,13 @@ public class UserService {
 		close(con);
 		return result;
 	}
-	
-	
-	
-	
+
+	public int deleteUser(String userId) {
+		Connection con = getConnection();
+		int result = uDao.deleteUser(con, userId);
+		if(result>0) commit(con);
+		else rollback(con);
+		close(con);
+		return result;
+	}
 }

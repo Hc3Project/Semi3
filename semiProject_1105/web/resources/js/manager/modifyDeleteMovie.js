@@ -56,6 +56,7 @@ $(function(){
 				$('#movieList tbody').html('');
 				$('#modifyInfo').css('display', 'none');
 				$('#getList').css('display', 'block');
+				$('#getList').css('display', 'none');
 			}
 		})
 	})
@@ -84,7 +85,7 @@ $(function(){
 			complete : function(data){
 				$('#movieList tbody').html('');
 				$('#modifyInfo').css('display', 'none');
-				$('#getList').css('display', 'block');
+				$('#getList').css('display', 'none');
 			}
 		})
 	})
@@ -143,7 +144,7 @@ function showList(sIdx, num){
 	$('#movieList tbody tr').click(function(){
 		var idx = $(this).find('input:hidden').eq(0).val();
 		
-		$(this).parents('div').css('display', 'none');
+		$(this).parents('#getList').css('display', 'none');
 		var table = $('#modifyInfo');
 		table.css('display', 'block');
 		

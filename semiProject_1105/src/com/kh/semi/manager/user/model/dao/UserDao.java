@@ -54,4 +54,18 @@ public class UserDao {
 		return result;
 	}
 
+	public int deleteUser(Connection con, String userId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteUser");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }
