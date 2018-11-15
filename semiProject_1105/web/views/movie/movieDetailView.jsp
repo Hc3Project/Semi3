@@ -23,12 +23,18 @@
 
 
 <!-- 뭐가 많은데 뭘 지워야할지 몰라서 냅둠 -->
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/detailReviewList.js"></script>
+
+
+<link type="text/css"
+href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" rel="stylesheet" />
+
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -38,18 +44,16 @@
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/resources/css/detail.css" />
-	
-	
+
+
 <!--유튜브 팝업  -->
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
-<link type="text/css"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css"
-	rel="stylesheet" />
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="resources/js/jquery.youtubepopup.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/jquery.youtubepopup.min.js"></script>
 
 </head>
 <body>

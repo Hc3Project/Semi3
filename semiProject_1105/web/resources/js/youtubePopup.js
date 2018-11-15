@@ -1,5 +1,5 @@
 $(function() {
-		$("a.youtube").YouTubePopup({
+		$("div.youtube").YouTubePopup({
 
 			'youtubeId' : '',
 

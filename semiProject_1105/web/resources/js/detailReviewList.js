@@ -11,7 +11,7 @@ $(function() {
 				success : function(data) {
 					var count = 0;
 					for ( var i in data) {
-						$review = $("<div/>").attr("class", "col-md-2 youtube").append(
+						$review = $("<div/>").attr("class", "col-md-2 youtube").attr("rel",data[i].Videoid).append(
 								$("<h1/>").text(data[i].Movie)).append(
 								$("<img/>").attr(
 										"src",
@@ -63,10 +63,54 @@ $(function() {
 						$(this).children(".hover-box").stop().fadeOut();
 						$(this).children("h1").stop().fadeIn();
 					});
-					$("div.youtube").click(function() {
+					/*$("div.youtube").click(function() {
 						console.log("실asdasd패");
 
-					})
+					})*/
+					
+					$("div.youtube").YouTubePopup({
+
+						'youtubeId' : '',
+
+						'title' : '',
+
+						'idAttribute' : 'rel',
+
+						'draggable' : false,
+
+						'modal' : true ,
+
+						'width' : 1280,
+
+						'height' : 720,
+
+						'hideTitleBar' : true ,
+
+						'clickOutsideClose' : true,
+
+						'overlayOpacity' : 0.7,
+
+						'autohide' : 1,
+
+						'autoplay' : 1,
+
+						'color' : 'red ',
+
+						'controls' : 1,
+
+						'fullscreen' : 0,
+
+						'loop' : 0,
+
+						'hd' : 1,
+
+						'showinfo' : 1,
+						'showBorder': false
+
+						 
+							
+							
+					});
 				},
 				error : function() {
 					console.log("실패");
