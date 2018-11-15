@@ -1,9 +1,12 @@
 package com.kh.semi.user.member.model.vo;
 
+import java.util.Arrays;
+
 public class Member implements java.io.Serializable{
 	private String userId;
 	private String password;
 	private String email;
+	private String[] recList;
 	
 	
 	public Member() {
@@ -18,15 +21,12 @@ public class Member implements java.io.Serializable{
 		this.password = password;
 	}
 
-
-
-	public Member(String userId, String password, String email) {
+	public Member(String userId, String password, String email, String[] recList) {
 		super();
 		this.userId = userId;
-		
 		this.password = password;
-		
 		this.email = email;
+		this.recList = recList;
 	}
 
 
@@ -58,12 +58,18 @@ public class Member implements java.io.Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String[] getRecList() {
+		return recList;
+	}
+	
+	public void setRecRecList(String[] recList) {
+		this.recList = recList;
+	}
 
 	@Override
 	public String toString() {
-		return "Member [userId=" + userId + ", password=" + password + ", email=" + email +  "]";
-	}
-	
-	
-	
+		return "Member [userId=" + userId + ", password=" + password + ", email=" + email + ", recList="
+				+ Arrays.toString(recList) + "]";
+	}	
 }
