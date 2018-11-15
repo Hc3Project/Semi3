@@ -11,19 +11,28 @@ $(function() {
 				success : function(data) {
 					var count = 0;
 					for ( var i in data) {
-						$review = $("<div/>").attr("class", "col-md-2 youtube").attr("rel",data[i].Videoid).append(
-								$("<h1/>").text(data[i].Movie)).append(
-								$("<img/>").attr(
-										"src",
-										"https://img.youtube.com/vi/"
-												+ data[i].Videoid + "/"
-												+ "mqdefault.jpg")
+						$review = $("<div/>")
+								.attr("class", "col-md-2 youtube")
+								.attr("rel", data[i].Videoid)
+								.append($("<h1/>").text(data[i].Movie))
+								.append(
+										$("<img/>").attr(
+												"src",
+												"https://img.youtube.com/vi/"
+														+ data[i].Videoid + "/"
+														+ "mqdefault.jpg")
 
-						).append(
-								$("<i/>").attr("class",
-										"hover-box hover-box--play")).append(
-								$("<div/>").attr("class", "hover-box").append(
-										$("<h2/>").text(data[i].Reviewer)))
+								)
+								.append(
+										$("<i/>").attr("class",
+												"hover-box hover-box--play"))
+								.append(
+										$("<div/>")
+												.attr("class", "hover-box")
+												.append(
+														$("<h2/>")
+																.text(
+																		data[i].Reviewer)))
 								.attr("value", data[i].Videoid);
 
 						if (i > -1 && i < 6) {
@@ -54,63 +63,13 @@ $(function() {
 						$("#rlCarousel .carousel-inner>a").attr("hidden",
 								"hidden");
 					}
-					// 썸네일 마우스 오버
-					$(".rec-list>div").hover(function() {
 
-						$(this).children(".hover-box").stop().fadeIn();
-						$(this).children("h1").stop().hide();
-					}, function() {
-						$(this).children(".hover-box").stop().fadeOut();
-						$(this).children("h1").stop().fadeIn();
-					});
-					/*$("div.youtube").click(function() {
-						console.log("실asdasd패");
+					/*
+					 * $("div.youtube").click(function() {
+					 * console.log("실asdasd패");
+					 *  })
+					 */
 
-					})*/
-					
-					$("div.youtube").YouTubePopup({
-
-						'youtubeId' : '',
-
-						'title' : '',
-
-						'idAttribute' : 'rel',
-
-						'draggable' : false,
-
-						'modal' : true ,
-
-						'width' : 1280,
-
-						'height' : 720,
-
-						'hideTitleBar' : true ,
-
-						'clickOutsideClose' : true,
-
-						'overlayOpacity' : 0.7,
-
-						'autohide' : 1,
-
-						'autoplay' : 1,
-
-						'color' : 'red ',
-
-						'controls' : 1,
-
-						'fullscreen' : 0,
-
-						'loop' : 0,
-
-						'hd' : 1,
-
-						'showinfo' : 1,
-						'showBorder': false
-
-						 
-							
-							
-					});
 				},
 				error : function() {
 					console.log("실패");
@@ -130,19 +89,28 @@ $(function() {
 				success : function(data) {
 					var count = 0;
 					for ( var i in data) {
-						$review = $("<div/>").attr("class", "col-md-2").append(
-								$("<h1/>").text(data[i].Movie)).append(
-								$("<img/>").attr(
-										"src",
-										"https://img.youtube.com/vi/"
-												+ data[i].Videoid + "/"
-												+ "mqdefault.jpg")
+						$review = $("<div/>")
+								.attr("class", "col-md-2 youtube")
+								.attr("rel", data[i].Videoid)
+								.append($("<h1/>").text(data[i].Movie))
+								.append(
+										$("<img/>").attr(
+												"src",
+												"https://img.youtube.com/vi/"
+														+ data[i].Videoid + "/"
+														+ "mqdefault.jpg")
 
-						).append(
-								$("<i/>").attr("class",
-										"hover-box hover-box--play")).append(
-								$("<div/>").attr("class", "hover-box").append(
-										$("<h2/>").text(data[i].Reviewer)))
+								)
+								.append(
+										$("<i/>").attr("class",
+												"hover-box hover-box--play"))
+								.append(
+										$("<div/>")
+												.attr("class", "hover-box")
+												.append(
+														$("<h2/>")
+																.text(
+																		data[i].Reviewer)))
 								.attr("value", data[i].Videoid);
 
 						if (i > -1 && i < 6) {
@@ -173,22 +141,7 @@ $(function() {
 						$("#rlCarousel .carousel-inner>a").attr("hidden",
 								"hidden");
 					}
-					// 썸네일 마우스 오버
-					$(".rec-list>div").hover(function() {
 
-						$(this).children(".hover-box").stop().fadeIn();
-						$(this).children("h1").stop().hide();
-					}, function() {
-						$(this).children(".hover-box").stop().fadeOut();
-						$(this).children("h1").stop().fadeIn();
-					});
-				/*	$(".rec-list> div").click(
-							function() {
-								console.log($(this).attr("value"));
-								location.href = "/semi/dView.do?videoId="
-										+ $(this).attr("value");
-
-							})*/
 				},
 				error : function() {
 					console.log("실패");
@@ -210,21 +163,29 @@ $(function() {
 				success : function(data) {
 					var count = 0;
 					for ( var i in data) {
-						$review = $("<div/>").attr("class", "col-md-2").append(
-								$("<h1/>").text(data[i].Videoid)).append(
-								$("<img/>").attr(
-										"src",
-										"https://img.youtube.com/vi/"
-												+ data[i].Videoid + "/"
-												+ "mqdefault.jpg")
+						$review = $("<div/>")
+								.attr("class", "col-md-2 youtube")
+								.attr("rel", data[i].Videoid)
+								.append($("<h1/>").text(data[i].Movie))
+								.append(
+										$("<img/>").attr(
+												"src",
+												"https://img.youtube.com/vi/"
+														+ data[i].Videoid + "/"
+														+ "mqdefault.jpg")
 
-						).append(
-								$("<i/>").attr("class",
-										"hover-box hover-box--play")).append(
-								$("<div/>").attr("class", "hover-box").append(
-										$("<h2/>").text("호버시 제목")).append(
-										$("<p/>").text("호버시 텍스트"))).attr(
-								"value", data[i].Videoid);
+								)
+								.append(
+										$("<i/>").attr("class",
+												"hover-box hover-box--play"))
+								.append(
+										$("<div/>")
+												.attr("class", "hover-box")
+												.append(
+														$("<h2/>")
+																.text(
+																		data[i].Reviewer)))
+								.attr("value", data[i].Videoid);
 
 						if (i > -1 && i < 6) {
 							if (i == 0) {
@@ -252,8 +213,9 @@ $(function() {
 
 						$("#rlCarousel .carousel-inner>a").attr("hidden",
 								"hidden");
-					
+
 					}
+
 					// 썸네일 마우스 오버
 					$(".rec-list>div").hover(function() {
 
@@ -263,13 +225,46 @@ $(function() {
 						$(this).children(".hover-box").stop().fadeOut();
 						$(this).children("h1").stop().fadeIn();
 					});
-				/*	$(".rec-list> div").click(
-							function() {
-								console.log($(this).attr("value"));
-								location.href = "/semi/dView.do?videoId="
-										+ $(this).attr("value");
+					$("div.youtube").YouTubePopup({
 
-							})*/
+						'youtubeId' : '',
+
+						'title' : '',
+
+						'idAttribute' : 'rel',
+
+						'draggable' : false,
+
+						'modal' : true,
+
+						'width' : 1280,
+
+						'height' : 720,
+
+						'hideTitleBar' : true,
+
+						'clickOutsideClose' : true,
+
+						'overlayOpacity' : 0.7,
+
+						'autohide' : 1,
+
+						'autoplay' : 1,
+
+						'color' : 'red ',
+
+						'controls' : 1,
+
+						'fullscreen' : 0,
+
+						'loop' : 0,
+
+						'hd' : 1,
+
+						'showinfo' : 1,
+						'showBorder' : false
+
+					});
 				},
 				error : function() {
 					console.log("실패");
