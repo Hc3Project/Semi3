@@ -150,7 +150,7 @@ img {
 	
 	margin: 25px 50px;
 }
-.carousel-inner a{
+.carousel-inner> a{
 	z-index:2;
 	margin: 50px;
 	width:80px !important;
@@ -201,4 +201,8 @@ a[href="#st2Carousel"] {
 }
 .boxRank tr{
 	border:2px solid #ffffff
+}
+.youtube{
+	margin: 0px !important;
+	height: 100%;
 }
