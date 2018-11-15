@@ -13,11 +13,11 @@ $(function() {
 					for ( var i in data) {
 						$review = $("<div/>").attr("class", "col-md-2").append(
 								$("<h1/>").text(data[i].Movie)).append(
-								$("<a>").attr("class","youtube").append($("<img/>").attr(
+								$("<img/>").attr(
 										"src",
 										"https://img.youtube.com/vi/"
 												+ data[i].Videoid + "/"
-												+ "mqdefault.jpg"))
+												+ "mqdefault.jpg")
 
 						).append(
 								$("<i/>").attr("class",

@@ -93,8 +93,3 @@ body {
 	
 	margin: 25px 50px;
 }
-.carousel-inner a{
-	z-index:2;
-	margin: 50px;
-	width:80px !important;
-}

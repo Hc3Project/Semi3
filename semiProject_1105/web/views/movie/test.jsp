@@ -34,7 +34,7 @@
 
 <script>
 	$(function() {
-		$("a.youtube").YouTubePopup({
+		$("div.youtube").YouTubePopup({
 
 			'youtubeId' : '',
 
@@ -83,8 +83,8 @@
 
 </head>
 <body>
-	<a class="youtube" href="#" rel="ivup7P6_RN4"
-		title="jQuery YouTube Popup Player Plugin TEST">Test Me</a>
+	<div class="youtube" href="#" rel="ivup7P6_RN4"
+		title="jQuery YouTube Popup Player Plugin TEST" style="width: 200px; height: 200px"></div>
 
 
 </body>
