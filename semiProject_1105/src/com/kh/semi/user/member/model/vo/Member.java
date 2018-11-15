@@ -12,13 +12,18 @@ public class Member implements java.io.Serializable{
 	public Member() {
 		super();
 	}
-
 	
-
 	public Member(String userId, String password) {
 		super();
 		this.userId = userId;
 		this.password = password;
+	}
+	
+	public Member(String userId, String password, String email) {
+		super();
+		this.userId = userId;
+		this.password = password;
+		this.email = email;
 	}
 
 	public Member(String userId, String password, String email, String[] recList) {

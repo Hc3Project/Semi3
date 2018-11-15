@@ -12,6 +12,8 @@
 <title>리뷰 삭제하기</title>
 </head>
 <body class="mBody">
+	<%@include file="../common/header.jsp"%>
+	<% if(m!=null && m.getUserId().equals("admin")){ %>
 	<%@include file="common/sidebar.jsp" %>
 	<div class="mDiv">
 		<h1>리뷰 삭제</h1>
@@ -35,6 +37,11 @@
 			<input type="button" value="결과 더 보기" id="moreList">
 		</div>
 	</div>
+	<%}  else {
+		String path = "/views/common/errorPage.jsp";
+		request.setAttribute("exception", new Exception("관리자 권한이 없습니다."));
+		request.getRequestDispatcher(path).forward(request, response);
+	}%>
 </body>
 <script src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/manager/deleteReview.js"></script>
