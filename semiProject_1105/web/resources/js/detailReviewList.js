@@ -11,7 +11,7 @@ $(function() {
 				success : function(data) {
 					var count = 0;
 					for ( var i in data) {
-						$review = $("<div/>").attr("class", "col-md-2").append(
+						$review = $("<div/>").attr("class", "col-md-2 youtube").append(
 								$("<h1/>").text(data[i].Movie)).append(
 								$("<img/>").attr(
 										"src",
@@ -63,7 +63,7 @@ $(function() {
 						$(this).children(".hover-box").stop().fadeOut();
 						$(this).children("h1").stop().fadeIn();
 					});
-					$(".youtube").click(function() {
+					$("div.youtube").click(function() {
 						console.log("실asdasd패");
 
 					})
