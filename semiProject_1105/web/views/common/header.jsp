@@ -136,7 +136,7 @@
 			</li>
 			
 			<li class="gnb__category-list"><a class="gnb__nav-category"
-				href="<%request.getContextPath();%>/semi/sCategory.se?cCode=all">리뷰어</a> 
+				href="/semi/views/movie/movieReviewerView.jsp">리뷰어</a> 
 			<span>
 					<div class="gnb-category-list">
 						<div class="gnb-category-list__filters">
