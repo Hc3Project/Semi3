@@ -208,17 +208,24 @@ $(function() {
 								"hidden");
 
 					}
-					//리뷰영상 유튜브 연동
-					youtubePopup();
 					
-					// 썸네일 마우스 오버
-					hoverThmbnail();
 					
 				},
 				error : function() {
 					console.log("실패");
+				},complete: function(){
+					//리뷰영상 유튜브 연동
+					youtubePopup();
+					
+					
+					// 썸네일 마우스 오버
+					hoverThmbnail();
+					
+					$("div[class= 'ui-dialog-content ui-widget-content']").css("overflow","hidden");
 				}
 			});
+	
+	
 	function hoverThmbnail() {
 		$(".rec-list>div").hover(function() {
 

@@ -3,6 +3,7 @@
 	import="java.sql.Date, com.kh.semi.user.movie.model.vo.MovieDetailInfo"%>
 <%
 	String getPage = (String) request.getAttribute("page");
+System.out.println("asdasd "+getPage);
 	MovieDetailInfo mov = (MovieDetailInfo) request.getAttribute("mov");
 	String mtitle = mov.getMtitle();
 	String director = mov.getDirector();
@@ -165,7 +166,7 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>이 영화를 본 사람들이 많이 본 리뷰에요</span> <a class="rec-row__show-more"
+						<span>이 영화를 본 사람들이 많이 본 리뷰예요</span> <a class="rec-row__show-more"
 							href="javascript:;"> <span>모두 보기 </span> <span
 							class="glyphicon glyphicon-angle-right"></span>
 						</a>
