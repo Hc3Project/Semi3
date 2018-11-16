@@ -1,5 +1,7 @@
 package com.kh.semi.user.member.model.dao;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,12 +11,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.user.category.model.vo.CategoryInfo;
 import com.kh.semi.user.member.execption.MemberException;
 import com.kh.semi.user.member.model.vo.Member;
-
-import static com.kh.semi.common.JDBCTemplate.*;
 
 public class MemberDao {
 	private Properties prop;
@@ -218,6 +220,28 @@ public class MemberDao {
 			rset = stmt.executeQuery(sql);
 			while(rset.next()) {
 				result[rset.getInt("useridx")][rset.getInt("itemidx")] = rset.getInt("score");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public List<CategoryInfo> selectGenreCnt(Connection con, String gCode) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		String sql = prop.getProperty("selectGenreCnt");
+		sql = sql.replace("condition", gCode);
+		try {
+			result = new ArrayList<CategoryInfo>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("gname"));
+				ci.setCnt(rset.getInt("gcnt"));
+				
+				result.add(ci);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>영화 추가</title>
+<script src="../../resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body class="mBody">
 	
@@ -74,6 +75,5 @@
 		request.getRequestDispatcher(path).forward(request, response);
 	}%>
 </body>
-<script src="../../resources/js/jquery-3.3.1.min.js"></script>
 <script src="../../resources/js/manager/addMovie.js"></script>
 </html>
