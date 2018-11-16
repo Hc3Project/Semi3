@@ -5,7 +5,8 @@
 %>
 
 <!DOCTYPE html>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
 		<a class="logo active" href="/semi/index.jsp"></a>
@@ -14,164 +15,50 @@
 			<li class="gnb__category-list"><a class="gnb__nav-category"
 				href="<%request.getContextPath();%>/semi/sCategory.se?cCode=all">영화 카테고리</a> 
 			<span>
-					<div class="gnb-category-list">
+					<div class="gnb-category-list" id="gnb-category-list">
 						<div class="gnb-category-list__filters">
-							<button class="category-filter-item category-filter-item--active">
+							<button class="category-filter-item category-filter-item--active" id="genreBtn" onChange="displayList();">
 								<span class="category-filter-item__text">장르</span>
 							</button>
-							<button class="category-filter-item">
+							<button class="category-filter-item" id="nationBtn" onChange="displayList();">
 								<span class="category-filter-item__text">국가</span>
 							</button>
-							<button class="category-filter-item">
+							<button class="category-filter-item" id="reviewerBtn" onChange="displayList();">
 								<span class="category-filter-item__text">리뷰어</span>
 							</button>
 						</div>
-						<ul class="gnb-category-list__filtered-list">
+						
+						
+						<!-- 장르 목록 -->
+						<ul class="gnb-category-list__filtered-list" onChange=addCategory();>
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=all">모든 장르</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G1">SF</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G2">가족</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G3">공포/호러</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G4">다큐멘터리</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G5">드라마</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G6">멜로/로맨스</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G7">어드벤처</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G8">뮤지컬</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G9">범죄</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G10">액션</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G11">코미디</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G12">판타지</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G13">패러디</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G14">애니메이션</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G15">사극</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G16">미스터리</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G17">스릴러</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G18">전쟁</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=G19">기타</a></li>
 						</ul>
-						<ul class="gnb-category-list__filtered-list" style="display: none">
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=all">모든
-									국가</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=US">미국</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=FR">프랑스</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=IT">이탈리아</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=KR">한국</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=ES">스페인</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=TW">대만</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=IN">인도</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=JP">일본</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UK">영국</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=DE">독일</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=CN">중국</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=CA">캐나다</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=HK">홍콩</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=ETC">기타</a></li>
+						
+						
+						<!-- 국가 목록 -->
+						<ul class="gnb-category-list__filtered-list2" onChange="addNation();" style="display:none">
+							<li class="gnb-category-list__filtered-list-item2"><a
+								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=all">모든 국가</a></li>
 						</ul>
-						<ul class="gnb-category-list__filtered-list" style="display: none">
+						
+						<!-- 리뷰어 목록 -->
+						<ul class="gnb-category-list__filtered-list3" onChange="addReviewer();" style="display: none">
 							<li class="gnb-category-list__filtered-list-item"><a
 								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=all">모든 리뷰어</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCIXvXBYSc9fQ7Ri5SM1r8xA">라이너의컬쳐쇼크</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCxlv4aOnrRTXMRSL8bVJqEw">B-MAN</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCiOWYRzOTiUYi9pJ-kscIKw">발 없는 새</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCJfthTE-ACoZJPVgwyw_hsw">필름에 빠지다</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCpCiIDf9UrfRqte55FHWlYQ">드림텔러</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCNR3K4HA6LyO9tz0oZoSJIA">백수골방</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UC79hJz6y1EEiIkwfHOuWC4w">시선플레이</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCKvfTts0BCr0Zx6FWT_rtEw">김스카이의하늘담</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCu3BjLd03jxTVHXTPqZ77iQ">천재이승국</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">뭅이</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">리뷰엉이</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">소개해주는 남자</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="../views/category/movieCategory.jsp">달빛뮤즈</a></li>
 						</ul>
 					</div>
 			</span>
 			</li>
 			
+			
+			<!-- 리뷰어 소개 페이지 -->
 			<li class="gnb__category-list"><a class="gnb__nav-category"
 				href="<%request.getContextPath();%>/semi/sCategory.se?cCode=all">리뷰어</a> 
 			<span>
 					<div class="gnb-category-list">
 						<div class="gnb-category-list__filters">
-							<button class="category-filter-item">
-								<span class="category-filter-item__text">리뷰어</span>
-							</button>
 						</div>
-						<ul class="gnb-category-list__filtered-list">
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCIXvXBYSc9fQ7Ri5SM1r8xA">라이너의컬쳐쇼크</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCxlv4aOnrRTXMRSL8bVJqEw">B-MAN</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCiOWYRzOTiUYi9pJ-kscIKw">발 없는 새</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCJfthTE-ACoZJPVgwyw_hsw">필름에 빠지다</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCpCiIDf9UrfRqte55FHWlYQ">드림텔러</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCNR3K4HA6LyO9tz0oZoSJIA">백수골방</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UC79hJz6y1EEiIkwfHOuWC4w">시선플레이</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCKvfTts0BCr0Zx6FWT_rtEw">김스카이의하늘담</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCu3BjLd03jxTVHXTPqZ77iQ">천재이승국</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UC8OTtjmmFp-NAypjj64ocmg">뭅이</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCrBpV_pG2kyMMEHCMTNzjAQ">리뷰엉이</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCBHXCaw_W6sxfgAB7rC-BYw">소개해주는 남자</a></li>
-							<li class="gnb-category-list__filtered-list-item"><a
-								href="<%request.getContextPath();%>/semi/sCategory.se?cCode=UCMguxwveCsLVpyKrLz-EFTg">달빛뮤즈</a></li>
-						</ul>
 					</div>
 			</span>
 			</li>
@@ -207,12 +94,6 @@
 				%>
 
 			</div>
-
-			<!-- <div class="gnb__my-name">
-                    <span>정한</span>
-                    <span class="glyphicon glyphicon-caret-down-f"></span>
-                    <span></span>
-                </div> -->
 
 				<div class="search">
 				<button class="search__button">
@@ -261,4 +142,130 @@
 		
 	});
 
+</script>
+
+
+<!-- 장르코드, 장르명 // 국가코드, 국가명 // 리뷰어코드, 리뷰어명 가져오는 부분 ajax -->
+<script>
+
+$(function addCategory(){
+	// 장르 추가할 ul 부분 지정, 추가할때는 li로 추가 
+	var $setGenre = $(".gnb-category-list__filtered-list")
+	$
+			.ajax({
+					url : "/semi/cList.ca",
+					data : {
+						csql : "selectCategoryGenreList"
+					},
+					success : function(data){
+						
+						for(var i in data){
+							$category = $("<li>").attr("class", "gnb-category-list__filtered-list-item")
+							.append($("<a>").text(data[i].name).attr(
+									"href","<%request.getContextPath();%>/semi/sCategory.se?cCode="
+											+ data[i].code))
+											
+							if(i>-1){
+								
+								$setGenre.append($category);
+								
+							}
+						}
+					},
+					error : function(data) {
+						console.log(data);
+						console.log("불러오기실패");
+					}
+	});
+});
+
+
+$(function addNation(){
+	// 국가 추가할 ul 부분 지정, 추가할때는 li로 추가 
+	var $setNation = $(".gnb-category-list__filtered-list2")
+	$
+			.ajax({
+					url : "/semi/cList.ca",
+					data : {
+						csql : "selectCategoryNationList"
+					},
+					success : function(data){
+						
+						for(var i in data){
+							$category = $("<li>").attr("class", "gnb-category-list__filtered-list-item2")
+							.append($("<a>").text(data[i].name).attr(
+									"href","<%request.getContextPath();%>/semi/sCategory.se?cCode="
+											+ data[i].code))
+											
+							if(i>-1){
+								
+								$setNation.append($category);
+								
+							}
+						}
+					},
+					error : function(data) {
+						console.log(data);
+						console.log("불러오기실패");
+					}
+		
+	});
+});
+
+
+$(function addReviewer(){
+	// 리뷰어 추가할 ul 부분 지정, 추가할때는 li로 추가 
+	var $setReviewer = $(".gnb-category-list__filtered-list3")
+	$
+			.ajax({
+					url : "/semi/cList.ca",
+					data : {
+						csql : "selectCategoryReviewerList"
+					},
+					success : function(data){
+						
+						for(var i in data){
+							$category = $("<li>").attr("class", "gnb-category-list__filtered-list-item3")
+							.append($("<a>").text(data[i].name).attr(
+									"href","<%request.getContextPath();%>/semi/sCategory.se?cCode="
+											+ data[i].code))
+											
+							if(i>-1){
+								
+								$setReviewer.append($category);
+								
+							}
+						}
+					},
+					error : function(data) {
+						console.log(data);
+						console.log("불러오기실패");
+					}
+		
+	});
+});
+</script>
+
+
+<!-- 장르, 국가, 리뷰어 탭 표시 -->
+<script>
+$(function displayList(){
+
+		$("#genreBtn").click(function(){
+			$(".gnb-category-list__filtered-list2").css("display","none");
+			$(".gnb-category-list__filtered-list3").css("display","none")
+		});
+
+		$("#nationBtn").click(function(){
+			$(".gnb-category-list__filtered-list2").css("display","");
+			$(".gnb-category-list__filtered-list3").css("display","none");	
+		});
+	
+		
+		$("#reviewerBtn").click(function(){
+			$(".gnb-category-list__filtered-list2").css("display","none");
+			$(".gnb-category-list__filtered-list3").css("display","");			
+		});
+
+});
 </script>
