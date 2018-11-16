@@ -102,13 +102,5 @@ public class MemberService {
 		close(con);
 		return result;
 	}
-
-	// 차트용
-	public List<CategoryInfo> selectGenreCnt(String gCode) {
-		Connection con = getConnection();
-		List<CategoryInfo> result = mDao.selectGenreCnt(con, gCode);
-		close(con);
-		return result;
-	}
 	
 }

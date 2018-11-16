@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.kh.semi.manager.video.model.dao.VideoDao;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
+import com.kh.semi.user.category.model.vo.CategoryInfo;
 
 public class VideoService {
 	
@@ -94,6 +95,27 @@ public class VideoService {
 		close(con);
 		
 		return result1;
+	}
+
+	public List<CategoryInfo> selectGenreCnt(String gCode) {
+		Connection con = getConnection();
+		List<CategoryInfo> result = vDao.selectGenreCnt(con, gCode);
+		close(con);
+		return result;
+	}
+
+	public List<CategoryInfo> selectNationCnt() {
+		Connection con = getConnection();
+		List<CategoryInfo> result = vDao.selectGenreCnt(con);
+		close(con);
+		return result;
+	}
+
+	public List<CategoryInfo> selectRegentGenre(int num) {
+		Connection con = getConnection();
+		List<CategoryInfo> result = vDao.selectRecentGenre(con, num);
+		close(con);
+		return result;
 	}
 
 }

@@ -14,16 +14,16 @@ import com.kh.semi.manager.video.model.service.VideoService;
 import com.kh.semi.user.category.model.vo.CategoryInfo;
 
 /**
- * Servlet implementation class MovieGenre1SelectServlet
+ * Servlet implementation class MovieNationSelectServlet
  */
-@WebServlet("/gSelect.vi")
-public class MovieGenreSelectServlet extends HttpServlet {
+@WebServlet("/nSelect.vi")
+public class MovieNationSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieGenreSelectServlet() {
+    public MovieNationSelectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,12 +32,7 @@ public class MovieGenreSelectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		VideoService vs = new VideoService();
-		
-		List<CategoryInfo> result = vs.selectGenreCnt("gcode1");
-		result.addAll(vs.selectGenreCnt("gcode2"));
-		
+		List<CategoryInfo> result = new VideoService().selectNationCnt();
 		new Gson().toJson(result, response.getWriter());
 	}
 
