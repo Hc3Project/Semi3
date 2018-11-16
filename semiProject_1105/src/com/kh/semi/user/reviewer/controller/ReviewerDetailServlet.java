@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
+import com.kh.semi.user.reviewer.model.service.UReviewerService;
+
+
 /**
  * Servlet implementation class ReviewerDetailServlet
  */
@@ -27,8 +31,27 @@ public class ReviewerDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		String rvrCode = request.getParameter("rvrCode");
+		System.out.println(rvrCode);
+		UReviewerService rvr = new UReviewerService();
+		
+		ReviewerInfo ri = new ReviewerInfo();
+		ri= rvr.reviewerDetail(rvrCode);
+		
+		System.out.println("전달 받은 리뷰어 정보 : "+ri);
+		
+		String page= "";
+		
+		if(ri != null){
+			page = "views/movie/movieReviewerDetailView.jsp";
+			request.setAttribute("ri", ri);
+		} else {
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "상세페이지 불러오기 실패!");
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
