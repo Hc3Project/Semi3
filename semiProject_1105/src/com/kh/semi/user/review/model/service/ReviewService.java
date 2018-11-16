@@ -1,7 +1,7 @@
 package com.kh.semi.user.review.model.service;
 
-import static com.kh.semi.common.JDBCTemplate.close;
-import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.*;
+
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -44,6 +44,21 @@ public class ReviewService {
 		close(con);
 		if(rv==null) throw new DetailViewException("상세보기 실패!");
 		return rv;
+	}
+	public void reviewCount(String videoId,String userId) {
+		Connection con=getConnection();
+		int result=0;
+		try{
+			if(userId!=null)result=new ReviewDao().reviewVisit(con,videoId,userId);
+			if(result>0){new ReviewDao().reviewCount(con,videoId);
+				commit(con);
+			}
+			
+		}catch (Exception e) {
+			rollback(con);
+		}
+		close(con);
+		
 	}
 
 }

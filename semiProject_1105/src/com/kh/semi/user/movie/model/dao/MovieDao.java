@@ -62,15 +62,16 @@ public class MovieDao {
 			if(rset.next()){
 				mov=new MovieDetailInfo();
 				mov.setMtitle(rset.getString(1));
-				mov.setDirector(rset.getString(2));
-				mov.setActor(rset.getString(3));
-				mov.setShowtime(rset.getInt(4));
-				mov.setOpendate(rset.getDate(5));
-				mov.setGname1(rset.getString(6));
-				mov.setGname2(rset.getString(7));
-				mov.setNname(rset.getString(8));
-				mov.setCounts(rset.getInt(9));
-				mov.setSynopsis(rset.getString(10));
+				mov.setMcode(rset.getString(2));
+				mov.setDirector(rset.getString(3));
+				mov.setActor(rset.getString(4));
+				mov.setShowtime(rset.getInt(5));
+				mov.setOpendate(rset.getDate(6));
+				mov.setGname1(rset.getString(7));
+				mov.setGname2(rset.getString(8));
+				mov.setNname(rset.getString(9));
+				mov.setCounts(rset.getInt(10));
+				mov.setSynopsis(rset.getString(11));
 			}
 			
 		} catch (SQLException e) {

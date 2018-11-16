@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.sql.Date, com.kh.semi.user.movie.model.vo.MovieDetailInfo"%>
+	import="java.sql.Date, com.kh.semi.user.movie.model.vo.MovieDetailInfo, com.kh.semi.user.member.model.vo.Member"%>
 <%
 	String getPage = (String) request.getAttribute("page");
+System.out.println("asdasd "+getPage);
 	MovieDetailInfo mov = (MovieDetailInfo) request.getAttribute("mov");
 	String mtitle = mov.getMtitle();
+	String mcode=mov.getMcode();
 	String director = mov.getDirector();
 	String actor = mov.getActor();
 	int showtime = mov.getShowtime();
@@ -14,6 +16,8 @@
 	String nname = mov.getNname();
 	int counts = mov.getCounts();
 	String synopsis = mov.getSynopsis();
+	Member member=(Member)session.getAttribute("member");
+	int score=(int)request.getAttribute("score");
 %>
 <!DOCTYPE html>
 <html>
@@ -106,13 +110,23 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 								</p></li>
 							<li><p class="font_8">&nbsp;</p></li>
 							<li>
+								<%if(member!=null) {%>
 								<div class="starRev">
-									<span class="starR1 on">별1_왼쪽</span> <span class="starR2 on">별1_오른쪽</span>
-									<span class="starR1 on">별2_왼쪽</span> <span class="starR2 on">별2_오른쪽</span>
-									<span class="starR1 on">별3_왼쪽</span> <span class="starR2">별3_오른쪽</span>
-									<span class="starR1">별4_왼쪽</span> <span class="starR2">별4_오른쪽</span>
-									<span class="starR1">별5_왼쪽</span> <span class="starR2">별5_오른쪽</span>
+									<span class="starR1 on">1</span> <span class="starR2 on">2</span>
+									<span class="starR1 on">3</span> <span class="starR2 on">4</span>
+									<span class="starR1 on">5</span> <span class="starR2">6</span>
+									<span class="starR1">7</span> <span class="starR2">8</span>
+									<span class="starR1">9</span> <span class="starR2">10</span>
 								</div>
+								<%}else{ %>
+								<div class="starRev">
+									<span class="starR1">1</span> <span class="starR2">2</span>
+									<span class="starR1">3</span> <span class="starR2">4</span>
+									<span class="starR1">5</span> <span class="starR2">6</span>
+									<span class="starR1">7</span> <span class="starR2">8</span>
+									<span class="starR1">9</span> <span class="starR2">10</span>
+								</div>
+								<%} %>
 							</li>
 							<li><p class="font_8">&nbsp;</p></li>
 							<li>
@@ -165,7 +179,7 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>이 영화를 본 사람들이 많이 본 리뷰에요</span> <a class="rec-row__show-more"
+						<span>이 영화의 리뷰를 본 사람들이 많이 본 리뷰예요</span> <a class="rec-row__show-more"
 							href="javascript:;"> <span>모두 보기 </span> <span
 							class="glyphicon glyphicon-angle-right"></span>
 						</a>
@@ -240,6 +254,38 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 			return false;
+		},function(){
+			<%if(member!=null){%>
+				<%if(score!=0){%>
+					$(this).parent().children('span').removeClass('on');
+					for(var i=0;i<<%=score%>;i++) 
+						$(this).parent().children('span').eq(i).addClass('on');
+				<%}else{%>
+			
+					$(this).parent().children('span').removeClass('on');
+				
+			<%}}else{%>
+				$(this).parent().children('span').removeClass('on');
+			<%}%>
+		});
+		
+		$('.starRev span').click(function(){
+			//var star=$(this).text();
+			//console.log(star);
+			$.ajax({
+				url:"/semi/sInsert.do",
+				data:{
+					mCode:<%=mcode%>,
+					score:$(this).text()
+				},
+				success:function(data){
+					
+				},
+				error:{
+					
+				}
+				
+			});
 		});
 	</script>
 </body>

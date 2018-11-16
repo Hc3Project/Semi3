@@ -8,6 +8,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="../../resources/js/myMovie.js"></script>
 <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
 
 
@@ -46,54 +51,8 @@
 
 
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript">
-		$('.tabs .tab').click(function() {
-			if ($(this).hasClass('signin')) {
-				$('.tabs .tab').removeClass('active');
-				$(this).addClass('active');
-				$('.cont').hide();
-				$('.signin-cont').show();
-			}
-			if ($(this).hasClass('signup')) {
-				$('.tabs .tab').removeClass('active');
-				$(this).addClass('active');
-				$('.cont').hide();
-				$('.signup-cont').show();
-			}
-		});
-		
-		$(function() {
-			$.ajax({
-				url : "/semi/mVisit.do",
-				type : "post",
-					success : function(data) {
-	                    var $top = $("#visitMovie")
-							for ( var i in data) {
-								$list= $("<div>").attr("class", "col-md-2")
-		                        .append(
-		                            $("<h1>").text(data[i].mTitle)
-		                        ).append(
-		                            $("<img>").attr("src","https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg")
-		                        ).append(
-		                            $("<i>").attr("class","hover-box hover-box--play")
-		                        );
-		
-			                        if(i%9==0){
-			                            $top.append($("<div>").attr("class","item rec-list clearfix").append($list));
-			                        }else{
-			                            $("#visitMovie div[class='item rec-list clearfix']:last-child").append($list);
-			                        }
-						        }
-	                    }
-				
-                });
-		});
-		
-		
-		
-	</script>
+
+
 
 </body>
 </html>

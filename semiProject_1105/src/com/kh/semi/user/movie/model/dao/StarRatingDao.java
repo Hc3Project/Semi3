@@ -53,6 +53,7 @@ public class StarRatingDao {
 			pstmt.setString(2, mCode);
 			pstmt.setInt(3, score);
 			result=pstmt.executeUpdate();
+			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{

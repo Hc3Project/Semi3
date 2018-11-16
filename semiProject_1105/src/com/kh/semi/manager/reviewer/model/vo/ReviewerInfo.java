@@ -9,6 +9,12 @@ public class ReviewerInfo {
 	public ReviewerInfo() {
 		super();
 	}
+	
+	public ReviewerInfo(String rvrCode) {
+		super();
+		this.rvrCode = rvrCode;
+	}
+
 	public ReviewerInfo(String rvrCode, String rName, String profile) {
 		super();
 		this.rvrCode = rvrCode;

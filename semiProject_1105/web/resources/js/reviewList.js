@@ -24,6 +24,7 @@ $(function() {
 								$("<div/>").attr("class", "hover-box").append(
 										$("<h2/>").text(data[i].Reviewer))).attr("value",data[i].Videoid);
 
+						
 						if (i > -1 && i < 6) {
 							if (i == 0) {
 								$todayDiv.append($("<div>").attr("class",
@@ -59,7 +60,8 @@ $(function() {
 						
 					})
 				},
-				error : function() {
+				error : function(data) {
+					console.log(data);
 					console.log("실패");
 				}
 			});
