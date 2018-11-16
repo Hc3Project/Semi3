@@ -208,7 +208,17 @@ $(function() {
 								"hidden");
 
 					}
-					
+					$("div.youtube").click(function() {
+						$.ajax({
+							url:"rCount.rv",
+							data:{
+								videoId : $(this).attr("value")
+							},success: function (data) {
+								
+							}
+						});
+						console.log($(this).attr("value"));
+					});
 					
 				},
 				error : function() {

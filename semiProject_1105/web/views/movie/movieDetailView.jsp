@@ -166,7 +166,7 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>이 영화를 본 사람들이 많이 본 리뷰예요</span> <a class="rec-row__show-more"
+						<span>이 영화의 리뷰를 본 사람들이 많이 본 리뷰예요</span> <a class="rec-row__show-more"
 							href="javascript:;"> <span>모두 보기 </span> <span
 							class="glyphicon glyphicon-angle-right"></span>
 						</a>

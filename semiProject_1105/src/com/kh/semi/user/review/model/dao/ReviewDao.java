@@ -139,4 +139,44 @@ public class ReviewDao {
 
 	}
 
+	public void reviewCount(Connection con, String videoId) {
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("reviewCount");
+		
+		
+		try {
+			pstmt= con.prepareStatement(sql);
+			pstmt.setString(1, videoId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+	}
+
+	public int reviewVisit(Connection con, String videoId, String userId) {
+		
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("reviewVisit");
+		int result =0;
+		
+		try {
+			pstmt= con.prepareStatement(sql);
+			pstmt.setString(1, videoId);
+			pstmt.setString(2, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }
