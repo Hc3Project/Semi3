@@ -36,7 +36,7 @@
                 </div>
                 </a>
                 <h2>라이너의 컬쳐쇼크<br><br><span><img class="heartBtn" src="../../resources/image/grheart.png"></span></h2>
-                <p> #촌철살인 #전문가 포스 </p>
+                <p> #촌철살인 #전문가 포스 #스포일러 多 #최신 영화 위주 </p>
               
             </div>
         </div>
@@ -79,7 +79,7 @@
                 </div>
                 </a>
                 <h2>시선 플레이<br><br><span><img class="heartBtn" src="../../resources/image/grheart.png"></span></h2>
-                <p> ####</p>
+                <p> #특이한 콘텐츠 #웹, 잡지 문화컨텐츠 운영 ##</p>
               
             </div>
         </div>
@@ -111,7 +111,7 @@
                 </div>
                 </a>
                 <h2>B-MAN<br><br><span><img class="heartBtn" src="../../resources/image/grheart.png"></span></h2>
-                <p>  ####</p>
+                <p>  #마블, DC 히어로물 전문 ###</p>
             
             </div>
         </div>
@@ -139,7 +139,7 @@
                 </div>
                 </a>
                 <h2>김스카이의 하늘담<br><br><span><img class="heartBtn" src="../../resources/image/grheart.png"></span></h2>
-                <p>  ####</p>
+                <p>  #수려한 말솜씨 #재밌는 영상 # #</p>
               
             </div>
         </div>
@@ -171,7 +171,7 @@
                 </div>
                 </a>
                 <h2>발 없는 새<br><br><span><img class="heartBtn" src="../../resources/image/grheart.png"></span></h2>
-                <p>  ####</p>
+                <p>  #영화 전문 파워 블로거 출신 #리뷰에 직접 출연 #스포일러 多#</p>
               
             </div>
         </div>
@@ -185,7 +185,7 @@
                 </div>
                 </a>
                 <h2>백수 골방<br><br><span><img class="heartBtn" src="../../resources/image/grheart.png"></span></h2>
-                <p> #ASMR로 들으면 좋은 #</p>
+                <p> #ASMR로 들으면 좋은 # 자극적이지 않은 제목 # 애니메이션 위주</p>
               
             </div>
         </div>
@@ -199,7 +199,7 @@
                 </div>
                 </a>
                 <h2>천재 이승국<br><br><span><img class="heartBtn" src="../../resources/image/grheart.png"></span></h2>
-                <p>  #리얼 천재 ###</p>
+                <p>  #리얼 천재 #아나운서 수준의 발음 #다양한 이벤트성 영상 #</p>
               
             </div>
         </div>
@@ -216,7 +216,7 @@
                 </div>
                 </a>
                 <h2>소개해주는 남자<br><br><span><img class="heartBtn" src="../../resources/image/grheart.png"></span></h2>
-                <p>  ####</p>
+                <p> ####</p>
               
             </div>
         </div>
