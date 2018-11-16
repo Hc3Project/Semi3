@@ -214,12 +214,6 @@
 
 			</div>
 
-			<!-- <div class="gnb__my-name">
-                    <span>정한</span>
-                    <span class="glyphicon glyphicon-caret-down-f"></span>
-                    <span></span>
-                </div> -->
-
 				<div class="search">
 				<button class="search__button">
 					<span class="glyphicon glyphicon-search"></span> <span>&nbsp;&nbsp;검색</span>

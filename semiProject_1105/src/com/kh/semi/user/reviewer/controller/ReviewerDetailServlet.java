@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
+import com.kh.semi.user.review.model.service.ReviewService;
 import com.kh.semi.user.reviewer.model.service.UReviewerService;
 
 
@@ -39,7 +40,12 @@ public class ReviewerDetailServlet extends HttpServlet {
 		ri= rvr.reviewerDetail(rvrCode);
 		
 		System.out.println("전달 받은 리뷰어 정보 : "+ri);
+		String rsql = "rvrSelect";
 		
+		ReviewService rs = new ReviewService();
+		rs.reviewList(rsql, rvrCode);
+		
+		// 11/16 리뷰어 별  리뷰영상 뿌리는것 하다 맘. 상훈이 할 것
 		String page= "";
 		
 		if(ri != null){
@@ -52,6 +58,8 @@ public class ReviewerDetailServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(page).forward(request, response);
 		}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
