@@ -226,27 +226,5 @@ public class MemberDao {
 		}
 		return result;
 	}
-	public List<CategoryInfo> selectGenreCnt(Connection con, String gCode) {
-		Statement stmt = null;
-		ResultSet rset = null;
-		List<CategoryInfo> result = null;
-		String sql = prop.getProperty("selectGenreCnt");
-		sql = sql.replace("condition", gCode);
-		try {
-			result = new ArrayList<CategoryInfo>();
-			stmt = con.createStatement();
-			rset = stmt.executeQuery(sql);
-			while(rset.next()) {
-				CategoryInfo ci = new CategoryInfo();
-				ci.setName(rset.getString("gname"));
-				ci.setCnt(rset.getInt("gcnt"));
-				
-				result.add(ci);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
 	
 }
