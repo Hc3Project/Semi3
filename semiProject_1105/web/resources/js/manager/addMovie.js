@@ -6,7 +6,11 @@ $(function(){
 	var script = document.createElement("script");
 	script.src = "../../resources/js/manager/KobisOpenAPIRestService.js";//포함시킬 js 파일 (경로가 존재하면 경로까지 작성)
 	document.getElementsByTagName("body")[0].appendChild(script);
-	
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
+		}
+	})
 	$('#movieBtn').click(function(){
 		var title = $('#movieName').val().trim();
 		

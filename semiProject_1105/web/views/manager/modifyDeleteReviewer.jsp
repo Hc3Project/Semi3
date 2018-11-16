@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰어 수정 및 삭제</title>
+<script src="../../resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body class="mBody">
 	<%@include file="../common/header.jsp"%>
@@ -66,6 +67,5 @@
 		request.getRequestDispatcher(path).forward(request, response);
 	}%>
 </body>
-<script src="../../resources/js/jquery-3.3.1.min.js"></script>
 <script src="../../resources/js/manager/modifyDeleteReviewer.js"></script>
 </html>

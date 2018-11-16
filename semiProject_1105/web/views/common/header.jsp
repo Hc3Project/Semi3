@@ -63,7 +63,7 @@
 			</span>
 			</li>
 
-			<li><a class="gnb__nav-evaluate" href="javascript:;">취향 분석</a></li>
+			<li><a class="gnb__nav-evaluate" href="<%request.getContextPath();%>/semi//mRecommend.me">취향 분석</a></li>
 		</ul>
 		<div class="gnb__right-navs">
 			<div class="gnb__my-name">

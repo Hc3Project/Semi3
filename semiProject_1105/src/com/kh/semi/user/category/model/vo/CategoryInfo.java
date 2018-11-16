@@ -1,6 +1,7 @@
 package com.kh.semi.user.category.model.vo;
 
 public class CategoryInfo {
+
 	
 	private String code; // 장르, 나라, 리뷰어 코드 
 	private String name; // 장르, 나라, 리뷰어 네임
@@ -36,4 +37,5 @@ public class CategoryInfo {
 		return "CategoryInfo [code=" + code + ", name=" + name + "]";
 	}
 	
+
 }

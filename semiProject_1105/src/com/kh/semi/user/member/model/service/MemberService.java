@@ -1,14 +1,18 @@
 package com.kh.semi.user.member.model.service;
 
-import com.kh.semi.user.member.execption.MemberException;
-import com.kh.semi.user.member.model.dao.MemberDao;
-import com.kh.semi.user.member.model.vo.Member;
-
-
-import static com.kh.semi.common.JDBCTemplate.*;
+import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.commit;
+import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.kh.semi.user.category.model.vo.CategoryInfo;
+import com.kh.semi.user.member.execption.MemberException;
+import com.kh.semi.user.member.model.dao.MemberDao;
+import com.kh.semi.user.member.model.vo.Member;
 
 
 public class MemberService {
@@ -91,13 +95,20 @@ public class MemberService {
 		close(con);
 		return result;
 	}
-
+	
 	public int[][] selectRating(int uLen, int iLen) {
 		Connection con = getConnection();
 		int[][] result = mDao.selectRating(con, uLen, iLen);
 		close(con);
 		return result;
 	}
-	
+
+	// 차트용
+	public List<CategoryInfo> selectGenreCnt(String gCode) {
+		Connection con = getConnection();
+		List<CategoryInfo> result = mDao.selectGenreCnt(con, gCode);
+		close(con);
+		return result;
+	}
 	
 }
