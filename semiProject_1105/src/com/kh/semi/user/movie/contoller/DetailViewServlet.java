@@ -74,6 +74,7 @@ public class DetailViewServlet extends HttpServlet {
 			// 2. 비회원은 별점을 볼 수 없다 등 비회원이 DB에 영향을 끼치지 않도록 생각해봐야함
 			// DB RATING 테이블 SCORE 컬럼에 디폴트 0, CHECK 제약조건 달아둠(0~10) 다음에 공유함
 			if (userId != null) {
+				
 				score = srs.selectStarRating(userId, mCode);
 				System.out.println(userId);
 			}
