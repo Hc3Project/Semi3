@@ -40,12 +40,13 @@ public class VisitMovieServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		String userId = ((Member) session.getAttribute("member")).getUserId();
+		int mPage = Integer.parseInt(request.getParameter("page"));
 		String page = "";
 
 		MovieService ms = new MovieService();
 		ArrayList<MovieInfo> mlist = new ArrayList<MovieInfo>();
 
-		mlist = ms.visitMovie(userId);
+		mlist = ms.visitMovie(userId,mPage);
 
 		response.setContentType("application/json; charset=UTF-8");
 

@@ -167,12 +167,14 @@ img {
 }
 
 #gradation {
-	background-image: linear-gradient(to bottom, rgba(25, 25, 25, 0) 90%,
+	background-image: linear-gradient(to bottom, rgba(25, 25, 25, 0) 1%,
 		#191919);
 	position: absolute !important;
 	width: 100%;
-	height: 600px;
 	z-index: 5;
+    height: 50px !important;
+    top: 630px;
+	
 }
 
 .carousel-inner>a {

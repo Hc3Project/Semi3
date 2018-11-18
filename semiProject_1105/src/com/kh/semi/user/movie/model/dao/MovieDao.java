@@ -129,17 +129,19 @@ public class MovieDao {
 		return result;
 	}
 
-	public ArrayList<MovieInfo> visitMovie(Connection con, String userId) {
+	public ArrayList<MovieInfo> visitMovie(Connection con, String userId,int page) {
 		ArrayList<MovieInfo> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
 		
 		String sql = prop.getProperty("visitMovie");
-		
+		System.out.println(sql);
 		try {
 			list=new ArrayList<MovieInfo>();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, page);
+			pstmt.setInt(3, page);
 			
 			rset = pstmt.executeQuery();
 			MovieInfo mi = null;
