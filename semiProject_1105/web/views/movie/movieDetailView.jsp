@@ -36,8 +36,6 @@ System.out.println("asdasd "+getPage);
 <script src="resources/js/detailReviewList.js"></script>
 
 
-<link type="text/css"
-href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" rel="stylesheet" />
 
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -51,13 +49,13 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 
 
 <!--유튜브 팝업  -->
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link type="text/css"
+        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-<script type="text/javascript"
-	src="resources/js/jquery.youtubepopup.min.js"></script>
+
+<script src="resources/js/jquery.youtubepopup.min.js"></script>
 
 </head>
 <body>
