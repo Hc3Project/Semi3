@@ -69,10 +69,15 @@ public class MovieService {
 		for (PosterInfo pi : list) {
 			String director = pi.getDirector();
 			String date = pi.getOpendate().toString().substring(0, 4);
+			
+			System.out.println("감독 : "+director);
+			System.out.println("날짜 : "+date);
+			
+			List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
+			String chk = "";
 
 			if (result.matches(".*" + director + ".*") && result.matches(".*" + date + ".*")) {
-				List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
-				String chk = "";
+				
 				for (int i = 1; i < sentence.size(); i++) {
 					if (sentence.get(i).matches(".*" + director + ".*")
 							&& sentence.get(i - 1).matches(".*" + date + ".*")) {
@@ -81,17 +86,38 @@ public class MovieService {
 					}
 				}
 
-				Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
+				
 
-				if (mc.find())
-					code = mc.group();
-				else
-					throw new DetailViewException("상세보기 실패!");
+			}else if(result.matches(".*" + director + ".*")){
+				
+				for (int i = 1; i < sentence.size(); i++) {
+					if (sentence.get(i).matches(".*" + director + ".*")) {
+						chk = sentence.get(i - 4);
+						break;
+					}
+				}
 
-				break;
+				
+			}else if(result.matches(".*" + date + ".*")){
+				
+				for (int i = 1; i < sentence.size(); i++) {
+					if (sentence.get(i).matches(".*" + date + ".*")) {
+						chk = sentence.get(i - 4);
+						break;
+					}
+				}
 			}
+			
+			Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
+
+			if (mc.find())
+				code = mc.group();
+			else
+				throw new DetailViewException("상세보기 실패!");
 
 		}
+		
+		System.out.println("코드 : "+code);
 
 		// 코드를 통해 포스터 페이지에 접속해 크롤링
 		Document doc = Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
@@ -102,7 +128,8 @@ public class MovieService {
 			imgURL = imgURL.substring(27, 110);
 			System.out.println(imgURL);
 		}
-
+		
+		System.out.println("주소 : "+imgURL);
 		return imgURL;
 
 	}
