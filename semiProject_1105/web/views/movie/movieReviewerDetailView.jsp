@@ -25,13 +25,11 @@
 
 
 <!--유튜브 팝업  -->
- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <link type="text/css"
         href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-
-
-<script src="resources/js/jquery.youtubepopup.min.js"></script>
+ <script	src="<%=request.getContextPath()%>/resources/js/jquery.youtubepopup.min.js"></script>
 
 
 
