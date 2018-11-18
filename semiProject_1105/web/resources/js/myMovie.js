@@ -24,8 +24,8 @@ $(function() {
 					success : function(data) {
 	                    var $top = $("#visitMovie")
 							for ( var i in data) {
-								console.log(data[i].mPage);
-								$list= $("<div>").attr("class", "col-md-2").attr("style","background-image: url("+data[i].mPage+")")
+								console.log(data[i].mCode);
+								$list= $("<div>").attr("class", "col-md-2").attr("style","background-image: url("+data[i].mPage+")").attr("value",data[i].mCode)
 		                        .append(
 		                            $("<h3>").text(data[i].mTitle)
 		                        ).append(
@@ -39,7 +39,13 @@ $(function() {
 			                        }
 						        }
 	                    $(".col-md-2").css("background-size","contain");
+	                    $(".rec-list> div").click(function() {
+							console.log($(this).attr("value"));
+							location.href = "/semi/dView.do?mCode="+$(this).attr("value");
+							
+						})
 					}
+			
 				
                 });
 		});

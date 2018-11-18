@@ -60,5 +60,17 @@ public class ReviewService {
 		close(con);
 		
 	}
+	public ArrayList<Review> rvrReviewList(String rsql, String rvrCode) {
+		ArrayList<Review> list = new ArrayList<Review>();
+		Connection con = getConnection();
+	
+		list = rDao.rvrReviewList(con,rsql,rvrCode);
+		
+		
+		close(con);
+
+		return list;
+		
+	}
 
 }

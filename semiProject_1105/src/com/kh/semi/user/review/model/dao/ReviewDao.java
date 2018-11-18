@@ -179,4 +179,44 @@ public class ReviewDao {
 		return result;
 	}
 
+	public ArrayList<Review> rvrReviewList(Connection con, String rsql, String rvrCode) {
+		ArrayList<Review> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty(rsql);
+		
+		try {
+		
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rvrCode);
+			
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Review>();
+			
+			Review review = null;
+
+			while (rset.next()) {
+				review = new Review();
+				/*
+				 * VIDEOID MCODE RVRCODE UPLOADDATE COUNTS
+				 */
+				System.out.println("videoid"+rset.getString("VIDEOID"));
+				review.setVideoid(rset.getString("VIDEOID"));
+				review.setMovie(rset.getString("MTITLE"));
+
+				list.add(review);
+			}
+			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
 }
