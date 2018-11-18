@@ -14,16 +14,16 @@ import com.kh.semi.user.review.model.service.ReviewService;
 import com.kh.semi.user.review.model.vo.Review;
 
 /**
- * Servlet implementation class ReviewtodayServlet
+ * Servlet implementation class ReviewAllServlet
  */
-@WebServlet("/rList.rv")
-public class ReviewListServlet extends HttpServlet {
+@WebServlet("/rAll.rv")
+public class ReviewAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewListServlet() {
+    public ReviewAllServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +34,15 @@ public class ReviewListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewService rs = new ReviewService();
 		String rsql = request.getParameter("rsql");
-		String title = request.getParameter("title");
 		String rvrCode = request.getParameter("rvrCode");
+		int page = Integer.parseInt(request.getParameter("page"));
 	
 		ArrayList<Review> list = new ArrayList<Review>();
-			if(rvrCode==null)
-			list = title==null? rs.reviewList(rsql):rs.reviewList(rsql,title);
-			else 				
-				list= rs.rvrReviewList(rsql,rvrCode);
+							
+		list= rs.rvrReviewAll(rsql,rvrCode,page);
 				
-			response.setContentType("application/json; charset=UTF-8");
-			new Gson().toJson(list, response.getWriter());
-
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

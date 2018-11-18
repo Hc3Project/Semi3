@@ -13,12 +13,7 @@
 <script	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
 <script	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
+<script src="resources/js/common.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -120,24 +115,11 @@
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>???</span> <a class="rec-row__show-more" href="javascript:;">
-							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
-						</a>
+						<span>모든 리뷰</span> 
 					</h5>
-					<div class="carousel slide" data-ride="carousel" id="st3Carousel"
-						data-interval="30000">
-						<div class="carousel-inner ">
-
-							<a class="carousel-control-prev" href="#st3Carousel"
-								role="button" data-slide="prev"> <span
-								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-								class="sr-only">Previous</span>
-							</a> <a class="carousel-control-next" href="#st3Carousel"
-								role="button" data-slide="next"> <span
-								class="carousel-control-next-icon" aria-hidden="true"></span> <span
-								class="sr-only">Next</span>
-							</a>
-						</div>
+					<div  id="rvrAllCarousel">
+						<div class="rvrAll">
+						</div>	
 					</div>
 
 				</div>
@@ -150,12 +132,16 @@
 
 	</section>
 <script type="text/javascript">
+$(function() {
+	
 var $todayDiv = $("#rvrCarousel .carousel-inner");
+page =0;
 	$.ajax({
 		url : "rList.rv"
 		,data : {
 				rvrCode : "<%=rvrCode%>",
-				rsql : "rvrReviewList"
+				rsql : "rvrReviewList",
+				
 		},
 		success : function(data) {
 			var count = 0;
@@ -207,74 +193,206 @@ var $todayDiv = $("#rvrCarousel .carousel-inner");
 
 			}
 			// 영상이 6개 이하면 페이지 넘기는 버튼 hidden
-			if (count < 5) {
-
-				$("#rlCarousel .carousel-inner>a").attr("hidden",
-						"hidden");
-			}
-			// 썸네일 마우스 오버
-			$(".rec-list>div").hover(function() {
-
-				$(this).children(".hover-box").stop().fadeIn();
-				$(this).children("h1").stop().hide();
-			}, function() {
-				$(this).children(".hover-box").stop().fadeOut();
-				$(this).children("h1").stop().fadeIn();
-			});
-			$(".rec-list> div").click(function() {
-				console.log($(this).attr("value"));
-				
-				
-			})
-		
-				$("div.youtube").YouTubePopup({
-
-					'youtubeId' : '',
-
-					'title' : '',
-
-					'idAttribute' : 'rel',
-
-					'draggable' : false,
-
-					'modal' : true,
-
-					'width' : 1280,
-
-					'height' : 720,
-
-					'hideTitleBar' : true,
-
-					'clickOutsideClose' : true,
-
-					'overlayOpacity' : 0.7,
-
-					'autohide' : 1,
-
-					'autoplay' : 1,
-
-					'color' : 'red ',
-
-					'controls' : 1,
-
-					'fullscreen' : 0,
-
-					'loop' : 0,
-
-					'hd' : 1,
-
-					'showinfo' : 1,
-					'showBorder' : false
-
-				});
-				
+			
+			hover();
+			youtubePopup();
 			
 		},
 		error : function(data) {
 			console.log(data);
 			console.log("실패");
 		}
+		
 	});
+	$todayDivAll = $("#rvrAllCarousel .rvrAll");
+	
+	$.ajax({
+		url : "rAll.rv"
+		,data : {
+				rvrCode : "<%=rvrCode%>",
+				rsql : "rvrReviewAll",
+				page: page++
+		},
+		success : function(data) {
+			
+			for ( var i in data) {
+				$review = $("<div/>")
+						.attr("class", "col-md-2 youtube")
+						.attr("rel", data[i].Videoid)
+						.append($("<h1/>").text(data[i].Movie))
+						.append(
+								$("<img/>").attr(
+										"src",
+										"https://img.youtube.com/vi/"
+												+ data[i].Videoid + "/"
+												+ "mqdefault.jpg")
+
+						)
+						.append(
+								$("<i/>").attr("class",
+										"hover-box hover-box--play"))
+						.append(
+								$("<div/>")
+										.attr("class", "hover-box")
+										.append(
+												$("<h2/>")
+														.text(
+																data[i].Reviewer)))
+						.attr("value", data[i].Videoid);
+
+			
+					
+				if (i % 6 == 0) {
+						$todayDivAll.append($("<div>").attr("class",
+								"item rec-list clearfix").append(
+								$review));
+					}
+					$(
+							"#rvrAllCarousel div[class='item rec-list clearfix']:last-child")
+							.append($review);
+	
+
+			}
+			
+			hover();
+			youtubePopup();
+		},
+		error : function(data) {
+			console.log(data);
+			console.log("실패");
+		}
+		
+	});
+	
+});
+
+
+
+
+$(window).scroll(function() {
+    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+     
+      $.ajax({
+  		url : "rAll.rv"
+  		,data : {
+  				rvrCode : "<%=rvrCode%>",
+  				rsql : "rvrReviewAll",
+  				page : page++
+  		},
+  		success : function(data) {
+  			var count = 0;
+  			for ( var i in data) {
+  				console.log(page);
+  				$review = $("<div/>")
+  						.attr("class", "col-md-2 youtube")
+  						.attr("rel", data[i].Videoid)
+  						.append($("<h1/>").text(data[i].Movie))
+  						.append(
+  								$("<img/>").attr(
+  										"src",
+  										"https://img.youtube.com/vi/"
+  												+ data[i].Videoid + "/"
+  												+ "mqdefault.jpg")
+
+  						)
+  						.append(
+  								$("<i/>").attr("class",
+  										"hover-box hover-box--play"))
+  						.append(
+  								$("<div/>")
+  										.attr("class", "hover-box")
+  										.append(
+  												$("<h2/>")
+  														.text(
+  																data[i].Reviewer)))
+  						.attr("value", data[i].Videoid);
+
+  				
+  					if (i % 6 == 0) {
+  						$todayDivAll.append($("<div>").attr("class",
+  								"item rec-list clearfix").append(
+  								$review));
+  					}
+  					$(
+  							"#rvrAllCarousel div[class='item rec-list clearfix']:last-child")
+  							.append($review);
+  				
+  				count = i;
+
+  			}
+  			// 영상이 6개 이하면 페이지 넘기는 버튼 hidden
+  			
+  			hover();
+  			youtubePopup();
+  		},
+  		error : function(data) {
+  			console.log(data);
+  			console.log("실패");
+  		}
+  		
+  	});
+
+    }
+});
+function youtubePopup() {
+	$("div.youtube").YouTubePopup({
+
+		'youtubeId' : '',
+
+		'title' : '',
+
+		'idAttribute' : 'rel',
+
+		'draggable' : false,
+
+		'modal' : true,
+
+		'width' : 1280,
+
+		'height' : 720,
+
+		'hideTitleBar' : true,
+
+		'clickOutsideClose' : true,
+
+		'overlayOpacity' : 0.7,
+
+		'autohide' : 1,
+
+		'autoplay' : 1,
+
+		'color' : 'red ',
+
+		'controls' : 1,
+
+		'fullscreen' : 0,
+
+		'loop' : 0,
+
+		'hd' : 1,
+
+		'showinfo' : 1,
+		'showBorder' : false
+
+	});
+	
+};
+function hover() {
+	// 썸네일 마우스 오버
+	$(".rec-list>div").hover(function() {
+
+		$(this).children(".hover-box").stop().fadeIn();
+		$(this).children("h1").stop().hide();
+	}, function() {
+		$(this).children(".hover-box").stop().fadeOut();
+		$(this).children("h1").stop().fadeIn();
+	});
+	$(".rec-list> div").click(function() {
+		console.log($(this).attr("value"));
+		
+		
+	})	
+}
 
 </script>
 	

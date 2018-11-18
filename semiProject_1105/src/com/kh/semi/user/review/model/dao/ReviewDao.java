@@ -185,7 +185,7 @@ public class ReviewDao {
 		ResultSet rset = null;
 
 		String sql = prop.getProperty(rsql);
-		
+		System.out.println(sql);
 		try {
 		
 			pstmt = con.prepareStatement(sql);
@@ -201,7 +201,47 @@ public class ReviewDao {
 				/*
 				 * VIDEOID MCODE RVRCODE UPLOADDATE COUNTS
 				 */
-				System.out.println("videoid"+rset.getString("VIDEOID"));
+				
+				review.setVideoid(rset.getString("VIDEOID"));
+				review.setMovie(rset.getString("MTITLE"));
+
+				list.add(review);
+			}
+			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}public ArrayList<Review> rvrReviewAll(Connection con, String rsql, String rvrCode,int page) {
+		ArrayList<Review> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty(rsql);
+		
+		try {
+		
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, rvrCode);
+			pstmt.setInt(2, page);
+			pstmt.setInt(3, page);
+			
+			rset = pstmt.executeQuery();
+			list = new ArrayList<Review>();
+			
+			Review review = null;
+
+			while (rset.next()) {
+				review = new Review();
+				/*
+				 * VIDEOID MCODE RVRCODE UPLOADDATE COUNTS
+				 */
+				
 				review.setVideoid(rset.getString("VIDEOID"));
 				review.setMovie(rset.getString("MTITLE"));
 
