@@ -43,14 +43,18 @@ public class MovieImg {
 		while ((inStr = br.readLine()) != null)
 			sb.append(inStr);
 		String result = sb.toString();
-
+		
+		System.out.println(result);
 		br.close();
 
-		if (result.substring(61, 62).equals("1") && !chkNum(result.substring(62, 63)))
+		if (result.substring(61, 62).equals("1") && !chkNum(result.substring(62, 63))){
+			System.out.println("결과 한개");
 			page = dvs.getImage(result);
-		else
+		}
+		else{
+			System.out.println("결과 여러개");
 			page = dvs.getPowerImage(result, keyword);
-		
+		}
 		return page;
 	}
 	private boolean chkNum(String s) {

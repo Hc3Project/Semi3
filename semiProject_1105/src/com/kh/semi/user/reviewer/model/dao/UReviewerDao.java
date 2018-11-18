@@ -7,9 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
+import com.kh.semi.user.reviewer.model.vo.ReviewerLikes;
+
 import static com.kh.semi.common.JDBCTemplate.*;
 
 
@@ -60,6 +64,28 @@ public class UReviewerDao {
 		}
 		
 		return result;
+	}
+
+	public List<ReviewerLikes> selectReviewerStatus(Connection con, String userId) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		List<ReviewerLikes> list=null;
+		try {
+			pstmt=con.prepareStatement(prop.getProperty("selectReviewerStatus"));
+			pstmt.setString(1, userId);
+			rset=pstmt.executeQuery();
+			list=new ArrayList<>();
+			while(rset.next()){
+				ReviewerLikes rl=new ReviewerLikes(rset.getString(1),rset.getString(2));
+				list.add(rl);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 
 }

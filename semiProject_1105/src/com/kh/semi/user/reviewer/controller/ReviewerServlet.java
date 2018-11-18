@@ -1,6 +1,7 @@
-package com.kh.semi.user.movie.contoller;
+package com.kh.semi.user.reviewer.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,23 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
-
-import com.google.gson.Gson;
+import com.kh.semi.exception.ReviewerViewException;
 import com.kh.semi.user.member.model.vo.Member;
-import com.kh.semi.user.movie.model.service.StarRatingService;
+import com.kh.semi.user.reviewer.model.service.UReviewerService;
+import com.kh.semi.user.reviewer.model.vo.ReviewerLikes;
 
 /**
- * Servlet implementation class StarRatingServlet
+ * Servlet implementation class ReviewerServlet
  */
-@WebServlet("/sInsert.do")
-public class StarRatingInsertServlet extends HttpServlet {
+@WebServlet("/reviewer.do")
+public class ReviewerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StarRatingInsertServlet() {
+    public ReviewerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,27 +34,22 @@ public class StarRatingInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 별점이 없는 경우 회원의 별점을 새로 테이블에 인서트한다
 		HttpSession session=request.getSession(false);
-		String userId=((Member)session.getAttribute("member")).getUserId();
-		String mCode=(String)request.getParameter("mCode");
-		System.out.println(mCode);
-		System.out.println((String)request.getAttribute("score"));
-		int score=Integer.parseInt((String)request.getParameter("score"));
-		
-		try{
-			new StarRatingService().insertStarRating(userId,mCode,score);
-			
-			response.setContentType("application/json; charset=UTF-8");
-			new Gson().toJson(score,response.getWriter());
-		}catch(Exception e){
+		Member m=(Member) session.getAttribute("member");
+		try {
+			if(m!=null){
+				// 회원정보가 있을 경우
+				List<ReviewerLikes> list=new UReviewerService().selectReviewerStatus(m.getUserId());
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
+			}else{
+				// 회원 정보가 없을 경우
+				response.sendRedirect("views/movie/movieReviewerView.jsp");
+			}
+		}catch (ReviewerViewException e) {
 			request.setAttribute("exception", e);
-			request.getRequestDispatcher("views/commom/errorPage.jsp").forward(request, response);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);;
 		}
-		
-		
-		
 	}
 
 	/**

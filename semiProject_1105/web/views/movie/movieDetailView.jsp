@@ -18,6 +18,8 @@ System.out.println("asdasd "+getPage);
 	String synopsis = mov.getSynopsis();
 	Member member=(Member)session.getAttribute("member");
 	int score=(int)request.getAttribute("score");
+	int avg=(int)request.getAttribute("avg");
+	System.out.println("별점 : "+score);
 %>
 <!DOCTYPE html>
 <html>
@@ -110,15 +112,6 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 								</p></li>
 							<li><p class="font_8">&nbsp;</p></li>
 							<li>
-								<%if(member!=null) {%>
-								<div class="starRev">
-									<span class="starR1 on">1</span> <span class="starR2 on">2</span>
-									<span class="starR1 on">3</span> <span class="starR2 on">4</span>
-									<span class="starR1 on">5</span> <span class="starR2">6</span>
-									<span class="starR1">7</span> <span class="starR2">8</span>
-									<span class="starR1">9</span> <span class="starR2">10</span>
-								</div>
-								<%}else{ %>
 								<div class="starRev">
 									<span class="starR1">1</span> <span class="starR2">2</span>
 									<span class="starR1">3</span> <span class="starR2">4</span>
@@ -126,7 +119,9 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 									<span class="starR1">7</span> <span class="starR2">8</span>
 									<span class="starR1">9</span> <span class="starR2">10</span>
 								</div>
-								<%} %>
+								<div>
+									<p>이 영화의 평균 점수는 <%=avg %>점입니다.</p>
+								</div>
 							</li>
 							<li><p class="font_8">&nbsp;</p></li>
 							<li>
@@ -250,42 +245,39 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.c
 		// 별점 이벤트 관리하는 부분(ajax)
 		// 현재 별점이 있으면  update서블릿
 		// 현재 별점이 없으면 insert 서블릿
+		
+		
 		$('.starRev span').hover(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 			return false;
 		},function(){
-			<%if(member!=null){%>
-				<%if(score!=0){%>
-					$(this).parent().children('span').removeClass('on');
-					for(var i=0;i<<%=score%>;i++) 
-						$(this).parent().children('span').eq(i).addClass('on');
-				<%}else{%>
-			
-					$(this).parent().children('span').removeClass('on');
-				
-			<%}}else{%>
-				$(this).parent().children('span').removeClass('on');
-			<%}%>
+			var num=0;
+			if(score==0) num=<%=avg%>;
+			else num=<%=score%>;
+			$(this).parent().children('span').removeClass('on');
+			for(var i;i<num;i++){
+				$(this).parent().children('span').eq(i).addClass('on');
+			}
 		});
 		
 		$('.starRev span').click(function(){
-			//var star=$(this).text();
-			//console.log(star);
-			$.ajax({
-				url:"/semi/sInsert.do",
-				data:{
-					mCode:<%=mcode%>,
-					score:$(this).text()
-				},
-				success:function(data){
+			<%if(member!=null){%>
+				$.ajax({
+					url:"/semi/sInsert.do",
+					data:{
+						mCode:<%=mcode%>,
+						score:$(this).text()
+					},
+					success:function(data){
+						alert(data+"점이 반영되었습니다.");
+					},
+					error:{
+						
+					}
 					
-				},
-				error:{
-					
-				}
-				
-			});
+				});
+			<%}%>
 		});
 	</script>
 </body>
