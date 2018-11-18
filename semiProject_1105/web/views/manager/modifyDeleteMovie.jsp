@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>영화 수정 및 삭제</title>
 <script src="../../resources/js/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
 </head>
 <body class="mbody">
 	<%@include file="../common/header.jsp"%>

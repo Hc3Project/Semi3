@@ -24,6 +24,8 @@ $(function(){
 					subGenre
 			    ],
 			    type: "bar",
+			    colors : {
+			    }
 			  },
 			  axis: {
 			    x: {
