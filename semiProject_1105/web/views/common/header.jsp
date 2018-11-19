@@ -5,8 +5,6 @@
 %>
 
 <!DOCTYPE html>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
 		<a class="logo active" href="/semi/index.jsp"></a>
