@@ -1,4 +1,4 @@
-package com.kh.semi.user.member.controller;
+package com.kh.semi.user.movie.contoller;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,21 +12,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
+import com.google.gson.JsonObject;
 import com.kh.semi.common.CollaborativeFiltering;
 import com.kh.semi.user.member.model.service.MemberService;
 import com.kh.semi.user.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberRecServlect
+ * Servlet implementation class RecMovieServlet
  */
-@WebServlet("/mRecommend.me")
-public class MemberRecServlet extends HttpServlet {
+@WebServlet("/recMovie.do")
+public class RecMovieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberRecServlet() {
+    public RecMovieServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +38,12 @@ public class MemberRecServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		List<String> userList = null;
 		List<String> itemList = null;
 		int[][] itemMatrix = null;
-		HashMap<Integer, Double> cfResult = null;
 		String[] itemRankList = null;
 		String[] itemRankTitle = null;
-		int[] scoreCnt = null;
-		List<String> likes = null;
+		HashMap<Integer, Double> cfResult = null;
 		
 		MemberService ms = new MemberService();
 		
@@ -77,23 +77,16 @@ public class MemberRecServlet extends HttpServlet {
 			} else {
 				// 평점을 단 한번도 하지 않을 경우 null
 			}
-			// 평점 분포 배열
-			scoreCnt = ms.selectRatingCnt(m.getUserId());
-			
 			// 변수
-			likes = ms.selectLikesReviewer(m.getUserId());
-			page = "/views/movie/typeAnalysis.jsp";
 			session.setAttribute("member", m);
-			session.setAttribute("scoreCnt", Arrays.toString(scoreCnt));		// 평점 분포
-			session.setAttribute("likes", Arrays.toString(likes.toArray()));	// 구독
-			session.setAttribute("estMovie", Arrays.toString(m.getRecList()));	// 예측 영화 코드
-			session.setAttribute("estTitle", Arrays.toString(itemRankTitle));	// 예측 영화 타이틀
+			response.getWriter().print(Arrays.toString(m.getRecList()) + "," + Arrays.toString(itemRankTitle));
+				
 		} else {
 			// 로그인 안하고 들어갔을 때
 			request.setAttribute("exception", new Exception("로그인을 해야 사용가능합니다."));
 			page = "views/common/errorPage.jsp";
+			request.getRequestDispatcher(page).forward(request, response);
 		}
-		request.getRequestDispatcher(page).forward(request, response);
 		
 	}
 

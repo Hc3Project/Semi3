@@ -47,6 +47,7 @@
 	            <br>
 	            <div class="stickChart">
 	                <!-- 차트 넣는 곳-->
+         			<!-- 차트 변경해야됨 -->
 	                <div id="scoreHist"></div>
 	            </div>
 	            
@@ -73,8 +74,9 @@
 	                <input type="hidden" id="likesRiviewer" value="<%=likes%>">
 	            </div>
 	            <br><br>
-	            <div style="margin-top:12px;" id="rvrList">
-	                <div style="height:50px">
+	            <!-- 리뷰어 더미 -->
+	           <div style="margin-top:12px;" id="rvrList">
+	                <!-- <div style="height:50px">
 	                    <img class="circle" src="" style="float:left;width:50px">
 	                    <div style="margin:6px 0 0 10px;display:inline-block;float:left;text-align:left;">
 	                        <div style="font-weight:bold;font-size:17px;">라이너의 컬쳐쇼크</div>
@@ -101,7 +103,7 @@
 	                    <div style="margin:6px 0 0 10px;display:inline-block;float:left;text-align:left;">
 	                        <div style="font-weight:bold;font-size:17px;">시선 플레이</div>
 	                    </div>
-	                </div>
+	                </div> -->
 	            </div>
 	        </section>  
 	        
@@ -110,8 +112,8 @@
 	                <h5 style="float:left;">영화 선호 장르</h4>
 	            </div>
 	            <br><br>
-	            <div class="starWarp">
-	                <div>
+	            <div class="starWarp" id="gDiv">
+	                <!-- <div>
 	                    <div style="font-weight:bold;">가족</div>
 	                    <div class="under_note">96점·9편</div>
 	                </div>
@@ -122,9 +124,9 @@
 	                <div>
 	                    <div style="font-weight:bold;">코미디</div>
 	                    <div class="under_note">90점·12편</div>
-	                </div>
+	                </div> -->
 	            </div>
-	            <div class="moreMovie" style="width:700px;margin:0 auto;min-height:20px;">
+	            <div class="moreMovie" style="width:700px;margin:0 auto;min-height:20px;" id="gDivU">
 	                <div style="height:13px;margin-top:9px;">
 	                    <span class="under_note" style="float:left">로맨스</span>
 	                    <span class="under_note" style="float:right">89점·11편</span>
@@ -155,7 +157,8 @@
 	                </div>
 	            </div>
 	        </section>
-	        <div class="btn" onclick="more()">더 보기</div>
+	        <!-- <div class="btn" onclick="more()">더 보기</div> -->
+	        <div style="margin:20px 0;width:100%;height:1px;background-color:#dedede"></div>
 	            <br><br>
 	        <section>
 	            <div>

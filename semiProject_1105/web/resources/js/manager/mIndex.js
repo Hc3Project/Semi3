@@ -31,7 +31,7 @@ $(function(){
 			    x: {
 			      type: "category",
 			      tick: {
-			        rotate: 50,
+			        /*rotate: 50,*/
 			        multiline: false,
 			        tooltip: true
 			      },
@@ -71,7 +71,7 @@ $(function(){
 			    x: {
 			      type: "category",
 			      tick: {
-			        rotate: 50,
+			        /*rotate: 50,*/
 			        multiline: false,
 			        tooltip: true
 			      },
