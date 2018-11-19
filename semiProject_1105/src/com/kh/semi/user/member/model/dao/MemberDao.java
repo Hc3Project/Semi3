@@ -297,5 +297,31 @@ public class MemberDao {
 		}
 		return result;
 	}
+	public List<CategoryInfo> selectGenreStat(Connection con, String userId, String col) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		String sql = prop.getProperty("selectGenreStat");
+		sql = sql.replace("column", col);
+		try {
+			result = new ArrayList<CategoryInfo>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("gname"));
+				ci.setMean(rset.getDouble("mean"));
+				ci.setCnt(rset.getInt("cnt"));
+				result.add(ci);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
 	
 }

@@ -7,17 +7,25 @@ $(function(){
 	if(scoreStr!=""){
 		var scoreArr = scoreStr.split(",");
 		var forChart = scoreStr.split(",");
-		forChart.unshift("0");
 		forChart.unshift("평가수");
-		forChart.push("0");
-		
+
 		var chart = bb.generate({
 			  data: {
-			    columns: [
-			    	forChart
-			    ],
-			    types: {
-			      '평가수' : "area-step"
+				  columns: [
+					  forChart
+				  ],
+				  type: "area-step"
+			  },
+			  axis: {
+			    x: {
+			      type: "category",
+			      categories: [
+			        "★",
+			        "★★",
+			        "★★★",
+			        "★★★★",
+			        "★★★★★"
+			      ],
 			    }
 			  },
 			  bindto: "#scoreHist"
@@ -95,6 +103,57 @@ $(function(){
 	}
 	
 	// 영화 선호 장르
+	$.ajax({
+		url : "/semi/gStat.me",
+		type : "post",
+		data : {},
+		success : function(data){
+			var result = $.parseJSON(data);
+			$g3Div = $('#gDiv');
+			$gOutDiv = $('#gDivU');
+			$g3Div.html('');
+			$gOutDiv.html('');
+			for(var i=0; i<result.length; i++){
+				if(i<=0){
+					$g3Div.text('현재 평가를 한 작품이 존재하지 않습니다.')
+				} else if(i<3){
+					$inDiv = $('<div>');
+					$tDiv = $('<div>').attr({
+						'style' : 'font-weight:bold;'
+					}).text(result[i].name);
+					$sDiv = $('<div>').attr({
+						'style' : 'under_note'
+					}).text(result[i].mean*20 + "점·" + result[i].cnt + "편");
+					$inDiv.append($tDiv);
+					$inDiv.append($sDiv);
+					
+					$g3Div.append($inDiv);
+				} else if(i<6) {
+					$iDiv = $('<div>').attr({
+						'style' : 'height:13px;margin-top:9px;'
+					})
+					$tSpan = $('<span>').attr({
+						'class' : 'under_note',
+						'style' : 'float:left'
+					}).text(result[i].name);
+					$sSpan = $('<span>').attr({
+						'class' : 'under_note',
+						'style' : 'float:right'
+					}).text(result[i].mean*20 + "점·" + result[i].cnt + "편");
+					
+					$iDiv.append($tSpan);
+					$iDiv.append($sSpan);
+					
+					$gOutDiv.append($iDiv);
+				} else {
+					break;
+				}
+			}
+		},
+		error : function(data){
+			console.log(data);
+		}
+	})
 	
 	// 영화 추천
 	var movieStr = $('#estMovie').val().replace(/\[|\]|\s/g,"");

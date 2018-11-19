@@ -123,5 +123,12 @@ public class MemberService {
 		close(con);
 		return result;
 	}
+
+	public List<CategoryInfo> selectGenreStat(String userId, String col) {
+		Connection con = getConnection();
+		List<CategoryInfo> result = mDao.selectGenreStat(con, userId, col);
+		close(con);
+		return result;
+	}
 	
 }
