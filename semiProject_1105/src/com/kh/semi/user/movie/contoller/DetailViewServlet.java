@@ -47,6 +47,7 @@ public class DetailViewServlet extends HttpServlet {
 		String videoId = request.getParameter("videoId");
 		String mCode = request.getParameter("mCode");
 		String userId = null;
+		System.out.println(mCode);
 
 		MovieService dvs = new MovieService();
 		ReviewService rs = new ReviewService();
@@ -83,17 +84,17 @@ public class DetailViewServlet extends HttpServlet {
 			String keyword = mov.getMtitle();
 
 			// 불러온 정보를 이용해 네이버API로 포스터 클로링
-			page= new MovieImg().moviewImg(keyword);
+			page= new MovieImg().moviewImg(keyword,mCode);
 			
 			// 해당 영화의 별점 평균
-			int avg=srs.selectStarAvgRating(mCode);
+			//int avg=srs.selectStarAvgRating(mCode);
 
 			// 문제가 없다면 보내기
 			request.setAttribute("page", page);
 			request.setAttribute("mov", mov);
 			request.setAttribute("rv", rv);
 			request.setAttribute("score", score);
-			request.setAttribute("avg", avg);
+			//request.setAttribute("avg", avg);
 
 			request.getRequestDispatcher("views/movie/movieDetailView.jsp").forward(request, response);
 		} catch (Exception e) {

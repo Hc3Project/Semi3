@@ -26,10 +26,10 @@
 <title>리뷰어 페이지</title>
 <style>
 	.heartBtn on{
-		src:"../../resources/image/rdheart.png";
+		background:url(/semi/resources/image/rdheart.png) no-repeat;
 	}
 	.heartBtn{
-		src:"../../resources/image/grheart.png";
+		src:/semi/resources/image/grheart.png;
 	}
 </style>
 </head>
@@ -49,7 +49,7 @@
                     <img src="https://yt3.ggpht.com/a-/AN66SAwVm7WA528o_GTVJTBQw7VyY9yvZzoB7COb7g=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
                 </a>
-                <h2>라이너의 컬쳐쇼크<br><br><span><img class="heartBtn" id="UCIXvXBYSc9fQ7Ri5SM1r8xA"></span></h2>
+                <h2>라이너의 컬쳐쇼크<br><br><span class="heartBtn" id="UCIXvXBYSc9fQ7Ri5SM1r8xA" ></span></h2>
                 <p> #촌철살인 #전문가 포스 #스포일러 多 #최신 영화 위주 </p>
               
             </div>
@@ -242,26 +242,7 @@
 
 <script>
 	// 로그인시에만 동작
-	if(<%=member%>!=null){
-		if(<%=list%>!=null&&<%=list.size()%>>0){
-			for(var i=0;i<<%=list.size()%>;i++){
-				
-			}
-		}
-		
-		$('.heartBtn on').click(function(){
-			$(this).removeClass('on');
-			
-		});
-			
-		$('.heartBtn').click(function() {
-			$(this).addClass('on');
-			$.ajax({
-				url:"/semi/insert.rvr"
-				data:
-			})
-		});
-	}	
+	
 </script>
 </body>
 </html>

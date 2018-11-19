@@ -1,8 +1,6 @@
-package com.kh.semi.user.review.controller;
+package com.kh.semi.user.movie.contoller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.semi.user.review.model.service.ReviewService;
-import com.kh.semi.user.review.model.vo.Review;
+import com.kh.semi.user.movie.model.service.StarRatingService;
 
 /**
- * Servlet implementation class ReviewAllServlet
+ * Servlet implementation class StarAverageServlet
  */
-@WebServlet("/rAll.rv")
-public class ReviewAllServlet extends HttpServlet {
+@WebServlet("/star.avg")
+public class StarAverageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewAllServlet() {
+    public StarAverageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +29,10 @@ public class ReviewAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReviewService rs = new ReviewService();
-		String rsql = request.getParameter("rsql");
-		String rvrCode = request.getParameter("rvrCode");
-		int page = Integer.parseInt(request.getParameter("page"));
-	
-		ArrayList<Review> list = new ArrayList<Review>();
-							
-		list= rs.rvrReviewAll(rsql,rvrCode,page);
-				
+		String mCode=request.getParameter("mCode");
+		int avg=new StarRatingService().selectStarAvgRating(mCode);
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list, response.getWriter());
+		new Gson().toJson(avg,response.getWriter());
 	}
 
 	/**

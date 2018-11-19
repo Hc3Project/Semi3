@@ -39,7 +39,7 @@ public class StarRatingService {
 		else throw new StarRatingException("별점 등록 실패!");
 	}
 
-	public int selectStarAvgRating(String mCode) throws StarRatingException {
+	public int selectStarAvgRating(String mCode) {
 		Connection con=getConnection();
 		int result=srDao.selectStarAvgRating(con,mCode);
 		close(con);
