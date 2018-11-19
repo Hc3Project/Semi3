@@ -28,7 +28,7 @@ public class MovieDao {
 		}
 	}
 
-	public List<PosterInfo> getPowerImage(Connection con, String result, String keyword) {
+	public List<PosterInfo> getPowerImage(Connection con, String result, String keyword,String mCode) {
 		// 포스터찾기
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
@@ -36,6 +36,7 @@ public class MovieDao {
 		try {
 			pstmt=con.prepareStatement(prop.getProperty("findCorrectMovie"));
 			pstmt.setString(1, keyword);
+			pstmt.setString(2, mCode);
 			rset=pstmt.executeQuery();
 			list=new ArrayList<>();
 			while(rset.next()){
