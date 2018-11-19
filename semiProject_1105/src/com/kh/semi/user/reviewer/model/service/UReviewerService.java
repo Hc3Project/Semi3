@@ -23,11 +23,40 @@ public class UReviewerService {
 		return rin;
 	}
 
-	public List<ReviewerLikes> selectReviewerStatus(String userId) throws ReviewerViewException {
+	public String selectReviewerStatus(String userId) throws ReviewerViewException {
 		Connection con=getConnection();
-		List<ReviewerLikes> list=new UReviewerDao().selectReviewerStatus(con,userId);
+		String result=new UReviewerDao().selectReviewerStatus(con,userId);
 		close(con);
-		return list;
+		return result;
+	}
+
+	public int insertReviewerLikes(String userId, String rvrCode) throws ReviewerViewException {
+		Connection con=getConnection();
+		int result=rrDao.insertReviewerLikes(con,userId,rvrCode);
+		if(result>0){
+			commit(con);
+			close(con);
+			return result;
+		}else{
+			rollback(con);
+			close(con);
+			throw new ReviewerViewException("좋아요 실패!");
+		}
+		
+	}
+
+	public int deleteReviewerLikes(String userId, String rvrCode) throws ReviewerViewException {
+		Connection con=getConnection();
+		int result=rrDao.deleteReviewerLikes(con,userId,rvrCode);
+		if(result>0){
+			commit(con);
+			close(con);
+			return result;
+		}else{
+			rollback(con);
+			close(con);
+			throw new ReviewerViewException("싫어요 실패!");
+		}
 	}
 	
 }
