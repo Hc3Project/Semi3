@@ -44,7 +44,7 @@ public class ReviewerServlet extends HttpServlet {
 				request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
 			}else{
 				// 회원 정보가 없을 경우
-				request.setAttribute("list", "list");
+				request.setAttribute("list", "");
 				request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
 			}
 		}catch (ReviewerViewException e) {
