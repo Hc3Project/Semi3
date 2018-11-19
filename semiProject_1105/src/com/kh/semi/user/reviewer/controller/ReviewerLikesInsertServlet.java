@@ -1,31 +1,26 @@
 package com.kh.semi.user.reviewer.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.kh.semi.exception.ReviewerViewException;
-import com.kh.semi.user.member.model.vo.Member;
+import com.google.gson.Gson;
 import com.kh.semi.user.reviewer.model.service.UReviewerService;
-import com.kh.semi.user.reviewer.model.vo.ReviewerLikes;
 
 /**
- * Servlet implementation class ReviewerServlet
+ * Servlet implementation class ReviewerLikesInsertServlet
  */
-@WebServlet("/reviewer.do")
-public class ReviewerServlet extends HttpServlet {
+@WebServlet("/insert.rvr")
+public class ReviewerLikesInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewerServlet() {
+    public ReviewerLikesInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,22 +29,18 @@ public class ReviewerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession(false);
-		Member m=(Member) session.getAttribute("member");
-		try {
-			if(m!=null){
-				// 회원정보가 있을 경우
-				String result=new UReviewerService().selectReviewerStatus(m.getUserId());
-				request.setAttribute("list", result);
-				request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
-			}else{
-				// 회원 정보가 없을 경우
-				response.sendRedirect("views/movie/movieReviewerView.jsp");
-			}
-		}catch (ReviewerViewException e) {
+		String userId=request.getParameter("userId");
+		String rvrCode=request.getParameter("rvrCode");
+		System.out.println("아이디 : "+userId);
+		System.out.println("리뷰어 : "+rvrCode);
+		try{
+			int result=new UReviewerService().insertReviewerLikes(userId,rvrCode);
+			new Gson().toJson(result,response.getWriter());
+		}catch(Exception e){
 			request.setAttribute("exception", e);
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);;
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
+		
 	}
 
 	/**
