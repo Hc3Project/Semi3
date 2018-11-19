@@ -241,11 +241,13 @@
 	// 로그인시에만 동작
 	<%if(member!=null){%>
 		
-		<%for(int i=0;i<rvr.length;i++){%>
-			$('#<%=rvr[i]%>').attr({
-				src:'/semi/resources/image/rdheart.png',
-				alt:'red'
-			});
+		<%if(list.length()>0){%>
+			<%for(int i=0;i<rvr.length;i++){%>
+				$('#<%=rvr[i]%>').attr({
+					src:'/semi/resources/image/rdheart.png',
+					alt:'red'
+				});
+			<%}%>
 		<%}%>
 		
 		$('.heartBtn').click(function(){
