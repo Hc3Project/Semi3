@@ -35,12 +35,14 @@ public class ReviewListServlet extends HttpServlet {
 		ReviewService rs = new ReviewService();
 		String rsql = request.getParameter("rsql");
 		String title = request.getParameter("title");
-		System.out.println("title : "+title);
-		System.out.println("rsql : "+rsql);
+		String rvrCode = request.getParameter("rvrCode");
+	
 		ArrayList<Review> list = new ArrayList<Review>();
-
+			if(rvrCode==null)
 			list = title==null? rs.reviewList(rsql):rs.reviewList(rsql,title);
-			
+			else 				
+				list= rs.rvrReviewList(rsql,rvrCode);
+				
 			response.setContentType("application/json; charset=UTF-8");
 			new Gson().toJson(list, response.getWriter());
 

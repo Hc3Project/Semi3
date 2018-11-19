@@ -102,5 +102,26 @@ public class MemberService {
 		close(con);
 		return result;
 	}
+
+	public List<String> selectLikesReviewer(String userId) {
+		Connection con = getConnection();
+		List<String> result = mDao.selectLikesReviewer(con, userId);
+		close(con);
+		return result;
+	}
+
+	public String selectMovieTitle(String mCode) {
+		Connection con = getConnection();
+		String result = mDao.selectMovieTitle(con, mCode);
+		close(con);
+		return result;
+	}
+
+	public int[] selectRatingCnt(String userId) {
+		Connection con = getConnection();
+		int[] result = mDao.selectRatingCnt(con, userId);
+		close(con);
+		return result;
+	}
 	
 }

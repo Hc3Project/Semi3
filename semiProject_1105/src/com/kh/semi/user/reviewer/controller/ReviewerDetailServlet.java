@@ -43,7 +43,7 @@ public class ReviewerDetailServlet extends HttpServlet {
 		String rsql = "rvrSelect";
 		
 		ReviewService rs = new ReviewService();
-		rs.reviewList(rsql, rvrCode);
+		
 		
 		// 11/16 리뷰어 별  리뷰영상 뿌리는것 하다 맘. 상훈이 할 것
 		String page= "";

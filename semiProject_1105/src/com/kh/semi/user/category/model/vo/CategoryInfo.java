@@ -14,7 +14,7 @@ public class CategoryInfo {
 		this.code = code;
 		this.name = name;
 	}
-
+	
 	public CategoryInfo(String code, String name, int cnt) {
 		super();
 		this.code = code;

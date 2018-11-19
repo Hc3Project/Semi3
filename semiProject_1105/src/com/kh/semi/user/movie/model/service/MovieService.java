@@ -139,10 +139,10 @@ public class MovieService {
 		return mov;
 	}
 
-	public ArrayList<MovieInfo> visitMovie(String userId) {
+	public ArrayList<MovieInfo> visitMovie(String userId,int page) {
 		 ArrayList<MovieInfo> list = new ArrayList<MovieInfo>();
 		 Connection con =getConnection();
-		 list = new MovieDao().visitMovie(con,userId);
+		 list = new MovieDao().visitMovie(con,userId,page);
 		 
 		 close(con);
 		 
