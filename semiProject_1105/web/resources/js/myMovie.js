@@ -26,6 +26,7 @@ $(function() {
 				type : "post",
 					success : function(data) {
 	                    var $top = $("#visitMovie")
+	                    console.log(data);
 							for ( var i in data) {
 								console.log(data[i].mCode);
 								$list= $("<div>").attr("class", "col-md-2").attr("style","background-image: url("+data[i].mPage+")").attr("value",data[i].mCode)
