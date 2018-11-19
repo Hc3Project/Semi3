@@ -1,12 +1,13 @@
 package com.kh.semi.user.category.model.service;
 
-import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.category.model.dao.CategoryDao;
+import com.kh.semi.user.category.model.vo.CategoryInfo;
 
 public class CategoryService {
 	
@@ -22,6 +23,17 @@ public class CategoryService {
 		else mList = cDao.selectMoiveList(con); //없으면 전체 영화 불러오는 페이지 
 		
 		return mList;
+	}
+	
+	// DB에서 생성된 카테고리 목록 불러오는 서비스
+	public ArrayList<CategoryInfo> selectCategoryList(String csql) {
+		ArrayList<CategoryInfo> cList = new ArrayList<CategoryInfo>();
+		Connection con = getConnection();
+		cList = cDao.selectCategoryList(con, csql);
+		
+		close(con);
+		
+		return cList;
 	}
 
 }

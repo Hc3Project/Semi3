@@ -1,5 +1,7 @@
 package com.kh.semi.user.member.model.dao;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,12 +11,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.user.category.model.vo.CategoryInfo;
 import com.kh.semi.user.member.execption.MemberException;
 import com.kh.semi.user.member.model.vo.Member;
-
-import static com.kh.semi.common.JDBCTemplate.*;
 
 public class MemberDao {
 	private Properties prop;
@@ -204,6 +206,9 @@ public class MemberDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
 		}
 		return result;
 	}
@@ -221,6 +226,100 @@ public class MemberDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		return result;
+	}
+	public List<String> selectLikesReviewer(Connection con, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> result = null;
+		String sql = prop.getProperty("selectLikesReviewer");
+		try {
+			result = new ArrayList<String>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				result.add(rset.getString("rvrcode"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public String selectMovieTitle(Connection con, String mCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String result = null;
+		String sql = prop.getProperty("selectMovieTitle");
+		try {
+			result = "";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mCode);
+			rset = pstmt.executeQuery();
+			if(rset.next()) result = rset.getString("mTitle");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public int[] selectRatingCnt(Connection con, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int[] result = null;
+		String sql = prop.getProperty("selectScoreCnt");
+		try {
+			result = new int[5];
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result[0] = rset.getInt("s1");
+				result[1] = rset.getInt("s2");
+				result[2] = rset.getInt("s3");
+				result[3] = rset.getInt("s4");
+				result[4] = rset.getInt("s5");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<CategoryInfo> selectGenreStat(Connection con, String userId, String col) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		String sql = prop.getProperty("selectGenreStat");
+		sql = sql.replace("column", col);
+		try {
+			result = new ArrayList<CategoryInfo>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("gname"));
+				ci.setMean(rset.getDouble("mean"));
+				ci.setCnt(rset.getInt("cnt"));
+				result.add(ci);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		return result;
 	}

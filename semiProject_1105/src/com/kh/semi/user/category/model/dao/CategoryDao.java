@@ -1,5 +1,7 @@
 package com.kh.semi.user.category.model.dao;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,9 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
-import static com.kh.semi.common.JDBCTemplate.*;
 
 import com.kh.semi.manager.video.model.vo.MovieInfo;
+import com.kh.semi.user.category.model.vo.CategoryInfo;
 
 public class CategoryDao {
 	
@@ -177,6 +179,77 @@ public class CategoryDao {
 		}
 		
 		return mList;
+	}
+
+	
+	
+	// 모든 카테고리 정보 가져오는 메소드 
+	public ArrayList<CategoryInfo> selectCategoryList(Connection con, String csql) {
+		
+		ArrayList<CategoryInfo> cList = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		
+		String sql = prop.getProperty(csql);
+		
+		System.out.println("csql 확인 : " + sql);
+		try {
+			
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			cList = new ArrayList<CategoryInfo>();
+			
+			CategoryInfo categoryInfo = null;
+			
+			if(sql.contains("GENRE")){
+				while(rset.next()){
+					categoryInfo = new CategoryInfo();
+					
+					categoryInfo.setCode(rset.getString("gcode"));
+					categoryInfo.setName(rset.getString("gname"));
+
+					cList.add(categoryInfo);
+				}
+			}
+			
+			if(sql.contains("NATION")){
+				while(rset.next()){
+					categoryInfo = new CategoryInfo();
+					
+					categoryInfo.setCode(rset.getString("ncode"));
+					categoryInfo.setName(rset.getString("nname"));
+
+					cList.add(categoryInfo);
+				}
+			}
+			
+			
+			if(sql.contains("REVIEWER")){
+				while(rset.next()){
+					categoryInfo = new CategoryInfo();
+					
+					categoryInfo.setCode(rset.getString("rvrcode"));
+					categoryInfo.setName(rset.getString("rname"));
+
+					cList.add(categoryInfo);
+				}
+			}
+		
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		
+		} finally{
+			close(con);
+			close(stmt);
+		}
+		
+		/*for(int i=0; i<cList.size(); i++){
+			System.out.println("불러온 카테고리 : " + cList.get(i));
+		}*/
+		
+		return cList;
 	}
 
 }

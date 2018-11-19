@@ -6,6 +6,7 @@ import java.sql.Date;
 public class MovieDetailInfo implements Serializable {
 	
 	private String mtitle;
+	private String mcode;
 	private String director;
 	private String actor;
 	private int showtime;
@@ -20,10 +21,11 @@ public class MovieDetailInfo implements Serializable {
 		super();
 	}
 
-	public MovieDetailInfo(String mtitle, String director, String actor, int showtime, Date opendate, String gname1,
-			String gname2, String nname, int counts, String synopsis) {
+	public MovieDetailInfo(String mtitle, String mcode, String director, String actor, int showtime, Date opendate,
+			String gname1, String gname2, String nname, int counts, String synopsis) {
 		super();
 		this.mtitle = mtitle;
+		this.mcode = mcode;
 		this.director = director;
 		this.actor = actor;
 		this.showtime = showtime;
@@ -37,9 +39,9 @@ public class MovieDetailInfo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MovieDetailInfo [mtitle=" + mtitle + ", director=" + director + ", actor=" + actor + ", showtime="
-				+ showtime + ", opendate=" + opendate + ", gname1=" + gname1 + ", gname2=" + gname2 + ", nname=" + nname
-				+ ", counts=" + counts + ", synopsis=" + synopsis + "]";
+		return "MovieDetailInfo [mtitle=" + mtitle + ", mcode=" + mcode + ", director=" + director + ", actor=" + actor
+				+ ", showtime=" + showtime + ", opendate=" + opendate + ", gname1=" + gname1 + ", gname2=" + gname2
+				+ ", nname=" + nname + ", counts=" + counts + ", synopsis=" + synopsis + "]";
 	}
 
 	public String getMtitle() {
@@ -48,6 +50,14 @@ public class MovieDetailInfo implements Serializable {
 
 	public void setMtitle(String mtitle) {
 		this.mtitle = mtitle;
+	}
+
+	public String getMcode() {
+		return mcode;
+	}
+
+	public void setMcode(String mcode) {
+		this.mcode = mcode;
 	}
 
 	public String getDirector() {

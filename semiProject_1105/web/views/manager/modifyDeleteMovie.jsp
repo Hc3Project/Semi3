@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>영화 수정 및 삭제</title>
+<script src="../../resources/js/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
 </head>
 <body class="mbody">
 	<%@include file="../common/header.jsp"%>
@@ -21,7 +23,7 @@
 				<option value="director">감독</option>
 			</select>
 			<input type="text" name="" id="search" placeholder="키워드를 입력하세요.">
-			<input type="button" value="검색" id="searchBtn">
+			<input type="button" value="검색" id="mBtn">
 		</div>
 		<div id="getList" style="display:none">
 			<table id="movieList" class="hoverOpt aTable">
@@ -78,6 +80,5 @@
 		request.getRequestDispatcher(path).forward(request, response);
 	}%>
 </body>
-<script src="../../resources/js/jquery-3.3.1.min.js"></script>
 <script src="../../resources/js/manager/modifyDeleteMovie.js"></script>
 </html>

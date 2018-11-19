@@ -2412,19 +2412,47 @@ html.full-height body [data-react-router-class="MyRoutes"],html.full-height body
     width: 70px
 }
 
-.gnb-category-list .gnb-category-list__filtered-list,.gnb-category-list .gnb-category-list__css-spinner {
+.gnb-category-list .gnb-category-list__filtered-list,.gnb-category-list__filtered-list2,.gnb-category-list .gnb-category-list__css-spinner {
     float: right;
     width: 390px;
     position: relative;
     z-index:5550;
 }
 
-.gnb-category-list .gnb-category-list__filtered-list:before,.gnb-category-list .gnb-category-list__filtered-list:after,.gnb-category-list .gnb-category-list__css-spinner:before,.gnb-category-list .gnb-category-list__css-spinner:after {
+.gnb-category-list .gnb-category-list__filtered-list2,.gnb-category-list .gnb-category-list__css-spinner {
+    float: right;
+    width: 390px;
+    position: relative;
+    z-index:5550;
+}
+
+.gnb-category-list .gnb-category-list__filtered-list3,.gnb-category-list .gnb-category-list__css-spinner {
+    float: right;
+    width: 390px;
+    position: relative;
+    z-index:5550;
+}
+
+.gnb-category-list .gnb-category-list__filtered-list:before,
+.gnb-category-list .gnb-category-list__filtered-list:after,
+.gnb-category-list .gnb-category-list__css-spinner:before,
+.gnb-category-list .gnb-category-list__css-spinner:after {
     content: " ";
     display: table
 }
 
+.gnb-category-list .gnb-category-list__filtered-list2:before,
+.gnb-category-list .gnb-category-list__filtered-list2:after,
+.gnb-category-list .gnb-category-list__css-spinner:before,.gnb-category-list .gnb-category-list__css-spinner:after {
+    content: " ";
+    display: table
+} 
+
 .gnb-category-list .gnb-category-list__filtered-list:after,.gnb-category-list .gnb-category-list__css-spinner:after {
+    clear: both
+}
+
+.gnb-category-list .gnb-category-list__filtered-list2:after,.gnb-category-list .gnb-category-list__css-spinner:after {
     clear: both
 }
 
@@ -2454,7 +2482,31 @@ html.full-height body [data-react-router-class="MyRoutes"],html.full-height body
     line-height: 40px
 }
 
+.gnb-category-list .gnb-category-list__filtered-list-item2 {
+    position: relative;
+    float: left;
+    padding-left: 16px;
+    width: 130px;
+    line-height: 40px
+}
+
+.gnb-category-list .gnb-category-list__filtered-list-item3 {
+    position: relative;
+    float: left;
+    padding-left: 16px;
+    width: 130px;
+    line-height: 40px
+}
+
 .gnb-category-list .gnb-category-list__filtered-list-item a {
+    font-size: 14px
+}
+
+.gnb-category-list .gnb-category-list__filtered-list-item2 a {
+    font-size: 14px
+}
+
+.gnb-category-list .gnb-category-list__filtered-list-item3 a {
     font-size: 14px
 }
 
@@ -2472,7 +2524,7 @@ html.full-height body [data-react-router-class="MyRoutes"],html.full-height body
     background-color: #FC426A;
     border-radius: 2px;
     line-height: 1
-} */
+}  */
 
 .logo {
     line-height: 0;

@@ -28,7 +28,7 @@ public class MovieDao {
 		}
 	}
 
-	public List<PosterInfo> getPowerImage(Connection con, String result, String keyword) {
+	public List<PosterInfo> getPowerImage(Connection con, String result, String keyword,String mCode) {
 		// 포스터찾기
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
@@ -36,6 +36,7 @@ public class MovieDao {
 		try {
 			pstmt=con.prepareStatement(prop.getProperty("findCorrectMovie"));
 			pstmt.setString(1, keyword);
+			pstmt.setString(2, mCode);
 			rset=pstmt.executeQuery();
 			list=new ArrayList<>();
 			while(rset.next()){
@@ -62,15 +63,16 @@ public class MovieDao {
 			if(rset.next()){
 				mov=new MovieDetailInfo();
 				mov.setMtitle(rset.getString(1));
-				mov.setDirector(rset.getString(2));
-				mov.setActor(rset.getString(3));
-				mov.setShowtime(rset.getInt(4));
-				mov.setOpendate(rset.getDate(5));
-				mov.setGname1(rset.getString(6));
-				mov.setGname2(rset.getString(7));
-				mov.setNname(rset.getString(8));
-				mov.setCounts(rset.getInt(9));
-				mov.setSynopsis(rset.getString(10));
+				mov.setMcode(rset.getString(2));
+				mov.setDirector(rset.getString(3));
+				mov.setActor(rset.getString(4));
+				mov.setShowtime(rset.getInt(5));
+				mov.setOpendate(rset.getDate(6));
+				mov.setGname1(rset.getString(7));
+				mov.setGname2(rset.getString(8));
+				mov.setNname(rset.getString(9));
+				mov.setCounts(rset.getInt(10));
+				mov.setSynopsis(rset.getString(11));
 			}
 			
 		} catch (SQLException e) {
@@ -128,17 +130,19 @@ public class MovieDao {
 		return result;
 	}
 
-	public ArrayList<MovieInfo> visitMovie(Connection con, String userId) {
+	public ArrayList<MovieInfo> visitMovie(Connection con, String userId,int page) {
 		ArrayList<MovieInfo> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
 		
 		String sql = prop.getProperty("visitMovie");
-		
+		System.out.println(sql);
 		try {
 			list=new ArrayList<MovieInfo>();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, page);
+			pstmt.setInt(3, page);
 			
 			rset = pstmt.executeQuery();
 			MovieInfo mi = null;
@@ -156,7 +160,36 @@ public class MovieDao {
 		}
 		return list;
 	}
-
+	public ArrayList<MovieInfo> evalMovie(Connection con, String userId,int page) {
+		ArrayList<MovieInfo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		
+		String sql = prop.getProperty("evalMovie");
+		System.out.println(sql);
+		try {
+			list=new ArrayList<MovieInfo>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, page);
+			pstmt.setInt(3, page);
+			
+			rset = pstmt.executeQuery();
+			MovieInfo mi = null;
+			while(rset.next()) {
+				mi=new MovieInfo();
+				mi.setmTitle(rset.getString("MTITLE"));
+				mi.setmCode(rset.getString("MCODE"));
+				
+				list.add(mi);
+			}
+	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 
 }

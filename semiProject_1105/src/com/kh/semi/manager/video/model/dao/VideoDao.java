@@ -6,11 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.manager.video.model.vo.MovieInfo;
+import com.kh.semi.user.category.model.vo.CategoryInfo;
+
 import static com.kh.semi.common.JDBCTemplate.*;
 
 public class VideoDao {
@@ -235,4 +238,68 @@ public class VideoDao {
 		return result;
 	}
 
+	public List<CategoryInfo> selectGenreCnt(Connection con, String gCode) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		String sql = prop.getProperty("selectGenreCnt");
+		sql = sql.replace("condition", gCode);
+		try {
+			result = new ArrayList<CategoryInfo>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("gname"));
+				ci.setCnt(rset.getInt("gcnt"));
+				result.add(ci);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<CategoryInfo> selectGenreCnt(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		String sql = prop.getProperty("selectNationCnt");
+		try {
+			result = new ArrayList<CategoryInfo>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("nname"));
+				ci.setCnt(rset.getInt("cnt"));
+				result.add(ci);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<CategoryInfo> selectRecentGenre(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		String sql = prop.getProperty("selectRecentGenreCnt");
+		try {
+			result = new ArrayList<CategoryInfo>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("gname"));
+				ci.setCnt(rset.getInt("cnt"));
+				result.add(ci);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

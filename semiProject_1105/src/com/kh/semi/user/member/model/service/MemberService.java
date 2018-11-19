@@ -1,14 +1,18 @@
 package com.kh.semi.user.member.model.service;
 
-import com.kh.semi.user.member.execption.MemberException;
-import com.kh.semi.user.member.model.dao.MemberDao;
-import com.kh.semi.user.member.model.vo.Member;
-
-
-import static com.kh.semi.common.JDBCTemplate.*;
+import static com.kh.semi.common.JDBCTemplate.close;
+import static com.kh.semi.common.JDBCTemplate.commit;
+import static com.kh.semi.common.JDBCTemplate.getConnection;
+import static com.kh.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.kh.semi.user.category.model.vo.CategoryInfo;
+import com.kh.semi.user.member.execption.MemberException;
+import com.kh.semi.user.member.model.dao.MemberDao;
+import com.kh.semi.user.member.model.vo.Member;
 
 
 public class MemberService {
@@ -91,13 +95,40 @@ public class MemberService {
 		close(con);
 		return result;
 	}
-
+	
 	public int[][] selectRating(int uLen, int iLen) {
 		Connection con = getConnection();
 		int[][] result = mDao.selectRating(con, uLen, iLen);
 		close(con);
 		return result;
 	}
-	
+
+	public List<String> selectLikesReviewer(String userId) {
+		Connection con = getConnection();
+		List<String> result = mDao.selectLikesReviewer(con, userId);
+		close(con);
+		return result;
+	}
+
+	public String selectMovieTitle(String mCode) {
+		Connection con = getConnection();
+		String result = mDao.selectMovieTitle(con, mCode);
+		close(con);
+		return result;
+	}
+
+	public int[] selectRatingCnt(String userId) {
+		Connection con = getConnection();
+		int[] result = mDao.selectRatingCnt(con, userId);
+		close(con);
+		return result;
+	}
+
+	public List<CategoryInfo> selectGenreStat(String userId, String col) {
+		Connection con = getConnection();
+		List<CategoryInfo> result = mDao.selectGenreStat(con, userId, col);
+		close(con);
+		return result;
+	}
 	
 }

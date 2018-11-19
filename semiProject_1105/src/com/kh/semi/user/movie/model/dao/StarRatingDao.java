@@ -53,6 +53,7 @@ public class StarRatingDao {
 			pstmt.setString(2, mCode);
 			pstmt.setInt(3, score);
 			result=pstmt.executeUpdate();
+			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
@@ -73,6 +74,26 @@ public class StarRatingDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectStarAvgRating(Connection con, String mCode) {
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		int result=0;
+		try {
+			pstmt=con.prepareStatement(prop.getProperty("selectStarAvgRating"));
+			pstmt.setString(1, mCode);
+			rset=pstmt.executeQuery();
+			if(rset.next()){
+				result=rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
 			close(pstmt);
 		}
 		return result;
