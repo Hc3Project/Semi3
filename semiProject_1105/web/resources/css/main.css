@@ -95,22 +95,26 @@
 }
 
 #boxOffice {
+	font-family: 'Noto Sans' !important;
 	float: right;
 	width: 400px;
 	background: white;
 }
 
 #bo1 {
+	font-family: 'Noto Sans' !important;
 	height: 120px !important;
 	background: #0f1111;
 }
 
 #bo2 {
+	font-family: 'Noto Sans' !important;
 	height: 399px !important;
 	background: white;
 }
 
 #bo3 {
+	font-family: 'Noto Sans' !important;
 	height: 81px !important;
 	background: #0f1111;
 }
@@ -210,23 +214,29 @@ a[href="#st2Carousel"] {
 }
 
 .boxRank {
-	color: black;
+	font-size: 14px;
+	font-family: 'Noto Sans' !important;
+	color: #121212;
 }
 
-.boxRank td, .boxRank th {
+.boxRank td, .boxRank th{
+	font-family: 'Noto Sans' !important;
 	text-align: center;
 }
-
-.boxRank td:FIRST-CHILD, .boxRank th:FIRST-CHILD {
+.boxRank td:FIRST-CHILD, .boxRank th:FIRST-CHILD{
+	font-family: 'Noto Sans' !important;
 	width: 50px;
 }
-
-.boxRank td:LAST-CHILD, .boxRank th:LAST-CHILD {
+.boxRank td:LAST-CHILD, .boxRank th:LAST-CHILD{
+	font-family: 'Noto Sans' !important;
 	width: 120px;
 }
+.boxRank tr:hover{
+	font-family: 'Noto Sans' !important;
+	font-size: 14.5px;
+	font-weight: bold;
+	color: #ea4c88;
 
-.boxRank tr:hover {
-	border-bottom: 2px solid #ea4c88;
 	cursor;
 }
 
