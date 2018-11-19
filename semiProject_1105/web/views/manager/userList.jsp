@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>회원 목록</title>
 <script src="../../resources/js/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
 </head>
 <body class="mBody">
 	<%@include file="../common/header.jsp"%>
