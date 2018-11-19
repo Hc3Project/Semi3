@@ -49,7 +49,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="signup-cont cont"></div>
+			<div class="signup-cont cont">
+				<div class="category-page" style="position: relative;">
+					<div class="home-page__rec-list">
+						<div class="rec-row" id="evalMovie"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 
