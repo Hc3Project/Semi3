@@ -244,15 +244,15 @@ System.out.println("asdasd "+getPage);
 		// 현재 별점이 있으면  update서블릿
 		// 현재 별점이 없으면 insert 서블릿
 		
+		var num=0;
+		if(<%=score%>==0) num=<%=avg%>;
+		else num=<%=score%>;
 		
 		$('.starRev span').hover(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 			return false;
 		},function(){
-			var num=0;
-			if(score==0) num=<%=avg%>;
-			else num=<%=score%>;
 			$(this).parent().children('span').removeClass('on');
 			for(var i;i<num;i++){
 				$(this).parent().children('span').eq(i).addClass('on');
