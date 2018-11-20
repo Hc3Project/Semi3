@@ -164,6 +164,16 @@ public class MovieService {
 		return "";
 
 		}
+
+	public int visitMovieCount(String userId) {
+		int count = 0;
+		 ArrayList<MovieInfo> list = new ArrayList<MovieInfo>();
+		 Connection con =getConnection();
+		 count = new MovieDao().countMovie(con,userId);
+		 
+		 close(con);
+		return count;
+	}
 		
 		
 

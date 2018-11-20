@@ -25,7 +25,6 @@
 
 
 
-
 <title>My Movie</title>
 </head>
 <body>
@@ -45,7 +44,12 @@
 			<div class="signin-cont cont">
 				<div class="category-page" style="position: relative;">
 					<div class="home-page__rec-list">
-						<div class="rec-row" id="visitMovie"></div>
+						<div class="rec-row" id="visitMovie">
+							<div id="Progress_Loading">
+								<!-- 로딩바 -->
+								
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

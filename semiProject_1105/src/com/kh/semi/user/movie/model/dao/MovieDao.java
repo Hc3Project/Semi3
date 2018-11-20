@@ -134,6 +134,7 @@ public class MovieDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
 		
+
 		try {
 			list=new ArrayList<MovieInfo>();
 			pstmt = con.prepareStatement(prop.getProperty("visitMovie"));
@@ -185,6 +186,31 @@ public class MovieDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public int countMovie(Connection con, String userId) {
+		int count = 0;
+		String sql = prop.getProperty("countMovie");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next()){
+				count = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		
+		return count;
 	}
 	
 

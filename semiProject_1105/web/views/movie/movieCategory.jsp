@@ -24,8 +24,9 @@
 <title>모든 장르</title>
 </head>
 <body>
+<header>
 	<%@ include file="../common/header.jsp"%>
-
+</header>
 	<div class="select-menu">
 		<div class="select-genre">
 			<select class="genre select" id="genre">
