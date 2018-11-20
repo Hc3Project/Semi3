@@ -42,7 +42,9 @@ public class ReviewerServlet extends HttpServlet {
 		}else{
 			request.setAttribute("list", "");
 		}
+		
 		request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
+		
 		
 	}
 
