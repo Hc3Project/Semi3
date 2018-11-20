@@ -38,8 +38,7 @@ public class ReviewerInsertServlet extends HttpServlet {
 		ri.setrName(rName);
 		ri.setProfile(profile);
 		
-		ReviewerService rs = new ReviewerService();
-		int result = rs.insertReviewer(ri);
+		int result = new ReviewerService().insertReviewer(ri);
 		
 		response.getWriter().print(result);
 	}

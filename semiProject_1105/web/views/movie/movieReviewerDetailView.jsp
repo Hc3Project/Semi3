@@ -2,7 +2,9 @@
     pageEncoding="UTF-8" import="java.util.*, com.kh.semi.manager.reviewer.model.vo.ReviewerInfo"%>
 <%
 	ReviewerInfo ri = (ReviewerInfo) request.getAttribute("ri");
-	String rvrCode = request.getParameter("rvrCode");
+	String rvrCode = (String)request.getAttribute("rvrCode");
+	String prfImg=(String)request.getAttribute("prfImg");
+	System.out.println("이미지주소:"+prfImg);
 %>
 <!DOCTYPE html>
 <html>
@@ -48,7 +50,7 @@
             <a class="yt-simple-endpoint style-scope ytd-channel-renderer" href="">
             <div id="avatar" class="style-scope ytd-channel-renderer">
                 <yt-img-shadow height="136" width="136" class="" loaded="" style="background-color: transparent;"></yt-img-shadow>
-                    <img id="profile" alt="" width="136" height="136" src="https://yt3.ggpht.com/a-/AN66SAwVm7WA528o_GTVJTBQw7VyY9yvZzoB7COb7g=s176-c-k-c0x00ffffff-no-rj-mo">
+                    <img id="profile" alt="" width="136" height="136" src="https://yt3.ggpht.com/a-/<%=prfImg%>">
                 </yt-img-shadow>
             </div>
             <div id="info" class="style-scope ytd-channel-renderer">
@@ -64,13 +66,7 @@
                 <yt-formatted-string id="description" class="style-scope ytd-channel-renderer"><%= ri.getProfile() %></yt-formatted-string>
             </div>
             </a>
-            <div id="subscribe-button" class="style-scope ytd-channel-renderer">
-                <ytd-button-renderer button-renderer="" class="style-scope ytd-channel-renderer style-destructive size-default" is-paper-button="">
-                    <a class="yt-simple-endpoint style-scope ytd-button-renderer" tabindex="-1" href="https://www.youtube.com/channel/UCIXvXBYSc9fQ7Ri5SM1r8xA">
-                        <paper-button role="button" tabindex="0" animated="" aria-disabled="false" elevation="0" id="button" class="style-scope ytd-button-renderer style-destructive size-default"><yt-formatted-string id="text" class="style-scope ytd-button-renderer style-destructive size-default">Youtube 채널 바로 가기</yt-formatted-string>
-                        </paper-button>
-                    </a></ytd-button-renderer>
-            </div>
+            
             </ytd-channel-renderer>
         </div>
    </div>

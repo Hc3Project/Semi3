@@ -6,7 +6,6 @@
 	Member member=(Member)session.getAttribute("member");
 	String list=(String)request.getAttribute("list");
 	String[] rvr=list.split(", ");
-	System.out.println("받아온 리뷰어코드 : "+list);
 %>
 <!DOCTYPE html>
 <html>
@@ -41,7 +40,7 @@
 <a href="/semi/views/movie/movieReviewerDetailView.jsp">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCIXvXBYSc9fQ7Ri5SM1r8xA">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCIXvXBYSc9fQ7Ri5SM1r8xA&prfImg=AN66SAwVm7WA528o_GTVJTBQw7VyY9yvZzoB7COb7g=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAwVm7WA528o_GTVJTBQw7VyY9yvZzoB7COb7g=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -56,7 +55,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCMguxwveCsLVpyKrLz-EFTg">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCMguxwveCsLVpyKrLz-EFTg&prfImg=AN66SAzBujm1ekWQQuRSVCQNW_Vu426WBlvr5X4rcg=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAzBujm1ekWQQuRSVCQNW_Vu426WBlvr5X4rcg=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -70,7 +69,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCJfthTE-ACoZJPVgwyw_hsw">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCJfthTE-ACoZJPVgwyw_hsw&prfImg=AN66SAzLcisUWXl_LhZz44Xi70FSfiVr9Muxj7xUhQ=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAzLcisUWXl_LhZz44Xi70FSfiVr9Muxj7xUhQ=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -84,7 +83,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UC79hJz6y1EEiIkwfHOuWC4w">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UC79hJz6y1EEiIkwfHOuWC4w&prfImg=AN66SAxwMf-CFDUpC66-uduG7jk8kNGKtBsxAG1I5g=s288-mo-c-c0xffffffff-rj-k-no">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAxwMf-CFDUpC66-uduG7jk8kNGKtBsxAG1I5g=s288-mo-c-c0xffffffff-rj-k-no">
                 </div>
@@ -102,7 +101,7 @@
 <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UC8OTtjmmFp-NAypjj64ocmg">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UC8OTtjmmFp-NAypjj64ocmg&prfImg=AN66SAyYrjuMUrtDOIee-fl2yRVR68xJYQOuDsAf3A=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAyYrjuMUrtDOIee-fl2yRVR68xJYQOuDsAf3A=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -116,7 +115,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCxlv4aOnrRTXMRSL8bVJqEw">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCxlv4aOnrRTXMRSL8bVJqEw&prfImg=AN66SAzfM5tqDLOjZk_tWQemsDuLYaRg1izgE4DwsA=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAzfM5tqDLOjZk_tWQemsDuLYaRg1izgE4DwsA=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -130,7 +129,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCpCiIDf9UrfRqte55FHWlYQ">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCpCiIDf9UrfRqte55FHWlYQ&prfImg=AN66SAwC3Qq-_sIFlKVlgw7tNEAhgxrD7IYDeeQvVQ=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAwC3Qq-_sIFlKVlgw7tNEAhgxrD7IYDeeQvVQ=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -144,7 +143,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCKvfTts0BCr0Zx6FWT_rtEw">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCKvfTts0BCr0Zx6FWT_rtEw&prfImg=AN66SAwAHX86u0AddaV5rdxMLcLzhZNQbS-QLh5e0Q=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAwAHX86u0AddaV5rdxMLcLzhZNQbS-QLh5e0Q=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -162,7 +161,7 @@
 <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCrBpV_pG2kyMMEHCMTNzjAQ">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCrBpV_pG2kyMMEHCMTNzjAQ&prfImg=AN66SAwQvfhgQXh2A1_sdbc86MGkMi-I7OaC3iqLuw=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAwQvfhgQXh2A1_sdbc86MGkMi-I7OaC3iqLuw=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -176,7 +175,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCiOWYRzOTiUYi9pJ-kscIKw">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCiOWYRzOTiUYi9pJ-kscIKw&prfImg=AN66SAzHi74WkMpaq1rqdV7XL73pSe2rGXYZ7uGgFA=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAzHi74WkMpaq1rqdV7XL73pSe2rGXYZ7uGgFA=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -190,7 +189,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCNR3K4HA6LyO9tz0oZoSJIA">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCNR3K4HA6LyO9tz0oZoSJIA&prfImg=AN66SAyxILC15q6D7V77L8Qv6N0fG5uXV4WS4Zs8_w=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAyxILC15q6D7V77L8Qv6N0fG5uXV4WS4Zs8_w=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -204,7 +203,7 @@
    <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCu3BjLd03jxTVHXTPqZ77iQ">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCu3BjLd03jxTVHXTPqZ77iQ&prfImg=AN66SAzgi9pUTOTN-eAqe9wUfosbEzquvrSfkdlvvg=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAzgi9pUTOTN-eAqe9wUfosbEzquvrSfkdlvvg=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>
@@ -221,7 +220,7 @@
 <div class="col-sm-3">
     <div class="card">
             <div class="box">
-            <a href="<%=request.getContextPath()%>/rDetail.rvr?rvrCode=UCBHXCaw_W6sxfgAB7rC-BYw">
+            <a href="<%=request.getContextPath()%>/profile.rvr?rvrCode=UCBHXCaw_W6sxfgAB7rC-BYw&prfImg=AN66SAySsICVpJqGA1EBC7RpZawR5ykR7GVjQrYD9g=s176-c-k-c0x00ffffff-no-rj-mo">
                 <div class="img">
                     <img src="https://yt3.ggpht.com/a-/AN66SAySsICVpJqGA1EBC7RpZawR5ykR7GVjQrYD9g=s176-c-k-c0x00ffffff-no-rj-mo">
                 </div>

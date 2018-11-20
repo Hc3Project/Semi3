@@ -31,8 +31,7 @@ public class MovieDuplicationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mCode = request.getParameter("mCode");
 		
-		VideoService vs = new VideoService();
-		int result = vs.selectDup(mCode);
+		int result = new VideoService().selectDup(mCode);
 		response.getWriter().print(result);
 	}
 

@@ -29,7 +29,7 @@ public class MovieDao {
 	}
 
 	public List<PosterInfo> getPowerImage(Connection con, String result, String keyword,String mCode) {
-		// 포스터찾기
+		
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		List<PosterInfo> list=null;
@@ -44,6 +44,7 @@ public class MovieDao {
 				list.add(pi);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}finally{
 			close(rset);
 			close(pstmt);
@@ -52,7 +53,7 @@ public class MovieDao {
 	}
 
 	public MovieDetailInfo selectMovieDetail(Connection con, String mCode) {
-		// 영화 상세정보
+		
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
 		MovieDetailInfo mov=null;
@@ -76,27 +77,26 @@ public class MovieDao {
 			}
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}finally{
 			close(rset);
 			close(pstmt);
 		}
 		return mov;
 	}
-//최근방문기록
+	
 	public int MovieVisit(Connection con, String mCode,String userId) {
 		int result =0;
-		String sql = prop.getProperty("movieVisit");
 		PreparedStatement pstmt = null;
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("movieVisit"));
 			pstmt.setString(2, mCode);
 			pstmt.setString(1, userId);
 			
 			result=pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			close(pstmt);
@@ -106,14 +106,13 @@ public class MovieDao {
 		return result;
 		
 	}
-//조회수 증가
+
 	public int MovieCount(Connection con, String mCode) {
 		int result =0;
-		String sql = prop.getProperty("movieCount");
 		PreparedStatement pstmt = null;
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("movieCount"));
 			pstmt.setString(1, mCode);
 			
 			
@@ -135,12 +134,10 @@ public class MovieDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
 		
-		String sql = prop.getProperty("visitMovie");
-		String count = prop.getProperty("visitMovieoCount");
-		System.out.println(sql);
+
 		try {
 			list=new ArrayList<MovieInfo>();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("visitMovie"));
 			pstmt.setString(1, userId);
 			pstmt.setInt(2, page);
 			pstmt.setInt(3, page);
@@ -156,7 +153,6 @@ public class MovieDao {
 			}
 	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;

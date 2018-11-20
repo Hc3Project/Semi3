@@ -43,11 +43,10 @@ public class DetailViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 클릭시 받아오는 값 (늘어나면 수정)
+		
 		String videoId = request.getParameter("videoId");
 		String mCode = request.getParameter("mCode");
 		String userId = null;
-		System.out.println(mCode);
 
 		MovieService dvs = new MovieService();
 		ReviewService rs = new ReviewService();
@@ -59,7 +58,6 @@ public class DetailViewServlet extends HttpServlet {
 			userId = m.getUserId();
 		}
 		try {
-			// 영화정보와 리뷰정보를 불러옴
 			ReviewInfo rv = null;
 			MovieDetailInfo mov = null;
 			if (videoId != null) {
@@ -69,32 +67,20 @@ public class DetailViewServlet extends HttpServlet {
 			mov = dvs.selectMovieDetail(mCode, userId);
 			int score = 0;
 			
-			// 별점 가져오기
-			// 세션에 회원이 로그인한 정보가 있으면 불러오고, 없다면 디폴트 0점
-			// 별점은 회원만 메길 수 있어야 하는데 1. 비회원은 별점을 클릭해도 이벤트가 발생하지 않는다
-			// 2. 비회원은 별점을 볼 수 없다 등 비회원이 DB에 영향을 끼치지 않도록 생각해봐야함
-			// DB RATING 테이블 SCORE 컬럼에 디폴트 0, CHECK 제약조건 달아둠(0~10) 다음에 공유함
 			if (userId != null) {
 				
 				score = srs.selectStarRating(userId, mCode);
-				System.out.println(userId);
 			}
 
 			String page = "";
 			String keyword = mov.getMtitle();
 
-			// 불러온 정보를 이용해 네이버API로 포스터 클로링
 			page= new MovieImg().moviewImg(keyword,mCode);
 			
-			// 해당 영화의 별점 평균
-			//int avg=srs.selectStarAvgRating(mCode);
-
-			// 문제가 없다면 보내기
 			request.setAttribute("page", page);
 			request.setAttribute("mov", mov);
 			request.setAttribute("rv", rv);
 			request.setAttribute("score", score);
-			//request.setAttribute("avg", avg);
 
 			request.getRequestDispatcher("views/movie/movieDetailView.jsp").forward(request, response);
 		} catch (Exception e) {

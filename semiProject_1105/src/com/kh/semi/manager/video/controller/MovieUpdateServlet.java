@@ -42,9 +42,7 @@ public class MovieUpdateServlet extends HttpServlet {
 		mi.setActor(actor);
 		mi.setSyno(syno);
 		
-		VideoService vs = new VideoService();
-		
-		int result = vs.updateMovie(mi);
+		int result = new VideoService().updateMovie(mi);
 		
 		response.getWriter().print(result);
 	}

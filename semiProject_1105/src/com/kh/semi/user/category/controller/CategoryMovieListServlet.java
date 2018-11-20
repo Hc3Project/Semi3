@@ -9,22 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.category.model.service.CategoryService;
-import com.kh.semi.user.category.model.vo.CategoryInfo;
 
 /**
- * Servlet implementation class CategoryListServlet
+ * Servlet implementation class CategoryMovieListServlet
  */
-@WebServlet("/cList.ca")
-public class CategoryListServlet extends HttpServlet {
+@WebServlet("/cmList.ca")
+public class CategoryMovieListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CategoryListServlet() {
+    public CategoryMovieListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,19 +32,31 @@ public class CategoryListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("servlet");
-		String csql = request.getParameter("csql");
+		// 1. cCode 받아오기
+		String cCode = request.getParameter("cCode");
 		
-
-		ArrayList<CategoryInfo> cList = new ArrayList<CategoryInfo>();
-
+		// 2. 해당 cCode의 영화 리스트 불러오기
 		
-		cList = cs.selectCategoryList(csql); // 카테고리 리스트 가져오는 cs
-
-		response.setContentType("application/json; charset=UTF-8");
+		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
 		
-		new Gson().toJson(cList, response.getWriter());
+		CategoryService cs = new CategoryService();
 		
+		mList = cs.selectCategory(cCode);
+		
+		System.out.println("영화코드 확인  : " + cCode);
+		
+		
+		String page="";
+		
+		if(mList!=null){
+			page="views/movie/movieDetailView.jsp";
+			request.setAttribute("mList", mList);
+		}else{
+			page="views/common/errorPage.jsp";
+			request.setAttribute("msg", "해당 카테고리 영화가 없습니다!");
+		}
+		System.out.println(mList.size());
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

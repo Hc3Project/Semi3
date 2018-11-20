@@ -35,8 +35,7 @@ public class MovieSelectPart extends HttpServlet {
 		String sel = request.getParameter("sel");
 		String keyword = request.getParameter("keyword");
 		
-		VideoService vs = new VideoService();
-		List<MovieInfo> result = vs.selectPart(sel, keyword);
+		List<MovieInfo> result = new VideoService().selectPart(sel, keyword);
 		
 		if(result!=null) {
 			response.setContentType("application; charset=utf-8");
