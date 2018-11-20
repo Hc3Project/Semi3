@@ -16,7 +16,7 @@ $(function(){
 				  ],
 				  type: "area-step",
 				  colors : {
-					  "평가수": "#00f"
+					  "평가수": "#ea4c88"
 				  }
 			  },
 			  axis: {
@@ -101,7 +101,7 @@ $(function(){
 					$('#rvrList').append($line);
 				})
 			})
-		}, 1500);
+		}, 2500);
 		
 	} else {
 		$('#rvrList').text('회원님께선 현재 구독을 한 리뷰어가 없습니다.')
@@ -122,87 +122,50 @@ $(function(){
 			$gOutDiv = $('#gDivU');
 			$g3Div.html('');
 			$gOutDiv.html('');
-			for(var i=0; i<result.length; i++){
-				if(i<=0){
-					$g3Div.text('현재 평가를 한 작품이 존재하지 않습니다.')
-				} else if(i<3){
-					$inDiv = $('<div>');
-					$tDiv = $('<div>').attr({
-						'style' : 'font-weight:bold;'
-					}).text(result[i].name);
-					$sDiv = $('<div>').attr({
-						'style' : 'under_note'
-					}).text(result[i].mean*20 + "점·" + result[i].cnt + "편");
-					$inDiv.append($tDiv);
-					$inDiv.append($sDiv);
-					
-					$g3Div.append($inDiv);
-				} else if(i<6) {
-					$iDiv = $('<div>').attr({
-						'style' : 'height:13px;margin-top:9px;'
-					})
-					$tSpan = $('<span>').attr({
-						'class' : 'under_note',
-						'style' : 'float:left'
-					}).text(result[i].name);
-					$sSpan = $('<span>').attr({
-						'class' : 'under_note',
-						'style' : 'float:right'
-					}).text(result[i].mean*20 + "점·" + result[i].cnt + "편");
-					
-					$iDiv.append($tSpan);
-					$iDiv.append($sSpan);
-					
-					$gOutDiv.append($iDiv);
-				} else {
-					break;
+			
+			if(result.length!=0){
+				for(var i=0; i<result.length; i++){
+					if(i<3){
+						$inDiv = $('<div>');
+						$tDiv = $('<div>').attr({
+							'style' : 'font-weight:bold;'
+						}).text(result[i].name);
+						$sDiv = $('<div>').attr({
+							'style' : 'under_note'
+						}).text(result[i].mean*10 + "점·" + result[i].cnt + "편");
+						$inDiv.append($tDiv);
+						$inDiv.append($sDiv);
+						
+						$g3Div.append($inDiv);
+					} else if(i<6) {
+						$iDiv = $('<div>').attr({
+							'style' : 'height:13px;margin-top:9px;'
+						})
+						$tSpan = $('<span>').attr({
+							'class' : 'under_note',
+							'style' : 'float:left'
+						}).text(result[i].name);
+						$sSpan = $('<span>').attr({
+							'class' : 'under_note',
+							'style' : 'float:right'
+						}).text(result[i].mean*20 + "점·" + result[i].cnt + "편");
+						
+						$iDiv.append($tSpan);
+						$iDiv.append($sSpan);
+						
+						$gOutDiv.append($iDiv);
+					} else {
+						break;
+					}
 				}
+			} else {
+				$g3Div.text('현재 평가를 한 작품이 존재하지 않습니다.')
 			}
 		},
 		error : function(data){
 			console.log(data);
 		}
 	})
-	
-	// 영화 추천
-	var movieStr = $('#estMovie').val().replace(/\[|\]|\s/g,"");
-	var titleStr = $('#estTitle').val().replace(/\[|\]|\s/g,"");
-	$(st2Carousel).html('');
-	if(movieStr!=""){
-		var estArr = movieStr.split(",");
-		var titleArr = titleStr.split(",");
-		var resultNum = 5;
-		for(var i=0; i<estArr.length/resultNum; i++){
-			// 페이지마다
-			$inDiv = $('<div>').attr({
-				'class' : 'item rec-list clearfix'
-			})
-			for(var j=0; j<((estArr.length-i*resultNum>=5)?5:estArr.length-i*resultNum); j++){
-				$miniDiv = $('<div>').attr({
-					'class' : 'col-md-2',
-					'value' : estArr[i*resultNum + j]
-				})
-				// 영화명
-				$h = $('<h1>').attr({
-					'style' : 'opacity: 1;'
-				}).text(titleArr[j]);
-				// 이미지 주소
-				$img = $('<img>').attr({
-					'src' : '서음네이이일주우우우소오오오오오'
-				})
-				$img.click(function(){
-					location.href = "/semi/dView.do?mCode="+$(this).parent('div').attr('value');
-				})
-				$miniDiv.append($h);
-				$miniDiv.append($img);
-				
-				$inDiv.append($miniDiv);
-			}
-			$(st2Carousel).append($inDiv);
-		}
-	} else {
-		$('#st2Carousel').text('평점 항목이 적거나 사용자와 비슷한 성향의 다른 사용자가 없습니다.')
-	}
 })
 
 function init() {
