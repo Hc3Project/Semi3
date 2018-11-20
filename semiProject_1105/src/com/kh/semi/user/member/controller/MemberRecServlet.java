@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.semi.common.CollaborativeFiltering;
+import com.kh.semi.exception.MemberException;
 import com.kh.semi.user.member.model.service.MemberService;
 import com.kh.semi.user.member.model.vo.Member;
 
@@ -91,7 +92,7 @@ public class MemberRecServlet extends HttpServlet {
 			session.setAttribute("estTitle", Arrays.toString(itemRankTitle));	// 예측 영화 타이틀
 		} else {
 			// 로그인 안하고 들어갔을 때
-			request.setAttribute("exception", new Exception("로그인을 해야 사용가능합니다."));
+			request.setAttribute("exception", new MemberException("회원 정보가 없습니다!"));
 			page = "views/common/errorPage.jsp";
 		}
 		request.getRequestDispatcher(page).forward(request, response);

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.exception.ReviewerViewException;
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
 import com.kh.semi.user.review.model.service.ReviewService;
 import com.kh.semi.user.reviewer.model.service.UReviewerService;
@@ -34,30 +35,27 @@ public class ReviewerDetailServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String rvrCode = request.getParameter("rvrCode");
 		System.out.println(rvrCode);
-		UReviewerService rvr = new UReviewerService();
 		
-		ReviewerInfo ri = new ReviewerInfo();
-		ri= rvr.reviewerDetail(rvrCode);
+		try{
+			ReviewerInfo ri= new UReviewerService().reviewerDetail(rvrCode);
 		
-		System.out.println("전달 받은 리뷰어 정보 : "+ri);
-		String rsql = "rvrSelect";
+			System.out.println("전달 받은 리뷰어 정보 : "+ri);
+			String rsql = "rvrSelect";
 		
-		ReviewService rs = new ReviewService();
+			ReviewService rs = new ReviewService();
 		
 		
-		// 11/16 리뷰어 별  리뷰영상 뿌리는것 하다 맘. 상훈이 할 것
-		String page= "";
-		
-		if(ri != null){
-			page = "views/movie/movieReviewerDetailView.jsp";
+			// 11/16 리뷰어 별  리뷰영상 뿌리는것 하다 맘. 상훈이 할 것
+
 			request.setAttribute("ri", ri);
-		} else {
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "상세페이지 불러오기 실패!");
-		}
 		
-		request.getRequestDispatcher(page).forward(request, response);
+		
+			request.getRequestDispatcher("views/movie/movieReviewerDetailView.jsp").forward(request, response);
+		}catch(ReviewerViewException e){
+			request.setAttribute("exception", e);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
+	}
 	
 	
 

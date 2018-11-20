@@ -37,12 +37,11 @@ public class ReviewDao {
 		Statement pstmt = null;
 		ResultSet rset = null;
 		List<ReviewerInfo> result = null;
-		String sql = prop.getProperty("selectAllReviewer");
 		
 		try {
 			result = new ArrayList<ReviewerInfo>();
 			pstmt = con.createStatement();
-			rset = pstmt.executeQuery(sql);
+			rset = pstmt.executeQuery(prop.getProperty("selectAllReviewer"));
 			
 			while(rset.next()) {
 				ReviewerInfo ri = new ReviewerInfo();
@@ -66,11 +65,9 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<MovieInfo> result = null;
-		String sql = prop.getProperty("selectMovie");
-		
 		try {
 			result = new ArrayList<MovieInfo>();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectMovie"));
 			pstmt.setString(1, keyword);
 			rset = pstmt.executeQuery();
 			
@@ -97,9 +94,8 @@ public class ReviewDao {
 	public int insertReview(Connection con, ReviewInfo rvi) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("insertReview");
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("insertReview"));
 			pstmt.setString(1, rvi.getVideoId());
 			pstmt.setString(2, rvi.getmCode());
 			pstmt.setString(3, rvi.getRvrCode());
@@ -118,10 +114,9 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int result = 0;
-		String sql = prop.getProperty("selectOneReview");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectOneReview"));
 			pstmt.setString(1, videoId);
 			rset = pstmt.executeQuery();
 			
@@ -140,11 +135,10 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<ReviewInfo> result = null;
-		String sql = prop.getProperty("selectPartReview");
 		
 		try {
 			result = new ArrayList<ReviewInfo>();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectPartReview"));
 			pstmt.setString(1, rvrCode);
 			pstmt.setString(2, keyword);
 			rset = pstmt.executeQuery();
@@ -169,10 +163,9 @@ public class ReviewDao {
 	public int deleteReview(Connection con, String videoId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("deleteReview");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("deleteReview"));
 			pstmt.setString(1, videoId);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.semi.user.member.execption.MemberException;
+import com.kh.semi.exception.MemberException;
 import com.kh.semi.user.member.model.service.MemberService;
 import com.kh.semi.user.member.model.vo.Member;
 
@@ -46,9 +46,8 @@ public class MemberDeleteServlet extends HttpServlet {
 			
 			response.sendRedirect("/semi/index.jsp");
 			
-		} catch (Exception e) {
-			
-			request.setAttribute("msg", "회원 탈퇴 중 에러가 발생했습니다.");
+		} catch (MemberException e) {
+			request.setAttribute("exception", e);
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		

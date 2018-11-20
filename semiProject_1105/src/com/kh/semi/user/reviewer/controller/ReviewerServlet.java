@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.kh.semi.exception.ReviewerViewException;
 import com.kh.semi.user.member.model.vo.Member;
 import com.kh.semi.user.reviewer.model.service.UReviewerService;
-import com.kh.semi.user.reviewer.model.vo.ReviewerLikes;
 
 /**
  * Servlet implementation class ReviewerServlet
@@ -36,21 +35,15 @@ public class ReviewerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
 		Member m=(Member) session.getAttribute("member");
-		try {
-			if(m!=null){
-				// 회원정보가 있을 경우
-				String result=new UReviewerService().selectReviewerStatus(m.getUserId());
-				request.setAttribute("list", result);
-				request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
-			}else{
-				// 회원 정보가 없을 경우
-				request.setAttribute("list", "");
-				request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
-			}
-		}catch (ReviewerViewException e) {
-			request.setAttribute("exception", e);
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);;
+		
+		if(m!=null){
+			String result=new UReviewerService().selectReviewerStatus(m.getUserId());
+			request.setAttribute("list", result);
+		}else{
+			request.setAttribute("list", "");
 		}
+		request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
+		
 	}
 
 	/**

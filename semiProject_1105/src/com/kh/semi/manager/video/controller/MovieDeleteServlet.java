@@ -31,9 +31,7 @@ public class MovieDeleteServlet extends HttpServlet {
 
 		String mCode = request.getParameter("mCode");
 		
-		VideoService vs = new VideoService();
-		
-		int result = vs.deleteMovie(mCode);
+		int result = new VideoService().deleteMovie(mCode);
 		
 		response.getWriter().print(result);
 	}

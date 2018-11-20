@@ -52,14 +52,10 @@ public class SearchMovieServlet extends HttpServlet {
 			page = "views/movie/movieCategory.jsp";
 			request.setAttribute("mList", mList);
 			
-		}else{
-			
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "검색어를 입력해 주세요!");
-			
 		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
+		
 	}
 
 	/**

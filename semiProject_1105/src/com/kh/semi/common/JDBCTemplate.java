@@ -25,6 +25,7 @@ public class JDBCTemplate {
 			con=DriverManager.getConnection(url,userName,password);
 			con.setAutoCommit(false);
 		} catch (IOException | ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
 		}
 		return con;
 		
@@ -34,7 +35,7 @@ public class JDBCTemplate {
 		try {
 			if(con!=null&&!con.isClosed()) con.close();
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
@@ -42,6 +43,7 @@ public class JDBCTemplate {
 		try {
 			if(stmt!=null&&!stmt.isClosed()) stmt.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -49,6 +51,7 @@ public class JDBCTemplate {
 		try {
 			if(rset!=null&&!rset.isClosed()) rset.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -56,6 +59,7 @@ public class JDBCTemplate {
 		try {
 			if(con!=null&&!con.isClosed()) con.commit();
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -63,6 +67,7 @@ public class JDBCTemplate {
 		try {
 			if(con!=null&&!con.isClosed()) con.rollback();
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

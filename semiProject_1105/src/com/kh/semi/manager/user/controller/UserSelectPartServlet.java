@@ -37,8 +37,7 @@ public class UserSelectPartServlet extends HttpServlet {
 		int stNum = Integer.parseInt(request.getParameter("stNum"));
 		int edNum = Integer.parseInt(request.getParameter("edNum"));
 		
-		UserService us = new UserService();
-		List<UserInfo> result = us.selectPartUser(opt, keyword, stNum, edNum);
+		List<UserInfo> result = new UserService().selectPartUser(opt, keyword, stNum, edNum);
 		new Gson().toJson(result, response.getWriter());
 	}
 

@@ -32,11 +32,10 @@ public class ReviewerDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<ReviewerInfo> result = null;
-		String sql = prop.getProperty("selectPart");
 		
 		try {
 			result = new ArrayList<ReviewerInfo>();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectPart"));
 			pstmt.setString(1, keyword);
 			
 			rset = pstmt.executeQuery();
@@ -61,10 +60,9 @@ public class ReviewerDao {
 	public int updateReviewer(Connection con, ReviewerInfo ri) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("updateReviewer");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("updateReviewer"));
 			pstmt.setString(1, ri.getrName());
 			pstmt.setString(2, ri.getProfile());
 			pstmt.setString(3, ri.getRvrCode());
@@ -82,9 +80,8 @@ public class ReviewerDao {
 	public int insertReviewer(Connection con, ReviewerInfo ri) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("insertReviewer");
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("insertReviewer"));
 			pstmt.setString(1, ri.getRvrCode());
 			pstmt.setString(2, ri.getrName());
 			pstmt.setString(3, ri.getProfile());
@@ -102,11 +99,10 @@ public class ReviewerDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<ReviewerInfo> result = null;
-		String sql = prop.getProperty("selectPartCnt");
 		
 		try {
 			result = list;
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectPartCnt"));
 			
 			for(ReviewerInfo rvInfo : result) {
 				pstmt.setString(1, rvInfo.getRvrCode());
@@ -130,9 +126,8 @@ public class ReviewerDao {
 	public int deleteReviewer(Connection con, String channelId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("deleteReviewer");
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("deleteReviewer"));
 			pstmt.setString(1, channelId);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -147,9 +142,8 @@ public class ReviewerDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int result = 0;
-		String sql = prop.getProperty("duplicateReviewer");
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("duplicateReviewer"));
 			pstmt.setString(1, channelId);
 			rset = pstmt.executeQuery();
 			if(rset.next()) result++;

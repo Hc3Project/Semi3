@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.exception.CategoryViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.category.model.service.CategoryService;
 
@@ -35,26 +36,19 @@ public class CategorySelectServlet extends HttpServlet {
 		String cCode = request.getParameter("cCode");
 		
 		// 2.카테고리 코드에 따른 영화 정보 list로 받아오기
-		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
+		try{
+			ArrayList<MovieInfo> mList = new CategoryService().selectCategory(cCode);
 		
-		CategoryService cs = new CategoryService();
+			System.out.println("영화코드 확인  : " + cCode);
 		
-		mList = cs.selectCategory(cCode);
-		
-		System.out.println("영화코드 확인  : " + cCode);
-		
-		
-		String page="";
-		
-		if(mList!=null){
-			page="/views/movie/movieCategory.jsp";
 			request.setAttribute("mList", mList);
-		}else{
-			page="/views/common/errorPage.jsp";
-			request.setAttribute("msg", "해당 카테고리 영화가 없습니다!");
+		
+			System.out.println(mList.size());
+			request.getRequestDispatcher("/views/movie/movieCategory.jsp").forward(request, response);
+		}catch(CategoryViewException e){
+			request.setAttribute("exception", e);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		System.out.println(mList.size());
-		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

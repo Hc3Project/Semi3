@@ -60,13 +60,10 @@ public class VisitMovieServlet extends HttpServlet {
 			movieIf.put("mCode", movie.getmCode());
 
 			try {
-				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle()));
-			} catch (DetailViewException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				request.setAttribute("exception", e);
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
 
 			result.add(movieIf);

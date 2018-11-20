@@ -29,8 +29,7 @@ public class ReviewDuplicationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String videoId = request.getParameter("videoId");
-		ReviewService rs = new ReviewService();
-		int result = rs.selectOneReview(videoId);
+		int result = new ReviewService().selectOneReview(videoId);
 		response.getWriter().print(result);
 	}
 

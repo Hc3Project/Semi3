@@ -16,20 +16,18 @@ public class ReviewService {
 	private ReviewDao rDao = new ReviewDao();
 
 	public ArrayList<Review> reviewList(String rsql) {
-		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
 		
-		list = rDao.review(con,rsql);
+		ArrayList<Review> list = rDao.review(con,rsql);
 		
 		close(con);
 
 		return list;
 	}
 	public ArrayList<Review> reviewList(String rsql,String mTitle) {
-		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
 	
-		list = rDao.review(con,rsql,mTitle);
+		ArrayList<Review> list = rDao.review(con,rsql,mTitle);
 		
 		
 		close(con);
@@ -40,17 +38,17 @@ public class ReviewService {
 	
 	public ReviewInfo selectReview(String videoId) throws Exception{
 		Connection con=getConnection();
-		ReviewInfo rv=new ReviewDao().selectReview(con,videoId);
+		ReviewInfo rv=rDao.selectReview(con,videoId);
 		close(con);
-		if(rv==null) throw new DetailViewException("상세보기 실패!");
+		if(rv==null) throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
 		return rv;
 	}
 	public void reviewCount(String videoId,String userId) {
 		Connection con=getConnection();
 		int result=0;
 		try{
-			if(userId!=null)result=new ReviewDao().reviewVisit(con,videoId,userId);
-			if(result>0){new ReviewDao().reviewCount(con,videoId);
+			if(userId!=null)result=rDao.reviewVisit(con,videoId,userId);
+			if(result>0){rDao.reviewCount(con,videoId);
 				commit(con);
 			}
 			
@@ -61,10 +59,9 @@ public class ReviewService {
 		
 	}
 	public ArrayList<Review> rvrReviewList(String rsql, String rvrCode) {
-		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
 	
-		list = rDao.rvrReviewList(con,rsql,rvrCode);
+		ArrayList<Review> list = rDao.rvrReviewList(con,rsql,rvrCode);
 		
 		
 		close(con);
@@ -73,10 +70,9 @@ public class ReviewService {
 		
 	}
 	public ArrayList<Review> rvrReviewAll(String rsql, String rvrCode,int page) {
-		ArrayList<Review> list = new ArrayList<Review>();
 		Connection con = getConnection();
 	
-		list = rDao.rvrReviewAll(con,rsql,rvrCode,page);
+		ArrayList<Review> list = rDao.rvrReviewAll(con,rsql,rvrCode,page);
 		
 		
 		close(con);

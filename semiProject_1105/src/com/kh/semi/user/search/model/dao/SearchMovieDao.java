@@ -38,10 +38,9 @@ public class SearchMovieDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("searchTitle");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("searchTitle"));
 			pstmt.setString(1, movieTitle);
 			rset = pstmt.executeQuery();
 			

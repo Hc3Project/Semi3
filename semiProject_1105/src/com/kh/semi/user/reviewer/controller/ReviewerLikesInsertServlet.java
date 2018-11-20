@@ -31,8 +31,6 @@ public class ReviewerLikesInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId=request.getParameter("userId");
 		String rvrCode=request.getParameter("rvrCode");
-		System.out.println("아이디 : "+userId);
-		System.out.println("리뷰어 : "+rvrCode);
 		try{
 			int result=new UReviewerService().insertReviewerLikes(userId,rvrCode);
 			new Gson().toJson(result,response.getWriter());
