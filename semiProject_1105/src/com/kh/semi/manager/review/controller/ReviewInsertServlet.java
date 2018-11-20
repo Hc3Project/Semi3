@@ -42,8 +42,7 @@ public class ReviewInsertServlet extends HttpServlet {
 		rvi.setRvrCode(rvrCode);
 		rvi.setUploadDate(uploadDate);
 		
-		ReviewService rs = new ReviewService();
-		int result = rs.insertReview(rvi);
+		int result = new ReviewService().insertReview(rvi);
 		
 		response.getWriter().print(result);
 	}

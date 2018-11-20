@@ -8,9 +8,11 @@ public class ReviewInfo {
 	private String rvrCode;
 	private Date uploadDate;
 	private int rvCnt;
+	
 	public ReviewInfo() {
 		super();
 	}
+	
 	public ReviewInfo(String videoId, String mCode, String rvrCode, Date uploadDate) {
 		super();
 		this.videoId = videoId;

@@ -3,6 +3,7 @@ package com.kh.semi.manager.reviewer.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.semi.manager.review.model.vo.ReviewInfo;
 import com.kh.semi.manager.reviewer.model.dao.ReviewerDao;
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
 import static com.kh.semi.common.JDBCTemplate.*;
@@ -62,6 +63,13 @@ public class ReviewerService {
 	public int selectReviewerOne(String channelId) {
 		Connection con = getConnection();
 		int result = rDao.selectReviewerOne(con, channelId);
+		close(con);
+		return result;
+	}
+
+	public List<ReviewerInfo> selectReviewerRank() {
+		Connection con = getConnection();
+		List<ReviewerInfo> result = rDao.selectReviewerRank(con);
 		close(con);
 		return result;
 	}

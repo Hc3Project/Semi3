@@ -51,8 +51,5 @@
 		</div>
 	</div>
 </aside>
-<!-- <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css"> -->
 <link rel="stylesheet" href="/semi/resources/css/manager/sidebar.css">
 <link rel="stylesheet" href="/semi/resources/css/style.css">

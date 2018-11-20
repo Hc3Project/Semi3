@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.exception.ReviewerViewException;
+import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
+import com.kh.semi.user.review.model.service.ReviewService;
+import com.kh.semi.user.reviewer.model.service.UReviewerService;
+
+
 /**
  * Servlet implementation class ReviewerDetailServlet
  */
@@ -27,8 +33,31 @@ public class ReviewerDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String rvrCode = request.getParameter("rvrCode");
+		System.out.println(rvrCode);
+		
+		try{
+			ReviewerInfo ri= new UReviewerService().reviewerDetail(rvrCode);
+		
+			System.out.println("전달 받은 리뷰어 정보 : "+ri);
+			String rsql = "rvrSelect";
+		
+			ReviewService rs = new ReviewService();
+		
+		
+			// 11/16 리뷰어 별  리뷰영상 뿌리는것 하다 맘. 상훈이 할 것
+
+			request.setAttribute("ri", ri);
+		
+		
+			request.getRequestDispatcher("views/movie/movieReviewerDetailView.jsp").forward(request, response);
+		}catch(ReviewerViewException e){
+			request.setAttribute("exception", e);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 	}
+	
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

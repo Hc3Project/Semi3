@@ -35,8 +35,7 @@ public class ReviewSelectPartServlet extends HttpServlet {
 		String rvrCode = request.getParameter("rvrCode");
 		String keyword = request.getParameter("keyword");
 		
-		ReviewService rs = new ReviewService();
-		List<ReviewInfo> result = rs.selectPartReview(rvrCode, keyword);
+		List<ReviewInfo> result = new ReviewService().selectPartReview(rvrCode, keyword);
 		
 		new Gson().toJson(result, response.getWriter());
 	}

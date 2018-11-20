@@ -4,15 +4,14 @@ var resultMax = 5;
 
 $(function(){
 	// 검색 버튼 눌렀을때
-	$('#searchBtn').click(function(){
+	$('#mBtn').click(function(){
+		if($('#selList').val() == "" || $('#search').val().trim() == "") {
+			alert("검색범주와 키워드 모두 입력해주세요.");
+			return false;
+		}
 		var sel = $('#selList').val();
 		var keyword = $('#search').val().trim();
 		curPage = 0;
-		
-		if(sel == "" || keyword == "") {
-			alert("검색범주와 키워두 모두 입력해주세요.");
-			return false;
-		}
 		getList(sel, keyword);
 		$('#movieList tbody').html('');
 		$('#search').val('');

@@ -5,8 +5,7 @@
 %>
 
 <!DOCTYPE html>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <div class="wrap">
 	<nav class="gnb gnb--home gnb--scrolled">
 		<a class="logo active" href="/semi/index.jsp"></a>
@@ -54,7 +53,7 @@
 			
 			<!-- 리뷰어 소개 페이지 -->
 			<li class="gnb__category-list"><a class="gnb__nav-category"
-				href="<%request.getContextPath();%>/semi/sCategory.se?cCode=all">리뷰어</a> 
+				href="/semi/reviewer.do">리뷰어</a> 
 			<span>
 					<div class="gnb-category-list">
 						<div class="gnb-category-list__filters">
@@ -63,7 +62,7 @@
 			</span>
 			</li>
 
-			<li><a class="gnb__nav-evaluate" href="javascript:;">취향 분석</a></li>
+			<li><a class="gnb__nav-evaluate" href="<%request.getContextPath();%>/semi/mRecommend.me">취향 분석</a></li>
 		</ul>
 		<div class="gnb__right-navs">
 			<div class="gnb__my-name">
@@ -84,6 +83,12 @@
 								href="/semi/views/movie/myMovie.jsp">MyMovie</a></li>
 							<li class="account-menu__item"><a class=""
 								href="/semi/views/member/setting.jsp">설정</a></li>
+							<%if(m.getUserId().equals("admin")){
+							%>
+							<li class="account-menu__item"><a class=""
+								href="/semi/views/manager/mIndex.jsp">관리자 페이지</a></li>
+							<%	
+							}%>
 							<li class="account-menu__item"><a class=""
 								onclick="logout()">로그아웃</a></li>
 						</ul>

@@ -27,12 +27,11 @@ public class MovieService {
 
 	private static String page = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=";
 
-	public String getImage(String result) throws Exception {
+	public String getImage(String result,String mCode) throws Exception {
 		String code = "";
 		String chk = "";
 		List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
 
-		// 결과에서 코드가 있는 컬럼을 따옴
 		for (int i = 0; i < sentence.size(); i++) {
 			if (sentence.get(i).matches(".*link.*")) {
 				chk = sentence.get(i);
@@ -40,14 +39,12 @@ public class MovieService {
 			}
 		}
 
-		// 코드를 판별해 가져옴
 		Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
 		if (mc.find())
 			code = mc.group();
 		else
-			throw new DetailViewException("상세보기 실패!");
+			throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
 
-		// 코드를 통해 포스터 페이지에 접속해 크롤링
 		Document doc = Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
 		Elements img = doc.select("img[src~=.(png|jpe?g)]");
 		String imgURL = "";
@@ -58,51 +55,43 @@ public class MovieService {
 
 	}
 
-	public String getPowerImage(String result, String keyword) throws Exception {
+	public String getPowerImage(String result, String keyword,String mCode) throws Exception {
 		Connection con = getConnection();
-		// 여러 결과 중 맞는 내용을 찾기 위해 데이터베이스에서 정보 뽑아오기 (받아오는 정보가 늘어나면 쿼리수정해야함)
-		List<PosterInfo> list = new MovieDao().getPowerImage(con, result, keyword);
+
+		List<PosterInfo> list = new MovieDao().getPowerImage(con, result, keyword,mCode);
 		close(con);
 		String code = "";
 
-		// 맞는 결과를 판별해 코드를 가져오기
 		for (PosterInfo pi : list) {
 			String director = pi.getDirector();
 			String date = pi.getOpendate().toString().substring(0, 4);
+			
+			List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
+			String chk = "";
 
-			if (result.matches(".*" + director + ".*") && result.matches(".*" + date + ".*")) {
-				List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
-				String chk = "";
-				for (int i = 1; i < sentence.size(); i++) {
-					if (sentence.get(i).matches(".*" + director + ".*")
-							&& sentence.get(i - 1).matches(".*" + date + ".*")) {
-						chk = sentence.get(i - 4);
-						break;
-					}
-				}
-
-				Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
-
-				if (mc.find())
-					code = mc.group();
-				else
-					throw new DetailViewException("상세보기 실패!");
-
-				break;
+			chk=findCode(result,director,date,sentence);
+			if(chk==null||chk.length()<1) {
+				date=String.valueOf((Integer.parseInt(date)-1));
+				chk=findCode(result,director,date,sentence);
 			}
+			
+			
+			Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
+
+			if (mc.find())
+				code = mc.group();
+			else
+				throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
 
 		}
-
-		// 코드를 통해 포스터 페이지에 접속해 크롤링
+		
 		Document doc = Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
 		Elements img = doc.select("img[src~=.(png|jpe?g)]");
 		String imgURL = "";
 		for (Element el : img) {
-			imgURL = String.valueOf(el);
-			imgURL = imgURL.substring(27, 110);
-			System.out.println(imgURL);
+			imgURL = String.valueOf(el).substring(27, 110);
 		}
-
+		
 		return imgURL;
 
 	}
@@ -115,9 +104,9 @@ public class MovieService {
 		int resultC = 0;
 
 		if (mov == null) {
-			throw new DetailViewException("상세보기 실패!");
+			throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
 		}
-		// 게시물 조회 기록
+
 		if (userId != null) {
 			resultV = new MovieDao().MovieVisit(con, mCode, userId);
 			if (resultV > 0)
@@ -134,14 +123,50 @@ public class MovieService {
 		return mov;
 	}
 
-	public ArrayList<MovieInfo> visitMovie(String userId) {
-		 ArrayList<MovieInfo> list = new ArrayList<MovieInfo>();
+	public ArrayList<MovieInfo> visitMovie(String userId,int page) {
 		 Connection con =getConnection();
-		 list = new MovieDao().visitMovie(con,userId);
+		 ArrayList<MovieInfo> list = new MovieDao().visitMovie(con,userId,page);
 		 
 		 close(con);
 		 
 		return list;
 	}
+	public ArrayList<MovieInfo> evalMovie(String userId,int page) {
+		 ArrayList<MovieInfo> list = new ArrayList<MovieInfo>();
+		 Connection con =getConnection();
+		 list = new MovieDao().evalMovie(con,userId,page);
+		 
+		 close(con);
+		 
+		return list;
+	}
+	
+	public String findCode(String result, String director, String date, List<String> sentence){
+		for (int i = 3; i < sentence.size(); i++) {
+				if (sentence.get(i).matches(".*" + director + ".*")
+						&& sentence.get(i - 1).matches(".*" + date + ".*")) {
+					return sentence.get(i - 4);
+				}
+
+			}
+		for(int i=3;i<sentence.size();i++){
+			if (sentence.get(i).matches(".*" + director + ".*")) {
+					return sentence.get(i - 4);
+				
+			}
+		}
+		for(int i=3;i<sentence.size();i++){
+			if (sentence.get(i-1).matches(".*" + date + ".*")) {
+					return sentence.get(i - 4);
+				
+			}
+		}
+		return "";
+
+		}
+		
+		
 
 }
+
+

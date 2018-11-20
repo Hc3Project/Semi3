@@ -6,11 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.manager.video.model.vo.MovieInfo;
+import com.kh.semi.user.category.model.vo.CategoryInfo;
+
 import static com.kh.semi.common.JDBCTemplate.*;
 
 public class VideoDao {
@@ -32,10 +35,8 @@ public class VideoDao {
 		ResultSet rset = null;
 		String result = null; 
 		
-		String sql = prop.getProperty("selectGenre");
-		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectGenre"));
 			pstmt.setString(1, genre);
 			
 			rset = pstmt.executeQuery();
@@ -57,10 +58,8 @@ public class VideoDao {
 		ResultSet rset = null;
 		String result = null;
 		
-		String sql = prop.getProperty("selectNation");
-		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectNation"));
 			pstmt.setString(1, nation);
 			
 			rset = pstmt.executeQuery();
@@ -82,10 +81,8 @@ public class VideoDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String sql = prop.getProperty("insertMovie");
-		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("insertMovie"));
 			pstmt.setString(1, mi.getmCode());
 			pstmt.setString(2, mi.getmTitle());
 			pstmt.setString(3, mi.getDirector());
@@ -110,10 +107,9 @@ public class VideoDao {
 	public int insertDetail(Connection con, MovieInfo mi) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("insertDetail");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("insertDetail"));
 			pstmt.setString(1, mi.getmCode());
 			pstmt.setString(2, mi.getSyno());
 			
@@ -130,10 +126,9 @@ public class VideoDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int result = 0;
-		String sql = prop.getProperty("selectDup");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectDup"));
 			pstmt.setString(1, mCode);
 			rset = pstmt.executeQuery();
 			if(rset.next()) result++;
@@ -183,10 +178,9 @@ public class VideoDao {
 	public int deleteMovie(Connection con, String mCode) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("deleteMovie");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("deleteMovie"));
 			pstmt.setString(1, mCode);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -200,10 +194,9 @@ public class VideoDao {
 	public int updateMovieInfo(Connection con, MovieInfo mi) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("updateMovieInfo");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("updateMovieInfo"));
 			pstmt.setString(1, mi.getmTitle());
 			pstmt.setString(2, mi.getDirector());
 			pstmt.setString(3, mi.getActor());
@@ -220,10 +213,9 @@ public class VideoDao {
 	public int updateMovieDetail(Connection con, MovieInfo mi) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("updateMovieDetail");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("updateMovieDetail"));
 			pstmt.setString(1, mi.getSyno());
 			pstmt.setString(2, mi.getmCode());
 			result = pstmt.executeUpdate();
@@ -235,4 +227,64 @@ public class VideoDao {
 		return result;
 	}
 
+	public List<CategoryInfo> selectGenreCnt(Connection con, String gCode) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		try {
+			result = new ArrayList<CategoryInfo>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(prop.getProperty("selectGenreCnt").replace("condition", gCode));
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("gname"));
+				ci.setCnt(rset.getInt("gcnt"));
+				result.add(ci);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<CategoryInfo> selectGenreCnt(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		try {
+			result = new ArrayList<CategoryInfo>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(prop.getProperty("selectNationCnt"));
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("nname"));
+				ci.setCnt(rset.getInt("cnt"));
+				result.add(ci);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<CategoryInfo> selectRecentGenre(Connection con, int num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		try {
+			result = new ArrayList<CategoryInfo>();
+			pstmt = con.prepareStatement(prop.getProperty("selectRecentGenreCnt"));
+			pstmt.setInt(1, num);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("gname"));
+				ci.setCnt(rset.getInt("cnt"));
+				result.add(ci);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

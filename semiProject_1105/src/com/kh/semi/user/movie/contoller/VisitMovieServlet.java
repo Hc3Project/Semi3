@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.kh.semi.common.MovieImg;
+import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.member.model.vo.Member;
 import com.kh.semi.user.movie.model.service.MovieService;
@@ -35,14 +39,37 @@ public class VisitMovieServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		String userId = ((Member)session.getAttribute("member")).getUserId();
-		
+		String userId = ((Member) session.getAttribute("member")).getUserId();
+		int mPage = Integer.parseInt(request.getParameter("page"));
+		String page = "";
+
 		MovieService ms = new MovieService();
 		ArrayList<MovieInfo> mlist = new ArrayList<MovieInfo>();
-		mlist = ms.visitMovie(userId);
-		System.out.println(mlist.size());
+
+		mlist = ms.visitMovie(userId,mPage);
+
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(mlist, response.getWriter());
+
+		JSONArray result = new JSONArray();
+		JSONObject movieIf = null;
+
+		for (MovieInfo movie : mlist) {
+			movieIf = new JSONObject();
+
+			movieIf.put("mTitle", movie.getmTitle());
+			movieIf.put("mCode", movie.getmCode());
+
+			try {
+				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
+			} catch (Exception e) {
+				request.setAttribute("exception", e);
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			}
+
+			result.add(movieIf);
+		}
+		response.getWriter().print(result.toJSONString());
+
 		
 		
 		

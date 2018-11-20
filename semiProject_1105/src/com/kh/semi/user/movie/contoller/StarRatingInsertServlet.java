@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
+import com.kh.semi.exception.StarRatingException;
+import com.kh.semi.user.member.model.vo.Member;
 import com.kh.semi.user.movie.model.service.StarRatingService;
 
 /**
@@ -34,23 +36,17 @@ public class StarRatingInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 별점이 없는 경우 회원의 별점을 새로 테이블에 인서트한다
 		HttpSession session=request.getSession(false);
-		String userId=(String)session.getAttribute("userId");
-		String mCode=(String)request.getAttribute("mCode");
-		int score=(int)request.getAttribute("score");
+		String userId=((Member)session.getAttribute("member")).getUserId();
+		String mCode=(String)request.getParameter("mCode");
+		int score=Integer.parseInt((String)request.getParameter("score"));
 		
 		try{
 			new StarRatingService().insertStarRating(userId,mCode,score);
-			// 무슨 값을 주어야 하지?
-			JSONObject starRating=null;
-			
-			// 이거 노란줄 왜 생김?
-			starRating.put("score", score);
 			
 			response.setContentType("application/json; charset=UTF-8");
-			new Gson().toJson(starRating,response.getWriter());
-		}catch(Exception e){
+			new Gson().toJson(score,response.getWriter());
+		}catch(StarRatingException e){
 			request.setAttribute("exception", e);
 			request.getRequestDispatcher("views/commom/errorPage.jsp").forward(request, response);
 		}

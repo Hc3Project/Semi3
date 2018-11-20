@@ -35,10 +35,11 @@ public class CategoryListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("servlet");
-		CategoryService cs = new CategoryService();
 		String csql = request.getParameter("csql");
 		
+
 		ArrayList<CategoryInfo> cList = new ArrayList<CategoryInfo>();
+
 		
 		cList = cs.selectCategoryList(csql); // 카테고리 리스트 가져오는 cs
 

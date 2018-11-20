@@ -29,8 +29,7 @@ public class ReviewDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String videoId = request.getParameter("videoId");
-		ReviewService rs = new ReviewService();
-		int result = rs.deleteReview(videoId);
+		int result = new ReviewService().deleteReview(videoId);
 		response.getWriter().print(result);
 	}
 
