@@ -259,18 +259,18 @@ $(function displayList(){
 		$("#genreBtn").click(function(){
 			$(".gnb-category-list__filtered-list2").css("display","none");
 			$(".gnb-category-list__filtered-list3").css("display","none")
-		});
+		})
 
 		$("#nationBtn").click(function(){
 			$(".gnb-category-list__filtered-list2").css("display","");
 			$(".gnb-category-list__filtered-list3").css("display","none");	
-		});
+		})
 	
 		
 		$("#reviewerBtn").click(function(){
 			$(".gnb-category-list__filtered-list2").css("display","none");
 			$(".gnb-category-list__filtered-list3").css("display","");			
-		});
+		})
 
 });
 </script>

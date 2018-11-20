@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.category.model.service.CategoryService;
-import com.kh.semi.user.category.model.vo.CategoryInfo;
 
 /**
- * Servlet implementation class CategoryListServlet
+ * Servlet implementation class CategorySelectedBoxServlet
  */
-@WebServlet("/cList.ca")
-public class CategoryListServlet extends HttpServlet {
+@WebServlet("/csBox.ca")
+public class CategorySelectedBoxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CategoryListServlet() {
+    public CategorySelectedBoxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,19 +33,20 @@ public class CategoryListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("servlet");
-		String csql = request.getParameter("csql");
+		CategoryService cs = new CategoryService();
 		
-
-		ArrayList<CategoryInfo> cList = new ArrayList<CategoryInfo>();
-
+		String msql = request.getParameter("msql");
+		String gCode = request.getParameter("gCode");
+		String nCode = request.getParameter("nCode");
+		String rvrCode = request.getParameter("rvrCode");
 		
-		cList = cs.selectCategoryList(csql); // 카테고리 리스트 가져오는 cs
-
+		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
+		
+		mList = cs.selectMovieList(msql, gCode, nCode, rvrCode); // 무비 리스트 가져오는 cs
+		
 		response.setContentType("application/json; charset=UTF-8");
 		
-		new Gson().toJson(cList, response.getWriter());
-		
+		new Gson().toJson(mList, response.getWriter());
 	}
 
 	/**
