@@ -27,7 +27,7 @@
 	<header>
 		<div style="height: 80px;">
 			<%@ include file="views/common/header.jsp"%>
-			<input type="hidden" id="logId" value="<%=m.getUserId()%>">
+
 		</div>
 	</header>
 	<!--header-->
