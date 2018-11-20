@@ -1,15 +1,19 @@
 package com.kh.semi.manager.user.model.dao;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.manager.user.model.vo.CategoryRating;
 import com.kh.semi.manager.user.model.vo.UserInfo;
 
 public class UserDao {
@@ -48,6 +52,9 @@ public class UserDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		return result;
 	}
@@ -59,6 +66,35 @@ public class UserDao {
 			pstmt = con.prepareStatement(prop.getProperty("deleteUser"));
 			pstmt.setString(1, userId);
 			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<CategoryRating> selectAllRating(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<CategoryRating> result = null;
+		String sql = prop.getProperty("selectAllRating");
+		try {
+			result = new ArrayList<CategoryRating>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			int tmpNum = 10;
+			while(rset.next()) {
+				CategoryRating cr = new CategoryRating();
+				int[] ratingCnt = new int[tmpNum];
+				cr.setName(rset.getString("gname"));
+				for(int i=0; i<tmpNum; i++) {
+					ratingCnt[i] = rset.getInt("s"+(i+1));
+				}
+				cr.setRatingCnt(ratingCnt);
+				
+				result.add(cr);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

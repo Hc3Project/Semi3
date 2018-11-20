@@ -31,7 +31,7 @@ $(function(){
 			    x: {
 			      type: "category",
 			      tick: {
-			        rotate: 50,
+			        /*rotate: 50,*/
 			        multiline: false,
 			        tooltip: true
 			      },
@@ -71,7 +71,7 @@ $(function(){
 			    x: {
 			      type: "category",
 			      tick: {
-			        rotate: 50,
+			        /*rotate: 50,*/
 			        multiline: false,
 			        tooltip: true
 			      },
@@ -118,6 +118,34 @@ $(function(){
 		})
 	})
 	$('#numBtn').click();
+	
+	$.ajax({
+		// 리뷰어 조아요오오오오오 랭크으으으으
+		url : "/semi/rvrRank.rvr",
+		type : "post",
+		success : function(data){
+			var result = $.parseJSON(data);
+			console.log(result);
+			// 차트 넣기
+		},
+		error : function(data){
+			console.log(data);
+		}
+	})
+	
+	$.ajax({
+		// 평점 분포오오오오오오오오오오
+		url : "/semi/uAllRating.ur",
+		type : "post",
+		success : function(data){
+			var result = $.parseJSON(data);
+			console.log(result);
+			// 차트 넣기이이이이이이ㅣ이이이ㅓㅁ나러;ㅣㅏ넝ㄹ;ㅏㅣ먼ㅇ;ㅣ러
+		},
+		error : function(data){
+			console.log(data);
+		}
+	})
 	
 	var chart = bb.generate({
 		  data: {

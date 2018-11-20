@@ -40,7 +40,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper{
 			
 			MessageDigest md = MessageDigest.getInstance("SHA-512");
 			byte[] bytes = password.getBytes(Charset.forName("UTF-8"));
-			System.out.println("비밀번호 : "+password);
+			
 			md.update(bytes);
 			
 			result = Base64.getEncoder().encodeToString(md.digest());// byte단위로 쪼개져있는걸 문자단위로 바꾸겠다.

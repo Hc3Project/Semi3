@@ -131,6 +131,15 @@ public class MovieService {
 		 
 		return list;
 	}
+	public ArrayList<MovieInfo> evalMovie(String userId,int page) {
+		 ArrayList<MovieInfo> list = new ArrayList<MovieInfo>();
+		 Connection con =getConnection();
+		 list = new MovieDao().evalMovie(con,userId,page);
+		 
+		 close(con);
+		 
+		return list;
+	}
 	
 	public String findCode(String result, String director, String date, List<String> sentence){
 		for (int i = 3; i < sentence.size(); i++) {

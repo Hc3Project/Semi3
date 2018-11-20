@@ -248,7 +248,7 @@ public class MemberDao {
 		}
 		return result;
 	}
-	public int[] selectRatingCnt(Connection con, String userId) {
+	public List<Integer> selectRatingCnt(Connection con, String userId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int[] result = null;
@@ -258,11 +258,42 @@ public class MemberDao {
 			pstmt.setString(1, userId);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				result[0] = rset.getInt("s1");
-				result[1] = rset.getInt("s2");
-				result[2] = rset.getInt("s3");
-				result[3] = rset.getInt("s4");
-				result[4] = rset.getInt("s5");
+				result.add(rset.getInt("s1"));
+				result.add(rset.getInt("s2"));
+				result.add(rset.getInt("s3"));
+				result.add(rset.getInt("s4"));
+				result.add(rset.getInt("s5"));
+				result.add(rset.getInt("s6"));
+				result.add(rset.getInt("s7"));
+				result.add(rset.getInt("s8"));
+				result.add(rset.getInt("s9"));
+				result.add(rset.getInt("s10"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public List<CategoryInfo> selectGenreStat(Connection con, String userId, String col) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<CategoryInfo> result = null;
+		String sql = prop.getProperty("selectGenreStat");
+		sql = sql.replace("column", col);
+		try {
+			result = new ArrayList<CategoryInfo>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				CategoryInfo ci = new CategoryInfo();
+				ci.setName(rset.getString("gname"));
+				ci.setMean(rset.getDouble("mean"));
+				ci.setCnt(rset.getInt("cnt"));
+				result.add(ci);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

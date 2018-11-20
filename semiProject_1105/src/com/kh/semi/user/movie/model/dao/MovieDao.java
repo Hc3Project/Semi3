@@ -156,7 +156,36 @@ public class MovieDao {
 		}
 		return list;
 	}
-
+	public ArrayList<MovieInfo> evalMovie(Connection con, String userId,int page) {
+		ArrayList<MovieInfo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset =null;
+		
+		String sql = prop.getProperty("evalMovie");
+		System.out.println(sql);
+		try {
+			list=new ArrayList<MovieInfo>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, page);
+			pstmt.setInt(3, page);
+			
+			rset = pstmt.executeQuery();
+			MovieInfo mi = null;
+			while(rset.next()) {
+				mi=new MovieInfo();
+				mi.setmTitle(rset.getString("MTITLE"));
+				mi.setmCode(rset.getString("MCODE"));
+				
+				list.add(mi);
+			}
+	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 
 }
