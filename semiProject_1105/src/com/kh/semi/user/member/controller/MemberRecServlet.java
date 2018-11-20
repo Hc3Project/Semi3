@@ -42,7 +42,7 @@ public class MemberRecServlet extends HttpServlet {
 		HashMap<Integer, Double> cfResult = null;
 		String[] itemRankList = null;
 		String[] itemRankTitle = null;
-		int[] scoreCnt = null;
+		List<Integer> scoreCnt = null;
 		List<String> likes = null;
 		
 		MemberService ms = new MemberService();
@@ -84,7 +84,7 @@ public class MemberRecServlet extends HttpServlet {
 			likes = ms.selectLikesReviewer(m.getUserId());
 			page = "/views/movie/typeAnalysis.jsp";
 			session.setAttribute("member", m);
-			session.setAttribute("scoreCnt", Arrays.toString(scoreCnt));		// 평점 분포
+			session.setAttribute("scoreCnt", Arrays.toString(scoreCnt.toArray()));		// 평점 분포
 			session.setAttribute("likes", Arrays.toString(likes.toArray()));	// 구독
 			session.setAttribute("estMovie", Arrays.toString(m.getRecList()));	// 예측 영화 코드
 			session.setAttribute("estTitle", Arrays.toString(itemRankTitle));	// 예측 영화 타이틀

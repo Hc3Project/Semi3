@@ -272,22 +272,27 @@ public class MemberDao {
 		}
 		return result;
 	}
-	public int[] selectRatingCnt(Connection con, String userId) {
+	public List<Integer> selectRatingCnt(Connection con, String userId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		int[] result = null;
+		List<Integer> result = null;
 		String sql = prop.getProperty("selectScoreCnt");
 		try {
-			result = new int[5];
+			result = new ArrayList<Integer>();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				result[0] = rset.getInt("s1");
-				result[1] = rset.getInt("s2");
-				result[2] = rset.getInt("s3");
-				result[3] = rset.getInt("s4");
-				result[4] = rset.getInt("s5");
+				result.add(rset.getInt("s1"));
+				result.add(rset.getInt("s2"));
+				result.add(rset.getInt("s3"));
+				result.add(rset.getInt("s4"));
+				result.add(rset.getInt("s5"));
+				result.add(rset.getInt("s6"));
+				result.add(rset.getInt("s7"));
+				result.add(rset.getInt("s8"));
+				result.add(rset.getInt("s9"));
+				result.add(rset.getInt("s10"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

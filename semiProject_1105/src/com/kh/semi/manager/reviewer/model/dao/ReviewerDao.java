@@ -1,18 +1,20 @@
 package com.kh.semi.manager.reviewer.model.dao;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.manager.review.model.vo.ReviewInfo;
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
-
-import static com.kh.semi.common.JDBCTemplate.*;
 
 public class ReviewerDao {
 	
@@ -113,8 +115,8 @@ public class ReviewerDao {
 				
 				rset = pstmt.executeQuery();
 				
-				if(rset.next()) rvInfo.setReviewCnt(rset.getInt(1));
-				else rvInfo.setReviewCnt(0);
+				if(rset.next()) rvInfo.setCnt(rset.getInt(1));
+				else rvInfo.setCnt(0);
 			}
 			
 		} catch (SQLException e) {
@@ -155,6 +157,34 @@ public class ReviewerDao {
 			if(rset.next()) result++;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<ReviewerInfo> selectReviewerRank(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<ReviewerInfo> result = null;
+		String sql = prop.getProperty("selectReviewerRank");
+		try {
+			result = new ArrayList<ReviewerInfo>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			while(rset.next()) {
+				ReviewerInfo ri = new ReviewerInfo();
+				ri.setRvrCode(rset.getString("rvrcode"));
+				ri.setrName(rset.getString("rname"));
+				ri.setCnt(rset.getInt("cnt"));
+				result.add(ri);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
 		}
 		return result;
 	}

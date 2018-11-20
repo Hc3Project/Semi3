@@ -14,18 +14,26 @@ $(function(){
 				  columns: [
 					  forChart
 				  ],
-				  type: "area-step"
+				  type: "area-step",
+				  colors : {
+					  "평가수": "#00f"
+				  }
 			  },
 			  axis: {
 			    x: {
 			      type: "category",
 			      categories: [
+			    	"☆",
 			        "★",
+			        "★☆",
 			        "★★",
+			        "★★☆",
 			        "★★★",
+			        "★★★☆",
 			        "★★★★",
+			        "★★★★☆",
 			        "★★★★★"
-			      ],
+			      ]
 			    }
 			  },
 			  bindto: "#scoreHist"
@@ -34,12 +42,13 @@ $(function(){
 		var sumCnt = 0;
 		var max = 0;
 		for(var i=0; i<scoreArr.length; i++){
-			if(scoreArr[i]>0) max = i+1;
-			sumScore += parseInt(scoreArr[i])*(i+1);
+			if(scoreArr[i]>0) max = (i+1)/2;
+			sumScore += parseInt(scoreArr[i])*(i+1)/2;
 			sumCnt += parseInt(scoreArr[i]);
 		}
+		
 		// 평점 평균
-		$('#position').find('div[class="starWarp"]').eq(0).find('div').eq(1).text(sumScore/scoreArr.length)
+		$('#position').find('div[class="starWarp"]').eq(0).find('div').eq(1).text((sumScore/sumCnt).toFixed(2))
 		// 평점 수
 		$('#position').find('div[class="starWarp"]').eq(0).find('div').eq(4).text(sumCnt);
 		// 최고 평점

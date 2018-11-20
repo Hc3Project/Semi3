@@ -117,9 +117,9 @@ public class MemberService {
 		return result;
 	}
 
-	public int[] selectRatingCnt(String userId) {
+	public List<Integer> selectRatingCnt(String userId) {
 		Connection con = getConnection();
-		int[] result = mDao.selectRatingCnt(con, userId);
+		List<Integer> result = mDao.selectRatingCnt(con, userId);
 		close(con);
 		return result;
 	}
