@@ -138,69 +138,56 @@ $(function() {
 //
 $(function() {
 	// st4Carousel 대상 div 지정
-	var $topDiv = $("#st4Carousel .carousel-inner");
-	$
-			.ajax({
-				url : "/semi/rList.rv",
-				data : {
-					rsql:"todayList"
-				},
-				success : function(data) {
+	if($('#logChk').val()!="true"){
+		// 로그인 했을 때
+		var $topDiv = $("#st4Carousel .carousel-inner");
+		$.ajax({
+			url : "/semi/recMovie.do",
+			success : function(data) {
+				console.log(data);
+				for ( var i in data) {
+				
+					$list= $("<div>").attr("class", "col-md-2").attr("style","background-image: url("+data[i].mPage+")").attr("value",data[i].mCode)
+                    .append(
+                        $("<h3>").text(data[i].mTitle)
+                    ).append(
+                        $("<i>").attr("class","hover-box hover-box--play")
+                    );
 
-					for ( var i in data) {
-						$review = $("<div/>").attr("class", "col-md-2").append(
-								$("<h1/>").text(data[i].Videoid)).append(
-								$("<img/>").attr(
-										"src",
-										"https://img.youtube.com/vi/"
-												+ data[i].Videoid + "/"
-												+ "mqdefault.jpg")
-
-						).append(
-								$("<i/>").attr("class",
-										"hover-box hover-box--play")).append(
-								$("<div/>").attr("class", "hover-box").append(
-										$("<h2/>").text("호버시 제목")).append(
-										$("<p/>").text("호버시 텍스트"))).attr("value",data[i].Videoid);
-
-						if (i > -1 && i < 6) {
+                     
+                        
+						if (i > -1 && i < 8) {
 							if (i == 0) {
 								$topDiv.append($("<div>").attr("class",
 										"item active rec-list clearfix")
-										.append($review));
+										.append($list));
 							}
 							$(
 									"#st4Carousel div[class='item active rec-list clearfix']")
-									.append($review);
+									.append($list);
 						} else {
-							if (i % 6 == 0) {
+							if (i % 8 == 0) {
 								$topDiv.append($("<div>").attr("class",
 										"item rec-list clearfix").append(
-										$review));
+												$list));
 							}
 							$(
 									"#st4Carousel div[class='item rec-list clearfix']:last-child")
-									.append($review);
+									.append($list);
 						}
-					}
-					// 썸네일 마우스 오버
-					$(".rec-list>div").hover(function() {
-
-						$(this).children(".hover-box").stop().fadeIn();
-						$(this).children("h1").stop().hide();
-					}, function() {
-						$(this).children(".hover-box").stop().fadeOut();
-						$(this).children("h1").stop().fadeIn();
-					});
-					$(".rec-list> div").click(function() {
-						console.log($(this).attr("value"));
-						location.href = "/semi/dView.do?videoId="+$(this).attr("value");
-						
-					})
-				},
-				error : function() {
-					console.log("실패");
-				}
-			});
-
+			        }
+            $("#st4Carousel .col-md-2").css("background-size","contain");
+            $("#st4Carousel .rec-list> div").click(function() {
+				console.log($(this).attr("value"));
+				location.href = "/semi/dView.do?mCode="+$(this).attr("value");
+				
+			})
+			},
+			error : function() {
+				console.log("실패");
+			}
+		});
+	} else {
+		// 로그인 안했을때
+	}
 });

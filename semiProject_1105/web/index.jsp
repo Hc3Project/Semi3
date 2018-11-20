@@ -13,7 +13,6 @@
 <script src="resources/js/common.js"></script>
 <script src="resources/js/boxOffice.js"></script>
 <script src="resources/js/reviewList.js"></script>
-
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -21,10 +20,7 @@
 <link rel="stylesheet" href="resources/css/reset.css">
 <link rel="stylesheet" href="resources/css/main.css">
 <link rel="stylesheet" href="resources/css/style.css">
-
-
 <title>movie traveler</title>
-
 </head>
 <body>
 	<header>
@@ -153,7 +149,10 @@
 		<!--homepage-->
 
 	</section>
-<section class="listSection">
+	
+	<section class="listSection">
+		<input type="hidden" id="logChk" value='<%=(m==null)%>'>
+		<%if(m!=null){ %>
 		<div class="home-page">
 			<div class="home-page__rec-list">
 				<div class="rec-row">
@@ -165,7 +164,6 @@
 					<div class="carousel slide" data-ride="carousel" id="st4Carousel"
 						data-interval="0">
 						<div class="carousel-inner ">
-
 							<a class="carousel-control-prev" href="#st4Carousel"
 								role="button" data-slide="prev"> <span
 								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
@@ -180,14 +178,11 @@
 
 				</div>
 				<!--rec-row-->
-
 			</div>
 			<!--home-page__rec-list-->
 		</div>
 		<!--homepage-->
-
+		<%}%>
 	</section>
-
-
 </body>
 </html>

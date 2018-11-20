@@ -132,9 +132,16 @@ public class MemberService {
 		return result;
 	}
 
-	public int[] selectRatingCnt(String userId) {
+	public List<Integer> selectRatingCnt(String userId) {
 		Connection con = getConnection();
-		int[] result = mDao.selectRatingCnt(con, userId);
+		List<Integer> result = mDao.selectRatingCnt(con, userId);
+		close(con);
+		return result;
+	}
+
+	public List<CategoryInfo> selectGenreStat(String userId, String col) {
+		Connection con = getConnection();
+		List<CategoryInfo> result = mDao.selectGenreStat(con, userId, col);
 		close(con);
 		return result;
 	}

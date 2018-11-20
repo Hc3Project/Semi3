@@ -34,7 +34,7 @@
 	</header>
 	<!--header-->
 
-	<section class="container">
+	<section class="container movieSection ">
 
 		<div class="tabs">
 			<span class="tab signin active"> <a href="#signin">최근 목록</a>
@@ -49,7 +49,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="signup-cont cont"></div>
+			<div class="signup-cont cont">
+				<div class="category-page" style="position: relative;">
+					<div class="home-page__rec-list">
+						<div class="rec-row" id="evalMovie"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 
