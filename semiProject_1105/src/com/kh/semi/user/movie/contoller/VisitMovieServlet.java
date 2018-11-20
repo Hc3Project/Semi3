@@ -40,6 +40,7 @@ public class VisitMovieServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		String userId = ((Member) session.getAttribute("member")).getUserId();
+		int mCount = 0;
 		int mPage = Integer.parseInt(request.getParameter("page"));
 		String page = "";
 
@@ -47,7 +48,8 @@ public class VisitMovieServlet extends HttpServlet {
 		ArrayList<MovieInfo> mlist = new ArrayList<MovieInfo>();
 
 		mlist = ms.visitMovie(userId,mPage);
-
+		mCount = ms.visitMovieCount(userId);
+		
 		response.setContentType("application/json; charset=UTF-8");
 
 		JSONArray result = new JSONArray();
@@ -58,6 +60,7 @@ public class VisitMovieServlet extends HttpServlet {
 
 			movieIf.put("mTitle", movie.getmTitle());
 			movieIf.put("mCode", movie.getmCode());
+			movieIf.put("mCount", mCount);
 
 			try {
 				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));

@@ -109,13 +109,13 @@
 
 #bo2 {
 	font-family: 'Noto Sans' !important;
-	height: 399px !important;
+	height: 420px !important;
 	background: white;
 }
 
 #bo3 {
 	font-family: 'Noto Sans' !important;
-	height: 81px !important;
+	height: 60px !important;
 	background: #0f1111;
 }
 
@@ -144,7 +144,7 @@ img {
 
 .movieSection .item div {
 	width: 210px;
-	height: 290px;
+	height: 299px;
 	margin: 0px 5px 0px 5px;
 }
 
@@ -157,7 +157,7 @@ img {
 }
 #st4Carousel .carousel-inner .item div {
 	width: 210px;
-	height: 290px;
+	height: 300px;
 	margin: 0px 5px 0px 5px;
 }
 
