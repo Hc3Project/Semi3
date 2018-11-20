@@ -26,10 +26,8 @@ public class ReviewDao {
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
@@ -39,12 +37,11 @@ public class ReviewDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 
-		String sql = prop.getProperty(rsql);
 
 		try {
 
 			stmt = con.createStatement();
-			rset = stmt.executeQuery(sql);
+			rset = stmt.executeQuery(prop.getProperty(rsql));
 			list = new ArrayList<Review>();
 
 			Review review = null;
@@ -77,11 +74,10 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String sql = prop.getProperty(rsql);
 
 		try {
 		
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty(rsql));
 			pstmt.setString(1, mTitle);
 			rset = pstmt.executeQuery();
 			list = new ArrayList<Review>();
@@ -141,11 +137,10 @@ public class ReviewDao {
 
 	public void reviewCount(Connection con, String videoId) {
 		PreparedStatement pstmt =null;
-		String sql = prop.getProperty("reviewCount");
 		
 		
 		try {
-			pstmt= con.prepareStatement(sql);
+			pstmt= con.prepareStatement(prop.getProperty("reviewCount"));
 			pstmt.setString(1, videoId);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -161,11 +156,10 @@ public class ReviewDao {
 	public int reviewVisit(Connection con, String videoId, String userId) {
 		
 		PreparedStatement pstmt =null;
-		String sql = prop.getProperty("reviewVisit");
 		int result =0;
 		
 		try {
-			pstmt= con.prepareStatement(sql);
+			pstmt= con.prepareStatement(prop.getProperty("reviewVisit"));
 			pstmt.setString(1, videoId);
 			pstmt.setString(2, userId);
 			result = pstmt.executeUpdate();
@@ -184,11 +178,9 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String sql = prop.getProperty(rsql);
-		System.out.println(sql);
 		try {
 		
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty(rsql));
 			pstmt.setString(1, rvrCode);
 			
 			rset = pstmt.executeQuery();
@@ -222,11 +214,10 @@ public class ReviewDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String sql = prop.getProperty(rsql);
 		
 		try {
 		
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty(rsql));
 			pstmt.setString(1, rvrCode);
 			pstmt.setInt(2, page);
 			pstmt.setInt(3, page);

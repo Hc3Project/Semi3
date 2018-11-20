@@ -1,9 +1,6 @@
-package com.kh.semi.manager.exception;
+package com.kh.semi.exception;
 
 public class ManagerException extends Exception{
-	public ManagerException(){
-		super();
-	}
 	
 	public ManagerException(String message){
 		super(message);

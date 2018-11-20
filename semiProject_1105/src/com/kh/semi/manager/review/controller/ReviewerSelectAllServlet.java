@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.exception.ManagerException;
 import com.kh.semi.manager.review.model.service.ReviewService;
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
 
@@ -32,8 +33,7 @@ public class ReviewerSelectAllServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String toPath = request.getParameter("opt");
-		ReviewService rs = new ReviewService();
-		List<ReviewerInfo> result = rs.selectAllReviewer();
+		List<ReviewerInfo> result = new ReviewService().selectAllReviewer();
 		
 		String page = "";
 		
@@ -46,8 +46,7 @@ public class ReviewerSelectAllServlet extends HttpServlet {
 		} else {
 			// 해당 매개변수가 아닐 때 즉 잘못된 경로로 들어왔을 때
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "회원 가입 중 에러가 발생하였습니다.");
-			request.setAttribute ("exception", new Exception("잘못 된 변수 선언"));
+			request.setAttribute ("exception", new ManagerException("리뷰 관리 작업 중 문제가 발생했습니다!"));
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 	}

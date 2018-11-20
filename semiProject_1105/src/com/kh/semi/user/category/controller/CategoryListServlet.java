@@ -33,11 +33,9 @@ public class CategoryListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("servlet");
-		CategoryService cs = new CategoryService();
 		String csql = request.getParameter("csql");
-		ArrayList<CategoryInfo> cList = new ArrayList<CategoryInfo>();
 		
-		cList = cs.selectCategoryList(csql);
+		ArrayList<CategoryInfo> cList = new CategoryService().selectCategoryList(csql);
 		
 		response.setContentType("application/json; charset=UTF-8");
 		

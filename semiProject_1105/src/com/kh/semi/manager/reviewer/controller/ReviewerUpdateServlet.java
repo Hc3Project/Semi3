@@ -32,13 +32,12 @@ public class ReviewerUpdateServlet extends HttpServlet {
 		String rvrCode = request.getParameter("channelId");
 		String rName = request.getParameter("rvrName");
 		String profile = request.getParameter("profile");
-		ReviewerService rs = new ReviewerService();
 		ReviewerInfo ri = new ReviewerInfo();
 		ri.setRvrCode(rvrCode);
 		ri.setrName(rName);
 		ri.setProfile(profile);
 		
-		int result = rs.updateReviewer(ri);
+		int result = new ReviewerService().updateReviewer(ri);
 		
 		response.getWriter().print(result);
 	}

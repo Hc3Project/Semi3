@@ -34,11 +34,9 @@ public class UserDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<UserInfo> result = null;
-		String sql = prop.getProperty("selectPartUser");
-		sql = sql.replace("condition", opt);
 		try {
 			result = new ArrayList<UserInfo>();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectPartUser").replace("condition", opt));
 			pstmt.setString(1, keyword);
 			pstmt.setInt(2, stNum);
 			pstmt.setInt(3, edNum);
@@ -64,9 +62,8 @@ public class UserDao {
 	public int deleteUser(Connection con, String userId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("deleteUser");
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("deleteUser"));
 			pstmt.setString(1, userId);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

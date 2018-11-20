@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
-import com.kh.semi.user.reviewer.model.vo.ReviewerLikes;
 
 import static com.kh.semi.common.JDBCTemplate.*;
 
@@ -41,10 +40,9 @@ public class UReviewerDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectReviewer");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectReviewer"));
 			pstmt.setString(1, rvrCode);
 			rset = pstmt.executeQuery();
 			
@@ -84,7 +82,6 @@ public class UReviewerDao {
 			close(pstmt);
 		}
 		String result=sb.toString();
-		System.out.println("좋아연 결과 : "+result);
 		return result;
 	}
 
@@ -98,7 +95,6 @@ public class UReviewerDao {
 			pstmt.setString(2, rvrCode);
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			close(pstmt);
@@ -115,7 +111,6 @@ public class UReviewerDao {
 			pstmt.setString(2, rvrCode);
 			result=pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			close(pstmt);

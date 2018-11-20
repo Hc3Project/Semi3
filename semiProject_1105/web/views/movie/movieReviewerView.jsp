@@ -6,7 +6,6 @@
 	Member member=(Member)session.getAttribute("member");
 	String list=(String)request.getAttribute("list");
 	String[] rvr=list.split(", ");
-	System.out.println("받아온 리뷰어코드 : "+list);
 %>
 <!DOCTYPE html>
 <html>

@@ -29,8 +29,7 @@ public class UserDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
-		UserService us = new UserService();
-		int result = us.deleteUser(userId);
+		int result = new UserService().deleteUser(userId);
 		response.getWriter().print(result);
 	}
 

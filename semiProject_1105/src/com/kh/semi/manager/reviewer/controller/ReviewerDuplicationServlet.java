@@ -29,8 +29,7 @@ public class ReviewerDuplicationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String channelId = request.getParameter("channelId");
-		ReviewerService rs = new ReviewerService();
-		int result = rs.selectReviewerOne(channelId);
+		int result = new ReviewerService().selectReviewerOne(channelId);
 		response.getWriter().print(result);
 	}
 

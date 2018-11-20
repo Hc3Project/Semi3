@@ -38,13 +38,13 @@ public class ReviewListServlet extends HttpServlet {
 		String rvrCode = request.getParameter("rvrCode");
 	
 		ArrayList<Review> list = new ArrayList<Review>();
-			if(rvrCode==null)
+		if(rvrCode==null)
 			list = title==null? rs.reviewList(rsql):rs.reviewList(rsql,title);
-			else 				
-				list= rs.rvrReviewList(rsql,rvrCode);
+		else 				
+			list= rs.rvrReviewList(rsql,rvrCode);
 				
-			response.setContentType("application/json; charset=UTF-8");
-			new Gson().toJson(list, response.getWriter());
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
 
 	}
 
