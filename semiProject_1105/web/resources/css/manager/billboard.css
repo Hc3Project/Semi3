@@ -153,8 +153,9 @@
 
 /*-- Area --*/
 .bb-area {
+	/* 바 색상 */
   stroke-width: 0;
-  opacity: 0.2; }
+  opacity: 0.5; }
 
 /*-- Arc --*/
 .bb-chart-arcs-title {

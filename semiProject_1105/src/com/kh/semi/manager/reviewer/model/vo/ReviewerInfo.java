@@ -5,7 +5,7 @@ public class ReviewerInfo {
 	private String rvrCode;
 	private String rName;
 	private String profile;
-	private int reviewCnt;
+	private int cnt;
 	public ReviewerInfo() {
 		super();
 	}
@@ -22,12 +22,12 @@ public class ReviewerInfo {
 		this.profile = profile;
 	}
 	
-	public ReviewerInfo(String rvrCode, String rName, String profile, int reviewCnt) {
+	public ReviewerInfo(String rvrCode, String rName, String profile, int cnt) {
 		super();
 		this.rvrCode = rvrCode;
 		this.rName = rName;
 		this.profile = profile;
-		this.reviewCnt = reviewCnt;
+		this.cnt = cnt;
 	}
 	/**
 	 * @return the rvrCode
@@ -66,24 +66,24 @@ public class ReviewerInfo {
 		this.profile = profile;
 	}
 	/**
-	 * @return the reviewCnt
+	 * @return the cnt
 	 */
-	public int getReviewCnt() {
-		return reviewCnt;
+	public int getCnt() {
+		return cnt;
 	}
 	/**
-	 * @param reviewCnt the reviewCnt to set
+	 * @param cnt the cnt to set
 	 */
-	public void setReviewCnt(int reviewCnt) {
-		this.reviewCnt = reviewCnt;
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "ReviewerInfo [rvrCode=" + rvrCode + ", rName=" + rName + ", profile=" + profile + ", reviewCnt="
-				+ reviewCnt + "]";
+		return "ReviewerInfo [rvrCode=" + rvrCode + ", rName=" + rName + ", profile=" + profile + ", cnt="
+				+ cnt + "]";
 	}
 		
 }
