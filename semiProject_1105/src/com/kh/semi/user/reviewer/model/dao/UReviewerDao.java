@@ -66,18 +66,16 @@ public class UReviewerDao {
 		return result;
 	}
 
-	public List<ReviewerLikes> selectReviewerStatus(Connection con, String userId) {
+	public String selectReviewerStatus(Connection con, String userId) {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
-		List<ReviewerLikes> list=null;
+		StringBuffer sb=new StringBuffer();
 		try {
 			pstmt=con.prepareStatement(prop.getProperty("selectReviewerStatus"));
 			pstmt.setString(1, userId);
 			rset=pstmt.executeQuery();
-			list=new ArrayList<>();
 			while(rset.next()){
-				ReviewerLikes rl=new ReviewerLikes(rset.getString(1),rset.getString(2));
-				list.add(rl);
+				sb.append(rset.getString(1)+", ");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,7 +83,44 @@ public class UReviewerDao {
 			close(rset);
 			close(pstmt);
 		}
-		return list;
+		String result=sb.toString();
+		System.out.println("좋아연 결과 : "+result);
+		return result;
+	}
+
+	public int insertReviewerLikes(Connection con, String userId, String rvrCode) {
+		
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=con.prepareStatement(prop.getProperty("insertReviewerLikes"));
+			pstmt.setString(1, userId);
+			pstmt.setString(2, rvrCode);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteReviewerLikes(Connection con, String userId, String rvrCode) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=con.prepareStatement(prop.getProperty("deleteReviewerLikes"));
+			pstmt.setString(1, userId);
+			pstmt.setString(2, rvrCode);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

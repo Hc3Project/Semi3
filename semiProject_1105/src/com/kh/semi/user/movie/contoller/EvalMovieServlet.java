@@ -22,14 +22,14 @@ import com.kh.semi.user.movie.model.service.MovieService;
 /**
  * Servlet implementation class VisitMovieServlet
  */
-@WebServlet("/mVisit.do")
-public class VisitMovieServlet extends HttpServlet {
+@WebServlet("/mEval.do")
+public class EvalMovieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VisitMovieServlet() {
+    public EvalMovieServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,13 +40,13 @@ public class VisitMovieServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		String userId = ((Member) session.getAttribute("member")).getUserId();
-		int mPage = Integer.parseInt(request.getParameter("page"));
+		int ePage = Integer.parseInt(request.getParameter("page"));
 		String page = "";
 
 		MovieService ms = new MovieService();
 		ArrayList<MovieInfo> mlist = new ArrayList<MovieInfo>();
 
-		mlist = ms.visitMovie(userId,mPage);
+		mlist = ms.evalMovie(userId,ePage);
 
 		response.setContentType("application/json; charset=UTF-8");
 

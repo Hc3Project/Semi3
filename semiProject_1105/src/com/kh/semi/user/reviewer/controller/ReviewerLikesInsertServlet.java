@@ -1,8 +1,6 @@
-package com.kh.semi.user.review.controller;
+package com.kh.semi.user.reviewer.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.semi.user.review.model.service.ReviewService;
-import com.kh.semi.user.review.model.vo.Review;
+import com.kh.semi.user.reviewer.model.service.UReviewerService;
 
 /**
- * Servlet implementation class ReviewAllServlet
+ * Servlet implementation class ReviewerLikesInsertServlet
  */
-@WebServlet("/rAll.rv")
-public class ReviewAllServlet extends HttpServlet {
+@WebServlet("/insert.rvr")
+public class ReviewerLikesInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReviewAllServlet() {
+    public ReviewerLikesInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +29,18 @@ public class ReviewAllServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReviewService rs = new ReviewService();
-		String rsql = request.getParameter("rsql");
-		String rvrCode = request.getParameter("rvrCode");
-		int page = Integer.parseInt(request.getParameter("page"));
-	
-		ArrayList<Review> list = new ArrayList<Review>();
-							
-		list= rs.rvrReviewAll(rsql,rvrCode,page);
-				
-		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list, response.getWriter());
+		String userId=request.getParameter("userId");
+		String rvrCode=request.getParameter("rvrCode");
+		System.out.println("아이디 : "+userId);
+		System.out.println("리뷰어 : "+rvrCode);
+		try{
+			int result=new UReviewerService().insertReviewerLikes(userId,rvrCode);
+			new Gson().toJson(result,response.getWriter());
+		}catch(Exception e){
+			request.setAttribute("exception", e);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+		
 	}
 
 	/**

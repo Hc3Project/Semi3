@@ -10,8 +10,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import com.kh.semi.user.member.encrypt.EncryptWrapper;
-
 /**
  * Servlet Filter implementation class EncryptFilter
  */
@@ -40,7 +38,7 @@ public class EncryptFilter implements Filter {
 		HttpServletRequest h_request = (HttpServletRequest) request;
 		EncryptWrapper ew = new EncryptWrapper(h_request);
 
-		chain.doFilter(request, response);
+		chain.doFilter(ew, response);
 	}
 
 	/**

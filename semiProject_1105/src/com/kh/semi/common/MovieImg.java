@@ -11,7 +11,7 @@ import com.kh.semi.user.movie.model.service.MovieService;
 
 public class MovieImg {
 
-	public String moviewImg(String keyword) throws DetailViewException,Exception {
+	public String moviewImg(String keyword,String mCode) throws DetailViewException,Exception {
 		MovieService dvs = new MovieService();
 		String page = "";
 		
@@ -49,11 +49,11 @@ public class MovieImg {
 
 		if (result.substring(61, 62).equals("1") && !chkNum(result.substring(62, 63))){
 			System.out.println("결과 한개");
-			page = dvs.getImage(result);
+			page = dvs.getImage(result,mCode);
 		}
 		else{
 			System.out.println("결과 여러개");
-			page = dvs.getPowerImage(result, keyword);
+			page = dvs.getPowerImage(result, keyword,mCode);
 		}
 		return page;
 	}

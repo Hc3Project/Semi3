@@ -39,12 +39,13 @@ public class ReviewerServlet extends HttpServlet {
 		try {
 			if(m!=null){
 				// 회원정보가 있을 경우
-				List<ReviewerLikes> list=new UReviewerService().selectReviewerStatus(m.getUserId());
-				request.setAttribute("list", list);
+				String result=new UReviewerService().selectReviewerStatus(m.getUserId());
+				request.setAttribute("list", result);
 				request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
 			}else{
 				// 회원 정보가 없을 경우
-				response.sendRedirect("views/movie/movieReviewerView.jsp");
+				request.setAttribute("list", "");
+				request.getRequestDispatcher("views/movie/movieReviewerView.jsp").forward(request, response);
 			}
 		}catch (ReviewerViewException e) {
 			request.setAttribute("exception", e);

@@ -18,7 +18,6 @@ System.out.println("asdasd "+getPage);
 	String synopsis = mov.getSynopsis();
 	Member member=(Member)session.getAttribute("member");
 	int score=(int)request.getAttribute("score");
-	int avg=(int)request.getAttribute("avg");
 	System.out.println("별점 : "+score);
 %>
 <!DOCTYPE html>
@@ -118,7 +117,7 @@ System.out.println("asdasd "+getPage);
 									<span class="starR1">9</span> <span class="starR2">10</span>
 								</div>
 								<div>
-									<p>이 영화의 평균 점수는 <%=avg %>점입니다.</p>
+									<p class="average"></p>
 								</div>
 							</li>
 							<li><p class="font_8">&nbsp;</p></li>
@@ -240,21 +239,33 @@ System.out.println("asdasd "+getPage);
 
 
 	<script type="text/javascript">
-		// 별점 이벤트 관리하는 부분(ajax)
-		// 현재 별점이 있으면  update서블릿
-		// 현재 별점이 없으면 insert 서블릿
 		
+		
+		var num=<%=score%>;
+		var avg=0;
+		
+		// 공통사항
+		$.ajax({
+			url:"/semi/star.avg",
+			data:{
+				mCode:<%=mcode%>
+			},
+			success:function(data){
+				avg=data;
+				$('.average').text("이 영화의 평균 평점은 "+avg+"점 입니다.");
+			}
+		});
+		
+		for(var i=0;i<num;i++){
+			$('.starRev span').parent().children('span').eq(i).addClass('on');
+		}
 		
 		$('.starRev span').hover(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
-			return false;
 		},function(){
-			var num=0;
-			if(score==0) num=<%=avg%>;
-			else num=<%=score%>;
 			$(this).parent().children('span').removeClass('on');
-			for(var i;i<num;i++){
+			for(var i=0;i<num;i++){
 				$(this).parent().children('span').eq(i).addClass('on');
 			}
 		});
@@ -269,14 +280,31 @@ System.out.println("asdasd "+getPage);
 					},
 					success:function(data){
 						alert(data+"점이 반영되었습니다.");
+						num=data;
+						for(var i=0;i<num;i++){
+							$('.starRev span').parent().children('span').eq(i).addClass('on');
+						}
 					},
 					error:{
 						
 					}
 					
 				});
+				
+				$.ajax({
+					url:"/semi/star.avg",
+					data:{
+						mCode:<%=mcode%>
+					},
+					success:function(data){
+						var avg=data;
+						$('.average').text("이 영화의 평균 평점은 "+avg+"점 입니다.")
+					}
+				});
 			<%}%>
 		});
+		
+		
 	</script>
 </body>
 </html>
