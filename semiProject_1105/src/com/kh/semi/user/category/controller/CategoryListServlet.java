@@ -41,7 +41,7 @@ public class CategoryListServlet extends HttpServlet {
 		ArrayList<CategoryInfo> cList = new ArrayList<CategoryInfo>();
 
 		
-		cList = cs.selectCategoryList(csql); // 카테고리 리스트 가져오는 cs
+		cList = new CategoryService().selectCategoryList(csql); // 카테고리 리스트 가져오는 cs
 
 		response.setContentType("application/json; charset=UTF-8");
 		
