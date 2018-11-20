@@ -3,7 +3,6 @@
 	import="java.sql.Date, com.kh.semi.user.movie.model.vo.MovieDetailInfo, com.kh.semi.user.member.model.vo.Member"%>
 <%
 	String getPage = (String) request.getAttribute("page");
-System.out.println("asdasd "+getPage);
 	MovieDetailInfo mov = (MovieDetailInfo) request.getAttribute("mov");
 	String mtitle = mov.getMtitle();
 	String mcode=mov.getMcode();
@@ -18,7 +17,6 @@ System.out.println("asdasd "+getPage);
 	String synopsis = mov.getSynopsis();
 	Member member=(Member)session.getAttribute("member");
 	int score=(int)request.getAttribute("score");
-	System.out.println("별점 : "+score);
 %>
 <!DOCTYPE html>
 <html>
@@ -26,8 +24,6 @@ System.out.println("asdasd "+getPage);
 <meta charset=UTF-8>
 <title>포오스터어어어!!!</title>
 
-
-<!-- 뭐가 많은데 뭘 지워야할지 몰라서 냅둠 -->
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -117,9 +113,10 @@ System.out.println("asdasd "+getPage);
 									<span class="starR1">9</span> <span class="starR2">10</span>
 								</div>
 								<div>
-									<p class="average"></p>
+									<h6 class="average"></h6>
 								</div>
 							</li>
+							
 							<li><p class="font_8">&nbsp;</p></li>
 							<li>
 								<div class="color_21">
@@ -159,11 +156,8 @@ System.out.println("asdasd "+getPage);
 						</div>
 					</div>
 				</div>
-				<!--rec-row-->
 			</div>
-			<!--home-page__rec-list-->
 		</div>
-		<!--homepage-->
 
 	</section>
 	<section id="reviewNeighborList" class=" movieReview">
@@ -192,12 +186,9 @@ System.out.println("asdasd "+getPage);
 					</div>
 
 				</div>
-				<!--rec-row-->
 
 			</div>
-			<!--home-page__rec-list-->
 		</div>
-		<!--homepage-->
 
 	</section>
 	<section id="reviewRecommendList " class="movieReview">
@@ -227,19 +218,15 @@ System.out.println("asdasd "+getPage);
 					</div>
 
 				</div>
-				<!--rec-row-->
 
 			</div>
-			<!--home-page__rec-list-->
 		</div>
-		<!--homepage-->
 
 	</section>
 
 
 
 	<script type="text/javascript">
-		
 		
 		var num=<%=score%>;
 		var avg=0;
@@ -252,7 +239,7 @@ System.out.println("asdasd "+getPage);
 			},
 			success:function(data){
 				avg=data;
-				$('.average').text("이 영화의 평균 평점은 "+avg+"점 입니다.");
+				$('.average').html("이 영화의 평균 평점은 <font style='color: rgb(242, 198, 102)'>"+avg+"</font>점 입니다.");
 			}
 		});
 		
