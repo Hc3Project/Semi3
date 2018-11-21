@@ -1,3 +1,4 @@
+
 $(function(){
 
 	var gCode = $('.genre').val();
@@ -21,7 +22,7 @@ $(function(){
 	mPage=0;
 	mflag = true;
 	
-		$('.select-menu').change(function(){
+		$('.button').click(function(){
 			$(".item").remove();
 			console.log("gCode:"+gCode);
 			console.log("nCode:"+nCode);
@@ -34,8 +35,11 @@ $(function(){
 		$(window).scroll(function() {
 		    if ($(window).scrollTop() == $(document).height() - $(window).height()&&mflag==true) {
 		    	mlist(gCode,nCode,rvrCode,order);
-		    }});
+		    }
+		 });
 	});
+
+
 
 function mlist(gCode,nCode,rvrCode,order) {
 	$.ajax({
@@ -71,49 +75,41 @@ function mlist(gCode,nCode,rvrCode,order) {
 				console.log($(this).attr("value"));
 				location.href = "/semi/dView.do?mCode="+$(this).attr("value");
 				
-			})
+			});
 		}
 	, beforeSend: function () {
-		 mflag=false;
-           var width = 0;
-           var height = 0;
-           var left = 0;
-           var top = 0;
-
-           width = 50;
-           height = 50;
-
-
-           top = ( 300 - height ) / 2 
-           left = ( $(window).width() ) / 2 - width 
-
-         /*   $("#div_ajax_load_image img").css({
-             "margin-top": top+"px",
-             "margin-left": left+"px"
-      }); */
-
-           console.log("ajax 로딩");
-      
-           $("#catecoryMovie").append($("<div>").attr("class","div_ajax_load_image").css({
-        	   
-             "width": "100%",
-        	   "height": "300px",
-        	   "background":"#191919"
-           }).append($("<img>").attr("src","resources/image/233F6D505786DA870A.gif").css({
-        	   "margin-top": top+"px",
-             "margin-left": left+"px",
-        	   "width": "50px",
-        	   "height": "50px"
-           })
-        ))
-
-
+        mflag = false;
+        var width = 0;
+        var height = 0;
+        var left = 0;
+        var top = 0;
+        width = 50;
+        height = 50;
+        top = (300 - height) / 2
+        left = ($(window).width()) / 2 - width
+        /*
+		 * $("#div_ajax_load_image img").css({ "margin-top": top+"px",
+		 * "margin-left": left+"px" });
+		 */
+        console.log("ajax 로딩");
+        $("#catecoryMovie").append($("<div>")
+            .attr("class", "div_ajax_load_image")
+            .css({"width": "100%", "height": "300px", "background": "#191919"})
+            .append($("<img>").attr("src", "resources/image/233F6D505786DA870A.gif").css({
+            "margin-top": top + "px",
+            "margin-left": left + "px",
+            "width": "50px",
+            "height": "50px"
+        })));
+        $('.button').attr('disabled', true);
     }
     , complete: function (data) {
     	$(".div_ajax_load_image").remove();
-    	if(data==null)mflag=false;
+    	if(data===null)mflag=false;
     	else mflag=true;
+    	
+    	$('.button').attr('disabled',false);
     }
-			})
+	});
 	
 }

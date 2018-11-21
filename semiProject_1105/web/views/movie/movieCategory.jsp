@@ -68,7 +68,10 @@
 			</select>
 		</div>
 
-
+		<div class="searchBtn">
+			<button type="button" class="button" value="search">검색
+			</button>
+		</div>
 	</div>
 
 	<!-- 셀렉트박스 옵션 가져오는 ajax -->

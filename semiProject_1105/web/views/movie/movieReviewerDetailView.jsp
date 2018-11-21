@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.semi.manager.reviewer.model.vo.ReviewerInfo"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.semi.manager.reviewer.model.vo.ReviewerInfo, com.kh.semi.user.member.model.vo.Member"%>
 <%
 	ReviewerInfo ri = (ReviewerInfo) request.getAttribute("ri");
 	String rvrCode = (String)request.getAttribute("rvrCode");
 	String prfImg=(String)request.getAttribute("prfImg");
 	System.out.println("이미지주소:"+prfImg);
+	Member member= (Member) session.getAttribute("member");
+	String list=(String)request.getAttribute("list");
+	String[] rvr=list.split(", ");
 %>
 <!DOCTYPE html>
 <html>
@@ -64,11 +67,17 @@
                     <span></span>
                 </div>
                 <yt-formatted-string id="description" class="style-scope ytd-channel-renderer"><%= ri.getProfile() %></yt-formatted-string>
+                
             </div>
-            </a>
             
+            </a>
+            <span class="likes">
+            	<img class="heartBtn" id="<%=rvrCode %>" src="/semi/resources/image/grheart.png" alt="grey">
+            </span>
             </ytd-channel-renderer>
         </div>
+        
+        
    </div>
    <br><br>
    <section class="listSection">
@@ -394,10 +403,63 @@ function hover() {
 		console.log($(this).attr("value"));
 		
 		
-	})	
-}
+	});	
+};
+
+<%if(member!=null){%>
+	
+	<%if(list.length()>0){%>
+		<%for(int i=0;i<rvr.length;i++){%>
+			$('#<%=rvr[i]%>').attr({
+				src:'/semi/resources/image/rdheart.png',
+				alt:'red'
+			});
+		<%}%>
+	<%}%>
+	
+	$('.heartBtn').click(function(){
+		var color=$(this).attr('alt');
+		if(color=='grey'){
+			$.ajax({
+				url:"/semi/insert.rvr",
+				data:{
+					userId:"<%=member.getUserId()%>",
+					rvrCode:$(this).attr('id')
+				},
+				success:function(data){
+					console.log(data+" 좋아요");
+				}
+			});
+			$(this).attr({
+				src:'/semi/resources/image/rdheart.png',
+				alt:'red'
+			});
+			
+		}else{
+			$.ajax({
+				url:"/semi/delete.rvr",
+				data:{
+					userId:"<%=member.getUserId()%>",
+					rvrCode:$(this).attr('id')
+				},
+				success:function(data){
+					console.log(data+" 싫어요");
+				}
+			});
+			$(this).attr({
+				src:'/semi/resources/image/grheart.png',
+				alt:'grey'
+			});
+		}
+	});
+<%}else{%>
+	$('.heartBtn').click(function(){
+		alert("로그인을 하시면 리뷰어 좋아요 기능이 활성화됩니다.");
+	});
+<%}%>
 
 </script>
+
 	
 
 </body>

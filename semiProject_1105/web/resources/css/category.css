@@ -136,3 +136,26 @@
 	
 	top:100px;
 }
+.button {
+	margin-left:10px;
+  	background: #191919;
+	background-image: -webkit-linear-gradient(top, #191919, #191919);
+	background-image: -moz-linear-gradient(top, #191919, #191919);
+	background-image: -ms-linear-gradient(top, #191919, #191919);
+	background-image: -o-linear-gradient(top, #191919, #191919);
+	background-image: linear-gradient(to bottom, #191919, #191919);
+  	-webkit-border-radius: 3;
+  	-moz-border-radius: 3;
+  	border-radius: 3px;
+  	font-family: Arial;
+  	color: #888;
+  	font-size: 20px;
+  	padding: 10px 20px 10px 20px;
+  	border: solid #ccd1d4 1px;
+  	text-decoration: none;
+}
+
+.button:hover {
+  	background: #191919;
+  	text-decoration: none;
+}
