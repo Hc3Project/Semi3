@@ -1988,7 +1988,7 @@ html.full-height body [data-react-router-class="MyRoutes"],html.full-height body
     float: left;
     width: 218px;
     height: 80px;
-    background: url('../image/mt_logo.png') 0 26px no-repeat;
+    background: url('../image/mt_logo.png') 0px no-repeat;
     background-size: 230px 46px
 }
 
