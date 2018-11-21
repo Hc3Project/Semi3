@@ -55,10 +55,7 @@
 			<li class="gnb__category-list"><a class="gnb__nav-category"
 				href="/semi/reviewer.do">리뷰어</a> 
 			<span>
-					<div class="gnb-category-list">
-						<div class="gnb-category-list__filters">
-						</div>
-					</div>
+				
 			</span>
 			</li>
 
@@ -259,18 +256,18 @@ $(function displayList(){
 		$("#genreBtn").click(function(){
 			$(".gnb-category-list__filtered-list2").css("display","none");
 			$(".gnb-category-list__filtered-list3").css("display","none")
-		});
+		})
 
 		$("#nationBtn").click(function(){
 			$(".gnb-category-list__filtered-list2").css("display","");
 			$(".gnb-category-list__filtered-list3").css("display","none");	
-		});
+		})
 	
 		
 		$("#reviewerBtn").click(function(){
 			$(".gnb-category-list__filtered-list2").css("display","none");
 			$(".gnb-category-list__filtered-list3").css("display","");			
-		});
+		})
 
 });
 </script>

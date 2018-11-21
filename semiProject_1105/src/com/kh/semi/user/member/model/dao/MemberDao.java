@@ -253,7 +253,7 @@ public class MemberDao {
 		ResultSet rset = null;
 		List<Integer> result = null;
 		try {
-			result = new ArrayList<>();
+			result = new ArrayList<Integer>();
 			pstmt = con.prepareStatement(prop.getProperty("selectScoreCnt"));
 			pstmt.setString(1, userId);
 			rset = pstmt.executeQuery();

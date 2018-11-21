@@ -37,12 +37,6 @@ public class MemberRecServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<String> userList = null;
-		List<String> itemList = null;
-		int[][] itemMatrix = null;
-		HashMap<Integer, Double> cfResult = null;
-		String[] itemRankList = null;
-		String[] itemRankTitle = null;
 		List<Integer> scoreCnt = null;
 		List<String> likes = null;
 		
@@ -53,31 +47,6 @@ public class MemberRecServlet extends HttpServlet {
 		
 		String page = "";
 		if(m!=null) {
-			// 협업 필터링 및 배열 출력
-			int userIdx = ms.selectUserIdx(m.getUserId());
-			if(userIdx!=-1) {
-				// 평점을 한번 이상 매겼을 경우..
-				userList = ms.selectUserNum("userId");
-				itemList = ms.selectUserNum("mCode");
-				itemMatrix = ms.selectRating(userList.size(), itemList.size());
-				cfResult = new CollaborativeFiltering().cfCalc(itemMatrix, userIdx);
-
-				Object[] tmpArr = cfResult.keySet().toArray();
-				if(tmpArr.length!=0) {
-					// 추천 결과 값이 하나 이상 존재하면 예측치가 높은 순서대로 배열에 담긴다
-					itemRankList = new String[tmpArr.length];
-					itemRankTitle = new String[tmpArr.length];
-					for(int i=0; i<itemRankList.length; i++) {
-						itemRankList[i] = itemList.get((int)tmpArr[i]);
-						itemRankTitle[i] = ms.selectMovieTitle(itemList.get((int)tmpArr[i]));
-					}
-					m.setRecRecList(itemRankList);
-				} else {
-					// 추천결과가 하나도 없을 경우 null
-				}
-			} else {
-				// 평점을 단 한번도 하지 않을 경우 null
-			}
 			// 평점 분포 배열
 			scoreCnt = ms.selectRatingCnt(m.getUserId());
 			
@@ -87,8 +56,6 @@ public class MemberRecServlet extends HttpServlet {
 			session.setAttribute("member", m);
 			session.setAttribute("scoreCnt", Arrays.toString(scoreCnt.toArray()));		// 평점 분포
 			session.setAttribute("likes", Arrays.toString(likes.toArray()));	// 구독
-			session.setAttribute("estMovie", Arrays.toString(m.getRecList()));	// 예측 영화 코드
-			session.setAttribute("estTitle", Arrays.toString(itemRankTitle));	// 예측 영화 타이틀
 		} else {
 			// 로그인 안하고 들어갔을 때
 			request.setAttribute("exception", new MemberException("회원 정보가 없습니다!"));

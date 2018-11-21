@@ -1,5 +1,4 @@
-
-package com.kh.semi.user.movie.contoller;
+package com.kh.semi.user.category.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,29 +8,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
 import com.kh.semi.common.MovieImg;
-import com.kh.semi.common.MovieSmallImg;
-import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
-import com.kh.semi.user.member.model.vo.Member;
-import com.kh.semi.user.movie.model.service.MovieService;
+import com.kh.semi.user.category.model.service.CategoryService;
 
 /**
- * Servlet implementation class VisitMovieServlet
+ * Servlet implementation class CategorySelectedBoxServlet
  */
-@WebServlet("/mVisit.do")
-public class VisitMovieServlet extends HttpServlet {
+@WebServlet("/csBox.ca")
+public class CategorySelectedBoxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VisitMovieServlet() {
+    public CategorySelectedBoxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,41 +36,43 @@ public class VisitMovieServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		String userId = ((Member) session.getAttribute("member")).getUserId();
+		
+		CategoryService cs = new CategoryService();
+		
+		String msql = request.getParameter("msql");
+		String gCode = request.getParameter("gCode");
+		String nCode = request.getParameter("nCode");
+		String rvrCode = request.getParameter("rvrCode");
 		int mPage = Integer.parseInt(request.getParameter("page"));
-		String page = "";
-
-		MovieService ms = new MovieService();
-		ArrayList<MovieInfo> mlist = new ArrayList<MovieInfo>();
-
-		mlist = ms.visitMovie(userId,mPage);
-
+		System.out.println(mPage);
+		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
+		
+		mList = cs.selectMovieList(msql, gCode, nCode, rvrCode,mPage); // 무비 리스트 가져오는 cs
+		
+		
 		response.setContentType("application/json; charset=UTF-8");
 
 		JSONArray result = new JSONArray();
 		JSONObject movieIf = null;
 
-		for (MovieInfo movie : mlist) {
+		for (MovieInfo movie : mList) {
 			movieIf = new JSONObject();
 
 			movieIf.put("mTitle", movie.getmTitle());
 			movieIf.put("mCode", movie.getmCode());
 
 			try {
-				movieIf.put("mPage", new MovieSmallImg().movieSmallImg(movie.getmTitle(),movie.getmCode()));
+				System.out.println(new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
+				
+				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
 			} catch (Exception e) {
 				request.setAttribute("exception", e);
-				//request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+				
 			}
 
 			result.add(movieIf);
 		}
 		response.getWriter().print(result.toJSONString());
-
-		
-		
-		
 	}
 
 	/**
@@ -86,4 +84,3 @@ public class VisitMovieServlet extends HttpServlet {
 	}
 
 }
-

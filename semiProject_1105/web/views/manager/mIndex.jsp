@@ -19,17 +19,25 @@
 		
 		<h3>국가별 영화 수</h3>
 		<div id="nationCnt"></div>
+		
+		<h3>장르별 평점 분포</h3>
+		<div id="ratingDistribution"></div>
+		
+		<h3>좋아요가 많은 리뷰어</h3>
+		<div id="rvrLikes"></div>
+		
 		<div>
-			<div style="display:inline-block; width:500px; margin-rigth:150px;">
+			<!-- <div style="display:inline-block; width:500px; margin-rigth:150px;">
 				<h3>최근 개봉한 영화 장르</h3>
 				<input type="number" style="width:50px; color:black;" min="10" max="100" value="10" id="num">
 				<input type="button" value="조회" style="width:50px;" id="numBtn">
 				<div id="pie1"></div>
-			</div>
+			</div> -->
 			
 			<div style="display:inline-block; width:500px; margin-left:150px;">
-				<h3>최근 개봉한 영화 장르</h3>
-				<div id="pie2"></div>
+				<input type="number" style="width:50px; color:black;" min="1" max="365" value="10" id="dNum">
+				일 이내 개봉한 영화 장르
+				<div id="dGenre"></div>
 			</div>
 		</div>
 	</div>
