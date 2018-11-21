@@ -15,6 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.kh.semi.common.MovieImg;
+import com.kh.semi.common.MovieSmallImg;
 import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.member.model.vo.Member;
@@ -61,10 +62,10 @@ public class VisitMovieServlet extends HttpServlet {
 			movieIf.put("mCode", movie.getmCode());
 
 			try {
-				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
+				movieIf.put("mPage", new MovieSmallImg().movieSmallImg(movie.getmTitle(),movie.getmCode()));
 			} catch (Exception e) {
 				request.setAttribute("exception", e);
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+				//request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
 
 			result.add(movieIf);
