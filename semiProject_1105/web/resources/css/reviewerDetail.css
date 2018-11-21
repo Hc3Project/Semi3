@@ -291,3 +291,10 @@ ytd-badge-supported-renderer.ytd-channel-renderer {
     border-radius:50%;
     overflow:hidden;
 }
+
+.likes{
+	width:32px; 
+	height:32px; 
+	margin-top:55px; 
+	margin-right:45px;"
+}

@@ -6,9 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.semi.exception.ReviewerViewException;
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
+import com.kh.semi.user.member.model.vo.Member;
 import com.kh.semi.user.review.model.service.ReviewService;
 import com.kh.semi.user.reviewer.model.service.UReviewerService;
 
@@ -31,15 +33,24 @@ public class ReviewerProfileServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session=request.getSession(false);
+		Member m=(Member) session.getAttribute("member");
+		
 		String rvrCode=request.getParameter("rvrCode");
 		String prfImg=request.getParameter("prfImg");
 		System.out.println("프로파일:"+prfImg);
 		try{
 			ReviewerInfo ri= new UReviewerService().reviewerDetail(rvrCode);
-
+			
+			if(m!=null){
+				String result=new UReviewerService().selectReviewerStatus(m.getUserId());
+				request.setAttribute("list", result);
+			}else{
+				request.setAttribute("list", "");
+			}
 			request.setAttribute("ri", ri);
 			request.setAttribute("rvrCode", rvrCode);
-			request.setAttribute("prfImg",prfImg);
+			request.setAttribute("prfImg", prfImg);
 		
 			request.getRequestDispatcher("views/movie/movieReviewerDetailView.jsp").forward(request, response);
 		}catch(ReviewerViewException e){
