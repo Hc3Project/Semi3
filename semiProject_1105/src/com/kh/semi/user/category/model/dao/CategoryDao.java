@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.semi.common.MovieSmallImg;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.category.model.vo.CategoryInfo;
 
@@ -229,7 +230,12 @@ public class CategoryDao {
 
 			mi.setmCode(rset.getString("MCODE"));
 			mi.setmTitle(rset.getString("MTITLE"));
-			
+			try {
+				mi.setPoster( new MovieSmallImg().movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
+			}catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//mi.setSyno(rset.getString("syno"));
 
 			

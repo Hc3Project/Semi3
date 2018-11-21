@@ -53,13 +53,16 @@ public class SearchMovieDao {
 				
 				mi.setmCode(rset.getString("mcode"));
 				mi.setmTitle(rset.getString("mtitle"));
+				
 				try {
+					
 					mi.setPoster( new MovieSmallImg().movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
 				}catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				mList.add(mi);
+				System.out.println(mList.toString());
 			}
 		} catch (SQLException e) {
 			

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
 import com.kh.semi.common.MovieImg;
 import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
@@ -49,29 +50,7 @@ public class EvalMovieServlet extends HttpServlet {
 		mlist = ms.evalMovie(userId,ePage);
 
 		response.setContentType("application/json; charset=UTF-8");
-
-		JSONArray result = new JSONArray();
-		JSONObject movieIf = null;
-
-		for (MovieInfo movie : mlist) {
-			movieIf = new JSONObject();
-
-			movieIf.put("mTitle", movie.getmTitle());
-			movieIf.put("mCode", movie.getmCode());
-
-			try {
-				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
-			} catch (DetailViewException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			result.add(movieIf);
-		}
-		response.getWriter().print(result.toJSONString());
+		new Gson().toJson(mlist, response.getWriter());
 
 		
 		

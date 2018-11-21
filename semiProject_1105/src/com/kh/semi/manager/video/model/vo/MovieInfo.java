@@ -167,7 +167,7 @@ public class MovieInfo {
 	public String toString() {
 		return "MovieInfo [mCode=" + mCode + ", mTitle=" + mTitle + ", director=" + director + ", actor=" + actor
 				+ ", showTime=" + showTime + ", openDate=" + openDate + ", gCode1=" + gCode1 + ", gCOde2=" + gCOde2
-				+ ", nCode=" + nCode + ", syno=" + syno + "]";
+				+ ", nCode=" + nCode + ", syno=" + syno +", poster=" + poster + "]";
 	}
 	
 	
