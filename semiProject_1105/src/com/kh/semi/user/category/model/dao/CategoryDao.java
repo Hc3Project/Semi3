@@ -130,9 +130,9 @@ public class CategoryDao {
 		}
 		
 		//선택된 무비 리스트 확인용 
-		for(int i=0; i<mList.size(); i++){
+		/*for(int i=0; i<mList.size(); i++){
 			System.out.println(mList.get(i));
-		}
+		}*/
 		
 		return mList;
 	}
@@ -181,6 +181,74 @@ public class CategoryDao {
 		return mList;
 	}
 
+	// 셀렉트박스의 정보로 영화정보 가져오는 메소드 
+	public ArrayList<MovieInfo> selectMoiveSelectedList(Connection con, String msql, String gCode, String nCode, String rvrCode,int mPage) {
+		
+		if(gCode.equals("all")){
+			gCode = gCode.replace(gCode, "%%");
+		}
+		if(nCode.equals("all")){
+			nCode = nCode.replace(nCode, "%%");
+		}
+		if(rvrCode.equals("all")){
+			rvrCode = rvrCode.replace(rvrCode, "%%");
+		}
+		
+		System.out.println("gcode:" + gCode);
+		System.out.println("nCode:" + nCode);
+		System.out.println("rvrCode:" + rvrCode);
+		
+		ArrayList<MovieInfo> mList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		
+		String sql = prop.getProperty(msql);
+		
+		System.out.println(sql);
+		try {
+			pstmt = con.prepareStatement(sql);
+			
+			/*if(!(gCode.equals("%%")) || !(nCode.equals("%%") || !(rvrCode.equals("%%")))){*/
+				pstmt.setString(1, gCode); // 첫번째 물음표 
+				pstmt.setString(2, gCode); // 첫번째 물음표 
+				pstmt.setString(3, nCode); // 두번째 물음표
+				pstmt.setString(4, rvrCode); // 세번째 물음표
+				pstmt.setInt(5, mPage);
+				pstmt.setInt(6, mPage);
+			/*}else{
+				pstmt.setString(1, "%%");
+				pstmt.setString(2, "%%");
+				pstmt.setString(3, "%%");
+			}*/
+			rset = pstmt.executeQuery();
+			mList = new ArrayList<MovieInfo>();
+			
+			while(rset.next()){
+			
+			MovieInfo mi = new MovieInfo();
+			
+			mi.setmCode(rset.getString("MCODE"));
+			mi.setmTitle(rset.getString("MTITLE"));
+			
+			//mi.setSyno(rset.getString("syno"));
+			
+			mList.add(mi);
+		
+		}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+//		//선택된 무비 리스트 확인용 
+//		for(int i=0; i<mList.size(); i++){
+//			System.out.println(mList.get(i));
+//		}
+//		
+		return mList;
+	}
 	
 	
 	// 모든 카테고리 정보 가져오는 메소드 

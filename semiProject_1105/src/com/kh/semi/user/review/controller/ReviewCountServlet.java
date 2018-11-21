@@ -38,8 +38,7 @@ public class ReviewCountServlet extends HttpServlet {
 		ReviewService rs = new ReviewService();
 		
 		Member m = (Member)session.getAttribute("member");
-		if(m!=null){
-			userId= m.getUserId();}
+		if(m!=null) userId= m.getUserId();
 		
 		rs.reviewCount(videoId,userId);
 	}

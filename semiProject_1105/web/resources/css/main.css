@@ -109,13 +109,13 @@
 
 #bo2 {
 	font-family: 'Noto Sans' !important;
-	height: 399px !important;
+	height: 420px !important;
 	background: white;
 }
 
 #bo3 {
 	font-family: 'Noto Sans' !important;
-	height: 81px !important;
+	height: 60px !important;
 	background: #0f1111;
 }
 
@@ -142,17 +142,23 @@ img {
 	height: 100%;
 }
 
-.container .item div {
+.movieSection .item div {
 	width: 210px;
-	height: 290px;
+	height: 299px;
 	margin: 0px 5px 0px 5px;
 }
+
 
 .listSection .carousel-inner .item div {
 	width: 300px;
 	height: 200px;
 	padding: 0px 3px 0px 3px;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, .5);
+}
+#st4Carousel .carousel-inner .item div {
+	width: 210px;
+	height: 300px;
+	margin: 0px 5px 0px 5px;
 }
 
 .listSection .carousel-inner .item {

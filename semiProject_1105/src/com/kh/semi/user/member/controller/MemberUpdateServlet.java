@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.semi.user.member.execption.MemberException;
+import com.kh.semi.exception.MemberException;
 import com.kh.semi.user.member.model.service.MemberService;
 import com.kh.semi.user.member.model.vo.Member;
 
@@ -52,15 +52,10 @@ public class MemberUpdateServlet extends HttpServlet {
 			System.out.println("회원 정보 수정 완료!: " + m);
 			response.sendRedirect("/semi/index.jsp");
 
-		} catch (Exception e) {
+		} catch (MemberException e) {
 
-			// e.printStackTrace();
-
-			request.setAttribute("msg", "회원정보 수정 중 에러가 발생했습니다!");
 			request.setAttribute("exception", e);
-
-			// request.getRequestDispatcher("views/common/errorPage.jsp").forward(request,
-			// response);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request,response);
 		}
 	}
 

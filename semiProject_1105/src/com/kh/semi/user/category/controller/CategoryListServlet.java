@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.category.model.service.CategoryService;
 import com.kh.semi.user.category.model.vo.CategoryInfo;
 
@@ -32,13 +33,16 @@ public class CategoryListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		System.out.println("servlet");
-		CategoryService cs = new CategoryService();
 		String csql = request.getParameter("csql");
+		
+
 		ArrayList<CategoryInfo> cList = new ArrayList<CategoryInfo>();
+
 		
-		cList = cs.selectCategoryList(csql);
-		
+		cList = new CategoryService().selectCategoryList(csql); // 카테고리 리스트 가져오는 cs
+
 		response.setContentType("application/json; charset=UTF-8");
 		
 		new Gson().toJson(cList, response.getWriter());

@@ -9,8 +9,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.semi.exception.MemberException;
 import com.kh.semi.user.category.model.vo.CategoryInfo;
-import com.kh.semi.user.member.execption.MemberException;
 import com.kh.semi.user.member.model.dao.MemberDao;
 import com.kh.semi.user.member.model.vo.Member;
 
@@ -23,12 +23,17 @@ public class MemberService {
 		System.out.println(con);
 		int result = mDao.insertMember(con, m);
 		
-		if(result>0) commit(con);
-		else rollback(con);
+		if(result>0) {
+			commit(con);
+			close(con);
+			return result;
+		}else {
+			rollback(con);
+			close(con);
+			throw new MemberException("회원 가입 도중 문제가 발생했습니다!");
+		}
 		
-		close(con);
 		
-		return result;
 		
 	}
 
@@ -40,7 +45,7 @@ public class MemberService {
 		
 		close(con);
 		
-		if(result==null) throw new MemberException("아이디나 비밀번호가 일치하는 회원 없음");
+		if(result==null) throw new MemberException("아이디 혹은 비밀번호가 잘못되었습니다!");
 		
 		return result;
 	}
@@ -50,12 +55,17 @@ public class MemberService {
 		
 		int result = mDao.updateMember(con, m);
 		
-		if(result > 0) commit(con);
-		else rollback(con);
+		if(result > 0) {
+			commit(con);
+			close(con);
+		    return result;
+		}else {
+			rollback(con);
+			close(con);
+			throw new MemberException("회원 정보 수정 중 문제가 발생했습니다!");
+		}
 		
-		close(con);
 		
-	    return result;
 	}
 
 	public int deleteMember(String userId) throws MemberException{
@@ -63,12 +73,17 @@ public class MemberService {
 		
 		int result = mDao.deleteMember(con, userId);
 		
-		if(result>0) commit(con);
-		else rollback(con);
+		if(result>0) {
+			commit(con);
+			close(con);
+			return result;
+		}else{
+			rollback(con);
+			close(con);
+			throw new MemberException("회원 탈퇴 도중 문제가 발생했습니다!");
+		}
 		
-		close(con);
 		
-		return result;
 	}
 	
 	public int idDupCheck(String id) {
@@ -117,9 +132,9 @@ public class MemberService {
 		return result;
 	}
 
-	public int[] selectRatingCnt(String userId) {
+	public List<Integer> selectRatingCnt(String userId) {
 		Connection con = getConnection();
-		int[] result = mDao.selectRatingCnt(con, userId);
+		List<Integer> result = mDao.selectRatingCnt(con, userId);
 		close(con);
 		return result;
 	}

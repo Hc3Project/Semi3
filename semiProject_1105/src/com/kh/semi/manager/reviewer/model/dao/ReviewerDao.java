@@ -1,18 +1,20 @@
 package com.kh.semi.manager.reviewer.model.dao;
 
+import static com.kh.semi.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.manager.review.model.vo.ReviewInfo;
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
-
-import static com.kh.semi.common.JDBCTemplate.*;
 
 public class ReviewerDao {
 	
@@ -32,11 +34,10 @@ public class ReviewerDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<ReviewerInfo> result = null;
-		String sql = prop.getProperty("selectPart");
 		
 		try {
 			result = new ArrayList<ReviewerInfo>();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectPart"));
 			pstmt.setString(1, keyword);
 			
 			rset = pstmt.executeQuery();
@@ -61,10 +62,9 @@ public class ReviewerDao {
 	public int updateReviewer(Connection con, ReviewerInfo ri) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("updateReviewer");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("updateReviewer"));
 			pstmt.setString(1, ri.getrName());
 			pstmt.setString(2, ri.getProfile());
 			pstmt.setString(3, ri.getRvrCode());
@@ -82,9 +82,8 @@ public class ReviewerDao {
 	public int insertReviewer(Connection con, ReviewerInfo ri) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("insertReviewer");
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("insertReviewer"));
 			pstmt.setString(1, ri.getRvrCode());
 			pstmt.setString(2, ri.getrName());
 			pstmt.setString(3, ri.getProfile());
@@ -102,19 +101,18 @@ public class ReviewerDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<ReviewerInfo> result = null;
-		String sql = prop.getProperty("selectPartCnt");
 		
 		try {
 			result = list;
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectPartCnt"));
 			
 			for(ReviewerInfo rvInfo : result) {
 				pstmt.setString(1, rvInfo.getRvrCode());
 				
 				rset = pstmt.executeQuery();
 				
-				if(rset.next()) rvInfo.setReviewCnt(rset.getInt(1));
-				else rvInfo.setReviewCnt(0);
+				if(rset.next()) rvInfo.setCnt(rset.getInt(1));
+				else rvInfo.setCnt(0);
 			}
 			
 		} catch (SQLException e) {
@@ -130,9 +128,8 @@ public class ReviewerDao {
 	public int deleteReviewer(Connection con, String channelId) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("deleteReviewer");
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("deleteReviewer"));
 			pstmt.setString(1, channelId);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -147,14 +144,41 @@ public class ReviewerDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int result = 0;
-		String sql = prop.getProperty("duplicateReviewer");
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("duplicateReviewer"));
 			pstmt.setString(1, channelId);
 			rset = pstmt.executeQuery();
 			if(rset.next()) result++;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<ReviewerInfo> selectReviewerRank(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		List<ReviewerInfo> result = null;
+		String sql = prop.getProperty("selectReviewerRank");
+		try {
+			result = new ArrayList<ReviewerInfo>();
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(sql);
+			while(rset.next()) {
+				ReviewerInfo ri = new ReviewerInfo();
+				ri.setRvrCode(rset.getString("rvrcode"));
+				ri.setrName(rset.getString("rname"));
+				ri.setCnt(rset.getInt("cnt"));
+				result.add(ri);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
 		}
 		return result;
 	}

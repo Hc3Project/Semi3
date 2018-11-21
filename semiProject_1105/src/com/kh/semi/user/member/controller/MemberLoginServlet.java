@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.semi.common.CollaborativeFiltering;
-import com.kh.semi.user.member.execption.MemberException;
+import com.kh.semi.exception.MemberException;
 import com.kh.semi.user.member.model.service.MemberService;
 import com.kh.semi.user.member.model.vo.Member;
 
@@ -91,12 +91,7 @@ public class MemberLoginServlet extends HttpServlet {
 			response.sendRedirect("/semi/index.jsp");
 
 		} catch (MemberException e) {
-
-			// e.printStackTrace();
-
-			request.setAttribute("msg", "로그인 실패");
-			request.setAttribute("exception", e);
-
+			
 			PrintWriter out = response.getWriter();
 
 			out.println("<script> alert('아이디 또는 비밀번호가 일치하지 않습니다.'); location.href='views/member/login.jsp';</script>");

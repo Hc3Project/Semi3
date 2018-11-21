@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.exception.MemberException;
 import com.kh.semi.user.member.model.service.MemberService;
 import com.kh.semi.user.member.model.vo.Member;
 
@@ -48,13 +49,10 @@ public class MemberInsertServlet extends HttpServlet {
 			ms.insertMember(m);
 			System.out.println("회원 가입 완료 : "+m);
 			response.sendRedirect("/semi/index.jsp");
-		} catch (Exception e) {
+		} catch (MemberException e) {
 			System.out.println("에러가 발생했습니다~");
-			
-			request.setAttribute("msg", "회원 가입 중 에러가 발생하였습니다.");
 			request.setAttribute ("exception", e);
-			request.getRequestDispatcher("views/common/errorPage.jsp")
-			       .forward(request, response);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		
 		

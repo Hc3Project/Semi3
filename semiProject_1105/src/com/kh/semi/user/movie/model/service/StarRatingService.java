@@ -31,13 +31,6 @@ public class StarRatingService {
 			throw new StarRatingException("별점 등록 실패!");
 		}
 	}
-	
-	public int updateStarRating(String userId, String mCode, int score) throws StarRatingException{
-		Connection con=getConnection();
-		int result=srDao.updateStarRating(con,userId,mCode,score);
-		if(result>0) return result;
-		else throw new StarRatingException("별점 등록 실패!");
-	}
 
 	public int selectStarAvgRating(String mCode) {
 		Connection con=getConnection();

@@ -1,4 +1,4 @@
-package com.kh.semi.user.movie.contoller;
+package com.kh.semi.user.reviewer.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,24 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
-import com.kh.semi.user.movie.model.service.StarRatingService;
+import com.kh.semi.user.reviewer.model.service.UReviewerService;
 
 /**
- * Servlet implementation class StarRatingUpdateServlet
+ * Servlet implementation class ReviewerLikesInsertServlet
  */
-@WebServlet("/sUpdate.do")
-public class StarRatingUpdateServlet extends HttpServlet {
+@WebServlet("/insert.rvr")
+public class ReviewerLikesInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StarRatingUpdateServlet() {
+    public ReviewerLikesInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +29,14 @@ public class StarRatingUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 별점이 있으면 업데이트한다
-		HttpSession session=request.getSession(false);
-		String userId=(String)session.getAttribute("userId");
-		String mCode=(String)request.getAttribute("mCode");
-		int score=(int)request.getAttribute("score");
-		
+		String userId=request.getParameter("userId");
+		String rvrCode=request.getParameter("rvrCode");
 		try{
-			new StarRatingService().updateStarRating(userId,mCode,score);
-			JSONObject starRating=null;
-			
-			// 이거 노란줄 왜 생김?
-			starRating.put("score", score);
-			
-			response.setContentType("application/json; charset=UTF-8");
-			new Gson().toJson(starRating,response.getWriter());
+			int result=new UReviewerService().insertReviewerLikes(userId,rvrCode);
+			new Gson().toJson(result,response.getWriter());
 		}catch(Exception e){
 			request.setAttribute("exception", e);
-			request.getRequestDispatcher("views/commom/errorPage.jsp").forward(request, response);
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		
 	}

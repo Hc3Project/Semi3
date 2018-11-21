@@ -86,6 +86,90 @@ $(function(){
 		}
 	})
 	
+	$.ajax({
+		// 평점 분포오오오오오오오오오오
+		url : "/semi/uAllRating.ur",
+		type : "post",
+		success : function(data){
+			var result = $.parseJSON(data);
+			var arr = new Array();
+			for(var i=0; i<result.length; i++){
+				var tmpStr = result[i].name;
+				var tmpArr = result[i].ratingCnt;
+				
+				var tmpArr1 = tmpStr.concat("," + tmpArr).split(",");
+				arr.push(tmpArr1)
+			}
+			var chart = bb.generate({
+				  data: {
+					columns: arr,
+				    type: "bubble",
+				    labels: true
+				  },
+				  axis: {
+				    x: {
+				    	type: "category",
+					      categories: [
+					    	"☆",
+					        "★",
+					        "★☆",
+					        "★★",
+					        "★★☆",
+					        "★★★",
+					        "★★★☆",
+					        "★★★★",
+					        "★★★★☆",
+					        "★★★★★"
+					      ]
+				    }
+				  },
+				  bindto: "#ratingDistribution"
+				});
+			
+		},
+		error : function(data){
+			console.log(data);
+		}
+	})
+	
+	$.ajax({
+		// 리뷰어 조아요오오오오오 랭크으으으으
+		url : "/semi/rvrRank.rvr",
+		type : "post",
+		success : function(data){
+			var result = $.parseJSON(data);
+			var cntArr = ['좋아요'];
+			var cateArr = [];
+			for(var i=0; i<result.length; i++){
+				cntArr.push(result[i].cnt);
+				cateArr.push(result[i].rName);
+			}
+			var chart = bb.generate({
+				  data: {
+				    columns: [
+				    	cntArr
+				    ],
+				    type: "bar"
+				  },
+				  axis : {
+					  x : {
+						  type: "category",
+						  categories: cateArr
+					  }
+				  },
+				  bar: {
+				    width: {
+				      ratio: 0.5
+				    }
+				  },
+				  bindto: "#rvrLikes"
+				});
+		},
+		error : function(data){
+			console.log(data);
+		}
+	})
+	
 	$('#numBtn').click(function(){
 		var num = $('#num').val();
 		if(num<10 || num>100){
@@ -119,14 +203,46 @@ $(function(){
 	})
 	$('#numBtn').click();
 	
-	var chart = bb.generate({
-		  data: {
-		    columns: [
-			["data1", 30],
-			["data2", 120]
-		    ],
-		    type: "pie",
-		  },
-		  bindto: "#pie2"
-		});
+	$('#dNum').change(function(){
+		// 기간내 장르 평균
+		var num = $('#dNum').val();
+		if(num<1 || num>365){
+			alert("1이상 365이하를 입력해주세요.");
+			return false;
+		}
+		$.ajax({
+			url : "/semi/gRecent.vi",
+			type : "post",
+			data : {
+				"num" : num
+			},
+			success : function(data){
+				var result = $.parseJSON(data);
+				var colData = [];
+				$.each(result, function(idx, item){
+					colData.push([item.name, item.cnt]);
+				})
+				if(result.length!=0){
+					console.log(colData);
+					var chart = bb.generate({
+						  data: {
+						    columns: colData,
+						    type: "pie",
+						  },
+						  bindto: "#dGenre"
+						});
+				} else {
+					console.log("자료음슴")
+					$('#dGenre').html('').text(num + "일 이내 개봉된 영화가 등록되어 있지 않습니다.")
+				}
+			},
+			error : function(data){
+				console.log(data);
+			},
+			async : false
+		})
+	})
+	
+	
+	
 })

@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.manager.reviewer.model.vo.ReviewerInfo;
-import com.kh.semi.user.reviewer.model.vo.ReviewerLikes;
 
 import static com.kh.semi.common.JDBCTemplate.*;
 
@@ -41,10 +40,9 @@ public class UReviewerDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectReviewer");
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(prop.getProperty("selectReviewer"));
 			pstmt.setString(1, rvrCode);
 			rset = pstmt.executeQuery();
 			
@@ -66,18 +64,16 @@ public class UReviewerDao {
 		return result;
 	}
 
-	public List<ReviewerLikes> selectReviewerStatus(Connection con, String userId) {
+	public String selectReviewerStatus(Connection con, String userId) {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
-		List<ReviewerLikes> list=null;
+		StringBuffer sb=new StringBuffer();
 		try {
 			pstmt=con.prepareStatement(prop.getProperty("selectReviewerStatus"));
 			pstmt.setString(1, userId);
 			rset=pstmt.executeQuery();
-			list=new ArrayList<>();
 			while(rset.next()){
-				ReviewerLikes rl=new ReviewerLikes(rset.getString(1),rset.getString(2));
-				list.add(rl);
+				sb.append(rset.getString(1)+", ");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,7 +81,41 @@ public class UReviewerDao {
 			close(rset);
 			close(pstmt);
 		}
-		return list;
+		String result=sb.toString();
+		return result;
+	}
+
+	public int insertReviewerLikes(Connection con, String userId, String rvrCode) {
+		
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=con.prepareStatement(prop.getProperty("insertReviewerLikes"));
+			pstmt.setString(1, userId);
+			pstmt.setString(2, rvrCode);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteReviewerLikes(Connection con, String userId, String rvrCode) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=con.prepareStatement(prop.getProperty("deleteReviewerLikes"));
+			pstmt.setString(1, userId);
+			pstmt.setString(2, rvrCode);
+			result=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

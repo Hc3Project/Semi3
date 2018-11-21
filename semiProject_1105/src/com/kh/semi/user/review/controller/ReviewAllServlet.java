@@ -36,10 +36,8 @@ public class ReviewAllServlet extends HttpServlet {
 		String rsql = request.getParameter("rsql");
 		String rvrCode = request.getParameter("rvrCode");
 		int page = Integer.parseInt(request.getParameter("page"));
-	
-		ArrayList<Review> list = new ArrayList<Review>();
 							
-		list= rs.rvrReviewAll(rsql,rvrCode,page);
+		ArrayList<Review> list= rs.rvrReviewAll(rsql,rvrCode,page);
 				
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(list, response.getWriter());
