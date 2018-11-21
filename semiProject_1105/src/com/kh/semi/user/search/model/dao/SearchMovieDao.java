@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.semi.common.MovieSmallImg;
+import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 
 import static com.kh.semi.common.JDBCTemplate.*;
@@ -51,7 +53,12 @@ public class SearchMovieDao {
 				
 				mi.setmCode(rset.getString("mcode"));
 				mi.setmTitle(rset.getString("mtitle"));
-				
+				try {
+					mi.setPoster( new MovieSmallImg().movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
+				}catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				mList.add(mi);
 			}
 		} catch (SQLException e) {

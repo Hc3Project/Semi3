@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="java.util.*, com.kh.semi.manager.video.model.vo.*"%>
+<%@ page import="org.json.*"%>
+
 
 <%
+
 	ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>) request.getAttribute("mList");
 	
 	String cCode = request.getParameter("cCode");
@@ -19,7 +22,7 @@
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/category.js"></script>
+
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/main.css">
@@ -58,7 +61,7 @@
 
 
 		<div class="select-order">
-			<select class= "order">
+			<select class="order">
 				<option value="avgScore">평균별점 순</option>
 				<option value="update">최신작품 순</option>
 				<option value="showtime">러닝타임 짧은 순</option>
@@ -67,8 +70,11 @@
 
 
 	</div>
+
 	<!-- 셀렉트박스 옵션 가져오는 ajax -->
+
 	<script>
+	
 	// 장르 옵션
 	$(function addOptionGenre(){
 		
@@ -172,13 +178,11 @@
 		<div class="category-page" style="position: relative; padding-left: 90px;">
 			<div class="home-page__rec-list">
 				<div class="rec-row poster" id="catecoryMovie">
-					<div id="Progress_Loading">
-						<!-- 로딩바 -->
-
-					</div>
+					
 				</div>
 			</div>
 		</div>
+		
 	</section>
 
 
