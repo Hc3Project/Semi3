@@ -37,15 +37,9 @@ public class CategorySelectServlet extends HttpServlet {
 		
 		// 2.카테고리 코드에 따른 영화 정보 list로 받아오기
 		try{
-			ArrayList<MovieInfo> mList = new CategoryService().selectCategory(cCode);
-		
 			System.out.println("영화코드 확인  : " + cCode);
-		
-			request.setAttribute("mList", mList);
-		
-			System.out.println(mList.size());
 			request.getRequestDispatcher("/views/movie/movieCategory.jsp").forward(request, response);
-		}catch(CategoryViewException e){
+		}catch(Exception e){
 			request.setAttribute("exception", e);
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}

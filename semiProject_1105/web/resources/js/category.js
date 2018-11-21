@@ -5,11 +5,13 @@ $(function(){
 	var nCode = $('.nation').val();
 	var rvrCode = $('.reviewer').val();
 	var order = orderSql( $(".order").val());
-	
+	console.log("gCode1:"+gCode);
+	console.log("nCode1:"+nCode);
+	console.log("rvrCode1:"+rvrCode);
 	
 	mPage=0;
 	mflag = true;
-	
+	error = true;
 		$('.button').click(function(){
 			
 			$(".item").remove();
@@ -17,19 +19,31 @@ $(function(){
 			 nCode = $('.nation').val();
 			 rvrCode = $('.reviewer').val();
 			 order = orderSql( $(".order").val());
-			console.log("gCode:"+gCode);
-			console.log("nCode:"+nCode);
-			console.log("rvrCode:"+rvrCode);
+			console.log("gCode2:"+gCode);
+			console.log("nCode2:"+nCode);
+			console.log("rvrCode2:"+rvrCode);
 			
 		
-			mlist(gCode,nCode,rvrCode,order);
+			//mlist(gCode,nCode,rvrCode,order);
+		});
+		$('.select-menu').change(function(){
+			$(".item").remove();
+			
+			 gCode = $('.genre').val();
+			 nCode = $('.nation').val();
+			 rvrCode = $('.reviewer').val();
+			console.log("gCode3:"+gCode);
+			console.log("nCode3:"+nCode);
+			console.log("rvrCode3:"+rvrCode);
+			//mlist(gCode,nCode,rvrCode,order);
 		});
 		
-		mlist(gCode,nCode,rvrCode,order);
+		//mlist(gCode,nCode,rvrCode,order);
 		
 		$(window).scroll(function() {
 		    if ($(window).scrollTop() == $(document).height() - $(window).height()&&mflag==true) {
-		    	mlist(gCode,nCode,rvrCode,order);
+		    	if(error==true)
+		    		mlist(gCode,nCode,rvrCode,order);
 		    }
 		 });
 	});
@@ -105,6 +119,7 @@ function mlist(gCode,nCode,rvrCode,order) {
 		 * "margin-left": left+"px" });
 		 */
         console.log("ajax 로딩");
+        if(error==true){
         $("#catecoryMovie").append($("<div>")
             .attr("class", "div_ajax_load_image")
             .css({"width": "100%", "height": "300px", "background": "#191919"})
@@ -113,9 +128,11 @@ function mlist(gCode,nCode,rvrCode,order) {
             "margin-left": left + "px",
             "width": "50px",
             "height": "50px"
-        })));
+        })));}
         $('.button').attr('disabled', true);
-    }
+    },error:function(){
+    	error=false;
+    } 
     , complete: function (data) {
     	$(".div_ajax_load_image").remove();
     	if(data===null)mflag=false;
