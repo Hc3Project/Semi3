@@ -186,6 +186,42 @@ $(function() {
 			error : function() {
 				console.log("실패");
 			}
+			, beforeSend: function () {
+		    	
+		           var width = 0;
+		           var height = 0;
+		           var left = 0;
+		           var top = 0;
+
+		           width = 50;
+		           height = 50;
+
+
+		           top = ( 300 - height ) / 2 
+		           left = ( $(window).width() ) / 2 - width 
+
+		
+		           console.log("ajax 로딩");
+           
+		           $topDiv.append($("<div>").attr("class","div_ajax_load_image").css({
+		        	   
+                  "width": "100%",
+		        	   "height": "300px",
+		        	   "background":"#191919"
+		           }).append($("<img>").attr("src","resources/image/233F6D505786DA870A.gif").css({
+		        	   "margin-top": top+"px",
+                  "margin-left": left+"px",
+		        	   "width": "50px",
+		        	   "height": "50px"
+		           })
+		        ))
+		
+
+		    }
+		    , complete: function (data) {
+		    	$(".div_ajax_load_image").remove();
+		    			    	
+		    }
 		});
 	} else {
 		// 로그인 안했을때
