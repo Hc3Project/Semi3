@@ -57,8 +57,7 @@
 
 
 		<div class="select-order">
-			<select>
-
+			<select class= "order">
 				<option value="avgScore">평균별점 순</option>
 				<option value="update">최신작품 순</option>
 				<option value="showtime">러닝타임 짧은 순</option>

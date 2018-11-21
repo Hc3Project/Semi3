@@ -201,9 +201,9 @@ public class CategoryDao {
 		ArrayList<MovieInfo> mList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null; 
-		
+		System.out.println("msql "+msql);
 		String sql = prop.getProperty(msql);
-		
+		System.out.println("sql "+sql);
 		System.out.println(sql);
 		try {
 			pstmt = con.prepareStatement(sql);
