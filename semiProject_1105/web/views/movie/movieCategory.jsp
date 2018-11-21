@@ -38,30 +38,34 @@
 	</header>
 	<div class="select-menu">
 		<div class="select-genre">
+		
 			<select class="genre select" id="genre">
-				<option value="all" id="all">모든 장르</option>
+				<option value="all" id="all" style="background:#191919">모든 장르</option>
 			</select>
+		
 		</div>
 
 
 		<div class="select-nation">
 			<select class="nation select" id="nation">
-				<option value="all" id="all" selected="selected">모든 국가</option>
+			
+				<option value="all" id="all" selected="selected" style="background:#191919">모든 국가</option>
+		
 			</select>
 		</div>
 
 		<div class="select-reviewer">
 			<select class="reviewer select" id="reviewer">
-				<option value="all" id="all" selected="selected">모든 리뷰어</option>
+				<option value="all" id="all" selected="selected" style="background:#191919">모든 리뷰어</option>
 			</select>
 		</div>
 
 
 		<div class="select-order">
 			<select class= "order">
-				<option value="avgScore">평균별점 순</option>
-				<option value="update">최신작품 순</option>
-				<option value="showtime">러닝타임 짧은 순</option>
+				<option value="avgScore" style="background:#191919">평균별점 순</option>
+				<option value="update" style="background:#191919">최신작품 순</option>
+				<option value="showtime" style="background:#191919">러닝타임 짧은 순</option>
 			</select>
 		</div>
 
@@ -84,7 +88,8 @@
 					success : function(data){
 						
 						for(var i in data){
-							$genreOption = $("<option>").attr("value",data[i].code).text(data[i].name)
+							$genreOption = $("<option>").attr("value",data[i].code).attr("style","background:#191919")
+							.text(data[i].name)
 							
 							$addOption.append($genreOption);
 							
@@ -116,7 +121,8 @@
 					success : function(data){
 						
 						for(var i in data){
-							$nationOption = $("<option>").attr("value",data[i].code).text(data[i].name)
+							$nationOption = $("<option>").attr("value",data[i].code).attr("style","background:#191919")
+							.text(data[i].name)
 							
 							$addOption.append($nationOption);
 							
@@ -147,7 +153,8 @@
 					success : function(data){
 						
 						for(var i in data){
-							$reviewerOption = $("<option>").attr("value",data[i].code).text(data[i].name)
+							$reviewerOption = $("<option>").attr("value",data[i].code).attr("style","background:#191919")
+							.text(data[i].name)
 							
 							
 							$addOption.append($reviewerOption);

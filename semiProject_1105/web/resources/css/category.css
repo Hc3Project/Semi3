@@ -7,11 +7,16 @@
 	width:1400px;
 	top:100px;
 	
+	
 	padding-bottom:55px;
 	margin-bottom:15px;
 }
 
+
 /* 장르 선택 */
+
+
+
 .select-genre {
 	float: left; /* width: 33%; */
     border: 1px solid #ccc;
@@ -20,10 +25,9 @@
     border-radius: 3px;
     overflow: hidden;
     /* background: #fafafa url("img/icon-select.png") no-repeat 90% 50%; */
-    -webkit-appearance: none; 
+    /* -webkit-appearance: none; 
     -moz-appearance: none;    
-    appearance: none;
-    /* background: url('/semi/resources/image/select_arrow.png') 180px center no-repeat;  *//* 화살표 이미지 */
+    appearance: none; */
     border: 1px solid #c0c0c0;
     margin-right:7px;
 }
@@ -40,9 +44,12 @@
     -webkit-appearance: none;
 }
 
-.select-nation select:focus {
+.genre-option{
+	background: #191919;
+}
+
+.select-genre select:focus {
     outline: none;
-    
 }
 
 /* 국가 선택 */
@@ -54,7 +61,7 @@
     border-radius: 3px;
     overflow: hidden;
     /* background: #fafafa url("img/icon-select.png") no-repeat 90% 50%; */
-    background: url("image/select_arrow.png") 180px center no-repeat;
+    /* background: url("image/select_arrow.png") 180px center no-repeat; */
     margin-right:7px;
 }
 
@@ -75,7 +82,7 @@
 
 /* 리뷰어 선택 */
 .select-reviewer {
-	width: 160px;
+	width: 170px;
     height: 35px;
 	float: left; /* width: 33%; */
     border: 1px solid #c0c0c0;
