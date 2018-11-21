@@ -12,32 +12,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
-<script	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/category.js"></script>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/category.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/main.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/category.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/style.css">
 
 <title>모든 장르</title>
 </head>
 <body>
-<header>
-	<%@ include file="../common/header.jsp"%>
-</header>
+	<header>
+		<%@ include file="../common/header.jsp"%>
+	</header>
 	<div class="select-menu">
 		<div class="select-genre">
 			<select class="genre select" id="genre">
 				<option value="all" id="all">모든 장르</option>
 			</select>
 		</div>
-		
+
 
 		<div class="select-nation">
-			<select class="nation select" id ="nation">
+			<select class="nation select" id="nation">
 				<option value="all" id="all" selected="selected">모든 국가</option>
 			</select>
 		</div>
@@ -50,122 +58,15 @@
 
 
 		<div class="select-order">
-			<select>
-				<option value="all">추천순</option>
-				<option value="rvr1">평균별점 순</option>
-				<option value="rvr2">최신작품 순</option>
-				<option value="rvr3">러닝타임 짧은 순</option>
+			<select class= "order">
+				<option value="avgScore">평균별점 순</option>
+				<option value="update">최신작품 순</option>
+				<option value="showtime">러닝타임 짧은 순</option>
 			</select>
 		</div>
-		
-		
-	</div>
-	
-	
-	<div class="category-page" style="position: relative;">
-		<div class="home-page__rec-list">
-			<div class="rec-row">
 
-				<div class="rec-list clearfix" >
-				
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	
-	<script>
-	// 클릭된 셀렉트 박스 값 가져오기 ////////////////////////////수정중
-	$(function(){
-		/* 
-			var gCode= $('#genre option:selected').val();
-			var nCode=$('#nation option:selected').val();
-			var rvrCode=$('#reviewer option:selected').val();
-		 */
-		$('.select-menu').click(function(){
-			gCode = $('.genre').val();
-			nCode = $('.nation').val();
-			
-			rvrCode = $('.reviewer').val();
-			console.log("gCode:"+gCode);
-			console.log("nCode:"+nCode);
-			console.log("rvrCode:"+rvrCode);
-			
 
-		var Parms = '?gCode=' + gCode;
-		Parms += '&nCode=' + nCode;
-		Parms += '&rvrCode=' + rvrCode;
-		
-		console.log(Parms);
-	
-		$
-			.ajax({
-				url : "/semi/csBox.ca" + Parms,
-				type : 'post',
-				data : {
-					msql : "selectMovieBySelectBox",
-					gCode : gCode,
-					nCode : nCode,
-					rvrCode : rvrCode
-				},
-				success : function(data){
-					
-					for(var i in data){
-						console.log(data[i].mTitle);
-						
-						$('.rec-list').append($("<div>").attr("class","mcode").attr("value",data[i].mCode).append(
-								$("<h1>").text(data[i].mTitle)).append("<img>").attr("src","https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg")).
-								append($("<i>").attr("class","hover-box hover-box--play"))
-					}
-				},
-				error : function(data){
-					console.log(data);
-					console.log("안된다.......")
-				}
-			})
-		});
-	});
-	</script>
-	
-	
-	
-	<!-- 검색결과 --> <!-- 셀렉트 박스와 연동 필요-->
-	<div class="category-page" style="position: relative;">
-		<div class="home-page__rec-list">
-			<div class="rec-row">
-
-				<div class="rec-list clearfix" >
-					<%
-						for (MovieInfo mi : mList) {
-					%>
-					
-					<!-- -------------- -->
-					<div class = "mcode" value = "<%=mi.getmCode()%>">
-						<h1>
-							<%=mi.getmTitle()%>
-						</h1>
-						<img
-							src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-							alt=""> <i class="hover-box hover-box--play"></i>
-					</div>
-					<%
-						}
-					%>
-					<script type="text/javascript">
-						$(function() {
-							$(".mcode").click(function() {
-								location.href = "/semi/dView.do?mCode="+$(this).attr("value");
-							})
-						});
-					
-					</script>
-				</div>
-			</div>
-		</div>
 	</div>
-	
-	
 	<!-- 셀렉트박스 옵션 가져오는 ajax -->
 	<script>
 	// 장르 옵션
@@ -251,24 +152,37 @@
 							
 							$addOption.append($reviewerOption);
 							
-							if($reviewerOption.val() == "<%=cCode%>"){
-								$reviewerOption.attr("selected","selected");
-							}
+							if($reviewerOption.val() == "<%=cCode%>") {
+							$reviewerOption.attr("selected", "selected");
 						}
+					}
 				},
-				error : function(data){
+				error : function(data) {
 					console.log(data);
 					console.log("실패실패")
 				}
 			});
-	});
+		});
 	</script>
-	
-	
 
 
+	<!-- 검색결과 -->
+	<!-- 셀렉트 박스와 연동 -->
+	<section class="movieSection">
+		<div class="category-page" style="position: relative;">
+			<div class="home-page__rec-list">
+				<div class="rec-row poster" id="catecoryMovie">
+					<div id="Progress_Loading">
+						<!-- 로딩바 -->
 
-<%-- 	<!-- 검색결과 -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<%-- 	<!-- 검색결과 -->
 	<div class="category-page" style="position: relative;">
 		<div class="home-page__rec-list">
 			<div class="rec-row">

@@ -1,5 +1,5 @@
 $(function(){
-	var logId = $('#logId').val().trim();
+	var logId = $('#logId').val();
 	
 	if(logId=="admin"){
 		

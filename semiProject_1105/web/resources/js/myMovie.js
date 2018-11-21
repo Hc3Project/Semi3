@@ -75,7 +75,7 @@ $(function() {
 	                     "width": "100%",
 			        	   "height": "300px",
 			        	   "background":"#191919"
-			           }).append($("<img>").attr("src","233F6D505786DA870A.gif").css({
+			           }).append($("<img>").attr("src","../../resources/image/233F6D505786DA870A.gif").css({
 			        	   "margin-top": top+"px",
 	                     "margin-left": left+"px",
 			        	   "width": "50px",

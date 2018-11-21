@@ -39,13 +39,13 @@ public class CategoryService {
 	}
 	
 	// 셀렉트박스에서 가져오는 부분 
-	public ArrayList<MovieInfo> selectMovieList(String msql, String gCode, String nCode, String rvrCode) {
+	public ArrayList<MovieInfo> selectMovieList(String msql, String gCode, String nCode, String rvrCode,int mPage) {
 		
 		Connection con = getConnection();
 		
 		ArrayList<MovieInfo> mList = null;
 		
-		mList = cDao.selectMoiveSelectedList(con, msql, gCode, nCode, rvrCode);
+		mList = cDao.selectMoiveSelectedList(con, msql, gCode, nCode, rvrCode,mPage);
 		
 		return mList;
 	}

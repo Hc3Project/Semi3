@@ -285,7 +285,7 @@
 					},
 					success:function(data){
 						var avg=data;
-						$('.average').text("이 영화의 평균 평점은 "+avg+"점 입니다.")
+						$('.average').html("이 영화의 평균 평점은 <font style='color: rgb(242, 198, 102)'>"+avg+"</font>점 입니다.");
 					}
 				});
 			<%}%>

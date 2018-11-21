@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.exception.CategoryViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.category.model.service.CategoryService;
 
@@ -41,7 +42,12 @@ public class CategoryMovieListServlet extends HttpServlet {
 		
 		CategoryService cs = new CategoryService();
 		
-		mList = cs.selectCategory(cCode);
+		try {
+			mList = cs.selectCategory(cCode);
+		} catch (CategoryViewException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("영화코드 확인  : " + cCode);
 		
