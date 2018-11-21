@@ -226,11 +226,12 @@ public class CategoryDao {
 			while(rset.next()){
 			
 			MovieInfo mi = new MovieInfo();
-			
+
 			mi.setmCode(rset.getString("MCODE"));
 			mi.setmTitle(rset.getString("MTITLE"));
 			
 			//mi.setSyno(rset.getString("syno"));
+
 			
 			mList.add(mi);
 		

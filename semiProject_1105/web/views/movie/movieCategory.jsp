@@ -4,6 +4,7 @@
 
 <%
 	ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>) request.getAttribute("mList");
+	
 	String cCode = request.getParameter("cCode");
 %>
 
@@ -66,9 +67,6 @@
 
 
 	</div>
-
-
-
 	<!-- 셀렉트박스 옵션 가져오는 ajax -->
 	<script>
 	// 장르 옵션
@@ -182,6 +180,7 @@
 			</div>
 		</div>
 	</section>
+
 
 	<%-- 	<!-- 검색결과 -->
 	<div class="category-page" style="position: relative;">
