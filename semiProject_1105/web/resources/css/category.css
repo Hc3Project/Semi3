@@ -3,10 +3,11 @@
 
 .select-menu {
 	position:relative;
-	left:50px;
-	width:1400px;
-	top:100px;
 	
+	width:100%;
+	top:100px;
+	padding-left :50px;
+	padding-right:50px;
 	padding-bottom:55px;
 	margin-bottom:15px;
 }
