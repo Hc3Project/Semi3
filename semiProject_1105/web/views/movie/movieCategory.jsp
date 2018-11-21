@@ -22,7 +22,7 @@
 	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+<script src="<%=request.getContextPath()%>/resources/js/category.js"></script>
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/main.css">
