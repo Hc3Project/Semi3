@@ -6,12 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.user.review.model.vo.Review;
@@ -248,6 +248,36 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public List<Review> rvSameGenre(Connection con, String mCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Review> result = null;
+		String sql = prop.getProperty("rvSameGenre");
+		try {
+			result = new ArrayList<Review>();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mCode);
+			rset = pstmt.executeQuery();
+			
+			int i = 0;
+			while(rset.next()){
+				Review rv = new Review();
+				rv.setVideoid(rset.getString("videoid"));
+				rv.setMovie(rset.getString("mtitle"));
+				rv.setReviewer(rset.getString("rname"));
+
+				result.add(rv);
+				if(++i>23) break;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

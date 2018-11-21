@@ -13,7 +13,7 @@
 <script src="resources/js/common.js"></script>
 <script src="resources/js/boxOffice.js"></script>
 <script src="resources/js/reviewList.js"></script>
-<script src="resources/js/adminLogin.js"></script>
+<script src="resources/js/manager/adminLogin.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">

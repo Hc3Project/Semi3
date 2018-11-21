@@ -72,6 +72,7 @@
 	            </div>
 	            <br><br>
 	            <div class="starWarp" id="gDiv"></div>
+	            <div class="moreMovie" style="width:700px;margin:0 auto;min-height:20px;" id="gDivU">
 	        </section>
 	        <div style="margin:20px 0;width:100%;height:1px;background-color:#dedede"></div>
 	        <section>

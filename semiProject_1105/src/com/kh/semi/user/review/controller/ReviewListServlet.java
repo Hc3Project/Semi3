@@ -42,7 +42,7 @@ public class ReviewListServlet extends HttpServlet {
 			list = title==null? rs.reviewList(rsql):rs.reviewList(rsql,title);
 		else 				
 			list= rs.rvrReviewList(rsql,rvrCode);
-				
+		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(list, response.getWriter());
 

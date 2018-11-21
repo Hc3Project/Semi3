@@ -170,42 +170,11 @@ $(function(){
 		}
 	})
 	
-	$('#numBtn').click(function(){
-		var num = $('#num').val();
-		if(num<10 || num>100){
-			alert("10이상 100이하를 입력해주세요.");
-			return false;
-		}
-		$.ajax({
-			// 최근 개봉한 영화 장르 분포
-			url : "/semi/gRecent.vi",
-			type : "post",
-			data : {"num" : num},
-			success : function(data){
-				var result = $.parseJSON(data);
-				var colData = [];
-				$.each(result, function(idx, item){
-					colData.push([item.name, item.cnt]);
-				})
-		    	
-				var chart = bb.generate({
-					  data: {
-					    columns: colData,
-					    type: "pie",
-					  },
-					  bindto: "#pie1"
-					});
-			},
-			error : function(data){
-				console.log(data);
-			}
-		})
-	})
-	$('#numBtn').click();
-	
-	$('#dNum').change(function(){
+	$('#dNum').change(function(e){
+		e.preventDefault();
 		// 기간내 장르 평균
 		var num = $('#dNum').val();
+		
 		if(num<1 || num>365){
 			alert("1이상 365이하를 입력해주세요.");
 			return false;
@@ -223,7 +192,6 @@ $(function(){
 					colData.push([item.name, item.cnt]);
 				})
 				if(result.length!=0){
-					console.log(colData);
 					var chart = bb.generate({
 						  data: {
 						    columns: colData,
@@ -232,14 +200,16 @@ $(function(){
 						  bindto: "#dGenre"
 						});
 				} else {
-					console.log("자료음슴")
 					$('#dGenre').html('').text(num + "일 이내 개봉된 영화가 등록되어 있지 않습니다.")
 				}
 			},
 			error : function(data){
 				console.log(data);
 			},
-			async : false
+			complete : function(data){
+				var offset = $('#dGenre').offset().top;
+				$(window).scrollTop(offset);
+			}
 		})
 	})
 	

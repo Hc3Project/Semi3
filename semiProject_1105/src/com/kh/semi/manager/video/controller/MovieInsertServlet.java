@@ -1,6 +1,11 @@
 package com.kh.semi.manager.video.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -41,7 +46,7 @@ public class MovieInsertServlet extends HttpServlet {
 		mi.setShowTime(Integer.parseInt(request.getParameter("showTime")));
 		String tmpDate = request.getParameter("openDate");
 		mi.setOpenDate(Date.valueOf(tmpDate.substring(0, 4) + "-" + tmpDate.substring(4, 6) + "-" + tmpDate.substring(6, 8)));
-		mi.setSyno(request.getParameter("syno"));
+		mi.setSyno((request.getParameter("syno")==null)?mi.getmTitle():request.getParameter("syno"));
 		
 		String genre1 = request.getParameter("genre1");
 		String genre2 = request.getParameter("genre2");

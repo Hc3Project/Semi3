@@ -101,7 +101,7 @@ $(function(){
 					$('#rvrList').append($line);
 				})
 			})
-		}, 2500);
+		}, 3000);
 		
 	} else {
 		$('#rvrList').text('회원님께선 현재 구독을 한 리뷰어가 없습니다.')
@@ -122,7 +122,7 @@ $(function(){
 			$gOutDiv = $('#gDivU');
 			$g3Div.html('');
 			$gOutDiv.html('');
-			
+			console.log(result)
 			if(result.length!=0){
 				for(var i=0; i<result.length; i++){
 					if(i<3){

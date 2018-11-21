@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>영화 추가</title>
 <script src="../../resources/js/jquery-3.3.1.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
+<script src="/semi/resources/js/common.js"></script>
 </head>
 <body class="mBody">
 	
@@ -70,7 +70,6 @@
 		</div>
 	</div>
 	<%}  else {
-		// request.setAttribute("msg", "회원만 가능한 서비스 입니다.");
 		String path = "/views/common/errorPage.jsp";
 		request.setAttribute("exception", new Exception("관리자 권한이 없습니다."));
 		request.getRequestDispatcher(path).forward(request, response);

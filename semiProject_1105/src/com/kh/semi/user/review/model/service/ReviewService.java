@@ -5,6 +5,7 @@ import static com.kh.semi.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.user.review.model.dao.ReviewDao;
@@ -79,6 +80,12 @@ public class ReviewService {
 
 		return list;
 		
+	}
+	public List<Review> reviewSameGenre(String mCode) {
+		Connection con = getConnection();
+		List<Review> result = rDao.rvSameGenre(con, mCode);
+		close(con);
+		return result;
 	}
 	
 

@@ -5,7 +5,7 @@
 	String getPage = (String) request.getAttribute("page");
 	MovieDetailInfo mov = (MovieDetailInfo) request.getAttribute("mov");
 	String mtitle = mov.getMtitle();
-	String mcode=mov.getMcode();
+	String mcode = mov.getMcode();
 	String director = mov.getDirector();
 	String actor = mov.getActor();
 	int showtime = mov.getShowtime();
@@ -81,6 +81,7 @@
 						<ul>
 							<li><h4>
 									<b id="mtitle"><%=mtitle%></b>
+									<input type="hidden" id="mCode" value="<%=mcode%>">
 								</h4></li>
 							<li><p class="font_8">&nbsp;</p></li>
 							<li><p class="font_8" id="pf">
@@ -290,8 +291,6 @@
 				});
 			<%}%>
 		});
-		
-		
 	</script>
 </body>
 </html>
