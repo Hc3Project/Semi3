@@ -5,6 +5,13 @@ var curPage;
 
 $(function(){
 	$('#moreList').prop('disabled', true);
+	
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
+		}
+	})
+	
 	$('#selBtn').click(function(){
 		if($('#search').val().trim()==""){
 			alert("키워드를 입력해주세요~!")
@@ -83,8 +90,7 @@ function addReview(obj){
 			success : function(data){
 				if(data>0) alert('리뷰가 성공적으로 추가 되었습니다.');
 				else alert('리뷰 등록에 실패하였습니다.');
-//				history.back();
-				window.location.href = '/semi/rvrSelectAll.rv?opt=del';
+				window.location.href = '/semi/rvrSelectAll.rv?opt=add';
 			},
 			error : function(data){
 				console.log(data);

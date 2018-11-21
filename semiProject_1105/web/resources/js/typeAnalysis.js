@@ -57,60 +57,6 @@ $(function(){
 		// 평점 배열이 출력이 안됬을 때
 	}
 	
-	var likesStr = $('#likesRiviewer').val().replace(/\[|\]|\s/g,"").trim();
-	$('#rvrList').html('');
-	// 좋아하는 리뷰어 띄워주기
-	if(likesStr!=""){
-		var likesArr = likesStr.split(",");
-		setTimeout(function(){
-			$.each(likesArr, function(idx, item){
-				var request = gapi.client.youtube.search.list({
-					part : "snippet",
-					channelId : item,
-					type : "channel"
-				})
-				
-				request.execute(function(data){
-					var result = data.items[0];
-					var channelTitle = result.snippet.channelTitle;
-					var thumbnail = result.snippet.thumbnails.default.url;
-					$rvrDiv = $('<div>').attr({
-						'class' : 'height:50px'
-					});
-					$inImg = $('<img>').attr({
-						'class' : 'circle',
-						'style' : 'float:left;width:50px',
-						'src' : thumbnail
-					})
-					$inDiv = $('<div>').attr({
-						'style' : 'margin:6px 0 0 10px;display:inline-block;float:left;text-align:left;'
-					})
-					$inRvrName = $('<div>').attr({
-						'class' :'font-weight:bold;font-size:17px;'
-					}).text(channelTitle);
-					$inDiv.append($inRvrName);
-					
-					$line = $('<div>').attr({
-						'style' : 'clear:both;margin:10px 0;width:100%;height:1px;background-color:#dedede'
-					})
-					
-					$rvrDiv.append($inImg);
-					$rvrDiv.append($inDiv);
-					
-					$('#rvrList').append($rvrDiv);
-					$('#rvrList').append($line);
-				})
-			})
-		}, 3000);
-		
-	} else {
-		$('#rvrList').text('회원님께선 현재 구독을 한 리뷰어가 없습니다.')
-		$div = $('<div>').attr({
-			'style' : 'margin:20px 0;width:100%;height:1px;background-color:#dedede'
-		})
-		$('#rvrList').append($div);
-	}
-	
 	// 영화 선호 장르
 	$.ajax({
 		url : "/semi/gStat.me",
@@ -173,6 +119,58 @@ function init() {
 	// gapi.client.ladt("nameOfApi", "Version", callback)
 	gapi.client.load("youtube", "v3", function(){
 	// yt api is ready
+		var likesStr = $('#likesRiviewer').val().replace(/\[|\]|\s/g,"").trim();
+		$('#rvrList').html('');
+		// 좋아하는 리뷰어 띄워주기
+		if(likesStr!=""){
+			var likesArr = likesStr.split(",");
+			
+			$.each(likesArr, function(idx, item){
+				var request = gapi.client.youtube.search.list({
+					part : "snippet",
+					channelId : item,
+					type : "channel"
+				})
+				
+				request.execute(function(data){
+					var result = data.items[0];
+					var channelTitle = result.snippet.channelTitle;
+					var thumbnail = result.snippet.thumbnails.default.url;
+					$rvrDiv = $('<div>').attr({
+						'class' : 'height:50px'
+					});
+					$inImg = $('<img>').attr({
+						'class' : 'circle',
+						'style' : 'float:left;width:50px',
+						'src' : thumbnail
+					})
+					$inDiv = $('<div>').attr({
+						'style' : 'margin:6px 0 0 10px;display:inline-block;float:left;text-align:left;'
+					})
+					$inRvrName = $('<div>').attr({
+						'class' :'font-weight:bold;font-size:17px;'
+					}).text(channelTitle);
+					$inDiv.append($inRvrName);
+					
+					$line = $('<div>').attr({
+						'style' : 'clear:both;margin:10px 0;width:100%;height:1px;background-color:#dedede'
+					})
+					
+					$rvrDiv.append($inImg);
+					$rvrDiv.append($inDiv);
+					
+					$('#rvrList').append($rvrDiv);
+					$('#rvrList').append($line);
+				})
+			})
+			
+		} else {
+			$('#rvrList').text('회원님께선 현재 구독을 한 리뷰어가 없습니다.')
+			$div = $('<div>').attr({
+				'style' : 'margin:20px 0;width:100%;height:1px;background-color:#dedede'
+			})
+			$('#rvrList').append($div);
+		}
 	});
 }
 

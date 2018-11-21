@@ -3,6 +3,13 @@ var curPage = 0;
 var resultMax = 5;
 
 $(function(){
+	
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
+		}
+	})
+	
 	// 검색 버튼 눌렀을때
 	$('#mBtn').click(function(){
 		if($('#selList').val() == "" || $('#search').val().trim() == "") {

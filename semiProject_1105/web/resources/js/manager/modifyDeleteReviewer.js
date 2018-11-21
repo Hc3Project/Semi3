@@ -2,6 +2,13 @@ var rvrList;
 var curPage;
 var resultMax = 5;
 $(function(){
+	
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
+		}
+	})
+	
 	// 검색 버튼
 	$('#rvrBtn').click(function(){
 		var keyword = $('#rvrSearch').val().trim();

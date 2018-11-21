@@ -9,16 +9,10 @@ $(function(){
 	document.getElementsByTagName("body")[0].appendChild(script);
 	$('#moreList').prop('disabled', true)
 	
-	$('#rvBtn').click(function(){
-		if($('#rvrList').val()==""){
-			alert('리뷰어를 선택하세요.');
-			return false;
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
 		}
-		channelId = $('#rvrList').val();
-		keyword = $('#rvKeyword').val().trim();
-		nToken = "";
-		$('#videoList').html('');
-		getVideo(channelId, keyword, nToken)
 	})
 	
 	$('#moreList').click(function(){
@@ -126,6 +120,17 @@ function init() {
 	// gapi.client.ladt("nameOfApi", "Version", callback)
 	gapi.client.load("youtube", "v3", function(){
 	// yt api is ready
+		$('#rvBtn').click(function(){
+			if($('#rvrList').val()==""){
+				alert('리뷰어를 선택하세요.');
+				return false;
+			}
+			channelId = $('#rvrList').val();
+			keyword = $('#rvKeyword').val().trim();
+			nToken = "";
+			$('#videoList').html('');
+			getVideo(channelId, keyword, nToken)
+		})
 	});
 }
 

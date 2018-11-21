@@ -4,6 +4,13 @@ var curPage;
 
 $(function(){
 	$('#moreList').prop('disabled', true);
+	
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
+		}
+	})
+	
 	$('#rvBtn').click(function(){
 		if($('#search').val().trim()==""){
 			alert('키워드를 입력해주세요.');
@@ -12,6 +19,7 @@ $(function(){
 		$('#videoList').html('');
 		curPage = 0;
 		getList($('#rvrList').val(), $('#search').val().trim());
+		$('#search').val('');
 	})
 	
 	$('#moreList').click(function(){

@@ -1,9 +1,6 @@
 $(function(){
-	var logId = "";
-	
 	$('#auto').click(function(){
 		if(confirm("사이트에 등록되지 않은 순위권 영화를 자동으로 등록합니다.")){
-			
 			var host = "http://www.kobis.or.kr";
 			var daily = '/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList';
 			var movieInfo = "/kobisopenapi/webservice/rest/movie/searchMovieInfo";

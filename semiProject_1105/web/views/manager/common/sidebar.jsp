@@ -44,7 +44,7 @@
 		                <a href="/semi/rvrSelectAll.rv?opt=add">리뷰 추가하기</a>
 		            </div>
 		            <div class="content">
-		                <a href="/semi/rvrSelectAll.rv?opt=del">리뷰 수정 및 삭제</a>
+		                <a href="/semi/rvrSelectAll.rv?opt=del">리뷰 삭제</a>
 		            </div>
 		        </li>
 		    </ul>

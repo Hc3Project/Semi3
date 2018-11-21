@@ -269,5 +269,6 @@ $(function displayList(){
 			$(".gnb-category-list__filtered-list3").css("display","");			
 		})
 
-});
+})
 </script>
+<script src="resources/js/manager/adminLogin.js"></script>
