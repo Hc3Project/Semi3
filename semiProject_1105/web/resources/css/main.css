@@ -98,25 +98,25 @@
 	font-family: 'Noto Sans' !important;
 	float: right;
 	width: 400px;
-	background: white;
+	background: #191919;
 }
 
 #bo1 {
 	font-family: 'Noto Sans' !important;
 	height: 120px !important;
-	background: #0f1111;
+	background: #191919;
 }
 
 #bo2 {
 	font-family: 'Noto Sans' !important;
 	height: 420px !important;
-	background: white;
+	background: #191919;
 }
 
 #bo3 {
 	font-family: 'Noto Sans' !important;
 	height: 60px !important;
-	background: #0f1111;
+	background: #191919;
 }
 
 .listSection {
@@ -220,24 +220,32 @@ a[href="#st2Carousel"] {
 }
 
 .boxRank {
+	border: #191919;
 	font-size: 14px;
 	font-family: 'Noto Sans' !important;
-	color: #121212;
+	color: #c0c0c0;
 }
 
 .boxRank td, .boxRank th{
+	border: #191919;
 	font-family: 'Noto Sans' !important;
 	text-align: center;
 }
 .boxRank td:FIRST-CHILD, .boxRank th:FIRST-CHILD{
+	border: #191919;
 	font-family: 'Noto Sans' !important;
 	width: 50px;
 }
+ .boxRank td:nth-child(2), .boxRank th:nth-child(2){
+	border: #191919;
+ }
 .boxRank td:LAST-CHILD, .boxRank th:LAST-CHILD{
+	border: #191919;
 	font-family: 'Noto Sans' !important;
 	width: 120px;
 }
 .boxRank tr:hover{
+	border: #191919;
 	font-family: 'Noto Sans' !important;
 	font-size: 14.5px;
 	font-weight: bold;
@@ -247,7 +255,7 @@ a[href="#st2Carousel"] {
 }
 
 .boxRank tr {
-	border: 2px solid #ffffff
+	border: 2px solid #191919
 }
 
 .youtube {
