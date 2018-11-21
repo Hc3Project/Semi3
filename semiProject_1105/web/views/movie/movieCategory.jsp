@@ -39,40 +39,7 @@
 	<header>
 		<%@ include file="../common/header.jsp"%>
 	</header>
-	<div class="select-menu">
-		<div class="select-genre">
-			<select class="genre select" id="genre">
-				<option value="all" id="all">모든 장르</option>
-			</select>
-		</div>
-
-
-		<div class="select-nation">
-			<select class="nation select" id="nation">
-				<option value="all" id="all" selected="selected">모든 국가</option>
-			</select>
-		</div>
-
-		<div class="select-reviewer">
-			<select class="reviewer select" id="reviewer">
-				<option value="all" id="all" selected="selected">모든 리뷰어</option>
-			</select>
-		</div>
-
-
-		<div class="select-order">
-			<select class="order">
-				<option value="avgScore">평균별점 순</option>
-				<option value="update">최신작품 순</option>
-				<option value="showtime">러닝타임 짧은 순</option>
-			</select>
-		</div>
-
-		<div class="searchBtn">
-			<button type="button" class="button" value="search">검색
-			</button>
-		</div>
-	</div>
+	
 
 	<!-- 셀렉트박스 옵션 가져오는 ajax -->
 
@@ -178,6 +145,41 @@
 	<!-- 검색결과 -->
 	<!-- 셀렉트 박스와 연동 -->
 	<section class="movieSection">
+	<div class="select-menu">
+		<div class="select-genre">
+			<select class="genre select" id="genre">
+				<option value="all" id="all">모든 장르</option>
+			</select>
+		</div>
+
+
+		<div class="select-nation">
+			<select class="nation select" id="nation">
+				<option value="all" id="all" selected="selected">모든 국가</option>
+			</select>
+		</div>
+
+		<div class="select-reviewer">
+			<select class="reviewer select" id="reviewer">
+				<option value="all" id="all" selected="selected">모든 리뷰어</option>
+			</select>
+		</div>
+
+
+		<div class="select-order">
+			<select class="order">
+				<option value="avgScore">평균별점 순</option>
+				<option value="update">최신작품 순</option>
+				<option value="showtime">러닝타임 짧은 순</option>
+			</select>
+		</div>
+
+		<div class="searchBtn">
+			<button type="button" class="button" value="search">검색
+			</button>
+		</div>
+	</div>
+	
 		<div class="category-page" style="position: relative; padding-left: 90px;">
 			<div class="home-page__rec-list">
 				<div class="rec-row poster" id="catecoryMovie">
