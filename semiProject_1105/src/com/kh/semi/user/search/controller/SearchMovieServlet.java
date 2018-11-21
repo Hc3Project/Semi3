@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.kh.semi.common.MovieSmallImg;
+import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.search.model.service.SearchMovieService;
 
@@ -39,20 +44,20 @@ public class SearchMovieServlet extends HttpServlet {
 		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
 		
 		SearchMovieService sms = new SearchMovieService();
-		
+		String page="";
 		// 3. 리스트에 서비스에서 실행되는 검색 메소드 실행
-		mList = sms.searchMovie(movieTitle);
+		try {
+			mList = sms.searchMovie(movieTitle);
+			page= "views/movie/searchCategory.jsp";
+			request.setAttribute("search", movieTitle);
+			request.setAttribute("sList", mList);
+		} catch (Exception e) {
+			page="views/common/errorPage.jsp";
+			e.printStackTrace();
+		}
 		
 		// 4. 
 		
-		String page = "";
-		
-		if(mList != null){
-			
-			page = "views/movie/movieCategory.jsp";
-			request.setAttribute("mList", mList);
-			
-		}
 		
 		request.getRequestDispatcher(page).forward(request, response);
 		

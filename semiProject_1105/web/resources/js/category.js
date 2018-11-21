@@ -30,7 +30,7 @@ $(function(){
 			mlist(gCode,nCode,rvrCode,order);
 		});
 		
-		mlist(gCode,nCode,rvrCode);
+		mlist(gCode,nCode,rvrCode,order);
 		
 		$(window).scroll(function() {
 		    if ($(window).scrollTop() == $(document).height() - $(window).height()&&mflag==true) {
