@@ -34,8 +34,10 @@ public class MovieService {
 		Document doc = Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
 		Elements img = doc.select("img[src~=.(png|jpe?g)]");
 		String imgURL = "";
-		for (Element el : img)
+		for (Element el : img){
 			imgURL = String.valueOf(el).substring(27, 110);
+			if(imgURL.endsWith("p")) imgURL+="g";
+		}
 
 		return imgURL;
 
@@ -49,6 +51,7 @@ public class MovieService {
 		String imgURL = "";
 		for (Element el : img) {
 			imgURL = String.valueOf(el).substring(27, 110);
+			if(imgURL.endsWith("p")) imgURL+="g";
 		}
 		
 		return imgURL;

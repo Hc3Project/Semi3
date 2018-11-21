@@ -403,7 +403,7 @@ function hover() {
 		console.log($(this).attr("value"));
 		
 		
-	});	
+	})	
 };
 
 <%if(member!=null){%>
