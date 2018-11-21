@@ -44,35 +44,20 @@ public class CategorySelectedBoxServlet extends HttpServlet {
 		String nCode = request.getParameter("nCode");
 		String rvrCode = request.getParameter("rvrCode");
 		int mPage = Integer.parseInt(request.getParameter("page"));
-		System.out.println(mPage);
+		System.out.println("----------------------------------");
+		System.out.println("rvr : "+rvrCode);
+		System.out.println("gCode : "+gCode);
+		System.out.println("nCode : "+nCode);
+		System.out.println("msql : "+msql);
+		System.out.println("----------------------------------");
+	
 		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
 		
 		mList = cs.selectMovieList(msql, gCode, nCode, rvrCode,mPage); // 무비 리스트 가져오는 cs
 		
 		
 		response.setContentType("application/json; charset=UTF-8");
-
-		JSONArray result = new JSONArray();
-		JSONObject movieIf = null;
-
-		for (MovieInfo movie : mList) {
-			movieIf = new JSONObject();
-
-			movieIf.put("mTitle", movie.getmTitle());
-			movieIf.put("mCode", movie.getmCode());
-
-			try {
-				System.out.println(new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
-				
-				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
-			} catch (Exception e) {
-				request.setAttribute("exception", e);
-				
-			}
-
-			result.add(movieIf);
-		}
-		response.getWriter().print(result.toJSONString());
+		new Gson().toJson(mList, response.getWriter());
 	}
 
 	/**

@@ -1,32 +1,27 @@
 
 $(function(){
-
+	
 	var gCode = $('.genre').val();
 	var nCode = $('.nation').val();
 	var rvrCode = $('.reviewer').val();
-	var order = $(".order").val();
+	var order = orderSql( $(".order").val());
 	
-	switch (order) {
-	case "avgScore":
-		order="selectMovieBySelectBox_avgScore";
-		break;
-	case "update":
-		order="selectMovieBySelectBox_update";
-		break;
-	case "showtime":
-		order="selectMovieBySelectBox_showtime";
-		break;
-
-	}
 	
 	mPage=0;
 	mflag = true;
 	
 		$('.button').click(function(){
+			
 			$(".item").remove();
+			 gCode = $('.genre').val();
+			 nCode = $('.nation').val();
+			 rvrCode = $('.reviewer').val();
+			 order = orderSql( $(".order").val());
 			console.log("gCode:"+gCode);
 			console.log("nCode:"+nCode);
 			console.log("rvrCode:"+rvrCode);
+			
+		
 			mlist(gCode,nCode,rvrCode,order);
 		});
 		
@@ -38,7 +33,23 @@ $(function(){
 		    }
 		 });
 	});
+function orderSql(order) {
+	var sql 
+	switch (order) {
+	case "avgScore":
+		sql="selectMovieBySelectBox_avgScore";
+		break;
+	case "update":
+		sql="selectMovieBySelectBox_update";
+		break;
+	case "showtime":
+		sql="selectMovieBySelectBox_showtime";
+		break;
 
+	}
+	console.log(sql);
+	return sql
+}
 
 
 function mlist(gCode,nCode,rvrCode,order) {
@@ -57,9 +68,11 @@ function mlist(gCode,nCode,rvrCode,order) {
             console.log(data);
 				for ( var i in data) {
 					console.log(data[i].mCode);
-					$list= $("<div>").attr("class", "col-md-2").attr("style","background-image: url("+data[i].mPage+")").attr("value",data[i].mCode)
+					$list= $("<div>").attr("class", "col-md-2").attr("value",data[i].mCode)
                     .append(
                         $("<h3>").text(data[i].mTitle)
+                    ).append(
+                            $("<img>").attr("src",data[i].poster)
                     ).append(
                         $("<i>").attr("class","hover-box hover-box--play")
                     );

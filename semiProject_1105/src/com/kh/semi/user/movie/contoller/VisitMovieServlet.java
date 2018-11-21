@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
 import com.kh.semi.common.MovieImg;
 import com.kh.semi.common.MovieSmallImg;
 import com.kh.semi.exception.DetailViewException;
@@ -50,28 +51,9 @@ public class VisitMovieServlet extends HttpServlet {
 
 		mlist = ms.visitMovie(userId,mPage);
 
+		
 		response.setContentType("application/json; charset=UTF-8");
-
-		JSONArray result = new JSONArray();
-		JSONObject movieIf = null;
-
-		for (MovieInfo movie : mlist) {
-			movieIf = new JSONObject();
-
-			movieIf.put("mTitle", movie.getmTitle());
-			movieIf.put("mCode", movie.getmCode());
-
-			try {
-				movieIf.put("mPage", new MovieSmallImg().movieSmallImg(movie.getmTitle(),movie.getmCode()));
-			} catch (Exception e) {
-				request.setAttribute("exception", e);
-				
-			}
-
-			result.add(movieIf);
-		}
-		response.getWriter().print(result.toJSONString());
-
+		new Gson().toJson(mlist, response.getWriter());
 		
 		
 		

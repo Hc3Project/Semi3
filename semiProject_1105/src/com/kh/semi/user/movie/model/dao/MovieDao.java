@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.common.MovieSmallImg;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.movie.model.vo.MovieDetailInfo;
 import com.kh.semi.user.movie.model.vo.PosterInfo;
@@ -148,7 +149,12 @@ public class MovieDao {
 				mi=new MovieInfo();
 				mi.setmTitle(rset.getString("MTITLE"));
 				mi.setmCode(rset.getString("MCODE"));
-				
+				try {
+					mi.setPoster( new MovieSmallImg().movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
+				}catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				list.add(mi);
 			}
 	
@@ -177,7 +183,12 @@ public class MovieDao {
 				mi=new MovieInfo();
 				mi.setmTitle(rset.getString("MTITLE"));
 				mi.setmCode(rset.getString("MCODE"));
-				
+				try {
+					mi.setPoster( new MovieSmallImg().movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
+				}catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				list.add(mi);
 			}
 	
