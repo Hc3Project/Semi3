@@ -4,6 +4,7 @@
 
 <%
 	ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>) request.getAttribute("mList");
+	
 	String cCode = request.getParameter("cCode");
 %>
 
@@ -60,7 +61,20 @@
 		
 	</div>
 	
+	
+	<div class="category-page" style="position: relative;">
+		<div class="home-page__rec-list">
+			<div class="rec-row">
 
+				<div class="rec-list clearfix" >
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 	<script>
 	// 클릭된 셀렉트 박스 값 가져오기 ////////////////////////////수정중
 	$(function(){
@@ -72,6 +86,7 @@
 		$('.select-menu').click(function(){
 			gCode = $('.genre').val();
 			nCode = $('.nation').val();
+			
 			rvrCode = $('.reviewer').val();
 			console.log("gCode:"+gCode);
 			console.log("nCode:"+nCode);
@@ -98,6 +113,10 @@
 					
 					for(var i in data){
 						console.log(data[i].mTitle);
+						
+						$('.rec-list').append($("<div>").attr("class","mcode").attr("value",data[i].mCode).append(
+								$("<h1>").text(data[i].mTitle)).append("<img>").attr("src","https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg")).
+								append($("<i>").attr("class","hover-box hover-box--play"))
 					}
 				},
 				error : function(data){
@@ -108,6 +127,43 @@
 		});
 	});
 	</script>
+	
+	
+	
+	<!-- 검색결과 --> <!-- 셀렉트 박스와 연동 필요-->
+	<div class="category-page" style="position: relative;">
+		<div class="home-page__rec-list">
+			<div class="rec-row">
+
+				<div class="rec-list clearfix" >
+					<%
+						for (MovieInfo mi : mList) {
+					%>
+					
+					<!-- -------------- -->
+					<div class = "mcode" value = "<%=mi.getmCode()%>">
+						<h1>
+							<%=mi.getmTitle()%>
+						</h1>
+						<img
+							src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
+							alt=""> <i class="hover-box hover-box--play"></i>
+					</div>
+					<%
+						}
+					%>
+					<script type="text/javascript">
+						$(function() {
+							$(".mcode").click(function() {
+								location.href = "/semi/dView.do?mCode="+$(this).attr("value");
+							})
+						});
+					
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	
 	<!-- 셀렉트박스 옵션 가져오는 ajax -->
@@ -209,39 +265,7 @@
 	</script>
 	
 	
-<!-- 검색결과 --> <!-- 셀렉트 박스와 연동 -->
-	<div class="category-page" style="position: relative;">
-		<div class="home-page__rec-list">
-			<div class="rec-row">
 
-				<div class="rec-list clearfix" >
-					<%
-						for (MovieInfo mi : mList) {
-					%>
-
-					<div class = "mcode" value = "<%=mi.getmCode()%>">
-						<h1>
-							<%=mi.getmTitle()%>
-						</h1>
-						<img
-							src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-							alt=""> <i class="hover-box hover-box--play"></i>
-					</div>
-					<%
-						}
-					%>
-					<script type="text/javascript">
-						$(function() {
-							$(".mcode").click(function() {
-								location.href = "/semi/dView.do?mCode="+$(this).attr("value");
-							})
-						});
-					
-					</script>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 <%-- 	<!-- 검색결과 -->

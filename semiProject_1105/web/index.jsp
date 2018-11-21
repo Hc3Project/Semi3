@@ -39,7 +39,7 @@
 					<div id="bo1">
 						<div style="height: 45px;"></div>
 						<img alt="boxoffice" src="resources/image/h2_boxoffice.png"
-							style="width: 200px; height: 15px; display: block; margin: auto;">
+							style="width: 260px; height: 70px; display: block; margin: auto;">
 					</div>
 					<div id="bo2">
 						<div class="boxRank contaner"></div>
@@ -59,7 +59,7 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="https://movie-phinf.pstatic.net/20181106_289/1541478936071tmadh_JPEG/movie_image.jp" alt="Los Angeles">
+							<img src="resources/image/5.jpg" alt="Los Angeles">
 						</div>
 
 						<div class="item">

@@ -232,7 +232,6 @@ public class CategoryDao {
 			mi.setgCode1(rset.getString("gCode1"));
 			mi.setgCOde2(rset.getString("gCode2"));
 			mi.setnCode(rset.getString("ncode"));
-			//mi.setSyno(rset.getString("syno"));
 			
 			mList.add(mi);
 			//System.out.println("이거 동작해 : ? " + mList.size());
