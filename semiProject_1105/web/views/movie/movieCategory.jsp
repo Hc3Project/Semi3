@@ -169,7 +169,7 @@
 	<!-- 검색결과 -->
 	<!-- 셀렉트 박스와 연동 -->
 	<section class="movieSection">
-		<div class="category-page" style="position: relative;">
+		<div class="category-page" style="position: relative; padding-left: 90px;">
 			<div class="home-page__rec-list">
 				<div class="rec-row poster" id="catecoryMovie">
 					<div id="Progress_Loading">
