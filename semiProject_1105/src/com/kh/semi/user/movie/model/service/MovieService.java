@@ -26,24 +26,10 @@ import com.kh.semi.user.movie.model.vo.PosterInfo;
 public class MovieService {
 
 	private static String page = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode=";
+	private static String smallpage= "https://movie.naver.com/movie/bi/mi/basic.nhn?code=";
 
 	public String getImage(String result,String mCode) throws Exception {
-		String code = "";
-		String chk = "";
-		List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
-
-		for (int i = 0; i < sentence.size(); i++) {
-			if (sentence.get(i).matches(".*link.*")) {
-				chk = sentence.get(i);
-				break;
-			}
-		}
-
-		Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
-		if (mc.find())
-			code = mc.group();
-		else
-			throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
+		String code=singleCode(result);
 
 		Document doc = Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
 		Elements img = doc.select("img[src~=.(png|jpe?g)]");
@@ -56,34 +42,7 @@ public class MovieService {
 	}
 
 	public String getPowerImage(String result, String keyword,String mCode) throws Exception {
-		Connection con = getConnection();
-
-		List<PosterInfo> list = new MovieDao().getPowerImage(con, result, keyword,mCode);
-		close(con);
-		String code = "";
-
-		for (PosterInfo pi : list) {
-			String director = pi.getDirector();
-			String date = pi.getOpendate().toString().substring(0, 4);
-			
-			List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
-			String chk = "";
-
-			chk=findCode(result,director,date,sentence);
-			if(chk==null||chk.length()<1) {
-				date=String.valueOf((Integer.parseInt(date)-1));
-				chk=findCode(result,director,date,sentence);
-			}
-			
-			
-			Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
-
-			if (mc.find())
-				code = mc.group();
-			else
-				throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
-
-		}
+		String code=multiCode(result,keyword,mCode);
 		
 		Document doc = Jsoup.connect(page + code).header("User-Agent", "Chrome/70.0.3538.77").get();
 		Elements img = doc.select("img[src~=.(png|jpe?g)]");
@@ -164,8 +123,101 @@ public class MovieService {
 		return "";
 
 		}
+
+	public String getSmallImage(String result, String mCode) throws Exception {
+		String code=singleCode(result);
 		
+		Document doc = Jsoup.connect(smallpage+code).header("User-Agent", "Chrome/70.0.3538.77").get();
 		
+		Elements img = doc.select("div.poster a img[src*=.jpg?type=m2]");
+		String imgURL = "";
+		for (Element el : img) {
+			System.out.println(el);
+			String url=String.valueOf(el);
+			int endIdx=url.indexOf("alt");
+			System.out.println(endIdx);
+			imgURL=url.substring(10, endIdx-2);
+			System.out.println(url);
+		}
+		return imgURL;
+		
+	}
+
+	public String getPowerSmallImage(String result, String keyword, String mCode) throws Exception{
+		
+		String code=multiCode(result,keyword,mCode);
+		
+		Document doc = Jsoup.connect(smallpage+code).header("User-Agent", "Chrome/70.0.3538.77").get();
+		
+		Elements img = doc.select("div.poster a img[src*=.jpg?type=m2]");
+		String imgURL = "";
+		for (Element el : img) {
+			System.out.println(el);
+			String url=String.valueOf(el);
+			int endIdx=url.indexOf("alt");
+			System.out.println(endIdx);
+			imgURL=url.substring(10, endIdx-2);
+			System.out.println(url);
+		}
+		return imgURL;
+		
+	}
+	
+	public String singleCode(String result) throws Exception{
+		String code = "";
+		String chk = "";
+		List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
+
+		for (int i = 0; i < sentence.size(); i++) {
+			if (sentence.get(i).matches(".*link.*")) {
+				chk = sentence.get(i);
+				break;
+			}
+		}
+
+		Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
+		if (mc.find()){
+			code = mc.group();
+			return code;
+		}
+		else
+			throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
+	}
+		
+	public String multiCode(String result,String keyword,String mCode) throws Exception{
+		Connection con = getConnection();
+
+		List<PosterInfo> list = new MovieDao().getPowerImage(con, result, keyword,mCode);
+		close(con);
+		String code = "";
+
+		for (PosterInfo pi : list) {
+			String director = pi.getDirector();
+			String date = pi.getOpendate().toString().substring(0, 4);
+			
+			List<String> sentence = new ArrayList<>(Arrays.asList(result.split(",")));
+			String chk = "";
+
+			chk=findCode(result,director,date,sentence);
+			if(chk==null||chk.length()<1) {
+				date=String.valueOf((Integer.parseInt(date)-1));
+				chk=findCode(result,director,date,sentence);
+			}
+			
+			
+			Matcher mc = Pattern.compile("[0-9]{5,6}").matcher(chk);
+
+			if (mc.find()){
+				code = mc.group();
+			}
+			else
+				throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
+			
+			
+		}
+		
+		return code;
+	}
 
 }
 

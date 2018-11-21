@@ -251,9 +251,9 @@ public class MemberDao {
 	public List<Integer> selectRatingCnt(Connection con, String userId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		int[] result = null;
+		List<Integer> result = null;
 		try {
-			result = new int[5];
+			result = new ArrayList<>();
 			pstmt = con.prepareStatement(prop.getProperty("selectScoreCnt"));
 			pstmt.setString(1, userId);
 			rset = pstmt.executeQuery();
