@@ -18,7 +18,7 @@ import com.kh.semi.user.movie.model.service.MovieService;
 public class MovieSmallImg{
 	
 	public String movieSmallImg(String keyword,String mCode) throws DetailViewException,Exception {
-		
+		System.out.println("스몰 이미지");
 		MovieService dvs = new MovieService();
 		String page = "";
 		
@@ -43,7 +43,7 @@ public class MovieSmallImg{
 		StringBuffer sb = new StringBuffer();
 		while ((inStr = br.readLine()) != null) sb.append(inStr);
 		String result = sb.toString();
-		
+		System.out.println("asdasdsad "+result);
 		br.close();
 
 		if (result.substring(61, 62).equals("1") && !chkNum(result.substring(62, 63)))
