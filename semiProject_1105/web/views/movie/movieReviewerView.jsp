@@ -24,7 +24,7 @@
 
 
 
-<title>리뷰어 페이지</title>
+<title>movie traveler</title>
 <style>
 	
 </style>
@@ -283,6 +283,10 @@
 					alt:'grey'
 				});
 			}
+		});
+	<%}else{%>
+		$('.heartBtn').click(function(){
+			alert("로그인을 하시면 리뷰어 좋아요 기능이 활성화됩니다.");
 		});
 	<%}%>
 	

@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/typeAnalysis.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/style.css">
-<title>취향 분석</title>
+<title>movie traveler</title>
 <%
 	String likes = (String) session.getAttribute("likes");
 	String scoreCnt = (String) ((session.getAttribute("scoreCnt")!="null")?session.getAttribute("scoreCnt"):"");
