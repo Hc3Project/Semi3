@@ -22,7 +22,7 @@ public class CategoryService {
 		
 		if(cCode.length()>0) mList = cDao.selectCategory(con, cCode);//전달된 cCode가 있으면 해당 카테고리 페이지로 이동
 		else mList = cDao.selectMoiveList(con); //없으면 전체 영화 불러오는 페이지 
-		
+		close(con);
 		if(mList!=null) return mList;
 		else throw new CategoryViewException("카테고리를 가져오는 중 문제가 발생했습니다!");
 	}
@@ -46,7 +46,7 @@ public class CategoryService {
 		ArrayList<MovieInfo> mList = null;
 		
 		mList = cDao.selectMoiveSelectedList(con, msql, gCode, nCode, rvrCode,mPage);
-		
+		close(con);
 		return mList;
 	}
 

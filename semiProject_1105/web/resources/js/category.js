@@ -13,30 +13,21 @@ $(function(){
 	mflag = true;
 	error = true;
 		$('.button').click(function(){
-			
+			mPage=0;
 			$(".item").remove();
 			 gCode = $('.genre').val();
 			 nCode = $('.nation').val();
 			 rvrCode = $('.reviewer').val();
 			 order = orderSql( $(".order").val());
+			 
 			console.log("gCode2:"+gCode);
 			console.log("nCode2:"+nCode);
 			console.log("rvrCode2:"+rvrCode);
 			
 		
-			//mlist(gCode,nCode,rvrCode,order);
+			mlist(gCode,nCode,rvrCode,order);
 		});
-		$('.select-menu').change(function(){
-			$(".item").remove();
-			
-			 gCode = $('.genre').val();
-			 nCode = $('.nation').val();
-			 rvrCode = $('.reviewer').val();
-			console.log("gCode3:"+gCode);
-			console.log("nCode3:"+nCode);
-			console.log("rvrCode3:"+rvrCode);
-			//mlist(gCode,nCode,rvrCode,order);
-		});
+	
 		
 		//mlist(gCode,nCode,rvrCode,order);
 		
@@ -46,7 +37,7 @@ $(function(){
 		    		mlist(gCode,nCode,rvrCode,order);
 		    }
 		 });
-	});
+});
 function orderSql(order) {
 	var sql 
 	switch (order) {
@@ -78,6 +69,7 @@ function mlist(gCode,nCode,rvrCode,order) {
 			page:mPage++
 		},
 		success : function(data) {
+			console.log("success");
             var $top = $("#catecoryMovie")
             console.log(data);
 				for ( var i in data) {
@@ -105,6 +97,7 @@ function mlist(gCode,nCode,rvrCode,order) {
 			});
 		}
 	, beforeSend: function () {
+		console.log("start");
         mflag = false;
         var width = 0;
         var height = 0;
@@ -131,6 +124,7 @@ function mlist(gCode,nCode,rvrCode,order) {
         })));}
         $('.button').attr('disabled', true);
     },error:function(){
+    	console.log("false");
     	error=false;
     } 
     , complete: function (data) {
