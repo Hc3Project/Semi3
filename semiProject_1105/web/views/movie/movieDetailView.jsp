@@ -259,8 +259,7 @@
 				mCode:<%=mcode%>
 			},
 			success:function(data){
-				avg=data;
-				$('.average').html("이 영화의 평균 평점은 <font style='color: rgb(242, 198, 102)'>"+avg+"</font>점 입니다.");
+				$('.average').html("총 <font style='color: rgb(242, 198, 102)'>"+data.total+"</font>분이 참여한 이 영화의 평균 평점은 <font style='color: rgb(242, 198, 102)'>"+data.avg+"</font>점 입니다.");
 			}
 		});
 		
@@ -305,8 +304,7 @@
 						mCode:<%=mcode%>
 					},
 					success:function(data){
-						var avg=data;
-						$('.average').html("이 영화의 평균 평점은 <font style='color: rgb(242, 198, 102)'>"+avg+"</font>점 입니다.");
+						$('.average').html("총 <font style='color: rgb(242, 198, 102)'>"+data.total+"</font>분이 참여한 이 영화의 평균 평점은 <font style='color: rgb(242, 198, 102)'>"+data.avg+"</font>점 입니다.");
 					}
 				});
 			<%}else{%>

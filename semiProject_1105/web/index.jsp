@@ -60,15 +60,15 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="resources/image/5.jpg" alt="Los Angeles">
+							<a href="/semi/dView.do?mCode=20185485"><img src="resources/image/5.jpg" alt="Los Angeles"></a>
 						</div>
 
 						<div class="item">
-							<img src="resources/image/1.jpg" alt="Chicago">
+							<a href="/semi/dView.do?mCode=20177538"><img src="resources/image/1.jpg" alt="Chicago"></a>
 						</div>
 
 						<div class="item">
-							<img src="resources/image/3.jpg" alt="New York">
+							<a href="/semi/dView.do?mCode=20176814"><img src="resources/image/3.jpg" alt="New York"></a>
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#myCarousel" role="button"

@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.kh.semi.user.movie.model.vo.StarRating;
+
 public class StarRatingDao {
 	
 	private Properties prop = new Properties();
@@ -79,16 +81,16 @@ public class StarRatingDao {
 		return result;
 	}
 
-	public int selectStarAvgRating(Connection con, String mCode) {
+	public StarRating selectStarAvgRating(Connection con, String mCode) {
 		PreparedStatement pstmt=null;
 		ResultSet rset=null;
-		int result=0;
+		StarRating result=null;
 		try {
 			pstmt=con.prepareStatement(prop.getProperty("selectStarAvgRating"));
 			pstmt.setString(1, mCode);
 			rset=pstmt.executeQuery();
 			if(rset.next()){
-				result=rset.getInt(1);
+				result=new StarRating(rset.getInt(1),rset.getInt(2));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

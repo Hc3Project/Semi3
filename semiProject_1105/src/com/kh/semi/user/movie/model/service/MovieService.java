@@ -5,6 +5,7 @@ import static com.kh.semi.common.JDBCTemplate.commit;
 import static com.kh.semi.common.JDBCTemplate.getConnection;
 import static com.kh.semi.common.JDBCTemplate.rollback;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -219,6 +220,30 @@ public class MovieService {
 		}
 		
 		return code;
+	}
+
+	public String getSyno(String result, String mCode) throws Exception {
+		String code=singleCode(result);
+		
+		Document doc = Jsoup.connect(smallpage+code).header("User-Agent", "Chrome/70.0.3538.77").get();
+			
+		String syno = doc.select("p.con_tx").text();
+		
+		System.out.println(syno);
+		
+		return syno;
+	}
+
+	public String getPowerSyno(String result, String mTitle, String mCode) throws Exception {
+		String code=multiCode(result,mTitle,mCode);
+		
+		Document doc = Jsoup.connect(smallpage+code).header("User-Agent", "Chrome/70.0.3538.77").get();
+		
+		String syno = doc.select("p.con_tx").text();
+		
+		System.out.println(syno);
+		
+		return syno;
 	}
 
 }

@@ -6,6 +6,7 @@ import java.sql.Connection;
 
 import com.kh.semi.exception.StarRatingException;
 import com.kh.semi.user.movie.model.dao.StarRatingDao;
+import com.kh.semi.user.movie.model.vo.StarRating;
 
 public class StarRatingService {
 	
@@ -32,11 +33,10 @@ public class StarRatingService {
 		}
 	}
 
-	public int selectStarAvgRating(String mCode) {
+	public StarRating selectStarAvgRating(String mCode) {
 		Connection con=getConnection();
-		int result=srDao.selectStarAvgRating(con,mCode);
+		StarRating result=srDao.selectStarAvgRating(con,mCode);
 		close(con);
 		return result;
 	}
-
 }

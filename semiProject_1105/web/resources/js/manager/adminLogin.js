@@ -23,7 +23,10 @@ $(function(){
 					result = data.boxOfficeResult.dailyBoxOfficeList;
 					$.each(result, function(idx, item){
 						var mCode = item.movieCd;
+						
 						// 상세 정보 수정
+						
+						
 						$.ajax
 						({
 							url : host + movieInfo + ".json?",
@@ -35,26 +38,36 @@ $(function(){
 							success : function(data){
 								var mInfo = data.movieInfoResult.movieInfo;
 								
-								var infoData = new Object;
-								infoData.mCode = mCode;
-								infoData.mTitle = mInfo.movieNm;
-								infoData.director = (mInfo.directors.length==0)?"없음":mInfo.directors[0].peopleNm;
-								infoData.actor = (mInfo.actors.length==0)?"없음":mInfo.actors[0].peopleNm;
-								infoData.showTime = mInfo.showTm;
-								infoData.openDate = mInfo.openDt;
-								infoData.genre1 = mInfo.genres[0].genreNm;
-								infoData.genre2 = (mInfo.genres.length<2)?"없음":mInfo.genres[1].genreNm;
-								infoData.nation = (mInfo.nations.length!=0)?mInfo.nations[0].nationNm:"없음";
-								
-								// 영화 등록하기
 								$.ajax({
-									url : "/semi/mInsert.vi",
-									data : infoData,
-									error : function(data){
-										console.log(data);
+									url:"/semi/movie.syno",
+									data:{
+										mCode:mCode,
+										mTitle:mInfo.movieNm
+									},
+									success:function(data){
+										
+										var infoData = new Object;
+										infoData.mCode = mCode;
+										infoData.mTitle = mInfo.movieNm;
+										infoData.director = (mInfo.directors.length==0)?"없음":mInfo.directors[0].peopleNm;
+										infoData.actor = (mInfo.actors.length==0)?"없음":mInfo.actors[0].peopleNm;
+										infoData.showTime = mInfo.showTm;
+										infoData.openDate = mInfo.openDt;
+										infoData.genre1 = mInfo.genres[0].genreNm;
+										infoData.genre2 = (mInfo.genres.length<2)?"없음":mInfo.genres[1].genreNm;
+										infoData.nation = (mInfo.nations.length!=0)?mInfo.nations[0].nationNm:"없음";
+										infoData.syno=data;
+										
+										// 영화 등록하기
+										$.ajax({
+											url : "/semi/mInsert.vi",
+											data : infoData,
+											error : function(data){
+												console.log(data);
+											}
+										})
 									}
-								})
-								
+								});
 							},
 							error : function(data){
 								console.log(data);

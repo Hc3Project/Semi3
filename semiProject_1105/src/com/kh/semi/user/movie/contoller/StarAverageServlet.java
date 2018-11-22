@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.kh.semi.user.movie.model.service.StarRatingService;
+import com.kh.semi.user.movie.model.vo.StarRating;
 
 /**
  * Servlet implementation class StarAverageServlet
@@ -30,9 +31,10 @@ public class StarAverageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mCode=request.getParameter("mCode");
-		int avg=new StarRatingService().selectStarAvgRating(mCode);
+		StarRatingService srs=new StarRatingService();
+		StarRating sr=srs.selectStarAvgRating(mCode);
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(avg,response.getWriter());
+		new Gson().toJson(sr,response.getWriter());
 	}
 
 	/**
