@@ -272,4 +272,4 @@ $(function displayList(){
 });
 </script>
 <!-- 자동추가기능 -->
-<script src="resources/js/adminLogin.js"></script>
+<script src="resources/js/manager/adminLogin.js"></script>
