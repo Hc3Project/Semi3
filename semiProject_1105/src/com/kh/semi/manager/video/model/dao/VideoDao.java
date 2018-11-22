@@ -22,7 +22,7 @@ public class VideoDao {
 	
 	public VideoDao() {
 		prop = new Properties();
-		String filePath = VideoDao.class.getResource("/config/manager/manager-query.properties").getPath();
+		String filePath = VideoDao.class.getResource("/config/manager/video-query.properties").getPath();
 		try {
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {

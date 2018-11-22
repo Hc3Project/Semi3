@@ -6,21 +6,10 @@ $(function(){
 	script.src = "http://apis.google.com/js/client.js?onload=init";//포함시킬 js 파일 (경로가 존재하면 경로까지 작성)
 	document.getElementsByTagName("body")[0].appendChild(script);
 	$('#moreList').prop('disabled', true);
-	// 검색하기 눌렀을 시
-	$('#rvrBtn').click(function(){
-		if($('#rvrSearch').val().trim() == ""){
-			$('#rvrSearch').val('').focus();
-			alert("키워드를 입력하세요.");
-			return false;
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
 		}
-		$('#inputRvr').css('display', 'none');
-		$('#getRvrList').css('display', 'block');
-		keyword = $('#rvrSearch').val().trim();
-		$('#rvrSearch').val('');
-		$('#rvrList tbody').html('');
-		nToken = '';
-		getRivewer(keyword);
-		
 	})
 	
 	// 결과 더 보기 눌렀을 시
@@ -157,6 +146,22 @@ function init() {
 	// gapi.client.ladt("nameOfApi", "Version", callback)
 	gapi.client.load("youtube", "v3", function(){
 	// yt api is ready
+		// 검색하기 눌렀을 시
+		$('#rvrBtn').click(function(){
+			if($('#rvrSearch').val().trim() == ""){
+				$('#rvrSearch').val('').focus();
+				alert("키워드를 입력하세요.");
+				return false;
+			}
+			$('#inputRvr').css('display', 'none');
+			$('#getRvrList').css('display', 'block');
+			keyword = $('#rvrSearch').val().trim();
+			$('#rvrSearch').val('');
+			$('#rvrList tbody').html('');
+			nToken = '';
+			getRivewer(keyword);
+			
+		})
 	});
 }
 

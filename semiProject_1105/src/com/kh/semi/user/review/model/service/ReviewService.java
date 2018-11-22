@@ -5,6 +5,7 @@ import static com.kh.semi.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.user.review.model.dao.ReviewDao;
@@ -17,25 +18,25 @@ public class ReviewService {
 
 	public ArrayList<Review> reviewList(String rsql) {
 		Connection con = getConnection();
-		
+
 		ArrayList<Review> list = rDao.review(con,rsql);
-		
+
 		close(con);
 
 		return list;
 	}
 	public ArrayList<Review> reviewList(String rsql,String mTitle) {
 		Connection con = getConnection();
-	
+
 		ArrayList<Review> list = rDao.review(con,rsql,mTitle);
-		
-		
+
+
 		close(con);
 
 		return list;
 	}
-	
-	
+
+
 	public ReviewInfo selectReview(String videoId) throws Exception{
 		Connection con=getConnection();
 		ReviewInfo rv=rDao.selectReview(con,videoId);
@@ -49,37 +50,41 @@ public class ReviewService {
 		try{
 			if(userId!=null)result=rDao.reviewVisit(con,videoId,userId);
 			if(result>0){rDao.reviewCount(con,videoId);
-				commit(con);
+			commit(con);
 			}
-			
+
 		}catch (Exception e) {
 			rollback(con);
 		}
 		close(con);
-		
+
 	}
 	public ArrayList<Review> rvrReviewList(String rsql, String rvrCode) {
 		Connection con = getConnection();
-	
+
 		ArrayList<Review> list = rDao.rvrReviewList(con,rsql,rvrCode);
-		
-		
+
+
 		close(con);
 
 		return list;
-		
+
 	}
 	public ArrayList<Review> rvrReviewAll(String rsql, String rvrCode,int page) {
 		Connection con = getConnection();
-	
+
 		ArrayList<Review> list = rDao.rvrReviewAll(con,rsql,rvrCode,page);
-		
-		
+
+
 		close(con);
 
 		return list;
-		
-	}
-	
 
+	}
+	public List<Review> reviewSameGenre(String mCode) {
+		Connection con = getConnection();
+		List<Review> result = rDao.rvSameGenre(con, mCode);
+		close(con);
+		return result;
+	}
 }
