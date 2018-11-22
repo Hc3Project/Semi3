@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../../resources/css/style.css">
   	<link rel="stylesheet" href="../../resources/css/main.css">
     <link rel="stylesheet" href="../../resources/css/setting.css">
-    <title>설정</title>
+    <title>movie traveler</title>
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>

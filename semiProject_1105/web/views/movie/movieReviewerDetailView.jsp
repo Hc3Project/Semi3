@@ -38,7 +38,7 @@
 
 
 
-<title>리뷰어 상세페이지</title>
+<title>movie traveler</title>
 </head>
 <body>
 

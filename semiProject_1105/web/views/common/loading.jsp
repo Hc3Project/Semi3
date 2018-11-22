@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>로딩</title>
+        <title>movie traveler</title>
         <style type="text/css">
         .sk-fading-circle {
   margin: 100px auto;

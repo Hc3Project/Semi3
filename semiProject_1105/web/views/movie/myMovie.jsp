@@ -25,7 +25,7 @@
 
 
 
-<title>My Movie</title>
+<title>movie traveler</title>
 </head>
 <body>
 	<header>

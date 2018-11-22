@@ -33,7 +33,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/style.css">
 
-<title>모든 장르</title>
+<title>movie traveler</title>
 </head>
 <body>
 	<header>
