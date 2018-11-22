@@ -88,7 +88,7 @@
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>오늘 이 리뷰 어때요?</span>
+						<span>최신 리뷰</span>
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st2Carousel"
 						data-interval="0">
