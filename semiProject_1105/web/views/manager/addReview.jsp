@@ -35,7 +35,7 @@
 							%>
 						</select>
 					</td>
-					<td><input type="text" name="" id="rvKeyword" placeholder="키워드를 입력하세요."></td>
+					<td><input type="text" name="" id="rvKeyword" placeholder="youtube영상 제목 입력, 미입력시 전체 출력"></td>
 					<td><input type="button" value="검색하기" id="rvBtn"></td>
 				</tr>
 			</table>

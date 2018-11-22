@@ -15,8 +15,6 @@ $(function(){
 			return false;
 		}
 		curPage = 0;
-		$('#divList').css('display', 'block');
-		$('#divUpdate').css('display', 'none');
 		getList(keyword);
 	})
 	
@@ -46,8 +44,8 @@ $(function(){
 				"profile" : profile
 			},
 			success : function(data){
-				if(data>0) alert('수정 성공적')
-				else alert('수정 실패')
+				if(data>0) alert('성공적으로 수정하였습니다.')
+				else alert('수정에 실패하였습니다.')
 			},
 			error : function(data){
 				console.log(data);
@@ -95,9 +93,15 @@ function getList(keyword){
 		},
 		success : function(data){
 			rvrList = $.parseJSON(data)
-			if(rvrList.length==0) alert('검색결과가 존재하지 않습니다.');
-			$('#rvrList tbody').html('');
-			showList(0, resultMax);
+			if(rvrList.length==0) {
+				alert('검색결과가 존재하지 않습니다.');
+			} else {
+				$('#divList').css('display', 'block');
+				$('#divUpdate').css('display', 'none');
+				$('#rvrList tbody').html('');
+				showList(0, resultMax);
+			}
+			
 		},
 		error : function(data){
 			console.log(data);

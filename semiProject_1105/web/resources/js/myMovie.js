@@ -19,12 +19,14 @@ $(function() {
 		}
 	});
 
+
 })
 
 $(function() {
 
 	visitMovie();
 	evalMovie();
+
 	$(window).scroll(
 			function() {
 				if ($(window).scrollTop() == $(document).height()
@@ -39,11 +41,25 @@ $(function() {
 				}
 
 			});
+
 });
 
+$(function(){
+	function hoverThmbnail() {
+		$(".rec-list>div").hover(function() {
+
+			$(this).children(".hover-box").stop().fadeIn();
+			$(this).children("h1").stop().hide();
+		}, function() {
+			$(this).children(".hover-box").stop().fadeOut();
+			$(this).children("h1").stop().fadeIn();
+		});
+	}
+})
+
 function visitMovie() {
-	$
-			.ajax({
+
+	$.ajax({
 				url : "/semi/mVisit.do",
 				data : {
 					page : mPage++
@@ -140,8 +156,8 @@ function visitMovie() {
 }
 
 function evalMovie() {
-	$
-			.ajax({
+
+	$.ajax({
 				url : "/semi/mEval.do",
 				data : {
 					page : ePage++
@@ -232,4 +248,5 @@ function evalMovie() {
 				}
 
 			});
+
 }

@@ -18,11 +18,15 @@ $(function(){
 		var keyword = $('#search').val().trim();
 		curPage = 0;
 		getList(sel, keyword);
-		$('#movieList tbody').html('');
-		$('#search').val('');
-		$('#modifyInfo').css('display', 'none');
-		$('#getList').css('display', 'block');
-		showList(curPage, resultMax);
+		if(jsonData.length!=0){
+			$('#movieList tbody').html('');
+			$('#search').val('');
+			$('#modifyInfo').css('display', 'none');
+			$('#getList').css('display', 'block');
+			showList(curPage, resultMax);
+		} else {
+			alert('검색결과가 존재하지 않습니다.')
+		}
 		
 	})
 	
@@ -110,10 +114,6 @@ function getList(sel, keyword){
 		},
 		error : function(data){
 			
-		},
-		complete : function(data){
-			$('#getList').css("display", "block");
-			$('#modifyInfo').css('display', 'none');
 		},
 		async : false
 	})

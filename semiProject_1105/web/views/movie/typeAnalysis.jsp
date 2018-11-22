@@ -72,6 +72,7 @@
 	            </div>
 	            <br><br>
 	            <div class="starWarp" id="gDiv"></div>
+	            <div class="moreMovie" id="gDivU" style="width:700px;margin:0 auto;min-height:20px;">
 	        </section>
 	        <div style="margin:20px 0;width:100%;height:1px;background-color:#dedede"></div>
 	        <section>
@@ -84,7 +85,6 @@
 	            </div>
 	        </section>  
 	        <!-- <div class="btn" onclick="more()">더 보기</div> -->
-	        
 	            <br><br>
 	        
 	        <br><br>
