@@ -50,6 +50,7 @@ public class SearchMovieDao {
 			MovieSmallImg msi=new MovieSmallImg();
 			
 			while(rset.next()){
+
 				try {
 					MovieInfo mi = new MovieInfo();
 				
@@ -58,12 +59,13 @@ public class SearchMovieDao {
 				
 					mi.setPoster( msi.movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
 					mList.add(mi);
+
 				}catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					continue;
 				}
-				
+
 			}
 		} catch (SQLException e) {
 			

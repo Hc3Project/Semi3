@@ -82,8 +82,8 @@
 								href="/semi/views/member/setting.jsp">설정</a></li>
 							<%if(m.getUserId().equals("admin")){
 							%>
-							<li class="account-menu__item"><a class=""
-								href="/semi/views/manager/mIndex.jsp">관리자 페이지</a></li>
+							<li class="account-menu__item"><a class="" href="/semi/views/manager/mIndex.jsp">관리자 페이지</a></li>
+							<li class="account-menu__item" id="auto"><a >자동 추가</a></li>
 							<%	
 							}%>
 							<li class="account-menu__item"><a class=""
@@ -271,3 +271,5 @@ $(function displayList(){
 
 });
 </script>
+<!-- 자동추가기능 -->
+<script src="resources/js/adminLogin.js"></script>

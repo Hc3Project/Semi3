@@ -15,7 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.kh.semi.common.CollaborativeFiltering;
-import com.kh.semi.common.MovieImg;
+import com.kh.semi.common.MovieSmallImg;
 import com.kh.semi.exception.DetailViewException;
 import com.kh.semi.user.member.model.service.MemberService;
 import com.kh.semi.user.member.model.vo.Member;
@@ -94,7 +94,7 @@ public class RecMovieServlet extends HttpServlet {
 				movie.put("mCode", m.getRecList()[i]);
 				
 				try {
-					movie.put("mPage", new MovieImg().moviewImg(itemRankTitle[i],m.getRecList()[i]));
+					movie.put("poster", new MovieSmallImg().movieSmallImg(itemRankTitle[i],m.getRecList()[i]));
 				} catch (DetailViewException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

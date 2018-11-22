@@ -48,6 +48,7 @@ public class SearchMovieServlet extends HttpServlet {
 		// 3. 리스트에 서비스에서 실행되는 검색 메소드 실행
 		try {
 			mList = sms.searchMovie(movieTitle);
+			
 			page= "views/movie/searchCategory.jsp";
 			request.setAttribute("search", movieTitle);
 			request.setAttribute("sList", mList);

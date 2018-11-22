@@ -135,9 +135,13 @@ public class MovieService {
 		Elements img = doc.select("div.poster a img[src*=.jpg?type=m2]");
 		String imgURL = "";
 		for (Element el : img) {
+
+			
 			String url=String.valueOf(el);
 			int endIdx=url.indexOf("alt");
+			
 			imgURL=url.substring(10, endIdx-2);
+
 		}
 		return imgURL;
 		
@@ -208,8 +212,9 @@ public class MovieService {
 				code = mc.group();
 			}
 			else
+			{	
 				throw new DetailViewException("리뷰 페이지를 가져오는데 문제가 발생했습니다!");
-			
+			}
 			
 		}
 		

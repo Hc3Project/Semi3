@@ -1,44 +1,60 @@
 
 $(function(){
-
+	
 	var gCode = $('.genre').val();
 	var nCode = $('.nation').val();
 	var rvrCode = $('.reviewer').val();
-	var order = $(".order").val();
-	
-	switch (order) {
-	case "avgScore":
-		order="selectMovieBySelectBox_avgScore";
-		break;
-	case "update":
-		order="selectMovieBySelectBox_update";
-		break;
-	case "showtime":
-		order="selectMovieBySelectBox_showtime";
-		break;
-
-	}
+	var order = orderSql( $(".order").val());
+	console.log("gCode1:"+gCode);
+	console.log("nCode1:"+nCode);
+	console.log("rvrCode1:"+rvrCode);
 	
 	mPage=0;
 	mflag = true;
-	
+	error = true;
 		$('.button').click(function(){
+			mPage=0;
 			$(".item").remove();
-			console.log("gCode:"+gCode);
-			console.log("nCode:"+nCode);
-			console.log("rvrCode:"+rvrCode);
+			 gCode = $('.genre').val();
+			 nCode = $('.nation').val();
+			 rvrCode = $('.reviewer').val();
+			 order = orderSql( $(".order").val());
+			 
+			console.log("gCode2:"+gCode);
+			console.log("nCode2:"+nCode);
+			console.log("rvrCode2:"+rvrCode);
+			
+		
 			mlist(gCode,nCode,rvrCode,order);
 		});
+	
 		
-		mlist(gCode,nCode,rvrCode,order);
+		//mlist(gCode,nCode,rvrCode,order);
 		
 		$(window).scroll(function() {
 		    if ($(window).scrollTop() == $(document).height() - $(window).height()&&mflag==true) {
-		    	mlist(gCode,nCode,rvrCode,order);
+		    	if(error==true)
+		    		mlist(gCode,nCode,rvrCode,order);
 		    }
 		 });
-	});
+});
+function orderSql(order) {
+	var sql 
+	switch (order) {
+	case "avgScore":
+		sql="selectMovieBySelectBox_avgScore";
+		break;
+	case "update":
+		sql="selectMovieBySelectBox_update";
+		break;
+	case "showtime":
+		sql="selectMovieBySelectBox_showtime";
+		break;
 
+	}
+	console.log(sql);
+	return sql
+}
 
 
 function mlist(gCode,nCode,rvrCode,order) {
@@ -53,13 +69,16 @@ function mlist(gCode,nCode,rvrCode,order) {
 			page:mPage++
 		},
 		success : function(data) {
+			console.log("success");
             var $top = $("#catecoryMovie")
             console.log(data);
 				for ( var i in data) {
 					console.log(data[i].mCode);
-					$list= $("<div>").attr("class", "col-md-2").attr("style","background-image: url("+data[i].mPage+")").attr("value",data[i].mCode)
+					$list= $("<div>").attr("class", "col-md-2").attr("value",data[i].mCode)
                     .append(
                         $("<h3>").text(data[i].mTitle)
+                    ).append(
+                            $("<img>").attr("src",data[i].poster)
                     ).append(
                         $("<i>").attr("class","hover-box hover-box--play")
                     );
@@ -78,6 +97,7 @@ function mlist(gCode,nCode,rvrCode,order) {
 			});
 		}
 	, beforeSend: function () {
+		console.log("start");
         mflag = false;
         var width = 0;
         var height = 0;
@@ -92,6 +112,7 @@ function mlist(gCode,nCode,rvrCode,order) {
 		 * "margin-left": left+"px" });
 		 */
         console.log("ajax 로딩");
+        if(error==true){
         $("#catecoryMovie").append($("<div>")
             .attr("class", "div_ajax_load_image")
             .css({"width": "100%", "height": "300px", "background": "#191919"})
@@ -100,9 +121,12 @@ function mlist(gCode,nCode,rvrCode,order) {
             "margin-left": left + "px",
             "width": "50px",
             "height": "50px"
-        })));
+        })));}
         $('.button').attr('disabled', true);
-    }
+    },error:function(){
+    	console.log("false");
+    	error=false;
+    } 
     , complete: function (data) {
     	$(".div_ajax_load_image").remove();
     	if(data===null)mflag=false;

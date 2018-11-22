@@ -6,6 +6,7 @@
 
 <%
 	ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>) request.getAttribute("sList");
+	System.out.println(mList.toString());
 	String search = (String)request.getAttribute("search");
 	System.out.println(search);
 %>
@@ -39,7 +40,7 @@
 		<%@ include file="../common/header.jsp"%>
 	</header>
 	<div style="width: 100%; margin: 50px 0px;">
-	<h4 align="center">"<%=search %>"에 대한 검색 결과 입니다</h1>
+	<h6 align="center">"<%=search %>"에 대한 검색 결과 입니다</h6>
 	</div>
 	
 
@@ -52,17 +53,17 @@
 					<!-- 내가 검색한 조건일 경우 -->
 
 					<%
-						for (int i = 0; i < Math.ceil(mList.size() / 8); i++) {
+					
+						for (int i = 0; i < Math.ceil((double)(mList.size()) / 8.0); i++) {
 					%>
 
 					<div class="item rec-list clearfix">
 						<%
-							for (int j = 0; j < 8; j++) {
+							for (int j = 0; j < mList.size(); j++) {
 						%>
-						<div class="col-md-2"
-							style="background-image: url(<%=mList.get(j + (i * 8)).getPoster()%>); background-size: contain; "
-							value="<%=mList.get(j + (i * 8)).getmCode()%>">
+						<div class="col-md-2"value="<%=mList.get(j + (i * 8)).getmCode()%>">
 							<h3><%=mList.get(j + (i * 8)).getmTitle()%></h3>
+							<img src = "<%=mList.get(j + (i * 8)).getPoster()%>"/>
 							<i class="hover-box hover-box--play"></i>
 						</div>
 						<%
