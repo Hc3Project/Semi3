@@ -77,7 +77,15 @@
 						}
 				
 					%>
-
+<script type="text/javascript">
+$(function() {
+	$(".rec-list> div").click(function() {
+		console.log($(this).attr("value"));
+		location.href = "/semi/dView.do?mCode="+$(this).attr("value");
+		
+	});
+})
+</script>
 					
 				</div>
 			</div>
