@@ -85,10 +85,8 @@ function mlist(gCode,nCode,rvrCode,order) {
 
                         if(i%8==0){
                             $top.append($("<div>").attr("class","item rec-list clearfix").append($list));
-
                         }else{
                             $("#catecoryMovie div[class='item rec-list clearfix']:last-child").append($list);
-
                         }
 			        }
             $(".col-md-2").css("background-size","contain");
