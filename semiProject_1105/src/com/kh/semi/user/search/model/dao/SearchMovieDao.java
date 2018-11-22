@@ -47,22 +47,25 @@ public class SearchMovieDao {
 			rset = pstmt.executeQuery();
 			
 			mList = new ArrayList<MovieInfo>();
+			MovieSmallImg msi=new MovieSmallImg();
 			
 			while(rset.next()){
-				MovieInfo mi = new MovieInfo();
-				
-				mi.setmCode(rset.getString("mcode"));
-				mi.setmTitle(rset.getString("mtitle"));
-				
+
 				try {
-					
-					mi.setPoster( new MovieSmallImg().movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
+					MovieInfo mi = new MovieInfo();
+				
+					mi.setmCode(rset.getString("mcode"));
+					mi.setmTitle(rset.getString("mtitle"));
+				
+					mi.setPoster( msi.movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
+					mList.add(mi);
+
 				}catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					continue;
 				}
-				mList.add(mi);
-				System.out.println(mList.toString());
+
 			}
 		} catch (SQLException e) {
 			

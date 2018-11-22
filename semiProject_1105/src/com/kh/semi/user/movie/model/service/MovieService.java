@@ -135,12 +135,13 @@ public class MovieService {
 		Elements img = doc.select("div.poster a img[src*=.jpg?type=m2]");
 		String imgURL = "";
 		for (Element el : img) {
+
 			
 			String url=String.valueOf(el);
 			int endIdx=url.indexOf("alt");
 			
 			imgURL=url.substring(10, endIdx-2);
-			
+
 		}
 		return imgURL;
 		
@@ -155,12 +156,9 @@ public class MovieService {
 		Elements img = doc.select("div.poster a img[src*=.jpg?type=m2]");
 		String imgURL = "";
 		for (Element el : img) {
-			System.out.println(el);
 			String url=String.valueOf(el);
 			int endIdx=url.indexOf("alt");
-			System.out.println(endIdx);
 			imgURL=url.substring(10, endIdx-2);
-			System.out.println(url);
 		}
 		return imgURL;
 		

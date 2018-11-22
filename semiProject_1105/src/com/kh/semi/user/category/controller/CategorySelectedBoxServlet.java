@@ -44,6 +44,8 @@ public class CategorySelectedBoxServlet extends HttpServlet {
 		String nCode = request.getParameter("nCode");
 		String rvrCode = request.getParameter("rvrCode");
 		int mPage = Integer.parseInt(request.getParameter("page"));
+
+
 		System.out.println("----------------------------------");
 		System.out.println("rvr : "+rvrCode);
 		System.out.println("gCode : "+gCode);
@@ -51,13 +53,17 @@ public class CategorySelectedBoxServlet extends HttpServlet {
 		System.out.println("msql : "+msql);
 		System.out.println("----------------------------------");
 	
+
 		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
 		
 		mList = cs.selectMovieList(msql, gCode, nCode, rvrCode,mPage); // 무비 리스트 가져오는 cs
 		
 		
 		response.setContentType("application/json; charset=UTF-8");
+
+
 		new Gson().toJson(mList, response.getWriter());
+
 	}
 
 	/**
