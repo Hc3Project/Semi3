@@ -34,7 +34,7 @@
 	<section id="slideSection">
 	<div id = "gradation"></div> 
 		<div class="row">
-		<div class="col-lg-1" style="background: white; z-index: 21; color: black;">광 고</div>
+		<div class="col-lg-1" style="background:white; z-index: 21; color: black;"><img src="/semi/resources/image/ad.png" alt=help></div>
 			<div class="col-lg-3">
 				<div id="boxOffice">
 					<div id="bo1">
