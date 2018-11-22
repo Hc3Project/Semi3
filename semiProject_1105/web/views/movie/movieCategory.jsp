@@ -45,38 +45,57 @@
 
 	<script>
 	
+	$(function() {
+		var $addOption = $(".genre");
+		var cSql= "selectCategoryGenreList";
+		var cCode = "<%=cCode%>";
+		addOptionList($addOption,cSql,cCode);
+		
+		$addOption = $(".nation");
+		cSql= "selectCategoryNationList";
+		addOptionList($addOption,cSql,cCode);
+		
+		$addOption = $(".reviewer");
+		cSql= "selectCategoryReviewerList";
+		addOptionList($addOption,cSql,cCode);
+		
+		
+		
+	});
+	
+	function addOptionList($addOption,cSql,cCode){
+		$.ajax({
+				url : "/semi/cList.ca",
+				data : {
+					csql : cSql
+				},
+				success : function(data){
+					
+					for(var i in data){
+						$option = $("<option>").attr("value",data[i].code).text(data[i].name)
+						
+						$addOption.append($option);
+						
+
+						if($option.val() == cCode){
+							$option.attr("selected","selected");
+							var a = $(".nation").val()
+							console.log("asdasdsa1213213asd31asd   "+a);
+							mlist($(".genre").val(),$(".nation").val(),$(".reviewer").val(),orderSql($(".order").val()));
+						}	
+					}	
+			},
+			error : function(data){
+				console.log("실패실패")
+			}
+		});
+		
+	};
+	
 	// 장르 옵션
 	$(function addOptionGenre(){
-		
-		
-		console.log("<%=cCode%>");
 		var $addOption = $(".genre")
-		$
-			.ajax({
-					url : "/semi/cList.ca",
-					data : {
-						csql : "selectCategoryGenreList"
-					},
-					success : function(data){
-						
-						for(var i in data){
-							$genreOption = $("<option>").attr("value",data[i].code).text(data[i].name)
-							
-							$addOption.append($genreOption);
-							
-
-							if($genreOption.val() == "<%=cCode%>"){
-								$genreOption.attr("selected","selected");
-							}
-							
-						}
-						
-				},
-				error : function(data){
-					console.log(data);
-					console.log("실패실패")
-				}
-			});
+		
 	});
 	
 	// 나라 옵션
@@ -170,7 +189,7 @@
 
 
 		<div class="select-order">
-			<select class="order">
+			<select class="order" id = "order">
 				<option value="avgScore">평균별점 순</option>
 				<option value="update">최신작품 순</option>
 				<option value="showtime">러닝타임 짧은 순</option>
