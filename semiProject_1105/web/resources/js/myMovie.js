@@ -114,7 +114,7 @@ function visitMovie() {
 											.append(
 													$("<img>")
 															.attr("src",
-																	"233F6D505786DA870A.gif")
+																	"../../resources/image/233F6D505786DA870A.gif")
 															.css(
 																	{
 																		"margin-top" : top
