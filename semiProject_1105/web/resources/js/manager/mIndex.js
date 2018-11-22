@@ -236,10 +236,10 @@ $(function(){
 					$('#dGenre').html('').text(num + "일 이내 개봉된 영화가 등록되어 있지 않습니다.")
 				}
 			},
-			error : function(data){
-				console.log(data);
-			},
-			async : false
+			complete : function(data){
+				var offset = $('#dGenre').offset().top;
+				$(window).scrollTop(offset);
+			}
 		})
 	})
 	

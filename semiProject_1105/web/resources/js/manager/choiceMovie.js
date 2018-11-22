@@ -5,6 +5,11 @@ var curPage;
 
 $(function(){
 	$('#moreList').prop('disabled', true);
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
+		}
+	})
 	$('#selBtn').click(function(){
 		if($('#search').val().trim()==""){
 			alert("키워드를 입력해주세요~!")

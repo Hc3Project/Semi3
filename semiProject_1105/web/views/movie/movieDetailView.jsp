@@ -81,6 +81,7 @@
 						<ul>
 							<li><h4>
 									<b id="mtitle"><%=mtitle%></b>
+									<input type="hidden" id="mCode" value="<%=mcode%>">
 								</h4></li>
 							<li><p class="font_8">&nbsp;</p></li>
 							<li><p class="font_8" id="pf">
