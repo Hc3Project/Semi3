@@ -8,8 +8,8 @@
   <!-- 슬라이더 -->
   <script src="../../resources/js/common.js"></script>
   <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
 
   
   <link rel="stylesheet" href="../../resources/css/reset.css">
@@ -39,7 +39,7 @@
             <form action="<%=request.getContextPath()%>/login.me" method="post">
               <input type="text" name="name" id="name" class="inpt"  required="required" placeholder="아이디">
               <label for="name">아이디</label>
-              <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호">
+              <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호 (6자 이상)">
               <label for="password">비밀번호</label>
               <div class="submit-wrap">
                 <input type="submit" value="로그인" class="submit">
@@ -48,17 +48,17 @@
             </form>
           </div>
                     <div class="signup-cont cont">
-            <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post" >
+            <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post" name="userInfo">
               <input type="text" name="name" id="jname" class="inpt" required="required" placeholder="아이디">
               <input type="button" id="idCheck" value="중복 체크" >
              
               <br><br>
-              <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일(test@test.com)">
+              <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일 (test@test.com)">
               
-              <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호">
+              <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호 (6자 이상)">
               
               <div class="submit-wrap">
-                <input type="button" value="가입 완료" class="submit" onclick="gosubmit();">
+                <input type="button" value="가입 완료" class="submit" onclick="gosubmit()">
               </div>
             </form>
           </div>
@@ -116,18 +116,21 @@
       event.preventDefault();
    });
     
-    
-    
+
     
     function gosubmit(){
+       var id = document.getElementById('jname');
+        var pass = document.userInfo.password;
        
        if(chk == 0){
           
        alert("아이디 중복 체크를 해주세요!");
        
-       } else if (chk == 1){
-          alert("이미 사용 중인 아이디 입니다!");
-          chk=0;
+       } else if (id.value.length<4){
+          alert("아이디는 4자리 이상으로 설정해주세요.")
+          chk= 0;
+       } else if (pass.value.length<6){
+          alert("비밀번호는 6자리 이상으로 설정해주세요.")
           
        } else {
           
