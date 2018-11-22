@@ -53,7 +53,13 @@
             <a class="yt-simple-endpoint style-scope ytd-channel-renderer" href="">
             <div id="avatar" class="style-scope ytd-channel-renderer">
                 <yt-img-shadow height="136" width="136" class="" loaded="" style="background-color: transparent;"></yt-img-shadow>
-                    <img id="profile" alt="" width="136" height="136" src="https://yt3.ggpht.com/a-/<%=prfImg%>">
+                    <img id="profile" alt="" width="136" height="136" src="
+                    <%if(prfImg.substring(0, 4).equals("http")){
+                    	out.print(prfImg);
+                    } else {
+                    	out.print("https://yt3.ggpht.com/a-/"+prfImg);
+                    }
+                    %>">
                 </yt-img-shadow>
             </div>
             <div id="info" class="style-scope ytd-channel-renderer">

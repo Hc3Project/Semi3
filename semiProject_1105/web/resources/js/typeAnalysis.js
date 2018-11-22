@@ -68,14 +68,14 @@ $(function(){
 			$gOutDiv = $('#gDivU');
 			$g3Div.html('');
 			$gOutDiv.html('');
-			
+			console.log(result)
 			if(result.length!=0){
 				for(var i=0; i<result.length; i++){
 					if(i<3){
 						$inDiv = $('<div>');
 						$tDiv = $('<div>').attr({
 							'style' : 'font-weight:bold;'
-						}).text(result[i].name);
+						}).append($('<a>').attr('href','/semi//toCategory.do?name='+result[i].name).text(result[i].name));
 						$sDiv = $('<div>').attr({
 							'style' : 'under_note'
 						}).text(result[i].mean*10 + "점·" + result[i].cnt + "편");
@@ -83,25 +83,23 @@ $(function(){
 						$inDiv.append($sDiv);
 						
 						$g3Div.append($inDiv);
-					} else if(i<6) {
+					} else {
 						$iDiv = $('<div>').attr({
 							'style' : 'height:13px;margin-top:9px;'
 						})
 						$tSpan = $('<span>').attr({
 							'class' : 'under_note',
 							'style' : 'float:left'
-						}).text(result[i].name);
+						}).append($('<a>').attr('href','/semi//toCategory.do?name='+result[i].name).text(result[i].name));
 						$sSpan = $('<span>').attr({
 							'class' : 'under_note',
 							'style' : 'float:right'
-						}).text(result[i].mean*20 + "점·" + result[i].cnt + "편");
+						}).text(result[i].mean*10 + "점·" + result[i].cnt + "편");
 						
 						$iDiv.append($tSpan);
 						$iDiv.append($sSpan);
 						
 						$gOutDiv.append($iDiv);
-					} else {
-						break;
 					}
 				}
 			} else {
@@ -135,6 +133,7 @@ function init() {
 					var result = data.items[0];
 					var channelTitle = result.snippet.channelTitle;
 					var thumbnail = result.snippet.thumbnails.default.url;
+					
 					$rvrDiv = $('<div>').attr({
 						'class' : 'height:50px'
 					});
@@ -146,9 +145,14 @@ function init() {
 					$inDiv = $('<div>').attr({
 						'style' : 'margin:6px 0 0 10px;display:inline-block;float:left;text-align:left;'
 					})
+					$aRvr = $('<a>').attr({
+						href : "profile.rvr?rvrCode=" + item + "&prfImg=" + thumbnail	
+					}).text(channelTitle);
 					$inRvrName = $('<div>').attr({
 						'class' :'font-weight:bold;font-size:17px;'
-					}).text(channelTitle);
+					})
+					$inRvrName.append($aRvr);
+					
 					$inDiv.append($inRvrName);
 					
 					$line = $('<div>').attr({

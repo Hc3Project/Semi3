@@ -145,5 +145,12 @@ public class MemberService {
 		close(con);
 		return result;
 	}
+
+	public String selectCateCode(String cName) {
+		Connection con = getConnection();
+		String cate = mDao.selectCateCode(con, cName);
+		close(con);
+		return cate;
+	}
 	
 }

@@ -28,11 +28,16 @@ $(function(){
 		var mApi = new KobisOpenAPIRestService(getKey());
 		var mList = mApi.getMovieList(true, title, resultMax, curPage);
 		
-		$('#searchMovie').css("display", "block");
-		$('#insertMovie').css("display", "none");
-		$('#movieList tbody').html("");
-		$('#more').prop('disabled', false);
-		addTable(mList);
+		if(mList.movieListResult.totCnt!=0){
+			$('#searchMovie').css("display", "block");
+			$('#insertMovie').css("display", "none");
+			$('#movieList tbody').html("");
+			$('#more').prop('disabled', false);
+			addTable(mList);
+		} else {
+			alert('검색결과가 존재하지 않습니다.');
+		}
+		
 	})
 	
 	$('#more').click(function(){

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.kh.semi.exception.MemberException;
 import com.kh.semi.user.category.model.vo.CategoryInfo;
 import com.kh.semi.user.member.model.vo.Member;
 
@@ -300,6 +299,22 @@ public class MemberDao {
 		} finally {
 			close(rset);
 			close(pstmt);
+		}
+		return result;
+	}
+	public String selectCateCode(Connection con, String cName) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String result = null;
+		String sql = prop.getProperty("selectCateCode");
+		try {
+			result = "";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cName);
+			rset = pstmt.executeQuery();
+			if(rset.next()) result = rset.getString("gcode");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return result;
 	}
