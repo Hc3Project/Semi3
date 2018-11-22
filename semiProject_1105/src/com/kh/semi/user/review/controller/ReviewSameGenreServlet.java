@@ -1,38 +1,29 @@
-
-package com.kh.semi.user.movie.contoller;
+package com.kh.semi.user.review.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
-import com.kh.semi.common.MovieImg;
-import com.kh.semi.common.MovieSmallImg;
-import com.kh.semi.exception.DetailViewException;
-import com.kh.semi.manager.video.model.vo.MovieInfo;
-import com.kh.semi.user.member.model.vo.Member;
-import com.kh.semi.user.movie.model.service.MovieService;
+import com.kh.semi.user.review.model.service.ReviewService;
+import com.kh.semi.user.review.model.vo.Review;
 
 /**
- * Servlet implementation class VisitMovieServlet
+ * Servlet implementation class ReviewSameGenreServlet
  */
-@WebServlet("/mVisit.do")
-public class VisitMovieServlet extends HttpServlet {
+@WebServlet("/gSame.rv")
+public class ReviewSameGenreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VisitMovieServlet() {
+    public ReviewSameGenreServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,21 +32,12 @@ public class VisitMovieServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		String userId = ((Member) session.getAttribute("member")).getUserId();
-		int mPage = Integer.parseInt(request.getParameter("page"));
-		String page = "";
-
-		MovieService ms = new MovieService();
-		ArrayList<MovieInfo> mlist = new ArrayList<MovieInfo>();
-
-		mlist = ms.visitMovie(userId,mPage);
-
 		
+		String mCode = request.getParameter("mCode");
+		ReviewService rs = new ReviewService();
+		List<Review> result = rs.reviewSameGenre(mCode);
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(mlist, response.getWriter());
-		
-		
+		new Gson().toJson(result, response.getWriter());
 		
 	}
 
@@ -68,4 +50,3 @@ public class VisitMovieServlet extends HttpServlet {
 	}
 
 }
-

@@ -13,12 +13,13 @@ public class MovieInfo {
 	private String gCOde2;
 	private String nCode;
 	private String syno;
+	private String poster;
 	
 	public MovieInfo() {
 		super();
 	}
 	public MovieInfo(String mCode, String mTitle, String director, String actor, int showTime, Date openDate,
-			String gCode1, String gCOde2, String nCode, String syno) {
+			String gCode1, String gCOde2, String nCode, String syno,String poster) {
 		super();
 		this.mCode = mCode;
 		this.mTitle = mTitle;
@@ -30,6 +31,7 @@ public class MovieInfo {
 		this.gCOde2 = gCOde2;
 		this.nCode = nCode;
 		this.syno = syno;
+		this.poster = poster;
 	}
 	/**
 	 * @return the mCode
@@ -40,8 +42,15 @@ public class MovieInfo {
 	/**
 	 * @param mCode the mCode to set
 	 */
+	
 	public void setmCode(String mCode) {
 		this.mCode = mCode;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 	/**
 	 * @return the mTitle
@@ -158,7 +167,7 @@ public class MovieInfo {
 	public String toString() {
 		return "MovieInfo [mCode=" + mCode + ", mTitle=" + mTitle + ", director=" + director + ", actor=" + actor
 				+ ", showTime=" + showTime + ", openDate=" + openDate + ", gCode1=" + gCode1 + ", gCOde2=" + gCOde2
-				+ ", nCode=" + nCode + ", syno=" + syno + "]";
+				+ ", nCode=" + nCode + ", syno=" + syno +", poster=" + poster + "]";
 	}
 	
 	

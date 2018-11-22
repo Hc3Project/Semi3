@@ -89,6 +89,7 @@ body .container .content .signup-cont {
 }
 body .container .content .rec-list {
 	margin: 25px 50px;
+	padding : 10px 0px;
 }
 @keyframes slideIn {
   0% {

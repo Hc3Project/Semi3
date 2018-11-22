@@ -81,6 +81,7 @@
 						<ul>
 							<li><h4>
 									<b id="mtitle"><%=mtitle%></b>
+									<input type="hidden" id="mCode" value="<%=mcode%>">
 								</h4></li>
 							<li><p class="font_8">&nbsp;</p></li>
 							<li><p class="font_8" id="pf">
@@ -285,9 +286,11 @@
 					},
 					success:function(data){
 						var avg=data;
-						$('.average').text("이 영화의 평균 평점은 "+avg+"점 입니다.")
+						$('.average').html("이 영화의 평균 평점은 <font style='color: rgb(242, 198, 102)'>"+avg+"</font>점 입니다.");
 					}
 				});
+			<%}else{%>
+				alert("로그인을 하시면 평점을 부여할 수 있습니다.");
 			<%}%>
 		});
 		

@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.semi.common.MovieSmallImg;
 import com.kh.semi.manager.video.model.vo.MovieInfo;
 import com.kh.semi.user.category.model.vo.CategoryInfo;
 
@@ -183,7 +184,7 @@ public class CategoryDao {
 
 	// 셀렉트박스의 정보로 영화정보 가져오는 메소드 
 	public ArrayList<MovieInfo> selectMoiveSelectedList(Connection con, String msql, String gCode, String nCode, String rvrCode,int mPage) {
-		
+		System.out.println("dao");
 		if(gCode.equals("all")){
 			gCode = gCode.replace(gCode, "%%");
 		}
@@ -201,9 +202,9 @@ public class CategoryDao {
 		ArrayList<MovieInfo> mList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null; 
-		
+		System.out.println("msql "+msql);
 		String sql = prop.getProperty(msql);
-		
+		System.out.println("sql "+sql);
 		System.out.println(sql);
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -222,18 +223,25 @@ public class CategoryDao {
 			}*/
 			rset = pstmt.executeQuery();
 			mList = new ArrayList<MovieInfo>();
-			
+			System.out.println("rset  "+rset);
 			while(rset.next()){
-			
+				try {
 			MovieInfo mi = new MovieInfo();
+
 			
-			mi.setmCode(rset.getString("MCODE"));
-			mi.setmTitle(rset.getString("MTITLE"));
 			
+			
+				mi.setmCode(rset.getString("MCODE"));
+				mi.setmTitle(rset.getString("MTITLE"));
+				mi.setPoster( new MovieSmallImg().movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
+				mList.add(mi);
+			}catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				continue;
+			}
 			//mi.setSyno(rset.getString("syno"));
-			
-			mList.add(mi);
-		
+
 		}
 			
 		} catch (SQLException e) {

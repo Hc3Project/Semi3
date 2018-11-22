@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="java.util.*, com.kh.semi.manager.video.model.vo.*"%>
+<%@ page import="org.json.*"%>
+
 
 <%
+
 	ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>) request.getAttribute("mList");
+	
 	String cCode = request.getParameter("cCode");
 %>
 
@@ -35,43 +39,12 @@
 	<header>
 		<%@ include file="../common/header.jsp"%>
 	</header>
-	<div class="select-menu">
-		<div class="select-genre">
-			<select class="genre select" id="genre">
-				<option value="all" id="all">모든 장르</option>
-			</select>
-		</div>
-
-
-		<div class="select-nation">
-			<select class="nation select" id="nation">
-				<option value="all" id="all" selected="selected">모든 국가</option>
-			</select>
-		</div>
-
-		<div class="select-reviewer">
-			<select class="reviewer select" id="reviewer">
-				<option value="all" id="all" selected="selected">모든 리뷰어</option>
-			</select>
-		</div>
-
-
-		<div class="select-order">
-			<select>
-
-				<option value="avgScore">평균별점 순</option>
-				<option value="update">최신작품 순</option>
-				<option value="showtime">러닝타임 짧은 순</option>
-			</select>
-		</div>
-
-
-	</div>
-
-
+	
 
 	<!-- 셀렉트박스 옵션 가져오는 ajax -->
+
 	<script>
+	
 	// 장르 옵션
 	$(function addOptionGenre(){
 		
@@ -127,7 +100,7 @@
 								$nationOption.attr("selected","selected");
 							}
 							
-							
+						
 						}
 				},
 				error : function(data){
@@ -158,7 +131,9 @@
 							if($reviewerOption.val() == "<%=cCode%>") {
 							$reviewerOption.attr("selected", "selected");
 						}
+							
 					}
+						
 				},
 				error : function(data) {
 					console.log(data);
@@ -172,17 +147,51 @@
 	<!-- 검색결과 -->
 	<!-- 셀렉트 박스와 연동 -->
 	<section class="movieSection">
-		<div class="category-page" style="position: relative;">
+	<div class="select-menu">
+		<div class="select-genre">
+			<select class="genre select" id="genre">
+				<option value="all" id="all">모든 장르</option>
+			</select>
+		</div>
+
+
+		<div class="select-nation">
+			<select class="nation select" id="nation">
+				<option value="all" id="all" selected="selected">모든 국가</option>
+			</select>
+		</div>
+
+		<div class="select-reviewer">
+			<select class="reviewer select" id="reviewer">
+				<option value="all" id="all" selected="selected">모든 리뷰어</option>
+			</select>
+		</div>
+
+
+		<div class="select-order">
+			<select class="order">
+				<option value="avgScore">평균별점 순</option>
+				<option value="update">최신작품 순</option>
+				<option value="showtime">러닝타임 짧은 순</option>
+			</select>
+		</div>
+
+		<div class="searchBtn">
+			<button type="button" class="button" value="search">검색
+			</button>
+		</div>
+	</div>
+	
+		<div class="category-page" >
 			<div class="home-page__rec-list">
 				<div class="rec-row poster" id="catecoryMovie">
-					<div id="Progress_Loading">
-						<!-- 로딩바 -->
-
-					</div>
+					
 				</div>
 			</div>
 		</div>
+		
 	</section>
+
 
 	<%-- 	<!-- 검색결과 -->
 	<div class="category-page" style="position: relative;">

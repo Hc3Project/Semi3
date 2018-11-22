@@ -6,7 +6,11 @@ var opt;
 $(function(){
 	$('#divList').css('display', 'none');
 	$('#moreList').prop('disabled', true);
-	
+	$('.search input[type="text"]').keypress(function(e){
+		if(e.which==13){
+			$('.search input[type="button"]').click();
+		}
+	})
 	$('#userBtn').click(function(){
 		if($('#selOpt').val()==""){
 			alert('검색범주를 선택해주세요.')
