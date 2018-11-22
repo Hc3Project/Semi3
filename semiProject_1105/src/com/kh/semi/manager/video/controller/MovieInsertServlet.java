@@ -42,6 +42,7 @@ public class MovieInsertServlet extends HttpServlet {
 		String tmpDate = request.getParameter("openDate");
 		mi.setOpenDate(Date.valueOf(tmpDate.substring(0, 4) + "-" + tmpDate.substring(4, 6) + "-" + tmpDate.substring(6, 8)));
 		mi.setSyno(request.getParameter("syno"));
+		System.out.println(request.getParameter("syno"));
 		
 		String genre1 = request.getParameter("genre1");
 		String genre2 = request.getParameter("genre2");

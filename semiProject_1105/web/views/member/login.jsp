@@ -47,17 +47,18 @@
               </div>
             </form>
           </div>
-          <div class="signup-cont cont">
-            <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post">
+                    <div class="signup-cont cont">
+            <form id="joinForm" action="<%=request.getContextPath()%>/mInsert.me" method="post" >
               <input type="text" name="name" id="jname" class="inpt" required="required" placeholder="아이디">
               <input type="button" id="idCheck" value="중복 체크" >
+             
               <br><br>
               <input type="email" name="email" id="email" class="inpt" required="required" placeholder="이메일(test@test.com)">
               
               <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호">
               
               <div class="submit-wrap">
-                <input type="submit" value="가입 완료" class="submit">
+                <input type="button" value="가입 완료" class="submit" onclick="gosubmit();">
               </div>
             </form>
           </div>
@@ -86,33 +87,54 @@
       }
     });
     
-    $('#idCheck').click(function(){
-    	
-		$.ajax({
-			url : "/semi/idDup.me",
-			type : "post",
-			data : { userId : $('#jname').val()},
-			success : function(data) {
-				
-				if( data == 'no' ) {
-					alert("이미 사용중인 아이디입니다.");
-					$('#name').select();
-				} else {
-					alert("사용 가능한 아이디입니다.");
-				}
-				
-			}, error : function(request, status, error){
-				alert(request+"\n"
-					+ status+"\n"
-					+ error);
-				console.log("에러 발생!!");
-			}
-		});
-		
-	});
+    var chk = 0;
+    $('#idCheck').click(function(event){
+       if($('#jname').val() == "") alert("아이디를 입력해 주세요!")
+       else
+      $.ajax({
+         url : "/semi/idDup.me",
+         type : "post",
+         data : { userId : $('#jname').val()},
+         success : function(data) {
+            
+            if( data == 'no' ) {
+               alert("이미 사용중인 아이디입니다.");
+               $('#name').select();
+               chk = 0;
+            } else {
+               alert("사용 가능한 아이디입니다.");
+               chk= 2;
+            }
+            
+         }, error : function(request, status, error){
+            alert(request+"\n"
+               + status+"\n"
+               + error);
+            console.log("에러 발생!!");
+         }
+      });
+      event.preventDefault();
+   });
     
-
-  </script>
+    
+    
+    
+    function gosubmit(){
+       
+       if(chk == 0){
+          
+       alert("아이디 중복 체크를 해주세요!");
+       
+       } else if (chk == 1){
+          alert("이미 사용 중인 아이디 입니다!");
+          chk=0;
+          
+       } else {
+          
+          $('#joinForm').submit();
+       }
+       };
+       </script>
 
 </body>
 </html>
