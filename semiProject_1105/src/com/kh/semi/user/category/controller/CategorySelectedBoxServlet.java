@@ -44,7 +44,6 @@ public class CategorySelectedBoxServlet extends HttpServlet {
 		String nCode = request.getParameter("nCode");
 		String rvrCode = request.getParameter("rvrCode");
 		int mPage = Integer.parseInt(request.getParameter("page"));
-		System.out.println(mPage);
 		ArrayList<MovieInfo> mList = new ArrayList<MovieInfo>();
 		
 		mList = cs.selectMovieList(msql, gCode, nCode, rvrCode,mPage); // 무비 리스트 가져오는 cs
@@ -62,7 +61,6 @@ public class CategorySelectedBoxServlet extends HttpServlet {
 			movieIf.put("mCode", movie.getmCode());
 
 			try {
-				System.out.println(new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
 				
 				movieIf.put("mPage", new MovieImg().moviewImg(movie.getmTitle(),movie.getmCode()));
 			} catch (Exception e) {

@@ -44,6 +44,8 @@ public class MovieSmallImg{
 		while ((inStr = br.readLine()) != null) sb.append(inStr);
 		String result = sb.toString();
 		
+		System.out.println(result);
+		
 		br.close();
 
 		if (result.substring(61, 62).equals("1") && !chkNum(result.substring(62, 63)))

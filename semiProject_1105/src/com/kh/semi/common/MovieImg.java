@@ -36,6 +36,7 @@ public class MovieImg {
 		StringBuffer sb = new StringBuffer();
 		while ((inStr = br.readLine()) != null) sb.append(inStr);
 		String result = sb.toString();
+		System.out.println(result);
 		
 		br.close();
 
