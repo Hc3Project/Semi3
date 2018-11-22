@@ -34,7 +34,8 @@
 	<section id="slideSection">
 	<div id = "gradation"></div> 
 		<div class="row">
-			<div class="col-lg-4">
+		<div class="col-lg-1" style="background: white; z-index: 21; color: black;">광 고</div>
+			<div class="col-lg-3">
 				<div id="boxOffice">
 					<div id="bo1">
 						<div style="height: 45px;"></div>
