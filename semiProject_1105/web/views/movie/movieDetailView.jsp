@@ -22,7 +22,7 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>포오스터어어어!!!</title>
+<title>movie traveler</title>
 
 
 <script

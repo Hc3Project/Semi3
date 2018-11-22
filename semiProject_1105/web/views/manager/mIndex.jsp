@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 메인</title>
+<title>movie traveler</title>
 <script src="/semi/resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
 </head>

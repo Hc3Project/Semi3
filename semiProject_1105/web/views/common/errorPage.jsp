@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>에러페이지</title>
+<title>movie traveler</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script

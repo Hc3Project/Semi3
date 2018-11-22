@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰어 수정 및 삭제</title>
+<title>movie traveler</title>
 <script src="../../resources/js/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/common.js"></script>
 </head>

@@ -34,7 +34,8 @@
 	<section id="slideSection">
 	<div id = "gradation"></div> 
 		<div class="row">
-			<div class="col-lg-4">
+		<div class="col-lg-1" style="background: white; z-index: 21; color: black;">광 고</div>
+			<div class="col-lg-3">
 				<div id="boxOffice">
 					<div id="bo1">
 						<div style="height: 45px;"></div>
@@ -87,7 +88,7 @@
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>오늘 이 리뷰 어때요?</span>
+						<span>최신 리뷰</span>
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st2Carousel"
 						data-interval="0">
