@@ -86,10 +86,7 @@
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>오늘 이 리뷰 어때요?</span> <a class="rec-row__show-more"
-							href="javascript:;"> <span>모두 보기 </span> <span
-							class="glyphicon glyphicon-angle-right"></span>
-						</a>
+						<span>오늘 이 리뷰 어때요?</span>
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st2Carousel"
 						data-interval="0">
@@ -121,9 +118,7 @@
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>TOP 리뷰 20</span> <a class="rec-row__show-more" href="javascript:;">
-							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
-						</a>
+						<span>TOP 리뷰 20</span> 
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st3Carousel"
 						data-interval="0">
@@ -158,9 +153,7 @@
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>?</span> <a class="rec-row__show-more" href="javascript:;">
-							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
-						</a>
+						<span>이런 영화는 어떤가요?</span> 
 					</h5>
 					<div class="carousel slide" data-ride="carousel" id="st4Carousel"
 						data-interval="0">
