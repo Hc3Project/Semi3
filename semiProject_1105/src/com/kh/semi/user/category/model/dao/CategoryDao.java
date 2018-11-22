@@ -225,8 +225,9 @@ public class CategoryDao {
 			mList = new ArrayList<MovieInfo>();
 			System.out.println("rset  "+rset);
 			while(rset.next()){
+				MovieInfo mi = new MovieInfo();
 				try {
-			MovieInfo mi = new MovieInfo();
+			
 
 			
 			
@@ -234,12 +235,13 @@ public class CategoryDao {
 				mi.setmCode(rset.getString("MCODE"));
 				mi.setmTitle(rset.getString("MTITLE"));
 				mi.setPoster( new MovieSmallImg().movieSmallImg(rset.getString("mtitle"),rset.getString("mcode")));
-				mList.add(mi);
+				
 			}catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				continue;
 			}
+				mList.add(mi);
 			//mi.setSyno(rset.getString("syno"));
 
 		}

@@ -1,4 +1,6 @@
-
+function msg() {
+	console.log("alkfhskdgndsljflkdafj");
+}
 $(function(){
 	
 	var gCode = $('.genre').val();
