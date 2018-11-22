@@ -13,6 +13,7 @@
 <script src="resources/js/common.js"></script>
 <script src="resources/js/boxOffice.js"></script>
 <script src="resources/js/reviewList.js"></script>
+<script src="resources/js/recMovie.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -150,15 +151,14 @@
 		<!--homepage-->
 
 	</section>
-	
+	<%if(m!=null){ %>
 	<section class="listSection">
-		<input type="hidden" id="logChk" value='<%=(m==null)%>'>
-		<%if(m!=null){ %>
+		<input type="hidden" id="logChk" value='<%=(m!=null)%>'>
 		<div class="home-page">
 			<div class="home-page__rec-list">
 				<div class="rec-row">
 					<h5 class="rec-row__title">
-						<span>?</span> <a class="rec-row__show-more" href="javascript:;">
+						<span><font color="darkred"><%=m.getUserId()%></font>님 이러한 영화는 어떠신가요?</span> <a class="rec-row__show-more" href="javascript:;">
 							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
 						</a>
 					</h5>
@@ -182,8 +182,7 @@
 			</div>
 			<!--home-page__rec-list-->
 		</div>
-		<!--homepage-->
-		<%}%>
 	</section>
+	<%}%>
 </body>
 </html>

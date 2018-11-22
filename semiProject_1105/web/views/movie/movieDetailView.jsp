@@ -31,9 +31,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="resources/js/common.js"></script>
 <script src="resources/js/detailReviewList.js"></script>
-
-
-
+<script src="resources/js/recMovie.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -222,10 +220,40 @@
 
 			</div>
 		</div>
-
 	</section>
+	<%if(m!=null){ %>
+	<section class="listSection">
+		<input type="hidden" id="logChk" value='<%=(m!=null)%>'>
+		<div class="home-page">
+			<div class="home-page__rec-list">
+				<div class="rec-row">
+					<h5 class="rec-row__title">
+						<span><font color="darkred"><%=m.getUserId()%></font>님 이러한 영화는 어떠신가요?</span> <a class="rec-row__show-more" href="javascript:;">
+							<span>모두 보기 </span> <span class="glyphicon glyphicon-angle-right"></span>
+						</a>
+					</h5>
+					<div class="carousel slide" data-ride="carousel" id="st4Carousel"
+						data-interval="0">
+						<div class="carousel-inner ">
+							<a class="carousel-control-prev" href="#st4Carousel"
+								role="button" data-slide="prev"> <span
+								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+								class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next" href="#st4Carousel"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="true"></span> <span
+								class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
 
-
+				</div>
+				<!--rec-row-->
+			</div>
+			<!--home-page__rec-list-->
+		</div>
+	</section>
+	<%}%>
 
 	<script type="text/javascript">
 		
