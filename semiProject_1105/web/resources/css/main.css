@@ -145,7 +145,7 @@ img {
 .movieSection .item div {
 	width: 12%;
 	height: 299px;
-	margin: 2px 4px 2px 4px;
+	margin: 2px 3px 2px 3px;
 	padding:0px !important;
 }
 .effect {
@@ -174,7 +174,7 @@ img {
 #st4Carousel .carousel-inner .item div {
 	width: 12%;
 	height: 300px;
-	margin: 0px 4px 0px 4px;
+	margin: 0px 3px 0px 3px;
 }
 
 .listSection .carousel-inner .item {

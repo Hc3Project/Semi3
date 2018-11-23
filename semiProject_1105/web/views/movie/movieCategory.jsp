@@ -5,7 +5,6 @@
 
 
 <%
-
 	ArrayList<MovieInfo> mList = (ArrayList<MovieInfo>) request.getAttribute("mList");
 	
 	String cCode = request.getParameter("cCode");
@@ -58,7 +57,7 @@
 		$addOption = $(".reviewer");
 		cSql= "selectCategoryReviewerList";
 		addOptionList($addOption,cSql,cCode);
-		
+		if(cCode=="all")mlist($(".genre").val(),$(".nation").val(),$(".reviewer").val(),orderSql($(".order").val()));
 		
 		
 	});
@@ -76,7 +75,6 @@
 						
 						$addOption.append($option);
 						
-
 						if($option.val() == cCode){
 							$option.attr("selected","selected");
 							var a = $(".nation").val()
@@ -213,39 +211,6 @@
 	</section>
 
 
-	<%-- 	<!-- 검색결과 -->
-	<div class="category-page" style="position: relative;">
-		<div class="home-page__rec-list">
-			<div class="rec-row">
-
-				<div class="rec-list clearfix" >
-					<%
-						for (MovieInfo mi : mList) {
-					%>
-
-					<div class = "mcode" value = "<%=mi.getmCode()%>">
-						<h1>
-							<%=mi.getmTitle()%>
-						</h1>
-						<img
-							src="https://dhgywazgeek0d.cloudfront.net/watcha/image/upload/c_fill,h_264,q_80,w_470/x8hs3ctbkum162mpllyr.jpg"
-							alt=""> <i class="hover-box hover-box--play"></i>
-					</div>
-					<%
-						}
-					%>
-					<script type="text/javascript">
-						$(function() {
-							$(".mcode").click(function() {
-								location.href = "/semi/dView.do?mCode="+$(this).attr("value");
-							})
-						});
-					
-					</script>
-				</div>
-			</div>
-		</div>
-	</div> --%>
 
 </body>
 </html>

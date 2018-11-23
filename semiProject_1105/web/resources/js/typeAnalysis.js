@@ -129,8 +129,10 @@ function init() {
 					type : "channel"
 				})
 				
-				request.execute(function(data){
-					var result = data.items[0];
+				request.execute(function(tmp){
+					console.log(tmp);
+					var result = tmp.items[0];
+					
 					var channelTitle = result.snippet.channelTitle;
 					var thumbnail = result.snippet.thumbnails.default.url;
 					
